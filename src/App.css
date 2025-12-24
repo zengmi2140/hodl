@@ -71,7 +71,8 @@ body {
   top: 80%;
   transform: translate(-50%, -50%);
   width: 100%;
-  /* max-width 由组件动态计算 */
+  max-width: 800px;
+  /* 当有内联样式时，上面的 left/transform/width 会被覆盖 */
 }
 
 /* 左侧按钮区域 - 与硬件签名器列左侧对齐 */
