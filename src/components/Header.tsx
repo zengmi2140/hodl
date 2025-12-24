@@ -61,18 +61,20 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
 
   return (
     <header className="header">
-      {/* 左侧按钮组 - 直接在 header 层级，相对于视口定位 */}
+      {/* 多签模式按钮 - 页面最左上角固定位置 */}
+      <button 
+        className="multisig-mode-button-fixed"
+        onClick={() => navigate('/multisig')}
+        title="切换到多签模式"
+      >
+        多签模式
+      </button>
+
+      {/* 左侧重置按钮 - 与布局对齐 */}
       <div 
         className="header-actions-left"
         style={layoutLeftEdge !== undefined ? { left: `${layoutLeftEdge}px` } : undefined}
       >
-        <button 
-          className="multisig-mode-button"
-          onClick={() => navigate('/multisig')}
-          title="切换到多签模式"
-        >
-          多签模式
-        </button>
         <button 
           className="reset-button"
           onClick={onResetPreference}
