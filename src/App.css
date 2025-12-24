@@ -299,8 +299,11 @@ body {
   background: #4b5563;
 }
 
-/* 多签模式按钮 */
-.multisig-mode-button {
+/* 多签模式按钮 - 页面左上角固定位置 */
+.multisig-mode-button-fixed {
+  position: absolute;
+  top: 16px;
+  left: 20px;
   background: #F7931A;
   border: none;
   color: white;
@@ -311,14 +314,14 @@ body {
   font-size: 14px;
   white-space: nowrap;
   min-height: 36px;
-  min-width: 72px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
+  z-index: 25;
 }
 
-.multisig-mode-button:hover {
+.multisig-mode-button-fixed:hover {
   background: #e07d0a;
   box-shadow: 0 2px 8px rgba(247, 147, 26, 0.3);
 }
