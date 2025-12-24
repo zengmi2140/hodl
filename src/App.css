@@ -595,7 +595,7 @@ body {
   grid-template-columns: repeat(3, 260px); /* 三列固定宽度 */
   align-items: start;
   grid-auto-rows: min-content;
-  gap: clamp(36px, 6vw, 80px);
+  gap: clamp(80px, 12vw, 160px); /* 最窄80px，最宽160px */
   width: auto; /* 由内容决定宽度 */
   max-width: 100%;
   justify-content: center;
