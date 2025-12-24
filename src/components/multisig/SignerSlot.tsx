@@ -75,7 +75,7 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
   return (
     <div 
       ref={dropdownRef}
-      className={`signer-slot ${selectedSignerId ? 'filled' : 'empty'}`}
+      className={`signer-slot ${selectedSignerId ? 'filled' : 'empty'} ${isDropdownOpen ? 'dropdown-open' : ''}`}
       style={{
         borderColor: selectedSignerId ? slotColor.border : undefined,
         backgroundColor: selectedSignerId ? slotColor.bg : undefined,
