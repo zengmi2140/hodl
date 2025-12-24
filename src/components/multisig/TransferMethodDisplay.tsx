@@ -22,66 +22,82 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
   };
 
   // 收集所有签名器的传输方式
-  const allMethods: { slotIndex: number; signerId: string; methods: string[] }[] = [];
+  const allMethods: { slotIndex: number; signerId: string; signerName: string; methods: string[] }[] = [];
   
   signerSlots.forEach((signerId, index) => {
     if (signerId && selectedWallet) {
       const methods = getTransferMethods(signerId, selectedWallet);
-      if (methods.length > 0) {
-        allMethods.push({ slotIndex: index, signerId, methods });
+      const signer = custodyData.hardwareSigners.find(s => s.id === signerId);
+      if (methods.length > 0 && signer) {
+        allMethods.push({ 
+          slotIndex: index, 
+          signerId, 
+          signerName: signer.name,
+          methods 
+        });
       }
     }
   });
 
-  const hasAnySelection = signerSlots.some(s => s !== null) || selectedWallet;
+  const hasSigners = signerSlots.some(s => s !== null);
+  const hasWallet = selectedWallet !== null;
 
   return (
     <div className="transfer-method-display">
-      {hasAnySelection ? (
-        <>
-          <div className="transfer-arrow">
-            <span>←</span>
-            <span>→</span>
-          </div>
-          <div className="transfer-methods-list">
-            {allMethods.map(({ slotIndex, signerId, methods }) => {
-              const color = SLOT_COLORS[slotIndex];
-              const signer = custodyData.hardwareSigners.find(s => s.id === signerId);
-              return methods.map((method, idx) => (
-                <span
-                  key={`${slotIndex}-${idx}`}
-                  className="transfer-method-tag"
-                  style={{
-                    backgroundColor: color.bg,
-                    borderColor: color.border,
-                    border: `1px solid ${color.border}`,
-                  }}
-                  title={signer?.name}
-                >
-                  {method}
-                </span>
-              ));
-            })}
-            {allMethods.length === 0 && (
-              <span style={{ 
-                color: 'hsl(var(--muted-foreground))',
-                fontSize: '0.75rem',
-                textAlign: 'center',
-              }}>
-                选择签名器和钱包<br />查看传输方式
-              </span>
-            )}
-          </div>
-        </>
-      ) : (
-        <div style={{ 
-          color: 'hsl(var(--muted-foreground))',
-          fontSize: '0.875rem',
-          textAlign: 'center',
-        }}>
-          数据传输
+      {/* 数据流箭头 */}
+      <div className="transfer-arrows">
+        <div className="transfer-arrow-line">
+          <span className="arrow-icon">←</span>
+          <span className="arrow-label">签名</span>
         </div>
-      )}
+        <div className="transfer-arrow-line">
+          <span className="arrow-label">交易</span>
+          <span className="arrow-icon">→</span>
+        </div>
+      </div>
+
+      {/* 传输方式标签 */}
+      <div className="transfer-methods-container">
+        {allMethods.length > 0 ? (
+          <div className="transfer-methods-list">
+            {allMethods.map(({ slotIndex, signerName, methods }) => {
+              const color = SLOT_COLORS[slotIndex];
+              return (
+                <div key={slotIndex} className="transfer-method-group">
+                  <div 
+                    className="transfer-method-signer"
+                    style={{ color: color.border }}
+                  >
+                    #{slotIndex + 1}
+                  </div>
+                  <div className="transfer-method-tags">
+                    {methods.map((method, idx) => (
+                      <span
+                        key={idx}
+                        className="transfer-method-tag"
+                        style={{
+                          backgroundColor: color.bg,
+                          border: `1px solid ${color.border}`,
+                        }}
+                        title={`${signerName}: ${method}`}
+                      >
+                        {method}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="transfer-method-hint">
+            {!hasSigners && !hasWallet && '选择签名器和钱包'}
+            {hasSigners && !hasWallet && '请选择钱包'}
+            {!hasSigners && hasWallet && '请选择签名器'}
+            {hasSigners && hasWallet && '无传输方式'}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

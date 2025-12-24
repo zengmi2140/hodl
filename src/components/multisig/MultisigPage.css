@@ -56,6 +56,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
+  padding-left: 40px;
   border-radius: 12px;
   border: 2px dashed hsl(var(--border));
   background-color: hsl(var(--secondary));
@@ -67,14 +68,39 @@
 
 .signer-slot:hover {
   border-color: hsl(var(--muted-foreground));
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .signer-slot.empty {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .signer-slot.filled {
   border-style: solid;
+}
+
+/* 槽位编号 */
+.signer-slot-number {
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.signer-slot-empty-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .signer-slot-add-icon {
@@ -88,6 +114,17 @@
   color: hsl(var(--muted-foreground));
   font-size: 1.5rem;
   font-weight: 300;
+  transition: all 0.2s ease;
+}
+
+.signer-slot:hover .signer-slot-add-icon {
+  background-color: #F7931A;
+  color: white;
+}
+
+.signer-slot-hint {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
 }
 
 .signer-slot-logo {
@@ -137,6 +174,12 @@
   font-size: 0.75rem;
   font-weight: 600;
   cursor: help;
+  transition: all 0.2s ease;
+}
+
+.signer-slot-info:hover {
+  background-color: #F7931A;
+  color: white;
 }
 
 /* 钱包/节点项目样式 */
@@ -163,11 +206,27 @@
   background-color: #fff7ed;
 }
 
+.multisig-item.breathing {
+  animation: multisigBreathing 2s ease-in-out infinite;
+}
+
+@keyframes multisigBreathing {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(247, 147, 26, 0);
+    border-color: hsl(var(--border));
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(247, 147, 26, 0.15);
+    border-color: rgba(247, 147, 26, 0.5);
+  }
+}
+
 .multisig-item.selected {
   opacity: 1;
   border-color: #F7931A;
   background-color: #fff7ed;
   box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.2);
+  animation: none;
 }
 
 .multisig-item-logo {
@@ -197,6 +256,12 @@
   font-size: 0.75rem;
   font-weight: 600;
   cursor: help;
+  transition: all 0.2s ease;
+}
+
+.multisig-item-info:hover {
+  background-color: #F7931A;
+  color: white;
 }
 
 /* 传输方式显示区域 */
@@ -204,32 +269,82 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-width: 120px;
-  padding: 16px;
+  justify-content: flex-start;
+  gap: 16px;
+  min-width: 140px;
+  padding: 48px 16px 16px;
 }
 
-.transfer-arrow {
+.transfer-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transfer-arrow-line {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+}
+
+.arrow-icon {
+  font-size: 1rem;
+  color: #F7931A;
+}
+
+.arrow-label {
+  font-size: 0.7rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.transfer-methods-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .transfer-methods-list {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+.transfer-method-group {
+  display: flex;
+  align-items: center;
   gap: 6px;
+}
+
+.transfer-method-signer {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 20px;
+}
+
+.transfer-method-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 .transfer-method-tag {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
   font-weight: 500;
+  white-space: nowrap;
+}
+
+.transfer-method-hint {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  line-height: 1.4;
 }
 
 /* 下拉菜单样式 */
@@ -242,10 +357,34 @@
   background-color: white;
   border: 1px solid hsl(var(--border));
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   z-index: 100;
-  max-height: 300px;
+  max-height: 320px;
   overflow-y: auto;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signer-dropdown-header {
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid hsl(var(--border));
+  background-color: hsl(var(--secondary));
+  border-radius: 12px 12px 0 0;
 }
 
 .signer-dropdown-item {
@@ -255,10 +394,6 @@
   padding: 12px 16px;
   cursor: pointer;
   transition: background-color 0.15s ease;
-}
-
-.signer-dropdown-item:first-child {
-  border-radius: 12px 12px 0 0;
 }
 
 .signer-dropdown-item:last-child {
@@ -276,6 +411,29 @@
 
 .signer-dropdown-item.disabled:hover {
   background-color: transparent;
+}
+
+.signer-dropdown-item-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+  background-color: hsl(var(--secondary));
+  padding: 2px;
+}
+
+.signer-dropdown-item-name {
+  flex: 1;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.signer-dropdown-item-incompatible {
+  font-size: 0.7rem;
+  color: #ef4444;
+  background-color: #fee2e2;
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 
 .signer-dropdown-item-logo {

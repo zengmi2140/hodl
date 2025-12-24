@@ -7,6 +7,7 @@ interface NodeColumnProps {
   custodyData: CustodyData;
   compatibleNodes: string[];
   onNodeSelect: (nodeId: string | null) => void;
+  hasSelectedWallet: boolean;
 }
 
 const NodeColumn: React.FC<NodeColumnProps> = ({
@@ -14,6 +15,7 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
   custodyData,
   compatibleNodes,
   onNodeSelect,
+  hasSelectedWallet,
 }) => {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
@@ -31,11 +33,13 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
       {custodyData.nodes.map(node => {
         const isCompatible = compatibleNodes.includes(node.id);
         const isSelected = selectedNode === node.id;
+        // 如果有选择钱包且节点兼容，显示呼吸动画
+        const isBreathing = hasSelectedWallet && isCompatible && !isSelected;
         
         return (
           <div
             key={node.id}
-            className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''}`}
+            className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleNodeClick(node.id)}
             style={{ position: 'relative' }}
           >
@@ -47,8 +51,12 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
             <span className="multisig-item-name">{node.name}</span>
             <div
               className="multisig-item-info"
-              onMouseEnter={() => setHoveredNode(node.id)}
+              onMouseEnter={(e) => {
+                e.stopPropagation();
+                setHoveredNode(node.id);
+              }}
               onMouseLeave={() => setHoveredNode(null)}
+              onClick={(e) => e.stopPropagation()}
             >
               i
             </div>
