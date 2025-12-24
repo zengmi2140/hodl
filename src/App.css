@@ -68,8 +68,8 @@ body {
   justify-content: center;
   position: absolute;
   left: 50%;
-  top: 70px; /* 固定位置，与按钮对齐 */
-  transform: translateX(-50%);
+  top: 80%;
+  transform: translate(-50%, -50%);
   width: 100%;
   max-width: 800px;
   /* 当有内联样式时，上面的 left/transform/width 会被覆盖 */
@@ -79,8 +79,8 @@ body {
 .header-actions-left {
   position: absolute;
   left: 20px; /* 默认值，会被内联样式覆盖 */
-  top: 70px; /* 固定位置，与进度条对齐 */
-  transform: none;
+  top: 80%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -91,8 +91,8 @@ body {
 .header-actions {
   position: absolute;
   right: 20px; /* 默认值，会被内联样式覆盖 */
-  top: 70px; /* 固定位置，与进度条对齐 */
-  transform: none;
+  top: 80%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   gap: 12px;
