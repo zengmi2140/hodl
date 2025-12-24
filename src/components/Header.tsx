@@ -11,24 +11,36 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
   const [isMultiSigTooltipVisible, setIsMultiSigTooltipVisible] = useState(false);
   
-  // 进度条动态边界计算
+  // 进度条动态宽度计算（保持居中）
   const GAP_FROM_BUTTONS = 24; // 进度条与按钮之间的间隙（像素）
   const BUTTON_WIDTH = 72; // 按钮的大致宽度（像素）
   
-  const getProgressBounds = (): { left: number; right: number } | null => {
+  const calculateProgressMaxWidth = (): number | null => {
     if (layoutLeftEdge === undefined || layoutRightEdge === undefined) {
-      return null; // 使用默认居中样式
+      return null; // 使用默认样式
     }
     
-    // 进度条左边界 = 重置按钮右边界 + 间隙
-    const left = layoutLeftEdge + BUTTON_WIDTH + GAP_FROM_BUTTONS;
-    // 进度条右边界 = FAQ 按钮左边界 - 间隙  
-    const right = layoutRightEdge - BUTTON_WIDTH - GAP_FROM_BUTTONS;
+    // 页面中心点
+    const pageCenter = window.innerWidth / 2;
     
-    return { left, right };
+    // 左侧按钮右边界
+    const leftButtonRight = layoutLeftEdge + BUTTON_WIDTH + GAP_FROM_BUTTONS;
+    // 右侧按钮左边界
+    const rightButtonLeft = layoutRightEdge - BUTTON_WIDTH - GAP_FROM_BUTTONS;
+    
+    // 从页面中心到左侧的可用距离
+    const leftHalfSpace = pageCenter - leftButtonRight;
+    // 从页面中心到右侧的可用距离
+    const rightHalfSpace = rightButtonLeft - pageCenter;
+    
+    // 取较小值作为半宽度，保证两侧都不超出
+    const halfWidth = Math.min(leftHalfSpace, rightHalfSpace);
+    
+    // 进度条总宽度，最小200px，最大800px
+    return Math.min(Math.max(halfWidth * 2, 200), 800);
   };
 
-  const progressBounds = getProgressBounds();
+  const progressMaxWidth = calculateProgressMaxWidth();
   
   const getProgressColor = (percentage: number): string => {
     if (percentage === 0) return '#fbbf24';   // 黄色 - 空状态
@@ -87,12 +99,7 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
         {/* 中央进度条区域 */}
         <div 
           className="progress-section" 
-          style={progressBounds ? {
-            left: `${progressBounds.left}px`,
-            right: `calc(100% - ${progressBounds.right}px)`,
-            transform: 'translateY(-50%)',
-            width: 'auto'
-          } : undefined}
+          style={progressMaxWidth ? { maxWidth: `${progressMaxWidth}px` } : undefined}
         >
           <div className={`progress-bar-container ${showGrayExtension ? 'extended' : ''}`}>
             <div 
