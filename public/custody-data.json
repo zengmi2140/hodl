@@ -1,0 +1,562 @@
+{
+  "hardwareSigners": [
+    {
+      "id": "coldcard",
+      "name": "Coldcard",
+      "logo": "/images/logos/hardware/coldcard.jpg",
+      "features": [
+        {
+          "type": "positive",
+          "text": "掷骰子生成种子词"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped 体验"
+        },
+        {
+          "type": "warning",
+          "text": "多次输错 PIN 码设备报废"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum"
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "logo": "/images/logos/hardware/ledger.jpg",
+      "features": [
+        {
+          "type": "positive",
+          "text": "支持 Miniscript"
+        },
+        {
+          "type": "negative",
+          "text": "固件不开源"
+        },
+        {
+          "type": "negative",
+          "text": "小屏幕"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk"
+      ]
+    },
+    {
+      "id": "jade",
+      "name": "Blockstream Jade",
+      "logo": "/images/logos/hardware/jade.jpg",
+      "features": [
+        {
+          "type": "warning",
+          "text": "虚拟安全芯片"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped 体验"
+        },
+        {
+          "type": "positive",
+          "text": "支持 Miniscript"
+        }
+      ],
+      "compatibleWallets": [
+        "nunchuk",
+        "sparrow",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "trezor",
+      "name": "Trezor",
+      "logo": "/images/logos/hardware/trezor.png",
+      "features": [
+        {
+          "type": "positive",
+          "text": "支持 Taproot 单签名"
+        },
+        {
+          "type": "positive",
+          "text": "开源安全芯片"
+        },
+        {
+          "type": "positive",
+          "text": "支持 SLIP39 Shamir 备份"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum"
+      ]
+    },
+    {
+      "id": "keystone",
+      "name": "Keystone",
+      "logo": "/images/logos/hardware/keystone.jpg",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Air-gapped 体验"
+        },
+        {
+          "type": "positive",
+          "text": "指纹解锁"
+        },
+        {
+          "type": "positive",
+          "text": "掷骰子生成种子词"
+        },
+        {
+          "type": "positive",
+          "text": "支持 SLIP39 Shamir 备份"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "none",
+      "name": "不使用签名器",
+      "logo": "🚫",
+      "features": [
+        {
+          "type": "negative",
+          "text": "易受互联网远程攻击"
+        },
+        {
+          "type": "negative",
+          "text": "无法校验软件钱包信息"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "bitbox",
+      "name": "Bitbox 02",
+      "logo": "/images/logos/hardware/bitbox.png",
+      "features": [
+        {
+          "type": "positive",
+          "text": "支持 Miniscript"
+        },
+        {
+          "type": "positive",
+          "text": "支持 BIP85"
+        },
+        {
+          "type": "positive",
+          "text": "支持静默支付"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum"
+      ]
+    },
+    {
+      "id": "seedsigner",
+      "name": "SeedSigner",
+      "logo": "/images/logos/hardware/seedsigner.png",
+      "features": [
+        {
+          "type": "warning",
+          "text": "自身不存储私钥"
+        },
+        {
+          "type": "positive",
+          "text": "掷骰子生成种子词"
+        },
+        {
+          "type": "positive",
+          "text": "摄像生成种子词"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped 体验"
+        },
+        {
+          "type": "positive",
+          "text": "自定义公钥派生路径"
+        },
+        {
+          "type": "positive",
+          "text": "基于通用硬件"
+        },
+        {
+          "type": "negative",
+          "text": "无安全芯片"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "bluewallet"
+      ]
+    }
+  ],
+  "softwareWallets": [
+    {
+      "id": "sparrow",
+      "name": "Sparrow",
+      "logo": "/images/logos/software/sparrow.png",
+      "features": [
+        {
+          "type": "positive",
+          "text": "支持 Taproot 单签名"
+        },
+        {
+          "type": "positive",
+          "text": "BIP329 钱包标签导出"
+        },
+        {
+          "type": "positive",
+          "text": "支持 SLIP39 Shamir 备份"
+        },
+        {
+          "type": "positive",
+          "text": "地址描述符 导入/导出"
+        }
+      ],
+      "compatibleSigners": [
+        "trezor",
+        "ledger",
+        "keystone",
+        "coldcard",
+        "bitbox",
+        "seedsigner",
+        "none",
+        "jade"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ]
+    },
+    {
+      "id": "bluewallet",
+      "name": "Blue Wallet",
+      "logo": "/images/logos/software/bluewallet.png",
+      "features": [
+        {
+          "type": "positive",
+          "text": "支持静默支付"
+        },
+        {
+          "type": "positive",
+          "text": "地址描述符 导入/导出"
+        }
+      ],
+      "compatibleSigners": [
+        "keystone",
+        "seedsigner",
+        "none",
+        "jade"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "electrum",
+      "name": "Electrum",
+      "logo": "/images/logos/software/electrum.jpg",
+      "features": [
+        {
+          "type": "positive",
+          "text": "BIP329 钱包标签导出"
+        },
+        {
+          "type": "warning",
+          "text": "所生成的种子词并非 BIP39 标准"
+        }
+      ],
+      "compatibleSigners": [
+        "ledger",
+        "trezor",
+        "keystone",
+        "none",
+        "jade",
+        "coldcard",
+        "bitbox"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "nunchuk",
+      "name": "Nunchuk",
+      "logo": "/images/logos/software/nunchuk.png",
+      "features": [
+        {
+          "type": "positive",
+          "text": "支持 Taproot 单签名"
+        },
+        {
+          "type": "positive",
+          "text": "支持 Taproot 多签名"
+        },
+        {
+          "type": "positive",
+          "text": "支持 Miniscript"
+        },
+        {
+          "type": "positive",
+          "text": "地址描述符 导入/导出"
+        }
+      ],
+      "compatibleSigners": [
+        "trezor",
+        "keystone",
+        "jade",
+        "seedsigner",
+        "none",
+        "ledger",
+        "coldcard",
+        "bitbox"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "electrs",
+      "name": "electrs",
+      "logo": "/images/logos/nodes/electrs.png",
+      "features": [
+        {
+          "type": "warning",
+          "text": "依赖于 Bitcoin Core/Bitcoin Knots"
+        },
+        {
+          "type": "positive",
+          "text": "服务端不留存地址集群信息"
+        },
+        {
+          "type": "warning",
+          "text": "需要大量存储空间（~50 GB）"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "publicnode",
+      "name": "默认/公开 节点",
+      "logo": "/images/logos/nodes/bitcoin-core.png",
+      "features": [
+        {
+          "type": "negative",
+          "text": "地址集群暴露"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "bitcoincore",
+      "name": "Bitcoin Core",
+      "logo": "/images/logos/nodes/bitcoin-core.png",
+      "features": [
+        {
+          "type": "warning",
+          "text": "服务端留存地址集群信息"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow"
+      ]
+    },
+    {
+      "id": "eps",
+      "name": "Electrum Personal Server",
+      "logo": "/images/logos/nodes/electrum.jpg",
+      "features": [
+        {
+          "type": "warning",
+          "text": "服务端留存地址集群信息"
+        },
+        {
+          "type": "warning",
+          "text": "依赖于 Bitcoin Core/Bitcoin Knots"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "knots",
+      "name": "Bitcoin Knots",
+      "logo": "/images/logos/nodes/bitcoinknots.jpg",
+      "features": [
+        {
+          "type": "warning",
+          "text": "服务端留存地址集群信息"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow"
+      ]
+    }
+  ],
+  "transferMethods": {
+    "seedsigner": {
+      "sparrow": [
+        "二维码"
+      ],
+      "bluewallet": [
+        "二维码"
+      ],
+      "nunchuk": [
+        "二维码"
+      ]
+    },
+    "keystone": {
+      "sparrow": [
+        "USB",
+        "二维码",
+        "microSD 卡"
+      ],
+      "electrum": [
+        "USB",
+        "microSD 卡"
+      ],
+      "nunchuk": [
+        "USB",
+        "二维码",
+        "microSD 卡"
+      ],
+      "bluewallet": [
+        "二维码"
+      ]
+    },
+    "jade": {
+      "sparrow": [
+        "二维码",
+        "USB"
+      ],
+      "bluewallet": [
+        "二维码"
+      ],
+      "nunchuk": [
+        "二维码",
+        "USB"
+      ],
+      "electrum": [
+        "USB"
+      ],
+      "liana": [
+        "USB"
+      ]
+    },
+    "none": {
+      "sparrow": [
+        "无"
+      ],
+      "electrum": [
+        "无"
+      ],
+      "bluewallet": [
+        "无"
+      ],
+      "nunchuk": [
+        "无"
+      ],
+      "liana": [
+        "无"
+      ]
+    },
+    "coldcard": {
+      "sparrow": [
+        "USB",
+        "microSD 卡"
+      ],
+      "electrum": [
+        "USB",
+        "microSD 卡"
+      ],
+      "liana": [
+        "USB",
+        "microSD 卡"
+      ],
+      "nunchuk": [
+        "USB",
+        "microSD 卡"
+      ]
+    },
+    "trezor": {
+      "sparrow": [
+        "USB"
+      ],
+      "electrum": [
+        "USB"
+      ],
+      "nunchuk": [
+        "USB"
+      ]
+    },
+    "bitbox": {
+      "sparrow": [
+        "USB"
+      ],
+      "liana": [
+        "USB"
+      ],
+      "nunchuk": [
+        "USB"
+      ]
+    },
+    "ledger": {
+      "sparrow": [
+        "USB"
+      ],
+      "electrum": [
+        "USB"
+      ],
+      "liana": [
+        "USB"
+      ],
+      "nunchuk": [
+        "USB"
+      ]
+    }
+  }
+}
