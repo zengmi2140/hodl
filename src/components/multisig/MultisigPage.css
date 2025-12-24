@@ -64,6 +64,11 @@
   transition: all 0.2s ease;
   min-height: 64px;
   position: relative;
+  z-index: 1;
+}
+
+.signer-slot.dropdown-open {
+  z-index: 100;
 }
 
 .signer-slot:hover {
