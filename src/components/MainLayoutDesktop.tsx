@@ -3,7 +3,6 @@ import { UserPreference, ComponentState, CustodyData } from '../types';
 import ComponentColumn from './ComponentColumn';
 import ColumnTitle from './ColumnTitle';
 import BottomFeatureDock from './BottomFeatureDock';
-import { Smartphone, Monitor } from 'lucide-react';
 
 // 列标题常量（写死文案）
 const COLUMN_TITLES = {
@@ -209,7 +208,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           <ColumnTitle 
             title={COLUMN_TITLES.wallet} 
             ref={walletTitleRef}
-            icon={userPreference.deviceType === 'mobile' ? <Smartphone size={20} /> : <Monitor size={20} />}
+            icon={userPreference.deviceType === 'mobile' ? '📱' : '💻'}
           />
           <ComponentColumn
             components={custodyData.softwareWallets}
