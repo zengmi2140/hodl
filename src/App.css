@@ -79,7 +79,7 @@ body {
 .header-actions-left {
   position: absolute;
   left: 20px; /* 默认值，会被内联样式覆盖 */
-  top: 80%;
+  top: 71%;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@ body {
 .header-actions {
   position: absolute;
   right: 20px; /* 默认值，会被内联样式覆盖 */
-  top: 80%;
+  top: 71%;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
