@@ -213,6 +213,7 @@ const MultisigPage: React.FC = () => {
             custodyData={custodyData}
             compatibleWallets={getCompatibleWallets()}
             onWalletSelect={handleWalletSelect}
+            hasSelectedSigners={state.signerSlots.some(s => s !== null)}
           />
           
           <NodeColumn
@@ -220,6 +221,7 @@ const MultisigPage: React.FC = () => {
             custodyData={custodyData}
             compatibleNodes={getCompatibleNodes()}
             onNodeSelect={handleNodeSelect}
+            hasSelectedWallet={state.selectedWallet !== null}
           />
         </div>
       </div>

@@ -7,6 +7,7 @@ interface WalletColumnProps {
   custodyData: CustodyData;
   compatibleWallets: string[];
   onWalletSelect: (walletId: string | null) => void;
+  hasSelectedSigners: boolean;
 }
 
 const WalletColumn: React.FC<WalletColumnProps> = ({
@@ -14,6 +15,7 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   custodyData,
   compatibleWallets,
   onWalletSelect,
+  hasSelectedSigners,
 }) => {
   const [hoveredWallet, setHoveredWallet] = useState<string | null>(null);
 
@@ -31,11 +33,13 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
       {custodyData.softwareWallets.map(wallet => {
         const isCompatible = compatibleWallets.includes(wallet.id);
         const isSelected = selectedWallet === wallet.id;
+        // 如果有选择签名器且钱包兼容，显示呼吸动画
+        const isBreathing = hasSelectedSigners && isCompatible && !isSelected;
         
         return (
           <div
             key={wallet.id}
-            className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''}`}
+            className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleWalletClick(wallet.id)}
             style={{ position: 'relative' }}
           >
@@ -47,8 +51,12 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
             <span className="multisig-item-name">{wallet.name}</span>
             <div
               className="multisig-item-info"
-              onMouseEnter={() => setHoveredWallet(wallet.id)}
+              onMouseEnter={(e) => {
+                e.stopPropagation();
+                setHoveredWallet(wallet.id);
+              }}
               onMouseLeave={() => setHoveredWallet(null)}
+              onClick={(e) => e.stopPropagation()}
             >
               i
             </div>

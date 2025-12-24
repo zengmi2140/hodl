@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { CustodyData, Feature } from '../../types';
+import { CustodyData } from '../../types';
 import { SLOT_COLORS } from './MultisigPage';
 import FeatureTooltip from './FeatureTooltip';
 
@@ -46,11 +46,9 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
     ? custodyData.hardwareSigners.find(s => s.id === selectedSignerId)
     : null;
 
-  // 获取可选的签名器列表（排除已选择的和不兼容的）
+  // 获取可选的签名器列表（排除 none）
   const availableSigners = custodyData.hardwareSigners.filter(signer => {
-    if (signer.id === 'none') return false; // 多签模式不显示"不使用签名器"
-    if (signer.id === selectedSignerId) return true; // 当前选中的保持可见
-    // 允许同一型号重复选择，所以不排除已选择的
+    if (signer.id === 'none') return false;
     return true;
   });
 
@@ -84,6 +82,17 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
       }}
       onClick={handleSlotClick}
     >
+      {/* 槽位编号标签 */}
+      <div 
+        className="signer-slot-number"
+        style={{
+          backgroundColor: slotColor.border,
+          color: '#374151',
+        }}
+      >
+        {slotIndex + 1}
+      </div>
+
       {selectedSignerId && selectedSigner ? (
         <>
           <img
@@ -111,11 +120,17 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
           )}
         </>
       ) : (
-        <div className="signer-slot-add-icon">+</div>
+        <div className="signer-slot-empty-content">
+          <div className="signer-slot-add-icon">+</div>
+          <span className="signer-slot-hint">选择签名器</span>
+        </div>
       )}
 
       {isDropdownOpen && (
         <div className="signer-dropdown">
+          <div className="signer-dropdown-header">
+            选择签名器 #{slotIndex + 1}
+          </div>
           {availableSigners.map(signer => {
             const isCompatible = isSignerCompatible(signer.id);
             return (
@@ -135,6 +150,9 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
                   className="signer-dropdown-item-logo"
                 />
                 <span className="signer-dropdown-item-name">{signer.name}</span>
+                {!isCompatible && (
+                  <span className="signer-dropdown-item-incompatible">不兼容</span>
+                )}
               </div>
             );
           })}
