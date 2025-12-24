@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { UserPreference, ComponentState, CustodyData } from '../types';
 import ComponentColumn from './ComponentColumn';
+import { Smartphone, Monitor } from 'lucide-react';
 
 // 列标题常量（写死文案）
 const COLUMN_TITLES = {
@@ -196,8 +197,9 @@ const MainLayoutMobile: React.FC<MainLayoutMobileProps> = ({
 
         {/* 软件钱包列 */}
         <div className="component-column">
-          <h2 className="column-title" style={mobileTitleStyle}>
+          <h2 className="column-title" style={{ ...mobileTitleStyle, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
             {COLUMN_TITLES.wallet}
+            {userPreference.deviceType === 'mobile' ? <Smartphone size={20} /> : <Monitor size={20} />}
           </h2>
           <ComponentColumn
             components={custodyData.softwareWallets}
