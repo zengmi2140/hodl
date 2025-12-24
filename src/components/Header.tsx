@@ -27,6 +27,34 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
 
   return (
     <header className="header">
+      {/* 左侧重置按钮 - 直接在 header 层级，相对于视口定位 */}
+      <div 
+        className="header-actions-left"
+        style={layoutLeftEdge !== undefined ? { left: `${layoutLeftEdge}px` } : undefined}
+      >
+        <button 
+          className="reset-button"
+          onClick={onResetPreference}
+          title="重置偏好"
+        >
+          重置
+        </button>
+      </div>
+
+      {/* 右侧 FAQ 按钮 - 直接在 header 层级，相对于视口定位 */}
+      <div 
+        className="header-actions"
+        style={layoutRightEdge !== undefined ? { right: `calc(100% - ${layoutRightEdge}px)` } : undefined}
+      >
+        <button 
+          className="faq-button"
+          onClick={onOpenFaq}
+          aria-label="查看 FAQ"
+        >
+          FAQ
+        </button>
+      </div>
+
       <div className="header-content">
         <div
           className="site-title"
@@ -56,34 +84,6 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
               🎉
             </div>
           )}
-        </div>
-        
-        {/* 左上角重置按钮 */}
-        <div 
-          className="header-actions-left"
-          style={layoutLeftEdge !== undefined ? { left: `${layoutLeftEdge}px` } : undefined}
-        >
-          <button 
-            className="reset-button"
-            onClick={onResetPreference}
-            title="重置偏好"
-          >
-            重置
-          </button>
-        </div>
-
-        {/* 右上角按钮区域 */}
-        <div 
-          className="header-actions"
-          style={layoutRightEdge !== undefined ? { right: `calc(100% - ${layoutRightEdge}px)` } : undefined}
-        >
-          <button 
-            className="faq-button"
-            onClick={onOpenFaq}
-            aria-label="查看 FAQ"
-          >
-            FAQ
-          </button>
         </div>
       </div>
     </header>
