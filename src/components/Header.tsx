@@ -4,9 +4,11 @@ interface HeaderProps {
   completionPercentage: number;
   onResetPreference: () => void;
   onOpenFaq: () => void;
+  layoutLeftEdge?: number;
+  layoutRightEdge?: number;
 }
 
-const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference, onOpenFaq }) => {
+const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
   const [isMultiSigTooltipVisible, setIsMultiSigTooltipVisible] = useState(false);
   const getProgressColor = (percentage: number): string => {
     if (percentage === 0) return '#fbbf24';   // 黄色 - 空状态
@@ -57,7 +59,10 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
         </div>
         
         {/* 左上角重置按钮 */}
-        <div className="header-actions-left">
+        <div 
+          className="header-actions-left"
+          style={layoutLeftEdge !== undefined ? { left: `${layoutLeftEdge}px` } : undefined}
+        >
           <button 
             className="reset-button"
             onClick={onResetPreference}
@@ -68,7 +73,10 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
         </div>
 
         {/* 右上角按钮区域 */}
-        <div className="header-actions">
+        <div 
+          className="header-actions"
+          style={layoutRightEdge !== undefined ? { right: `calc(100% - ${layoutRightEdge}px)` } : undefined}
+        >
           <button 
             className="faq-button"
             onClick={onOpenFaq}

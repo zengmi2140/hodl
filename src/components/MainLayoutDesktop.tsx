@@ -19,6 +19,7 @@ interface MainLayoutProps {
   getComponentState: (componentId: string, type: 'signer' | 'wallet' | 'node') => ComponentState;
   onComponentClick: (componentId: string, type: 'signer' | 'wallet' | 'node') => void;
   custodyData: CustodyData;
+  onLayoutMeasured?: (bounds: { leftEdge: number; rightEdge: number }) => void;
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({
@@ -28,7 +29,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   selectedNode,
   getComponentState,
   onComponentClick,
-  custodyData
+  custodyData,
+  onLayoutMeasured
 }) => {
   if (!userPreference) {
     return (
@@ -150,6 +152,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         ? { left: lane2Left, width: Math.max(40, lane2Right - lane2Left) }
         : undefined
     });
+
+    // 计算并传递布局边界给父组件
+    if (onLayoutMeasured && layoutRect && signerMetrics.left !== undefined && nodeMetrics.left !== undefined && nodeMetrics.width !== undefined) {
+      const leftEdge = layoutRect.left + signerMetrics.left;
+      const rightEdge = layoutRect.left + nodeMetrics.left + nodeMetrics.width;
+      onLayoutMeasured({ leftEdge, rightEdge });
+    }
   };
 
   useLayoutEffect(() => {

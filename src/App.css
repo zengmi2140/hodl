@@ -74,10 +74,10 @@ body {
   max-width: 800px;
 }
 
-/* 右上角按钮区域 */
+/* 左侧按钮区域 - 与硬件签名器列左侧对齐 */
 .header-actions-left {
   position: absolute;
-  left: calc(50% - var(--progress-half-width) - var(--actions-gap-from-progress)); /* 与进度条左端固定距离 */
+  left: 20px; /* 默认值，会被内联样式覆盖 */
   top: 80%;
   transform: translateY(-50%);
   display: flex;
@@ -86,9 +86,10 @@ body {
   z-index: 10;
 }
 
+/* 右侧按钮区域 - 与区块链节点列右侧对齐 */
 .header-actions {
   position: absolute;
-  right: calc(50% - var(--progress-half-width) - var(--actions-gap-from-progress)); /* 与进度条右端固定距离 */
+  right: 20px; /* 默认值，会被内联样式覆盖 */
   top: 80%;
   transform: translateY(-50%);
   display: flex;
