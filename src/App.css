@@ -558,10 +558,9 @@ body {
 .main-layout {
   flex: 1;
   padding: 40px 0;
-  /* 桌面端为底部固定特性框预留空间 */
+  display: flex;
+  justify-content: center;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
   padding-inline: 20px;
   padding-top: 120px; /* 为顶部固定Header预留空间：Header高度约100px + 余量20px */
 }
@@ -569,8 +568,6 @@ body {
 @media (min-width: 769px) {
   .main-layout {
     padding-bottom: 380px;
-    width: 100%;
-    /* 移除偏移，保持真正居中 */
   }
 }
 
@@ -592,18 +589,15 @@ body {
   align-items: stretch;
   min-height: 600px;
   position: relative;
-  width: 100%;
 }
 
 .layout-container.three-column {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 260px); /* 三列固定宽度 */
   align-items: start;
   grid-auto-rows: min-content;
   gap: clamp(36px, 6vw, 80px);
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  justify-items: center;
+  width: auto; /* 由内容决定宽度 */
+  max-width: 100%;
   justify-content: center;
   grid-auto-flow: row;
 }
@@ -858,9 +852,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  width: 260px; /* 固定宽度确保三列对称 */
   padding: 0;
   box-sizing: border-box;
 }
