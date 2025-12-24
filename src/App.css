@@ -299,6 +299,30 @@ body {
   background: #4b5563;
 }
 
+/* 多签模式按钮 */
+.multisig-mode-button {
+  background: #F7931A;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  white-space: nowrap;
+  min-height: 36px;
+  min-width: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.multisig-mode-button:hover {
+  background: #e07d0a;
+  box-shadow: 0 2px 8px rgba(247, 147, 26, 0.3);
+}
+
 /* ----------------- Header Mobile ----------------- */
 .header-mobile {
   background: #f8fafc;

@@ -1,0 +1,56 @@
+.threshold-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.threshold-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+
+.threshold-options {
+  display: flex;
+  gap: 16px;
+}
+
+.threshold-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 32px;
+  border: 2px solid hsl(var(--border));
+  border-radius: 12px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.threshold-option:hover {
+  border-color: #F7931A;
+  background-color: #fff7ed;
+}
+
+.threshold-option.active {
+  border-color: #F7931A;
+  background-color: #fff7ed;
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.2);
+}
+
+.threshold-numbers {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+.threshold-option.active .threshold-numbers {
+  color: #F7931A;
+}
+
+.threshold-desc {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}

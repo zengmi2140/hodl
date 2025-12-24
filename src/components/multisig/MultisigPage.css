@@ -1,0 +1,341 @@
+.multisig-page {
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  display: flex;
+  flex-direction: column;
+}
+
+.multisig-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.multisig-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 40px;
+  gap: 32px;
+}
+
+.multisig-columns {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* 列样式 */
+.multisig-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.multisig-column-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 2px solid hsl(var(--border));
+  margin-bottom: 8px;
+}
+
+/* 签名器槽位样式 */
+.signer-slot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px dashed hsl(var(--border));
+  background-color: hsl(var(--secondary));
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 64px;
+  position: relative;
+}
+
+.signer-slot:hover {
+  border-color: hsl(var(--muted-foreground));
+}
+
+.signer-slot.empty {
+  justify-content: center;
+}
+
+.signer-slot.filled {
+  border-style: solid;
+}
+
+.signer-slot-add-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: hsl(var(--muted));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.signer-slot-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
+  background-color: white;
+  padding: 4px;
+}
+
+.signer-slot-name {
+  flex: 1;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.signer-slot-delete {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.signer-slot-delete:hover {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.signer-slot-info {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: help;
+}
+
+/* 钱包/节点项目样式 */
+.multisig-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid hsl(var(--border));
+  background-color: hsl(var(--secondary));
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.5;
+}
+
+.multisig-item.compatible {
+  opacity: 1;
+  border-color: hsl(var(--border));
+}
+
+.multisig-item.compatible:hover {
+  border-color: #F7931A;
+  background-color: #fff7ed;
+}
+
+.multisig-item.selected {
+  opacity: 1;
+  border-color: #F7931A;
+  background-color: #fff7ed;
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.2);
+}
+
+.multisig-item-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
+  background-color: white;
+  padding: 4px;
+}
+
+.multisig-item-name {
+  flex: 1;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.multisig-item-info {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: help;
+}
+
+/* 传输方式显示区域 */
+.transfer-method-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 120px;
+  padding: 16px;
+}
+
+.transfer-arrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: hsl(var(--muted-foreground));
+}
+
+.transfer-methods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.transfer-method-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* 下拉菜单样式 */
+.signer-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background-color: white;
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.signer-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.signer-dropdown-item:first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.signer-dropdown-item:last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+.signer-dropdown-item:hover {
+  background-color: #fff7ed;
+}
+
+.signer-dropdown-item.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.signer-dropdown-item.disabled:hover {
+  background-color: transparent;
+}
+
+.signer-dropdown-item-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+  background-color: hsl(var(--secondary));
+  padding: 2px;
+}
+
+.signer-dropdown-item-name {
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+/* 特性气泡提示 */
+.feature-tooltip {
+  position: absolute;
+  right: -220px;
+  top: 0;
+  width: 200px;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+}
+
+.feature-tooltip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 4px 0;
+  font-size: 0.8rem;
+}
+
+.feature-tooltip-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-tooltip-icon.positive {
+  color: #22c55e;
+}
+
+.feature-tooltip-icon.negative {
+  color: #ef4444;
+}
+
+.feature-tooltip-icon.warning {
+  color: #f59e0b;
+}
+
+.feature-tooltip-text {
+  color: hsl(var(--foreground));
+  line-height: 1.4;
+}
