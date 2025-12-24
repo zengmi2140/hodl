@@ -569,8 +569,8 @@ body {
 @media (min-width: 769px) {
   .main-layout {
     padding-bottom: 380px;
-    width: calc(100% - 60px); /* 桌面端整体向右偏移时避免横向溢出 */
-    transform: translateX(60px); /* 仅桌面端右移 60px 对齐 Header */
+    width: 100%;
+    /* 移除偏移，保持真正居中 */
   }
 }
 
