@@ -2,6 +2,8 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { UserPreference, ComponentState, CustodyData } from '../types';
 import ComponentColumn from './ComponentColumn';
 import ColumnTitle from './ColumnTitle';
+import BottomFeatureDock from './BottomFeatureDock';
+import { Smartphone, Monitor } from 'lucide-react';
 
 // 列标题常量（写死文案）
 const COLUMN_TITLES = {
@@ -9,7 +11,6 @@ const COLUMN_TITLES = {
   wallet: '软件钱包',
   node: '区块链节点',
 } as const;
-import BottomFeatureDock from './BottomFeatureDock';
 
 interface MainLayoutProps {
   userPreference: UserPreference | null;
@@ -205,7 +206,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 
         {/* 软件钱包列 */}
         <div className="component-column">
-          <ColumnTitle title={COLUMN_TITLES.wallet} ref={walletTitleRef} />
+          <ColumnTitle 
+            title={COLUMN_TITLES.wallet} 
+            ref={walletTitleRef}
+            icon={userPreference.deviceType === 'mobile' ? <Smartphone size={20} /> : <Monitor size={20} />}
+          />
           <ComponentColumn
             components={custodyData.softwareWallets}
             selectedComponents={selectedWallet ? [selectedWallet] : []}
