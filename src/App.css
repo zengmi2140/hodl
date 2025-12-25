@@ -551,10 +551,12 @@ body {
   flex: 1;
   padding: 40px 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
   padding-inline: 20px;
-  padding-top: 0; /* 顶部间距由 unified-columns-container 统一处理 */
+  padding-top: 0;
 }
 
 @media (min-width: 769px) {
@@ -1424,12 +1426,7 @@ body {
 
 /* 移除重复的data-flow定义，避免样式冲突 */
 
-/* 确保整个布局容器居中 */
-.main-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* 重复的 .main-layout 定义已合并到第550行 */
 
 /* 响应式布局优化 */
 
