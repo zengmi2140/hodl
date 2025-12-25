@@ -287,7 +287,7 @@
   color: white;
 }
 
-/* 传输方式显示区域 */
+/* 传输方式显示区域 - 统一样式 */
 .transfer-method-display {
   display: flex;
   flex-direction: column;
@@ -295,7 +295,56 @@
   justify-content: flex-start;
   gap: 8px;
   min-width: 140px;
+  width: 140px;
+  max-width: 140px;
   padding: 48px 8px 16px;
+}
+
+.transfer-method-display.disabled {
+  opacity: 0.35;
+  filter: grayscale(0.8);
+}
+
+/* 传输方式标签 */
+.transfer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.transfer-tag {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.transfer-tag.sd-card {
+  background: #bfdbfe;
+  color: #1e40af;
+}
+
+.transfer-tag.qr-code {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.transfer-tag.usb {
+  background: #bbf7d0;
+  color: #065f46;
+}
+
+.transfer-tag.bluetooth {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.transfer-tag.nfc {
+  background: #fed7aa;
+  color: #9a3412;
 }
 
 .transfer-arrows {

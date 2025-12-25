@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustodyData, UserPreference } from '../../types';
+import { CustodyData, UserPreference, ComponentState } from '../../types';
 
 interface WalletColumnProps {
   selectedWallet: string | null;
@@ -8,6 +8,9 @@ interface WalletColumnProps {
   onWalletSelect: (walletId: string | null) => void;
   hasSelectedSigners: boolean;
   userPreference?: UserPreference | null;
+  // 单签模式使用
+  getComponentState?: (componentId: string, type: 'signer' | 'wallet' | 'node') => ComponentState;
+  onComponentClick?: (componentId: string, type: 'signer' | 'wallet' | 'node') => void;
 }
 
 const WalletColumn: React.FC<WalletColumnProps> = ({
@@ -17,8 +20,16 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   onWalletSelect,
   hasSelectedSigners,
   userPreference,
+  getComponentState,
+  onComponentClick,
 }) => {
   const handleWalletClick = (walletId: string) => {
+    // 如果提供了单签模式的 onComponentClick，使用它
+    if (onComponentClick) {
+      onComponentClick(walletId, 'wallet');
+      return;
+    }
+    // 否则使用多签模式的逻辑
     if (selectedWallet === walletId) {
       onWalletSelect(null);
     } else if (compatibleWallets.includes(walletId)) {
@@ -34,9 +45,20 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
         软件钱包 {deviceIcon}
       </div>
       {custodyData.softwareWallets.map(wallet => {
-        const isCompatible = compatibleWallets.includes(wallet.id);
+        // 如果提供了 getComponentState，使用单签模式的状态逻辑
+        let isCompatible: boolean;
+        let isBreathing: boolean;
+        
+        if (getComponentState) {
+          const state = getComponentState(wallet.id, 'wallet');
+          isCompatible = state !== 'inactive';
+          isBreathing = state === 'breathing';
+        } else {
+          isCompatible = compatibleWallets.includes(wallet.id);
+          isBreathing = hasSelectedSigners && isCompatible && selectedWallet !== wallet.id;
+        }
+        
         const isSelected = selectedWallet === wallet.id;
-        const isBreathing = hasSelectedSigners && isCompatible && !isSelected;
         
         return (
           <div

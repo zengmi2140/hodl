@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustodyData } from '../../types';
+import { CustodyData, ComponentState } from '../../types';
 
 interface NodeColumnProps {
   selectedNode: string | null;
@@ -7,6 +7,9 @@ interface NodeColumnProps {
   compatibleNodes: string[];
   onNodeSelect: (nodeId: string | null) => void;
   hasSelectedWallet: boolean;
+  // 单签模式使用
+  getComponentState?: (componentId: string, type: 'signer' | 'wallet' | 'node') => ComponentState;
+  onComponentClick?: (componentId: string, type: 'signer' | 'wallet' | 'node') => void;
 }
 
 const NodeColumn: React.FC<NodeColumnProps> = ({
@@ -15,8 +18,16 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
   compatibleNodes,
   onNodeSelect,
   hasSelectedWallet,
+  getComponentState,
+  onComponentClick,
 }) => {
   const handleNodeClick = (nodeId: string) => {
+    // 如果提供了单签模式的 onComponentClick，使用它
+    if (onComponentClick) {
+      onComponentClick(nodeId, 'node');
+      return;
+    }
+    // 否则使用多签模式的逻辑
     if (selectedNode === nodeId) {
       onNodeSelect(null);
     } else if (compatibleNodes.includes(nodeId)) {
@@ -28,10 +39,20 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
     <div className="multisig-column">
       <div className="multisig-column-title">区块链节点</div>
       {custodyData.nodes.map(node => {
-        const isCompatible = compatibleNodes.includes(node.id);
+        // 如果提供了 getComponentState，使用单签模式的状态逻辑
+        let isCompatible: boolean;
+        let isBreathing: boolean;
+        
+        if (getComponentState) {
+          const state = getComponentState(node.id, 'node');
+          isCompatible = state !== 'inactive';
+          isBreathing = state === 'breathing';
+        } else {
+          isCompatible = compatibleNodes.includes(node.id);
+          isBreathing = hasSelectedWallet && isCompatible && selectedNode !== node.id;
+        }
+        
         const isSelected = selectedNode === node.id;
-        // 如果有选择钱包且节点兼容，显示呼吸动画
-        const isBreathing = hasSelectedWallet && isCompatible && !isSelected;
         
         return (
           <div
