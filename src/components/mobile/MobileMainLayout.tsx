@@ -7,6 +7,7 @@ import MobileMultisigSignerCard from './MobileMultisigSignerCard';
 import MobileWalletCard from './MobileWalletCard';
 import MobileNodeCard from './MobileNodeCard';
 import MobileDataFlow from './MobileDataFlow';
+import MobileFeatureDisplay from './MobileFeatureDisplay';
 import { SLOT_COLORS } from '../../App';
 import './Mobile.css';
 
@@ -197,6 +198,18 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
           onNodeSelect={onMultisigNodeSelect}
         />
       )}
+
+      {/* Feature Display - shows features of all selected components */}
+      <MobileFeatureDisplay
+        signatureMode={signatureMode}
+        selectedSigners={selectedSigners}
+        selectedWallet={selectedWallet}
+        selectedNode={selectedNode}
+        signerSlots={signerSlots}
+        multisigWallet={multisigWallet}
+        multisigNode={multisigNode}
+        custodyData={custodyData}
+      />
     </main>
   );
 };
