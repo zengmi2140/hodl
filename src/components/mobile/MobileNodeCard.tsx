@@ -43,14 +43,19 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
     if (getComponentState && onComponentClick) {
       const state = getComponentState(nodeId, 'node');
       if (state !== 'inactive') {
+        const wasSelected = selectedNode === nodeId;
         onComponentClick(nodeId, 'node');
-        scrollToEnd();
+        // Only scroll if selecting (not deselecting)
+        if (!wasSelected) {
+          scrollToEnd();
+        }
       }
     }
     // Multi-sig mode
     else if (onNodeSelect) {
       if (selectedNode === nodeId) {
         onNodeSelect(null);
+        // Don't scroll on deselect
       } else if (compatibleNodes.includes(nodeId)) {
         onNodeSelect(nodeId);
         scrollToEnd();

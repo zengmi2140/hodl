@@ -45,14 +45,19 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
     if (getComponentState && onComponentClick) {
       const state = getComponentState(walletId, 'wallet');
       if (state !== 'inactive') {
+        const wasSelected = selectedWallet === walletId;
         onComponentClick(walletId, 'wallet');
-        scrollToEnd();
+        // Only scroll if selecting (not deselecting)
+        if (!wasSelected) {
+          scrollToEnd();
+        }
       }
     }
     // Multi-sig mode
     else if (onWalletSelect) {
       if (selectedWallet === walletId) {
         onWalletSelect(null);
+        // Don't scroll on deselect
       } else if (compatibleWallets.includes(walletId)) {
         onWalletSelect(walletId);
         scrollToEnd();

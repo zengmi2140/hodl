@@ -62,10 +62,14 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                   key={signer.id}
                   className={`mobile-option-item ${state} ${isSelected ? 'selected' : ''}`}
                   onClick={() => {
+                    const wasSelected = selectedSigners.includes(signer.id);
                     onComponentClick(signer.id, 'signer');
-                    setTimeout(() => {
-                      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
+                    // Only scroll if selecting (not deselecting)
+                    if (!wasSelected) {
+                      setTimeout(() => {
+                        cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 100);
+                    }
                   }}
                 >
                   {isEmoji ? (
