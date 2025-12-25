@@ -64,7 +64,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                   onClick={() => {
                     onComponentClick(signer.id, 'signer');
                     setTimeout(() => {
-                      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 100);
                   }}
                 >
