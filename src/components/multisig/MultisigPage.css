@@ -358,6 +358,11 @@
   line-height: 1.4;
 }
 
+.wallet-node-connected {
+  color: #22c55e;
+  font-weight: 500;
+}
+
 /* 下拉菜单样式 */
 .signer-dropdown {
   position: absolute;

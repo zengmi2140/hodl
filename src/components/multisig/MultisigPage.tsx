@@ -6,6 +6,7 @@ import SignerColumn from './SignerColumn';
 import WalletColumn from './WalletColumn';
 import NodeColumn from './NodeColumn';
 import TransferMethodDisplay from './TransferMethodDisplay';
+import WalletNodeArrows from './WalletNodeArrows';
 import { CustodyData } from '../../types';
 import './MultisigPage.css';
 
@@ -214,6 +215,11 @@ const MultisigPage: React.FC = () => {
             compatibleWallets={getCompatibleWallets()}
             onWalletSelect={handleWalletSelect}
             hasSelectedSigners={state.signerSlots.some(s => s !== null)}
+          />
+          
+          <WalletNodeArrows
+            hasWallet={state.selectedWallet !== null}
+            hasNode={state.selectedNode !== null}
           />
           
           <NodeColumn
