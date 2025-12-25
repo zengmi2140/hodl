@@ -269,57 +269,205 @@
   flex-shrink: 0;
 }
 
-/* Mobile data flow styles */
-.mobile-data-flow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  gap: 8px;
-}
-
-.mobile-data-flow-line {
-  width: 2px;
-  height: 24px;
-  background: linear-gradient(to bottom, #d1d5db, #9ca3af);
-  border-radius: 1px;
-}
-
-.mobile-data-flow-line.active {
-  background: linear-gradient(to bottom, #F7931A, #fb923c);
-}
-
-.mobile-data-flow-icon {
-  font-size: 1rem;
-  color: #9ca3af;
-}
-
-.mobile-data-flow-icon.active {
-  color: #F7931A;
-}
-
-.mobile-data-flow-label {
-  font-size: 0.75rem;
-  color: #6b7280;
-  background: #f3f4f6;
-  padding: 4px 10px;
-  border-radius: 12px;
-}
-
-.mobile-data-flow-vertical {
+/* Mobile data flow styles - Enhanced */
+.mobile-data-flow-enhanced {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4px 0;
+  padding: 12px 16px;
+  margin: 4px 0;
 }
 
-.mobile-data-flow-arrow {
-  color: #d1d5db;
+.data-flow-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 280px;
+  position: relative;
+}
+
+/* Data flow segment */
+.data-flow-segment {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.data-flow-segment.active {
+  opacity: 1;
+}
+
+.data-flow-segment.outgoing {
+  flex-direction: row;
+}
+
+.data-flow-segment.incoming {
+  flex-direction: row-reverse;
+}
+
+/* Flow line */
+.flow-line-container {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.flow-line {
+  width: 3px;
+  height: 32px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.data-flow-segment.active .flow-line {
+  background: linear-gradient(180deg, #F7931A 0%, #fbbf24 100%);
+}
+
+/* Pulse animation */
+.flow-pulse {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.8), transparent);
+  border-radius: 2px;
+}
+
+.flow-pulse.down {
+  animation: pulse-down 1.5s ease-in-out infinite;
+}
+
+.flow-pulse.up {
+  animation: pulse-up 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-down {
+  0% { top: -12px; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: 32px; opacity: 0; }
+}
+
+@keyframes pulse-up {
+  0% { bottom: -12px; opacity: 0; top: auto; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { bottom: 32px; opacity: 0; top: auto; }
+}
+
+/* Flow info */
+.flow-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.flow-info.reverse {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.flow-direction-icon {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.data-flow-segment.active .flow-direction-icon {
+  color: #F7931A;
+}
+
+.flow-data-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.data-flow-segment.active .flow-data-label {
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Transfer methods container */
+.transfer-methods-container {
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.transfer-placeholder {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: center;
+  padding: 8px 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px dashed #e5e7eb;
+}
+
+/* Single transfer tag */
+.transfer-tag-single {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  border: 1px solid #F7931A;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(247, 147, 26, 0.15);
+}
+
+.transfer-tag-single .tag-icon {
   font-size: 1rem;
 }
 
-.mobile-data-flow-arrow.active {
-  color: #F7931A;
+.transfer-tag-single .tag-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #92400e;
+}
+
+/* Multi transfer tags */
+.transfer-tags-multi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.transfer-tag-colored {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border-left: 4px solid;
+  transition: all 0.2s ease;
+}
+
+.transfer-tag-colored .tag-slot-number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.transfer-tag-colored .tag-icon {
+  font-size: 0.9rem;
+}
+
+.transfer-tag-colored .tag-text {
+  font-size: 0.8rem;
+  color: #374151;
+  font-weight: 500;
 }
 
 /* Mobile bottom sheet styles */

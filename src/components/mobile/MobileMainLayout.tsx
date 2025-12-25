@@ -147,6 +147,7 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
         isActive={hasSignerSelection && currentWallet !== null}
         label={typeof transferLabels === 'string' ? transferLabels : undefined}
         coloredLabels={Array.isArray(transferLabels) ? transferLabels : undefined}
+        flowType="signer-wallet"
       />
 
       {/* Wallet Card */}
@@ -174,6 +175,7 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
       {/* Data Flow: Wallet -> Node */}
       <MobileDataFlow
         isActive={currentWallet !== null && currentNode !== null}
+        flowType="wallet-node"
       />
 
       {/* Node Card */}
