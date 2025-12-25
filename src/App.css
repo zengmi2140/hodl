@@ -23,15 +23,18 @@ body {
 
 /* Header 样式 */
 .header {
-  background: #fefefe;
+  background: #f8fafc;
   padding: 20px 0;
-  border-bottom: 1px solid #f0e6dc;
+  border-bottom: 1px solid #e2e8f0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
   width: 100%;
+  --progress-max-width: 800px; /* 进度条最大宽度 */
+  --actions-gap-from-progress: 200px; /* 按钮与进度条端点的固定距离 */
+  --progress-half-width: calc(min(var(--progress-max-width), 100%) / 2);
 }
 
 .header-content {
@@ -48,26 +51,12 @@ body {
 .site-title {
   font-size: 1.75rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  color: #0f172a;
+  letter-spacing: 0.02em;
   line-height: 1.2;
   text-align: center;
   margin: 0;
   padding-top: 4px;
-  
-  /* 比特币橙色灵感渐变 */
-  background: linear-gradient(
-    135deg,
-    #1e293b 0%,
-    #78350f 35%,
-    #F7931A 60%,
-    #fbbf24 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  
-  /* 微妙阴影 */
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
 }
 
 .progress-section {
@@ -108,13 +97,13 @@ body {
 }
 
 .header-btn:hover {
-  background: #fef7ed;
-  border-color: #F7931A40;
-  color: #b45309;
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #475569;
 }
 
 .header-btn:focus-visible {
-  outline: 2px solid #F7931A60;
+  outline: 2px solid #94a3b8;
   outline-offset: 2px;
 }
 
