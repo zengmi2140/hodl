@@ -60,7 +60,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                 <div
                   key={signer.id}
                   className={`mobile-option-item ${state} ${isSelected ? 'selected' : ''}`}
-                  onClick={() => state !== 'inactive' && onComponentClick(signer.id, 'signer')}
+                  onClick={() => onComponentClick(signer.id, 'signer')}
                 >
                   {isEmoji ? (
                     <span style={{ fontSize: '2rem', width: 40, textAlign: 'center' }}>
