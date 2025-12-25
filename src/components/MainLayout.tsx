@@ -72,19 +72,15 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
   // 渲染加载状态内容
   if (!userPreference) {
     return (
-      <>
-        <div className="signature-mode-container">
-          <SignatureModeSelector
-            mode={signatureMode}
-            threshold={threshold}
-            onModeChange={onModeChange}
-            onThresholdChange={onThresholdChange}
-          />
-        </div>
-        <main className="main-layout loading">
-          <div className="loading-message">正在加载...</div>
-        </main>
-      </>
+      <main className="main-layout loading">
+        <SignatureModeSelector
+          mode={signatureMode}
+          threshold={threshold}
+          onModeChange={onModeChange}
+          onThresholdChange={onThresholdChange}
+        />
+        <div className="loading-message">正在加载...</div>
+      </main>
     );
   }
 
@@ -204,24 +200,20 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
   );
 
   return (
-    <>
-      {/* 签名模式选择器 */}
-      <div className="signature-mode-container">
-        <SignatureModeSelector
-          mode={signatureMode}
-          threshold={threshold}
-          onModeChange={onModeChange}
-          onThresholdChange={onThresholdChange}
-        />
-      </div>
+    <main className="main-layout">
+      {/* 签名模式选择器 - 直接放在 main-layout 内部 */}
+      <SignatureModeSelector
+        mode={signatureMode}
+        threshold={threshold}
+        onModeChange={onModeChange}
+        onThresholdChange={onThresholdChange}
+      />
 
       {/* 根据模式渲染不同内容 - 使用统一的容器 */}
-      <main className="main-layout">
-        <div className="unified-columns-container">
-          {signatureMode === 'multi' ? renderMultisigContent() : renderSinglesigContent()}
-        </div>
-      </main>
-    </>
+      <div className="unified-columns-container">
+        {signatureMode === 'multi' ? renderMultisigContent() : renderSinglesigContent()}
+      </div>
+    </main>
   );
 };
 

@@ -45,18 +45,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 签名模式选择器容器 - 固定高度确保两种模式下布局完全一致 */
-.signature-mode-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; /* 底部对齐，确保下方组件列表位置一致 */
-  padding-top: 120px;
-  padding-bottom: 16px;
-  height: 192px;
-  box-sizing: border-box;
-  background-color: hsl(var(--background));
-  overflow: hidden; /* 防止内容溢出影响布局 */
-}
 
 /* 统一的列容器 - 确保单签和多签模式布局一致 */
 .unified-columns-container {
