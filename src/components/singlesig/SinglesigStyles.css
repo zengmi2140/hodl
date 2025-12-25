@@ -1,11 +1,10 @@
-/* 单签模式布局容器 - 5元素flex布局 */
+/* 单签模式布局容器 - 与多签模式完全统一 */
 .singlesig-layout-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
   width: 100%;
-  max-width: 1400px;
 }
 
 /* 列包装器 */
@@ -34,17 +33,17 @@
   background: #f8fafc;
 }
 
-/* 单签模式传输方式显示区域 */
+/* 单签模式传输方式显示区域 - 与多签统一宽度 */
 .singlesig-transfer-display {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  width: 160px;
-  min-width: 160px;
-  max-width: 160px;
-  padding: 48px 16px 16px;
+  min-width: 140px;
+  width: 140px;
+  max-width: 140px;
+  padding: 48px 8px 16px;
 }
 
 .singlesig-transfer-display.disabled {
@@ -135,7 +134,7 @@
   max-width: 240px;
 }
 
-/* 单签模式组件项 - 横向条状布局 */
+/* 单签模式组件项 - 与多签模式统一样式 */
 .singlesig-item {
   display: flex;
   align-items: center;
@@ -143,15 +142,17 @@
   padding: 12px 16px;
   border-radius: 12px;
   border: 2px solid hsl(var(--border));
-  background-color: white;
+  background-color: hsl(var(--secondary));
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
-  min-height: 56px;
+  min-height: 64px;
 }
 
 .singlesig-item:hover {
+  border-color: #F7931A;
+  background-color: #fff7ed;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }

@@ -50,6 +50,15 @@ body {
   display: flex;
   justify-content: center;
   padding: 8px 16px;
-  padding-top: 110px; /* 为固定 Header 预留空间 */
+  padding-top: 120px; /* 为固定 Header 预留空间 */
   background-color: hsl(var(--background));
+}
+
+/* 统一的列容器 - 确保单签和多签模式布局一致 */
+.unified-columns-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
 }

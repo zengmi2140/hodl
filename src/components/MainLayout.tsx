@@ -106,10 +106,10 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
     </div>
   );
 
-  // 渲染单签模式内容
-  const renderSinglesigContent = () => {
+  // 渲染单签模式内容（仅列区域，不含外层 main）
+  const renderSinglesigColumns = () => {
     if (!userPreference) {
-      return renderLoadingContent();
+      return <div className="loading-message">正在加载...</div>;
     }
     if (isMobile) {
       return (
@@ -141,14 +141,12 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
         />
       </div>
 
-      {/* 根据模式渲染不同内容 */}
-      {signatureMode === 'multi' ? (
-        <main className="main-layout multisig-layout">
-          {renderMultisigContent()}
-        </main>
-      ) : (
-        renderSinglesigContent()
-      )}
+      {/* 根据模式渲染不同内容 - 使用统一的 main 容器 */}
+      <main className="main-layout">
+        <div className="unified-columns-container">
+          {signatureMode === 'multi' ? renderMultisigContent() : renderSinglesigColumns()}
+        </div>
+      </main>
     </>
   );
 };
