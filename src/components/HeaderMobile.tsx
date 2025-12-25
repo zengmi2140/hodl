@@ -2,12 +2,14 @@ import React from 'react';
 
 interface HeaderMobileProps {
   completionPercentage: number;
+  maxProgress?: number;
   onResetPreference: () => void;
   onOpenFaq: () => void;
 }
 
 const HeaderMobile: React.FC<HeaderMobileProps> = ({
   completionPercentage,
+  maxProgress = 120,
   onResetPreference,
   onOpenFaq
 }) => {
@@ -54,7 +56,7 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
             <div
               className={`progress-bar ${completionPercentage === 100 ? 'at-hundred' : ''}`}
               style={{
-                width: `${completionPercentage >= 100 && completionPercentage < 120 ? 83.33 : completionPercentage === 120 ? 100 : completionPercentage}%`,
+                width: `${Math.min((completionPercentage / maxProgress) * 100, 100)}%`,
                 backgroundColor: getProgressColor(completionPercentage)
               }}
             />
