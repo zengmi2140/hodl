@@ -50,13 +50,6 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
     return '#fbbf24'; // 默认黄色
   };
 
-  const getStageLabel = (percentage: number): string => {
-    if (percentage === 0) return '开始选择您的配置';
-    if (percentage <= 50) return '已选择签名器';
-    if (percentage <= 80) return '已选择钱包';
-    if (percentage < 120) return '推荐添加节点';
-    return '完整配置 🎉';
-  };
 
   // 判断是否显示庆祝emoji
   const showCelebration = completionPercentage === 120;
@@ -103,7 +96,6 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
             />
           </div>
           <div className="progress-info">
-            <span className="progress-stage">{getStageLabel(completionPercentage)}</span>
             <span className="progress-percentage">{completionPercentage}%</span>
           </div>
         </div>
