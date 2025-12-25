@@ -140,22 +140,31 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
         title={`选择签名器 #${activeSlotIndex !== null ? activeSlotIndex + 1 : ''}`}
       >
         <div className="mobile-card-content">
-          {availableSigners.map(signer => {
-            const isCompatible = isSignerCompatible(signer.id);
-            return (
-              <div
-                key={signer.id}
-                className={`mobile-option-item ${!isCompatible ? 'inactive' : ''}`}
-                onClick={() => isCompatible && handleSignerSelect(signer.id)}
-              >
-                <img src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" decoding="async" />
-                <span className="mobile-option-name">{signer.name}</span>
-                {!isCompatible && (
-                  <span style={{ fontSize: '0.75rem', color: '#9ca3af' }}>不兼容</span>
-                )}
-              </div>
-            );
-          })}
+          {/* Sort signers: compatible first, incompatible last */}
+          {[...availableSigners]
+            .sort((a, b) => {
+              const aCompatible = isSignerCompatible(a.id);
+              const bCompatible = isSignerCompatible(b.id);
+              if (aCompatible && !bCompatible) return -1;
+              if (!aCompatible && bCompatible) return 1;
+              return 0;
+            })
+            .map(signer => {
+              const isCompatible = isSignerCompatible(signer.id);
+              return (
+                <div
+                  key={signer.id}
+                  className={`mobile-option-item ${!isCompatible ? 'inactive' : ''}`}
+                  onClick={() => isCompatible && handleSignerSelect(signer.id)}
+                >
+                  <img src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" decoding="async" />
+                  <span className="mobile-option-name">{signer.name}</span>
+                  {!isCompatible && (
+                    <span style={{ fontSize: '0.75rem', color: '#9ca3af' }}>不兼容</span>
+                  )}
+                </div>
+              );
+            })}
         </div>
       </MobileBottomSheet>
 
