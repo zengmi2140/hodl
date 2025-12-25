@@ -71,8 +71,8 @@ body {
 
 .progress-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   max-width: 600px;
   margin-top: 16px;
@@ -229,22 +229,23 @@ body {
 .progress-info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  padding: 0 2px;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.progress-percentage {
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+  letter-spacing: 0.02em;
 }
 
 .progress-stage {
   font-size: 13px;
   color: #64748b;
   font-weight: 500;
-}
-
-.progress-percentage {
-  font-size: 15px;
-  font-weight: 700;
-  color: #374151;
-  letter-spacing: 0.02em;
 }
 
 /* 旧的 reset-button 和 faq-button 样式已被 .header-btn 统一替代 */
@@ -542,6 +543,7 @@ body {
   width: 100%;
   padding-inline: 20px;
   padding-top: 0;
+  margin-top: 160px; /* Header 高度约 140px + 20px 间距 */
 }
 
 @media (min-width: 769px) {
