@@ -539,11 +539,6 @@ body {
   margin-top: 30px;
 }
 
-@media (min-width: 769px) {
-  .main-layout {
-    padding-bottom: 380px;
-  }
-}
 
 .main-layout.loading {
   display: flex;
