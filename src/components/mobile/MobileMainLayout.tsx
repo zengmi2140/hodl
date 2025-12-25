@@ -90,15 +90,15 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
       }
       return null;
     } else {
-      // Multi-sig mode - get colored labels
-      const coloredLabels: Array<{ color: string; label: string }> = [];
+      // Multi-sig mode - get colored labels with slot index
+      const coloredLabels: Array<{ slotIndex: number; methods: string[] }> = [];
       signerSlots.forEach((signerId, index) => {
         if (signerId && multisigWallet) {
           const methods = custodyData.transferMethods?.[signerId]?.[multisigWallet];
           if (methods && methods.length > 0) {
             coloredLabels.push({
-              color: SLOT_COLORS[index].border,
-              label: methods[0],
+              slotIndex: index,
+              methods: methods,
             });
           }
         }
