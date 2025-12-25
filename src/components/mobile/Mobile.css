@@ -299,6 +299,15 @@
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
+  width: 70px;
+}
+
+.mobile-arrow-column.left {
+  align-items: flex-start;
+}
+
+.mobile-arrow-column.right {
+  align-items: flex-end;
 }
 
 /* Arrow label */
