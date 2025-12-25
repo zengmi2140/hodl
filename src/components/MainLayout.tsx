@@ -14,6 +14,8 @@ import NodeColumn from './shared/NodeColumn';
 import TransferMethodDisplay from './shared/TransferMethodDisplay';
 import WalletNodeArrows from './shared/WalletNodeArrows';
 import BottomFeatureDock from './shared/BottomFeatureDock';
+// 移动端布局
+import MobileMainLayout from './mobile/MobileMainLayout';
 import { UserPreference, ComponentState, CustodyData } from '../types';
 import './multisig/MultisigPage.css';
 
@@ -68,6 +70,34 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
     getComponentState,
     onComponentClick,
   } = props;
+
+  // 移动端使用独立的布局组件
+  if (isMobile) {
+    return (
+      <MobileMainLayout
+        userPreference={userPreference}
+        custodyData={custodyData}
+        signatureMode={signatureMode}
+        threshold={threshold}
+        onModeChange={onModeChange}
+        onThresholdChange={onThresholdChange}
+        selectedSigners={selectedSigners}
+        selectedWallet={selectedWallet}
+        selectedNode={selectedNode}
+        getComponentState={getComponentState}
+        onComponentClick={onComponentClick}
+        signerSlots={signerSlots}
+        multisigWallet={multisigWallet}
+        multisigNode={multisigNode}
+        onMultisigSignerSelect={onMultisigSignerSelect}
+        onMultisigWalletSelect={onMultisigWalletSelect}
+        onMultisigNodeSelect={onMultisigNodeSelect}
+        getMultisigCompatibleSigners={getMultisigCompatibleSigners}
+        getMultisigCompatibleWallets={getMultisigCompatibleWallets}
+        getMultisigCompatibleNodes={getMultisigCompatibleNodes}
+      />
+    );
+  }
 
   // 渲染加载状态内容
   if (!userPreference) {
