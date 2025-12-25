@@ -23,24 +23,29 @@
   gap: 0;
 }
 
+/* 多签列容器 - 与单签模式 .singlesig-layout-container 完全统一 */
 .multisig-columns {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* 列样式 */
+/* 列样式 - 与单签模式 .singlesig-column-wrapper 统一 */
 .multisig-column {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
   width: 240px;
   min-width: 240px;
   max-width: 240px;
 }
 
+/* 多签列标题 - 与单签模式 .column-title 完全统一 */
 .multisig-column-title {
   font-size: 1rem;
   font-weight: 600;
@@ -49,6 +54,11 @@
   padding-bottom: 8px;
   border-bottom: 2px solid hsl(var(--border));
   margin-bottom: 8px;
+  width: 100%;
+  position: sticky;
+  top: 128px;
+  z-index: 15;
+  background: #f8fafc;
 }
 
 /* 签名器槽位样式 */
