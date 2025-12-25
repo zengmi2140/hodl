@@ -691,21 +691,50 @@
 }
 
 .feature-box {
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid hsl(var(--border));
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid hsl(var(--border) / 0.8);
   width: 100%;
   max-height: 260px;
   overflow-y: auto;
   animation: featureBoxFadeIn 0.3s ease-out;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.feature-box:hover {
+  box-shadow: 
+    0 6px 28px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* 自定义滚动条样式 */
+.feature-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.feature-box::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.feature-box::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+.feature-box::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
 }
 
 @keyframes featureBoxFadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -714,30 +743,52 @@
 }
 
 .feature-box .feature-title {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: hsl(var(--foreground));
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid hsl(var(--border));
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid hsl(var(--border) / 0.6);
+  letter-spacing: 0.01em;
 }
 
 .feature-box .feature-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .feature-box .feature-item {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.85rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: hsl(var(--secondary) / 0.5);
+  transition: background 0.15s ease;
+}
+
+.feature-box .feature-item:hover {
+  background: hsl(var(--secondary));
+}
+
+.feature-box .feature-item.positive {
+  background: hsl(142 76% 36% / 0.08);
+}
+
+.feature-box .feature-item.negative {
+  background: hsl(0 84% 60% / 0.08);
+}
+
+.feature-box .feature-item.warning {
+  background: hsl(38 92% 50% / 0.08);
 }
 
 .feature-box .feature-icon {
   flex-shrink: 0;
+  font-size: 0.9rem;
 }
 
 .feature-box .feature-text {
