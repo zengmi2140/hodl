@@ -168,10 +168,10 @@ const MultisigPage: React.FC = () => {
       return custodyData.nodes.map(n => n.id);
     }
     
-    const wallet = custodyData.softwareWallets.find(w => w.id === state.selectedWallet);
-    if (!wallet) return [];
-    
-    return wallet.compatibleNodes;
+    // 从节点的 compatibleWallets 反向查找兼容的节点
+    return custodyData.nodes
+      .filter(node => node.compatibleWallets.includes(state.selectedWallet!))
+      .map(n => n.id);
   };
 
   if (isLoading || !custodyData) {
