@@ -433,14 +433,26 @@ function App() {
       const slotCount = state.threshold === '2-of-3' ? 3 : 5;
       const filledSlots = state.signerSlots.filter(s => s !== null).length;
       
-      let progress = 10; // 阈值选择始终完成
-      const slotWeight = state.threshold === '2-of-3' ? 20 : 12;
-      progress += filledSlots * slotWeight;
+      let progress = 0; // 阈值选择不计入进度
       
-      if (state.multisigWallet) progress += 20;
-      if (state.multisigNode) progress += 10;
+      if (state.threshold === '2-of-3') {
+        // 2-of-3模式：每个槽位 +20%（共60%）
+        progress += filledSlots * 20;
+      } else {
+        // 3-of-5模式：每个槽位 +15%（共75%），填满额外 +5%
+        progress += filledSlots * 15;
+        if (filledSlots === 5) progress += 5; // 完整填满奖励
+      }
       
-      return Math.min(progress, 100);
+      // 软件钱包 +50%
+      if (state.multisigWallet) progress += 50;
+      
+      // 节点：公开节点 +0%，私有节点 +20%
+      if (state.multisigNode && state.multisigNode !== 'publicnode') {
+        progress += 20;
+      }
+      
+      return progress; // 2-of-3最高130%，3-of-5最高150%
     }
     
     // 单签模式进度计算
