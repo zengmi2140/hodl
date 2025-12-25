@@ -164,8 +164,9 @@ const MultisigPage: React.FC = () => {
   const getCompatibleNodes = (): string[] => {
     if (!custodyData) return [];
     
+    // 没有选择钱包时，返回所有节点
     if (!state.selectedWallet) {
-      return [];
+      return custodyData.nodes.map(n => n.id);
     }
     
     const wallet = custodyData.softwareWallets.find(w => w.id === state.selectedWallet);
