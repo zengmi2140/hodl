@@ -240,11 +240,6 @@ body {
   color: #374151;
 }
 
-.progress-stage {
-  font-size: 13px;
-  color: #64748b;
-  font-weight: 500;
-}
 
 /* 旧的 reset-button 和 faq-button 样式已被 .header-btn 统一替代 */
 
