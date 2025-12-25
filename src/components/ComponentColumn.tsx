@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentState } from '../types';
+import '../components/singlesig/SinglesigStyles.css';
 
 interface Component {
   id: string;
@@ -31,12 +32,12 @@ const isEmoji = (str: string): boolean => {
 const renderLogo = (logo: string, componentId: string) => {
   // 特殊处理：不使用签名器始终使用emoji
   if (componentId === 'none') {
-    return <span className="component-logo-emoji">{logo}</span>;
+    return <span className="singlesig-item-logo-emoji">{logo}</span>;
   }
   
   // 判断是否为emoji
   if (isEmoji(logo)) {
-    return <span className="component-logo-emoji">{logo}</span>;
+    return <span className="singlesig-item-logo-emoji">{logo}</span>;
   }
   
   // 否则显示图片
@@ -44,7 +45,6 @@ const renderLogo = (logo: string, componentId: string) => {
     <img 
       src={logo} 
       alt="logo" 
-      className="component-logo-image"
       onError={(e) => {
         // 图片加载失败时显示默认emoji
         const target = e.target as HTMLImageElement;
@@ -52,7 +52,7 @@ const renderLogo = (logo: string, componentId: string) => {
         const parent = target.parentElement;
         if (parent) {
           const fallback = document.createElement('span');
-          fallback.className = 'component-logo-emoji';
+          fallback.className = 'singlesig-item-logo-emoji';
           fallback.textContent = '🔧';
           parent.appendChild(fallback);
         }
@@ -69,7 +69,7 @@ const ComponentColumn = React.forwardRef<HTMLDivElement, ComponentColumnProps>((
   type
 }, ref) => {
   return (
-    <div className="components-grid" ref={ref}>
+    <div className="singlesig-column" ref={ref}>
       {components.map((component) => {
         const state = getComponentState(component.id);
         const isSelected = selectedComponents.includes(component.id);
@@ -77,13 +77,13 @@ const ComponentColumn = React.forwardRef<HTMLDivElement, ComponentColumnProps>((
         return (
           <div
             key={component.id}
-            className={`component-item ${state} ${isSelected ? 'selected' : ''}`}
+            className={`singlesig-item ${state} ${isSelected ? 'active' : ''}`}
             onClick={() => onComponentClick(component.id)}
           >
-            <div className="component-logo">
+            <div className="singlesig-item-logo">
               {renderLogo(component.logo, component.id)}
             </div>
-            <div className="component-name">
+            <div className="singlesig-item-name">
               {component.name}
             </div>
           </div>
