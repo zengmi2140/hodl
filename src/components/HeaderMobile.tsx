@@ -15,16 +15,25 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
 }) => {
   const getProgressColor = (percentage: number): string => {
     if (percentage === 0) return '#fbbf24';
-    if (percentage === 50) return '#ffcc80';
-    if (percentage === 60) return '#ffb74d';
-    if (percentage === 80) return '#ffb74d';
-    if (percentage === 100) return '#ffb74d';
-    if (percentage === 120) return '#F7931A';
+    if (percentage <= 60) return '#ffcc80';
+    if (percentage <= 100) return '#ffb74d';
+    if (percentage <= 120) return '#F7931A';
+    if (percentage <= 130) return '#F7931A';
+    if (percentage <= 150) return '#ff6b00';
     return '#fbbf24';
   };
 
-  const showCelebration = completionPercentage === 120;
+  // 计算进度条显示宽度（按最大进度值比例缩放）
+  const getProgressBarWidth = (): number => {
+    return Math.min((completionPercentage / maxProgress) * 100, 100);
+  };
+
+  // 判断是否显示庆祝emoji
+  const showCelebration = completionPercentage >= 120;
+  // 判断是否显示灰色延伸区域（仅单签100%时）
   const showGrayExtension = completionPercentage === 100;
+  // 判断是否为多签高进度
+  const isMultisigHighProgress = completionPercentage === 130 || completionPercentage === 150;
 
   return (
     <header className="header-mobile">
@@ -52,17 +61,19 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
         </div>
 
         <div className="header-mobile__progress">
-          <div className={`progress-bar-container ${showGrayExtension ? 'extended' : ''}`}>
+          <div className={`progress-bar-container-mobile ${showGrayExtension ? 'extended' : ''} ${isMultisigHighProgress ? 'multisig-complete' : ''}`}>
             <div
-              className={`progress-bar ${completionPercentage === 100 ? 'at-hundred' : ''}`}
+              className={`progress-bar-mobile ${completionPercentage === 100 ? 'at-hundred' : ''} ${completionPercentage === 120 ? 'singlesig-complete' : ''} ${completionPercentage === 130 ? 'multisig-130' : ''} ${completionPercentage === 150 ? 'multisig-150' : ''}`}
               style={{
-                width: `${Math.min((completionPercentage / maxProgress) * 100, 100)}%`,
+                width: `${getProgressBarWidth()}%`,
                 backgroundColor: getProgressColor(completionPercentage)
               }}
             />
-            <div className="progress-percentage">{completionPercentage}%</div>
+            <span className={`progress-percentage-mobile ${isMultisigHighProgress ? 'multisig-high' : ''} ${completionPercentage >= 80 ? 'on-bar' : ''}`}>
+              {completionPercentage}%
+            </span>
           </div>
-          {showCelebration && <div className="celebration-emoji">🎉</div>}
+          {showCelebration && <div className="celebration-emoji-mobile">🎉</div>}
         </div>
       </div>
     </header>
