@@ -589,7 +589,7 @@ body {
   justify-content: center;
   width: 100%;
   padding-inline: 20px;
-  padding-top: 120px; /* 为顶部固定Header预留空间：Header高度约100px + 余量20px */
+  padding-top: 20px; /* 签名模式选择器已经处理了顶部留白 */
 }
 
 @media (min-width: 769px) {

@@ -58,14 +58,12 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
     ...singlesigProps
   } = props;
 
-  // 加载状态
-  if (!userPreference) {
-    return (
-      <main className="main-layout loading">
-        <div className="loading-message">正在加载...</div>
-      </main>
-    );
-  }
+  // 渲染加载状态内容
+  const renderLoadingContent = () => (
+    <main className="main-layout loading">
+      <div className="loading-message">正在加载...</div>
+    </main>
+  );
 
   // 渲染多签模式内容
   const renderMultisigContent = () => (
@@ -110,6 +108,9 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
 
   // 渲染单签模式内容
   const renderSinglesigContent = () => {
+    if (!userPreference) {
+      return renderLoadingContent();
+    }
     if (isMobile) {
       return (
         <MainLayoutMobile
