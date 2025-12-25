@@ -1,16 +1,14 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { CustodyData, Feature } from '../types';
+import { CustodyData, Feature } from '../../types';
 
 interface BottomFeatureDockProps {
-  centers: { signer?: number; wallet?: number; node?: number };
-  columnWidths: { signer?: number; wallet?: number; node?: number };
-  layoutLeft: number;
-  selectedSigners: string[];
+  // 单签模式使用
+  selectedSigners?: string[];
+  // 共用
   selectedWallet: string | null;
   selectedNode: string | null;
   custodyData: CustodyData;
-  offsetX?: number;
 }
 
 const renderFeatureItems = (features: Feature[]) => {
@@ -23,33 +21,22 @@ const renderFeatureItems = (features: Feature[]) => {
 };
 
 const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
-  centers,
-  columnWidths,
-  layoutLeft,
   selectedSigners,
   selectedWallet,
   selectedNode,
   custodyData,
-  offsetX = 0
 }) => {
-  const dockCommonStyle: React.CSSProperties = {
-    position: 'fixed',
-    bottom: 20,
-    zIndex: 20,
-    transform: 'translateX(-50%)'
-  };
+  const hasAnySelection = (selectedSigners && selectedSigners.length > 0) || selectedWallet || selectedNode;
+
+  if (!hasAnySelection) {
+    return null;
+  }
 
   const content = (
-    <>
-      {selectedSigners.length > 0 && centers.signer !== undefined && (
-        <div
-          className="feature-box signer"
-          style={{ 
-            ...dockCommonStyle, 
-            left: layoutLeft + centers.signer + offsetX,
-            width: columnWidths.signer ? `${columnWidths.signer}px` : 'auto'
-          }}
-        >
+    <div className="multisig-bottom-feature-dock">
+      {/* 单签模式下显示签名器特性 */}
+      {selectedSigners && selectedSigners.length > 0 && (
+        <div className="multisig-feature-box signer">
           <h4 className="feature-title">硬件签名器特性</h4>
           <div className="feature-list">
             {selectedSigners.flatMap(signerId => {
@@ -60,15 +47,8 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
         </div>
       )}
 
-      {selectedWallet && centers.wallet !== undefined && (
-        <div
-          className="feature-box wallet"
-          style={{ 
-            ...dockCommonStyle, 
-            left: layoutLeft + centers.wallet + offsetX,
-            width: columnWidths.wallet ? `${columnWidths.wallet}px` : 'auto'
-          }}
-        >
+      {selectedWallet && (
+        <div className="multisig-feature-box wallet">
           <h4 className="feature-title">软件钱包特性</h4>
           <div className="feature-list">
             {(() => {
@@ -79,15 +59,8 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
         </div>
       )}
 
-      {selectedNode && centers.node !== undefined && (
-        <div
-          className="feature-box node"
-          style={{ 
-            ...dockCommonStyle, 
-            left: layoutLeft + centers.node + offsetX,
-            width: columnWidths.node ? `${columnWidths.node}px` : 'auto'
-          }}
-        >
+      {selectedNode && (
+        <div className="multisig-feature-box node">
           <h4 className="feature-title">区块链节点特性</h4>
           <div className="feature-list">
             {(() => {
@@ -97,7 +70,7 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 
   if (typeof document === 'undefined') {

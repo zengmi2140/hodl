@@ -1,5 +1,4 @@
 import React from 'react';
-import './SinglesigStyles.css';
 
 interface WalletNodeArrowsProps {
   hasWallet: boolean;
@@ -11,8 +10,8 @@ const WalletNodeArrows: React.FC<WalletNodeArrowsProps> = ({
   hasNode,
 }) => {
   return (
-    <div className="singlesig-transfer-display">
-      {/* 数据流箭头 - 文字在上方 */}
+    <div className="transfer-method-display">
+      {/* 数据流箭头 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-block">
           <span className="arrow-label-top">地址 · 已签名交易</span>
