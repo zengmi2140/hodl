@@ -1,6 +1,6 @@
 import React from 'react';
 import { CustodyData } from '../../types';
-import { SLOT_COLORS } from './MultisigPage';
+import { SLOT_COLORS } from '../../App';
 
 interface TransferMethodDisplayProps {
   signerSlots: (string | null)[];

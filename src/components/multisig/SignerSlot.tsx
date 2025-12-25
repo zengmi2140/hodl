@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CustodyData } from '../../types';
-import { SLOT_COLORS } from './MultisigPage';
+import { SLOT_COLORS } from '../../App';
 import FeatureTooltip from './FeatureTooltip';
 
 interface SignerSlotProps {

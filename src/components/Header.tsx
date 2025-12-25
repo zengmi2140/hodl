@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 interface HeaderProps {
   completionPercentage: number;
@@ -10,9 +9,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
-  const [isMultiSigTooltipVisible, setIsMultiSigTooltipVisible] = useState(false);
-  const navigate = useNavigate();
-  
   // 进度条动态宽度计算（保持居中）
   const GAP_FROM_BUTTONS = 24; // 进度条与按钮之间的间隙（像素）
   const BUTTON_WIDTH = 72; // 按钮的大致宽度（像素）
@@ -61,14 +57,6 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
 
   return (
     <header className="header">
-      {/* 多签模式按钮 - 页面最左上角固定位置 */}
-      <button 
-        className="multisig-mode-button-fixed"
-        onClick={() => navigate('/multisig')}
-        title="切换到多签模式"
-      >
-        多签模式
-      </button>
 
       {/* 左侧重置按钮 - 与布局对齐 */}
       <div 

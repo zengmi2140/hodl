@@ -14,8 +14,8 @@ const COLUMN_TITLES = {
   node: '区块链节点',
 } as const;
 
-interface MainLayoutProps {
-  userPreference: UserPreference | null;
+interface MainLayoutDesktopProps {
+  userPreference: UserPreference;
   selectedSigners: string[];
   selectedWallet: string | null;
   selectedNode: string | null;
@@ -25,7 +25,7 @@ interface MainLayoutProps {
   onLayoutMeasured?: (bounds: { leftEdge: number; rightEdge: number }) => void;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({
+const MainLayoutDesktop: React.FC<MainLayoutDesktopProps> = ({
   userPreference,
   selectedSigners,
   selectedWallet,
@@ -35,16 +35,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   custodyData,
   onLayoutMeasured
 }) => {
-  if (!userPreference) {
-    return (
-      <main className="main-layout loading">
-        <div className="loading-message">
-          正在加载...
-        </div>
-      </main>
-    );
-  }
-
   // 判断是否选择了"不使用签名器"
   const isNoSignerSelected = (): boolean => {
     return selectedSigners.includes('none');
@@ -208,4 +198,4 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   );
 };
 
-export default MainLayout;
+export default MainLayoutDesktop;
