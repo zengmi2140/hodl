@@ -185,12 +185,14 @@
   animation: none;
 }
 
+/* 统一 logo 尺寸 - 与多签模式一致 */
 .singlesig-item-logo {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   object-fit: contain;
   background-color: white;
+  padding: 4px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -207,11 +209,11 @@
   font-size: 1.5rem;
 }
 
+/* 统一名称样式 - 与多签模式一致，移除 font-size */
 .singlesig-item-name {
   flex: 1;
   font-weight: 500;
   color: hsl(var(--foreground));
-  font-size: 0.9rem;
 }
 
 /* 传输方式标签样式 - 复用 App.css 中的样式 */
