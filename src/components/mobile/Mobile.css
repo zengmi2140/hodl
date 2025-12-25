@@ -445,6 +445,38 @@
   align-items: center;
 }
 
+/* Multisig transfer tags container */
+.mobile-transfer-tags-multisig {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  width: 100%;
+}
+
+/* Transfer method group (slot number + tags) */
+.mobile-transfer-method-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Slot number indicator */
+.mobile-transfer-slot-number {
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+}
+
+/* Transfer method tags container */
+.mobile-transfer-method-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
 /* Single transfer tag */
 .mobile-transfer-tag {
   display: inline-flex;
@@ -458,6 +490,16 @@
   border: 1px solid #F7931A;
   border-radius: 16px;
   white-space: nowrap;
+}
+
+/* Colored transfer tag for multisig */
+.mobile-transfer-tag.colored {
+  background: transparent;
+  color: #374151;
+  border-width: 1px;
+  border-style: solid;
+  padding: 4px 10px;
+  font-size: 11px;
 }
 
 /* Mobile bottom sheet styles */

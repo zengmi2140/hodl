@@ -1,20 +1,12 @@
 import React from 'react';
+import { SLOT_COLORS } from '../../App';
 
 interface MobileDataFlowProps {
   isActive: boolean;
   label?: string;
-  coloredLabels?: Array<{ color: string; label: string }>;
+  coloredLabels?: Array<{ slotIndex: number; methods: string[] }>;
   flowType?: 'signer-wallet' | 'wallet-node';
 }
-
-// 多签槽位颜色
-const SLOT_COLORS = [
-  { bg: '#86efac', text: '#166534' }, // 绿色
-  { bg: '#93c5fd', text: '#1e40af' }, // 蓝色
-  { bg: '#c4b5fd', text: '#5b21b6' }, // 紫色
-  { bg: '#f9a8d4', text: '#9d174d' }, // 粉色
-  { bg: '#fde047', text: '#854d0e' }, // 黄色
-];
 
 const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
   isActive,
@@ -52,19 +44,34 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
         )}
         
         {isActive && coloredLabels && coloredLabels.length > 0 && (
-          <div className="mobile-transfer-tags">
-            {coloredLabels.map((item, index) => (
-              <span
-                key={index}
-                className="mobile-transfer-tag"
-                style={{ 
-                  backgroundColor: SLOT_COLORS[index]?.bg || item.color,
-                  color: SLOT_COLORS[index]?.text || '#333'
-                }}
-              >
-                {item.label}
-              </span>
-            ))}
+          <div className="mobile-transfer-tags-multisig">
+            {coloredLabels.map(({ slotIndex, methods }) => {
+              const color = SLOT_COLORS[slotIndex];
+              return (
+                <div key={slotIndex} className="mobile-transfer-method-group">
+                  <span 
+                    className="mobile-transfer-slot-number"
+                    style={{ color: color.border }}
+                  >
+                    #{slotIndex + 1}
+                  </span>
+                  <div className="mobile-transfer-method-tags">
+                    {methods.map((method, idx) => (
+                      <span
+                        key={idx}
+                        className="mobile-transfer-tag colored"
+                        style={{
+                          backgroundColor: color.bg,
+                          borderColor: color.border,
+                        }}
+                      >
+                        {method}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
