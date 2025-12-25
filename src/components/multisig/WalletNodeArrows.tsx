@@ -11,19 +11,19 @@ const WalletNodeArrows: React.FC<WalletNodeArrowsProps> = ({
 }) => {
   return (
     <div className="transfer-method-display">
-      {/* 数据流箭头 - 虚线动画 */}
+      {/* 数据流箭头 - 静态虚线 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-line flow-right">
           <span className="arrow-label-group">
             <span>地址</span>
             <span>已签名交易</span>
           </span>
-          <div className="arrow-line dashed-flow-right"></div>
-          <span className="arrow-head">→</span>
+          <div className="arrow-line-static"></div>
+          <span className="arrow-head">▶</span>
         </div>
         <div className="transfer-arrow-line flow-left">
-          <span className="arrow-head">←</span>
-          <div className="arrow-line dashed-flow-left"></div>
+          <span className="arrow-head">◀</span>
+          <div className="arrow-line-static"></div>
           <span className="arrow-label">余额信息</span>
         </div>
       </div>

@@ -44,16 +44,16 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
 
   return (
     <div className="transfer-method-display">
-      {/* 数据流箭头 - 虚线动画 */}
+      {/* 数据流箭头 - 静态虚线 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-line flow-right">
           <span className="arrow-label">签名和公钥</span>
-          <div className="arrow-line dashed-flow-right"></div>
-          <span className="arrow-head">→</span>
+          <div className="arrow-line-static"></div>
+          <span className="arrow-head">▶</span>
         </div>
         <div className="transfer-arrow-line flow-left">
-          <span className="arrow-head">←</span>
-          <div className="arrow-line dashed-flow-left"></div>
+          <span className="arrow-head">◀</span>
+          <div className="arrow-line-static"></div>
           <span className="arrow-label">待签名交易</span>
         </div>
       </div>
