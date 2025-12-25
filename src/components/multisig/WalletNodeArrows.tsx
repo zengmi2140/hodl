@@ -11,15 +11,20 @@ const WalletNodeArrows: React.FC<WalletNodeArrowsProps> = ({
 }) => {
   return (
     <div className="transfer-method-display">
-      {/* 数据流箭头 */}
+      {/* 数据流箭头 - 虚线动画 */}
       <div className="transfer-arrows">
-        <div className="transfer-arrow-line">
-          <span className="arrow-icon">←</span>
-          <span className="arrow-label">区块</span>
+        <div className="transfer-arrow-line flow-left">
+          <div className="arrow-line dashed-flow-left"></div>
+          <span className="arrow-label">余额信息</span>
+          <div className="arrow-line dashed-flow-left"></div>
         </div>
-        <div className="transfer-arrow-line">
-          <span className="arrow-label">广播</span>
-          <span className="arrow-icon">→</span>
+        <div className="transfer-arrow-line flow-right">
+          <div className="arrow-line dashed-flow-right"></div>
+          <span className="arrow-label-group">
+            <span>地址</span>
+            <span>已签名交易</span>
+          </span>
+          <div className="arrow-line dashed-flow-right"></div>
         </div>
       </div>
 
