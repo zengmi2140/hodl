@@ -1364,8 +1364,13 @@ body {
     gap: 8px;
   }
   
-  .signature-mode-selector {
+  /* Don't reorder signature-mode-selector in mobile layout */
+  .main-layout .signature-mode-selector {
     order: 2;
+  }
+  
+  .mobile-main-layout .signature-mode-selector {
+    order: unset;
   }
   
   .reset-button {
