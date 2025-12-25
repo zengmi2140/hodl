@@ -41,10 +41,10 @@
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
-  padding: 48px 8px 16px;
+  width: 160px;
+  min-width: 160px;
+  max-width: 160px;
+  padding: 48px 16px 16px;
 }
 
 .singlesig-transfer-display.disabled {

@@ -63,16 +63,6 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
             <div className="arrow-line-static"></div>
             <span className="arrow-head">▶</span>
           </div>
-          {/* 传输方式标签 - 在箭头下方 */}
-          {transferMethods.length > 0 && (
-            <div className="singlesig-transfer-tags">
-              {transferMethods.map((method, index) => (
-                <span key={index} className={`transfer-tag ${getTransferMethodClass(method)}`}>
-                  {method}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
         <div className="transfer-arrow-block reverse">
           <span className="arrow-label-top">待签名交易</span>
@@ -82,6 +72,17 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
           </div>
         </div>
       </div>
+
+      {/* 传输方式标签 - 在整个箭头区域底部 */}
+      {transferMethods.length > 0 && (
+        <div className="singlesig-transfer-tags">
+          {transferMethods.map((method, index) => (
+            <span key={index} className={`transfer-tag ${getTransferMethodClass(method)}`}>
+              {method}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* 提示信息 */}
       {!hasSigners && !hasWallet && !isNoSignerSelected && (
