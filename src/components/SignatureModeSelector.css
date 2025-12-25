@@ -7,10 +7,12 @@
   flex-wrap: nowrap;
   min-height: 56px;
   height: 56px;
+  max-height: 56px;
   box-sizing: border-box;
   overflow: hidden;
   margin-top: 120px;
   margin-bottom: 24px;
+  flex-shrink: 0;
 }
 
 .mode-selector-group {
