@@ -2,13 +2,14 @@ import React from 'react';
 
 interface HeaderProps {
   completionPercentage: number;
+  maxProgress?: number;
   onResetPreference: () => void;
   onOpenFaq: () => void;
   layoutLeftEdge?: number;
   layoutRightEdge?: number;
 }
 
-const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
+const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120, onResetPreference, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
   // 进度条动态宽度计算（保持居中）
   const GAP_FROM_BUTTONS = 24; // 进度条与按钮之间的间隙（像素）
   const BUTTON_WIDTH = 72; // 按钮的大致宽度（像素）
@@ -50,14 +51,11 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
     return '#fbbf24'; // 默认黄色
   };
 
-  // 计算进度条显示宽度（处理超过100%的情况）
+  // 计算进度条显示宽度（按最大进度值比例缩放）
   const getProgressBarWidth = (): number => {
-    if (completionPercentage <= 100) {
-      return completionPercentage;
-    }
-    // 超过100%时，按比例缩放到100%容器内
-    // 例如：130% -> 100%，120% -> 100%，150% -> 100%
-    return 100;
+    // 按比例缩放：实际进度 / 最大进度 * 100
+    // 例如：2-of-3模式下 110% / 130% = 84.6%
+    return Math.min((completionPercentage / maxProgress) * 100, 100);
   };
 
   // 判断是否显示庆祝emoji

@@ -545,12 +545,14 @@ function App() {
       {isMobile ? (
         <HeaderMobile
           completionPercentage={getCompletionPercentage()}
+          maxProgress={state.signatureMode === 'multi' ? (state.threshold === '2-of-3' ? 130 : 150) : 120}
           onResetPreference={handleResetPreference}
           onOpenFaq={handleOpenFaq}
         />
       ) : (
         <Header 
           completionPercentage={getCompletionPercentage()}
+          maxProgress={state.signatureMode === 'multi' ? (state.threshold === '2-of-3' ? 130 : 150) : 120}
           onResetPreference={handleResetPreference}
           onOpenFaq={handleOpenFaq}
           layoutLeftEdge={layoutBounds?.leftEdge}
