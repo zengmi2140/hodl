@@ -126,41 +126,6 @@ body {
   outline-offset: 2px;
 }
 
-/* 单签/多签切换按钮 */
-.signature-mode-selector {
-  display: flex;
-  background: #f1f5f9;
-  border-radius: 8px;
-  padding: 2px;
-  position: relative;
-}
-
-.signature-mode-button {
-  padding: 6px 12px;
-  border: none;
-  background: transparent;
-  color: #64748b;
-  font-size: 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.signature-mode-button.active {
-  background: white;
-  color: #334155;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.signature-mode-button.disabled {
-  color: #94a3b8;
-  cursor: not-allowed;
-}
-
-.signature-mode-button.disabled:hover {
-  background: #e2e8f0;
-}
 
 /* 工具提示样式 */
 .tooltip {
