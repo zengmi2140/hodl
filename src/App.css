@@ -214,10 +214,9 @@ body {
   border-radius: 8px 0 0 8px;
 }
 
-/* 单签120%完成状态 */
+/* 单签120%完成状态 - 整条进度条变成深橙色 */
 .progress-bar.singlesig-complete {
-  width: 100% !important;
-  background: linear-gradient(90deg, #ffb74d 0%, #ffb74d 83.33%, #F7931A 83.33%, #F7931A 100%) !important;
+  background-color: #F7931A !important;
   box-shadow: 0 0 12px rgba(247, 147, 26, 0.35);
   animation: overflowGlow 2s ease-in-out infinite alternate;
   border-radius: 8px;
@@ -225,7 +224,6 @@ body {
 
 /* 多签2-of-3模式130%完成状态 */
 .progress-bar.multisig-130 {
-  width: 100% !important;
   background: linear-gradient(90deg, #F7931A 0%, #ff8c00 50%, #F7931A 100%) !important;
   box-shadow: 0 0 16px rgba(247, 147, 26, 0.5);
   animation: multisigGlow130 2s ease-in-out infinite alternate;
@@ -234,7 +232,6 @@ body {
 
 /* 多签3-of-5模式150%完成状态 */
 .progress-bar.multisig-150 {
-  width: 100% !important;
   background: linear-gradient(90deg, #ff6b00 0%, #F7931A 25%, #ffcc00 50%, #F7931A 75%, #ff6b00 100%) !important;
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.6);
   animation: multisigGlow150 1.5s ease-in-out infinite alternate, multisigShimmer 3s linear infinite;
