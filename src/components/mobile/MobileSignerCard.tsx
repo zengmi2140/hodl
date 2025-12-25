@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CustodyData, ComponentState, Feature } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
 
@@ -15,6 +15,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
   getComponentState,
   onComponentClick,
 }) => {
+  const cardEndRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const [featureSheetOpen, setFeatureSheetOpen] = useState(false);
   const [selectedFeatures, setSelectedFeatures] = useState<Feature[]>([]);
@@ -60,7 +61,12 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                 <div
                   key={signer.id}
                   className={`mobile-option-item ${state} ${isSelected ? 'selected' : ''}`}
-                  onClick={() => onComponentClick(signer.id, 'signer')}
+                  onClick={() => {
+                    onComponentClick(signer.id, 'signer');
+                    setTimeout(() => {
+                      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    }, 100);
+                  }}
                 >
                   {isEmoji ? (
                     <span style={{ fontSize: '2rem', width: 40, textAlign: 'center' }}>
@@ -82,6 +88,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                 </div>
               );
             })}
+            <div ref={cardEndRef} />
           </div>
         </div>
       </div>

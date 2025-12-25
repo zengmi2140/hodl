@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CustodyData, ComponentState, Feature } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
 
@@ -21,6 +21,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
   onComponentClick,
   onNodeSelect,
 }) => {
+  const cardEndRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const [featureSheetOpen, setFeatureSheetOpen] = useState(false);
   const [selectedFeatures, setSelectedFeatures] = useState<Feature[]>([]);
@@ -31,12 +32,19 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
     setFeatureSheetOpen(true);
   };
 
+  const scrollToEnd = () => {
+    setTimeout(() => {
+      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 100);
+  };
+
   const handleNodeClick = (nodeId: string) => {
     // Single-sig mode
     if (getComponentState && onComponentClick) {
       const state = getComponentState(nodeId, 'node');
       if (state !== 'inactive') {
         onComponentClick(nodeId, 'node');
+        scrollToEnd();
       }
     }
     // Multi-sig mode
@@ -45,6 +53,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
         onNodeSelect(null);
       } else if (compatibleNodes.includes(nodeId)) {
         onNodeSelect(nodeId);
+        scrollToEnd();
       }
     }
   };
@@ -102,6 +111,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
                 </div>
               );
             })}
+            <div ref={cardEndRef} />
           </div>
         </div>
       </div>

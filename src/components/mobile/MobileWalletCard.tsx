@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CustodyData, ComponentState, Feature, UserPreference } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
 
@@ -23,6 +23,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
   onComponentClick,
   onWalletSelect,
 }) => {
+  const cardEndRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const [featureSheetOpen, setFeatureSheetOpen] = useState(false);
   const [selectedFeatures, setSelectedFeatures] = useState<Feature[]>([]);
@@ -33,12 +34,19 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
     setFeatureSheetOpen(true);
   };
 
+  const scrollToEnd = () => {
+    setTimeout(() => {
+      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 100);
+  };
+
   const handleWalletClick = (walletId: string) => {
     // Single-sig mode
     if (getComponentState && onComponentClick) {
       const state = getComponentState(walletId, 'wallet');
       if (state !== 'inactive') {
         onComponentClick(walletId, 'wallet');
+        scrollToEnd();
       }
     }
     // Multi-sig mode
@@ -47,6 +55,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
         onWalletSelect(null);
       } else if (compatibleWallets.includes(walletId)) {
         onWalletSelect(walletId);
+        scrollToEnd();
       }
     }
   };
@@ -107,6 +116,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
                 </div>
               );
             })}
+            <div ref={cardEndRef} />
           </div>
         </div>
       </div>
