@@ -47,30 +47,18 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
           <div className="mobile-transfer-tags-multisig">
             {coloredLabels.map(({ slotIndex, methods }) => {
               const color = SLOT_COLORS[slotIndex];
-              return (
-                <div key={slotIndex} className="mobile-transfer-method-group">
-                  <span 
-                    className="mobile-transfer-slot-number"
-                    style={{ color: color.border }}
-                  >
-                    #{slotIndex + 1}
-                  </span>
-                  <div className="mobile-transfer-method-tags">
-                    {methods.map((method, idx) => (
-                      <span
-                        key={idx}
-                        className="mobile-transfer-tag colored"
-                        style={{
-                          backgroundColor: color.bg,
-                          borderColor: color.border,
-                        }}
-                      >
-                        {method}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              );
+              return methods.map((method, idx) => (
+                <span
+                  key={`${slotIndex}-${idx}`}
+                  className="mobile-transfer-tag colored"
+                  style={{
+                    backgroundColor: color.bg,
+                    borderColor: color.border,
+                  }}
+                >
+                  {method}
+                </span>
+              ));
             })}
           </div>
         )}
