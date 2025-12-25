@@ -67,7 +67,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                       {signer.logo}
                     </span>
                   ) : (
-                    <img src={signer.logo} alt={signer.name} className="mobile-option-logo" />
+                    <img src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" decoding="async" />
                   )}
                   <span className="mobile-option-name">{signer.name}</span>
                   {isSelected && <span className="mobile-option-check">✓</span>}

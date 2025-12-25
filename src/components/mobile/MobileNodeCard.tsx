@@ -88,7 +88,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
                   className={`mobile-option-item ${state} ${isSelected ? 'selected' : ''}`}
                   onClick={() => handleNodeClick(node.id)}
                 >
-                  <img src={node.logo} alt={node.name} className="mobile-option-logo" />
+                  <img src={node.logo} alt={node.name} className="mobile-option-logo" loading="lazy" decoding="async" />
                   <span className="mobile-option-name">{node.name}</span>
                   {isSelected && <span className="mobile-option-check">✓</span>}
                   {node.features.length > 0 && (

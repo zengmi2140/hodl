@@ -99,6 +99,8 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
             src={selectedSigner.logo}
             alt={selectedSigner.name}
             className="signer-slot-logo"
+            loading="lazy"
+            decoding="async"
           />
           <span className="signer-slot-name">{selectedSigner.name}</span>
           <button
@@ -148,6 +150,8 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
                   src={signer.logo}
                   alt={signer.name}
                   className="signer-dropdown-item-logo"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <span className="signer-dropdown-item-name">{signer.name}</span>
                 {!isCompatible && (
