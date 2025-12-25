@@ -1,20 +1,17 @@
-import React from 'react';
+import React from "react";
 
 interface WalletNodeArrowsProps {
   hasWallet: boolean;
   hasNode: boolean;
 }
 
-const WalletNodeArrows: React.FC<WalletNodeArrowsProps> = ({
-  hasWallet,
-  hasNode,
-}) => {
+const WalletNodeArrows: React.FC<WalletNodeArrowsProps> = ({ hasWallet, hasNode }) => {
   return (
     <div className="transfer-method-display">
       {/* 数据流箭头 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-block">
-          <span className="arrow-label-top">地址 · 已签名交易</span>
+          <span className="arrow-label-top">地址；已签名交易</span>
           <div className="arrow-row">
             <div className="arrow-line-static"></div>
             <span className="arrow-head">▶</span>
@@ -32,14 +29,10 @@ const WalletNodeArrows: React.FC<WalletNodeArrowsProps> = ({
       {/* 连接状态 */}
       <div className="transfer-methods-container">
         <div className="transfer-method-hint">
-          {!hasWallet && !hasNode && '选择钱包和节点'}
-          {hasWallet && !hasNode && '请选择节点'}
-          {!hasWallet && hasNode && '请选择钱包'}
-          {hasWallet && hasNode && (
-            <span className="wallet-node-connected">
-              ✓ 已连接
-            </span>
-          )}
+          {!hasWallet && !hasNode && "选择钱包和节点"}
+          {hasWallet && !hasNode && "请选择节点"}
+          {!hasWallet && hasNode && "请选择钱包"}
+          {hasWallet && hasNode && <span className="wallet-node-connected">✓ 已连接</span>}
         </div>
       </div>
     </div>
