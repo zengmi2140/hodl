@@ -69,7 +69,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
 
   return (
     <div className="mobile-feature-display">
-      <h3 className="mobile-feature-display-title">已选组件特性</h3>
+      <h3 className="mobile-feature-display-title">已选选项特性</h3>
 
       {/* Signers Features */}
       {selectedSignerIds.map((signerId, index) => {
