@@ -34,7 +34,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
 
   const scrollToEnd = () => {
     setTimeout(() => {
-      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      cardEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   };
 
