@@ -1,56 +1,40 @@
 .threshold-selector {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 12px;
 }
 
 .threshold-label {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: hsl(var(--muted-foreground));
 }
 
-.threshold-options {
+.threshold-segmented {
   display: flex;
-  gap: 16px;
+  background-color: hsl(var(--muted));
+  border-radius: 8px;
+  padding: 3px;
 }
 
-.threshold-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 16px 32px;
-  border: 2px solid hsl(var(--border));
-  border-radius: 12px;
-  background-color: white;
+.threshold-segment {
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  background: transparent;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.threshold-option:hover {
-  border-color: #F7931A;
-  background-color: #fff7ed;
-}
-
-.threshold-option.active {
-  border-color: #F7931A;
-  background-color: #fff7ed;
-  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.2);
-}
-
-.threshold-numbers {
-  font-size: 1.5rem;
-  font-weight: 700;
+.threshold-segment:hover:not(.active) {
   color: hsl(var(--foreground));
 }
 
-.threshold-option.active .threshold-numbers {
+.threshold-segment.active {
+  background-color: white;
   color: #F7931A;
-}
-
-.threshold-desc {
-  font-size: 0.75rem;
-  color: hsl(var(--muted-foreground));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
