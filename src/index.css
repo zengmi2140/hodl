@@ -55,4 +55,5 @@ body {
   max-width: 1400px;
   padding: 0; /* 移除所有 padding，确保两种模式完全一致 */
   margin: 0;
+  margin-top: 24px; /* 固定顶部间距，确保与 SignatureModeSelector 的间距一致 */
 }
