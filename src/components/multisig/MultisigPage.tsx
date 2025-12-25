@@ -110,7 +110,6 @@ const MultisigPage: React.FC = () => {
     setState(prev => ({
       ...prev,
       selectedWallet: walletId,
-      selectedNode: null, // 清空节点选择
     }));
   };
 

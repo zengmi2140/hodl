@@ -303,35 +303,17 @@
 }
 
 .arrow-head {
-  font-size: 18px;
+  font-size: 12px;
   color: #F7931A;
-  font-weight: bold;
   line-height: 1;
   flex-shrink: 0;
 }
 
-/* 虚线动画 */
-.arrow-line {
+/* 静态虚线 */
+.arrow-line-static {
   flex: 1;
-  height: 2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.arrow-line::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    #F7931A 0px,
-    #F7931A 4px,
-    transparent 4px,
-    transparent 8px
-  );
+  height: 0;
+  border-top: 2px dashed #F7931A;
 }
 
 /* 向左流动动画 */
