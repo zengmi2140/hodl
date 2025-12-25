@@ -597,3 +597,55 @@
   color: hsl(var(--foreground));
   line-height: 1.4;
 }
+
+/* 多签模式底部特性框 */
+.multisig-bottom-feature-dock {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+  z-index: 20;
+}
+
+.multisig-feature-box {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid hsl(var(--border));
+  min-width: 240px;
+  max-width: 300px;
+}
+
+.multisig-feature-box .feature-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.multisig-feature-box .feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.multisig-feature-box .feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.multisig-feature-box .feature-icon {
+  flex-shrink: 0;
+}
+
+.multisig-feature-box .feature-text {
+  color: hsl(var(--foreground));
+}

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CustodyData } from '../../types';
-import FeatureTooltip from './FeatureTooltip';
 
 interface NodeColumnProps {
   selectedNode: string | null;
@@ -17,8 +16,6 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
   onNodeSelect,
   hasSelectedWallet,
 }) => {
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-
   const handleNodeClick = (nodeId: string) => {
     if (selectedNode === nodeId) {
       onNodeSelect(null);
@@ -41,7 +38,6 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
             key={node.id}
             className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleNodeClick(node.id)}
-            style={{ position: 'relative' }}
           >
             <img
               src={node.logo}
@@ -49,20 +45,6 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
               className="multisig-item-logo"
             />
             <span className="multisig-item-name">{node.name}</span>
-            <div
-              className="multisig-item-info"
-              onMouseEnter={(e) => {
-                e.stopPropagation();
-                setHoveredNode(node.id);
-              }}
-              onMouseLeave={() => setHoveredNode(null)}
-              onClick={(e) => e.stopPropagation()}
-            >
-              i
-            </div>
-            {hoveredNode === node.id && (
-              <FeatureTooltip features={node.features} />
-            )}
           </div>
         );
       })}
