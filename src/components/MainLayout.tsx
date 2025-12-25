@@ -65,44 +65,42 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
     </main>
   );
 
-  // 渲染多签模式内容
+  // 渲染多签模式内容 - 移除多余的包装层，直接使用 multisig-columns
   const renderMultisigContent = () => (
-    <div className="multisig-content">
-      <div className="multisig-columns">
-        <SignerColumn
-          signerSlots={signerSlots}
-          custodyData={custodyData}
-          compatibleSigners={getMultisigCompatibleSigners()}
-          onSignerSelect={onMultisigSignerSelect}
-        />
-        
-        <TransferMethodDisplay
-          signerSlots={signerSlots}
-          selectedWallet={multisigWallet}
-          custodyData={custodyData}
-        />
-        
-        <WalletColumn
-          selectedWallet={multisigWallet}
-          custodyData={custodyData}
-          compatibleWallets={getMultisigCompatibleWallets()}
-          onWalletSelect={onMultisigWalletSelect}
-          hasSelectedSigners={signerSlots.some(s => s !== null)}
-        />
-        
-        <WalletNodeArrows
-          hasWallet={multisigWallet !== null}
-          hasNode={multisigNode !== null}
-        />
-        
-        <NodeColumn
-          selectedNode={multisigNode}
-          custodyData={custodyData}
-          compatibleNodes={getMultisigCompatibleNodes()}
-          onNodeSelect={onMultisigNodeSelect}
-          hasSelectedWallet={multisigWallet !== null}
-        />
-      </div>
+    <div className="multisig-columns">
+      <SignerColumn
+        signerSlots={signerSlots}
+        custodyData={custodyData}
+        compatibleSigners={getMultisigCompatibleSigners()}
+        onSignerSelect={onMultisigSignerSelect}
+      />
+      
+      <TransferMethodDisplay
+        signerSlots={signerSlots}
+        selectedWallet={multisigWallet}
+        custodyData={custodyData}
+      />
+      
+      <WalletColumn
+        selectedWallet={multisigWallet}
+        custodyData={custodyData}
+        compatibleWallets={getMultisigCompatibleWallets()}
+        onWalletSelect={onMultisigWalletSelect}
+        hasSelectedSigners={signerSlots.some(s => s !== null)}
+      />
+      
+      <WalletNodeArrows
+        hasWallet={multisigWallet !== null}
+        hasNode={multisigNode !== null}
+      />
+      
+      <NodeColumn
+        selectedNode={multisigNode}
+        custodyData={custodyData}
+        compatibleNodes={getMultisigCompatibleNodes()}
+        onNodeSelect={onMultisigNodeSelect}
+        hasSelectedWallet={multisigWallet !== null}
+      />
     </div>
   );
 
