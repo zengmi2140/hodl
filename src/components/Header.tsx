@@ -57,28 +57,17 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
 
   return (
     <header className="header">
-
-      {/* 左侧重置按钮 - 与布局对齐 */}
-      <div 
-        className="header-actions-left"
-        style={layoutLeftEdge !== undefined ? { left: `${layoutLeftEdge}px` } : undefined}
-      >
+      {/* 右上角统一按钮组 */}
+      <div className="header-actions">
         <button 
-          className="reset-button"
+          className="header-btn"
           onClick={onResetPreference}
           title="重置偏好"
         >
           重置
         </button>
-      </div>
-
-      {/* 右侧 FAQ 按钮 - 直接在 header 层级，相对于视口定位 */}
-      <div 
-        className="header-actions"
-        style={layoutRightEdge !== undefined ? { right: `calc(100% - ${layoutRightEdge}px)` } : undefined}
-      >
         <button 
-          className="faq-button"
+          className="header-btn"
           onClick={onOpenFaq}
           aria-label="查看 FAQ"
         >
@@ -87,14 +76,9 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
       </div>
 
       <div className="header-content">
-        <div
-          className="site-title"
-          aria-label="比特币自主保管模拟器"
-          role="heading"
-          aria-level={1}
-        >
+        <h1 className="site-title">
           比特币自主保管模拟器
-        </div>
+        </h1>
         {/* 中央进度条区域 */}
         <div 
           className="progress-section" 
