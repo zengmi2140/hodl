@@ -51,12 +51,33 @@ body {
 .site-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0f172a;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
   line-height: 1.2;
   text-align: center;
   margin: 0;
   padding-top: 4px;
+  
+  /* 渐变文字 - 从深色到带有比特币橙色调的暖灰 */
+  background: linear-gradient(
+    135deg,
+    #1e293b 0%,
+    #334155 40%,
+    #78716c 70%,
+    #92400e 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* 微妙的阴影增加深度感 */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+  
+  /* 可选：添加微动效让标题更有生命力 */
+  transition: filter 0.3s ease;
+}
+
+.site-title:hover {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
 }
 
 .progress-section {
