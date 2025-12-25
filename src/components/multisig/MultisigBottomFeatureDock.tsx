@@ -29,9 +29,9 @@ const MultisigBottomFeatureDock: React.FC<MultisigBottomFeatureDockProps> = ({
   }
 
   const content = (
-    <div className="multisig-bottom-feature-dock">
+    <div className="bottom-feature-dock">
       {selectedWallet && (
-        <div className="multisig-feature-box wallet">
+        <div className="feature-box wallet">
           <h4 className="feature-title">软件钱包特性</h4>
           <div className="feature-list">
             {(() => {
@@ -43,7 +43,7 @@ const MultisigBottomFeatureDock: React.FC<MultisigBottomFeatureDockProps> = ({
       )}
 
       {selectedNode && (
-        <div className="multisig-feature-box node">
+        <div className="feature-box node">
           <h4 className="feature-title">区块链节点特性</h4>
           <div className="feature-list">
             {(() => {

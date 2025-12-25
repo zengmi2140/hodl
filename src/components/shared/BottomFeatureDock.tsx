@@ -33,10 +33,10 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
   }
 
   const content = (
-    <div className="multisig-bottom-feature-dock">
+    <div className="bottom-feature-dock">
       {/* 单签模式下显示签名器特性 */}
       {selectedSigners && selectedSigners.length > 0 && (
-        <div className="multisig-feature-box signer">
+        <div className="feature-box signer">
           <h4 className="feature-title">硬件签名器特性</h4>
           <div className="feature-list">
             {selectedSigners.flatMap(signerId => {
@@ -48,7 +48,7 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
       )}
 
       {selectedWallet && (
-        <div className="multisig-feature-box wallet">
+        <div className="feature-box wallet">
           <h4 className="feature-title">软件钱包特性</h4>
           <div className="feature-list">
             {(() => {
@@ -60,7 +60,7 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
       )}
 
       {selectedNode && (
-        <div className="multisig-feature-box node">
+        <div className="feature-box node">
           <h4 className="feature-title">区块链节点特性</h4>
           <div className="feature-list">
             {(() => {
