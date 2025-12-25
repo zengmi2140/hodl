@@ -8,6 +8,7 @@
   min-height: 56px;
   height: 56px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .mode-selector-group {
