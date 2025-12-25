@@ -7,10 +7,21 @@ import faqContent from './content/FAQ.md?raw';
 import MainLayout from './components/MainLayout';
 import InitialGuide from './components/InitialGuide';
 import { useIsMobile } from './hooks/useIsMobile';
+import { SignatureMode, ThresholdType } from './components/SignatureModeSelector';
 import './index.css';
 import './App.css';
 
+// 槽位颜色配置（从 MultisigPage 移过来）
+export const SLOT_COLORS = [
+  { bg: '#dcfce7', border: '#86efac', label: '浅绿' },  // 槽位1
+  { bg: '#dbeafe', border: '#93c5fd', label: '浅蓝' },  // 槽位2
+  { bg: '#ede9fe', border: '#c4b5fd', label: '浅紫' },  // 槽位3
+  { bg: '#fce7f3', border: '#f9a8d4', label: '浅粉' },  // 槽位4
+  { bg: '#fef9c3', border: '#fde047', label: '浅黄' },  // 槽位5
+];
+
 interface AppState {
+  // 单签模式状态
   selectedSigners: string[];
   selectedWallet: string | null;
   selectedNode: string | null;
@@ -18,6 +29,13 @@ interface AppState {
   showGuide: boolean;
   custodyData: CustodyData | null;
   isLoading: boolean;
+  // 签名模式
+  signatureMode: SignatureMode;
+  // 多签模式状态
+  threshold: ThresholdType;
+  signerSlots: (string | null)[];
+  multisigWallet: string | null;
+  multisigNode: string | null;
 }
 
 function App() {
@@ -28,7 +46,12 @@ function App() {
     userPreference: null,
     showGuide: true,
     custodyData: null,
-    isLoading: true
+    isLoading: true,
+    signatureMode: 'single',
+    threshold: '2-of-3',
+    signerSlots: [null, null, null],
+    multisigWallet: null,
+    multisigNode: null
   });
   const [isFaqOpen, setIsFaqOpen] = useState(false);
   const [layoutBounds, setLayoutBounds] = useState<{ leftEdge: number; rightEdge: number } | null>(null);
@@ -69,7 +92,111 @@ function App() {
     }
   }, []);
 
-  // 计算组件状态
+  // 切换签名模式
+  const handleModeChange = (mode: SignatureMode) => {
+    setState(prev => ({
+      ...prev,
+      signatureMode: mode,
+      // 切换模式时重置对应的选择
+      selectedSigners: [],
+      selectedWallet: null,
+      selectedNode: null,
+      signerSlots: mode === 'multi' 
+        ? Array(prev.threshold === '2-of-3' ? 3 : 5).fill(null)
+        : prev.signerSlots,
+      multisigWallet: null,
+      multisigNode: null
+    }));
+  };
+
+  // 切换多签阈值
+  const handleThresholdChange = (newThreshold: ThresholdType) => {
+    const slotCount = newThreshold === '2-of-3' ? 3 : 5;
+    setState(prev => ({
+      ...prev,
+      threshold: newThreshold,
+      signerSlots: Array(slotCount).fill(null),
+      multisigWallet: null,
+      multisigNode: null
+    }));
+  };
+
+  // 多签模式 - 选择签名器
+  const handleMultisigSignerSelect = (slotIndex: number, signerId: string | null) => {
+    setState(prev => {
+      const newSlots = [...prev.signerSlots];
+      newSlots[slotIndex] = signerId;
+      return {
+        ...prev,
+        signerSlots: newSlots,
+      };
+    });
+  };
+
+  // 多签模式 - 选择钱包
+  const handleMultisigWalletSelect = (walletId: string | null) => {
+    setState(prev => ({
+      ...prev,
+      multisigWallet: walletId,
+    }));
+  };
+
+  // 多签模式 - 选择节点
+  const handleMultisigNodeSelect = (nodeId: string | null) => {
+    setState(prev => ({
+      ...prev,
+      multisigNode: nodeId,
+    }));
+  };
+
+  // 多签模式 - 获取兼容的钱包列表
+  const getMultisigCompatibleWallets = (): string[] => {
+    if (!state.custodyData) return [];
+    
+    const selectedSigners = state.signerSlots.filter(s => s !== null) as string[];
+    if (selectedSigners.length === 0) {
+      return state.custodyData.softwareWallets.map(w => w.id);
+    }
+    
+    return state.custodyData.softwareWallets
+      .filter(wallet => 
+        selectedSigners.every(signerId => 
+          wallet.compatibleSigners.includes(signerId)
+        )
+      )
+      .map(w => w.id);
+  };
+
+  // 多签模式 - 获取兼容的签名器列表
+  const getMultisigCompatibleSigners = (): string[] => {
+    if (!state.custodyData) return [];
+    
+    if (!state.multisigWallet) {
+      return state.custodyData.hardwareSigners
+        .filter(s => s.id !== 'none')
+        .map(s => s.id);
+    }
+    
+    const wallet = state.custodyData.softwareWallets.find(w => w.id === state.multisigWallet);
+    if (!wallet) return [];
+    
+    return wallet.compatibleSigners.filter(id => id !== 'none');
+  };
+
+  // 多签模式 - 获取兼容的节点列表
+  const getMultisigCompatibleNodes = (): string[] => {
+    if (!state.custodyData) return [];
+    
+    if (!state.multisigWallet) {
+      return state.custodyData.nodes.map(n => n.id);
+    }
+    
+    return state.custodyData.nodes
+      .filter(node => node.compatibleWallets.includes(state.multisigWallet!))
+      .map(n => n.id);
+  };
+
+  // 计算组件状态（单签模式）
   const getComponentState = (componentId: string, type: 'signer' | 'wallet' | 'node'): ComponentState => {
     if (!state.custodyData || !state.userPreference) return 'inactive';
     
@@ -176,7 +303,7 @@ function App() {
     return 'inactive';
   };
 
-  // 处理组件点击
+  // 处理组件点击（单签模式）
   const handleComponentClick = (componentId: string, type: 'signer' | 'wallet' | 'node') => {
     const currentState = getComponentState(componentId, type);
     
@@ -253,7 +380,7 @@ function App() {
             selectedNode: null
           };
         } else {
-          // 添加到选择中（多签模式）
+          // 添加到选择中
           return {
             ...prev,
             selectedSigners: [...prev.selectedSigners, componentId]
@@ -301,41 +428,34 @@ function App() {
   const getCompletionPercentage = (): number => {
     if (!state.userPreference) return 0;
     
-    // 新的进度计算逻辑：根据用户在Markdown文档中定义的规则
+    if (state.signatureMode === 'multi') {
+      // 多签模式进度计算
+      const slotCount = state.threshold === '2-of-3' ? 3 : 5;
+      const filledSlots = state.signerSlots.filter(s => s !== null).length;
+      
+      let progress = 10; // 阈值选择始终完成
+      const slotWeight = state.threshold === '2-of-3' ? 20 : 12;
+      progress += filledSlots * slotWeight;
+      
+      if (state.multisigWallet) progress += 20;
+      if (state.multisigNode) progress += 10;
+      
+      return Math.min(progress, 100);
+    }
+    
+    // 单签模式进度计算
     const hasWallet = state.selectedWallet !== null;
     const hasSigner = state.selectedSigners.length > 0;
-    // 修改：只有当选择的节点不是"默认/公开节点"时，才认为有真正的节点选择
     const hasNode = state.selectedNode !== null && state.selectedNode !== 'publicnode';
     const hasNoneSigner = state.selectedSigners.includes('none');
     const hasHardwareSigner = state.selectedSigners.some(id => id !== 'none');
     
-    // 情况7: 硬件签名器 + 软件钱包 + 区块链节点 → 120%
-    if (hasHardwareSigner && hasWallet && hasNode) {
-      return 120;
-    }
+    if (hasHardwareSigner && hasWallet && hasNode) return 120;
+    if (hasHardwareSigner && hasWallet) return 100;
+    if (hasNoneSigner && hasWallet && hasNode) return 80;
+    if (hasNoneSigner && hasWallet) return 60;
+    if (hasHardwareSigner && !hasWallet) return 50;
     
-    // 情况6: 硬件签名器 + 软件钱包 → 100%
-    if (hasHardwareSigner && hasWallet) {
-      return 100;
-    }
-    
-    // 情况3: "不使用签名器" + 软件钱包 + 区块链节点 → 80%
-    if (hasNoneSigner && hasWallet && hasNode) {
-      return 80;
-    }
-    
-    // 情况2: "不使用签名器" + 软件钱包 → 60%
-    if (hasNoneSigner && hasWallet) {
-      return 60;
-    }
-    
-    // 情况4: 仅选择硬件签名器 → 50%
-    if (hasHardwareSigner && !hasWallet) {
-      return 50;
-    }
-    
-    // 情况1: 仅选择"不使用签名器" → 0%
-    // 情况11: 什么都没选择 → 0%
     return 0;
   };
 
@@ -348,7 +468,7 @@ function App() {
         showGuide: false
       };
       
-      // 如果用户选择了“暂时不用硬件签名器”，自动选中“不使用签名器”
+      // 如果用户选择了"暂时不用硬件签名器"，自动选中"不使用签名器"
       if (preference.signerWillingness === 'no-signer') {
         newState.selectedSigners = ['none'];
         newState.selectedWallet = null;
@@ -376,7 +496,12 @@ function App() {
       selectedWallet: null,
       selectedNode: null,
       userPreference: null,
-      showGuide: true
+      showGuide: true,
+      signatureMode: 'single',
+      threshold: '2-of-3',
+      signerSlots: [null, null, null],
+      multisigWallet: null,
+      multisigNode: null
     }));
     localStorage.removeItem('userPreference');
   };
@@ -430,6 +555,19 @@ function App() {
         onComponentClick={handleComponentClick}
         custodyData={state.custodyData}
         onLayoutMeasured={setLayoutBounds}
+        signatureMode={state.signatureMode}
+        threshold={state.threshold}
+        onModeChange={handleModeChange}
+        onThresholdChange={handleThresholdChange}
+        signerSlots={state.signerSlots}
+        multisigWallet={state.multisigWallet}
+        multisigNode={state.multisigNode}
+        onMultisigSignerSelect={handleMultisigSignerSelect}
+        onMultisigWalletSelect={handleMultisigWalletSelect}
+        onMultisigNodeSelect={handleMultisigNodeSelect}
+        getMultisigCompatibleSigners={getMultisigCompatibleSigners}
+        getMultisigCompatibleWallets={getMultisigCompatibleWallets}
+        getMultisigCompatibleNodes={getMultisigCompatibleNodes}
       />
 
       <FaqDrawer 

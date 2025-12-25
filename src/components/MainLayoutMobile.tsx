@@ -10,7 +10,7 @@ const COLUMN_TITLES = {
 } as const;
 
 interface MainLayoutMobileProps {
-  userPreference: UserPreference | null;
+  userPreference: UserPreference;
   selectedSigners: string[];
   selectedWallet: string | null;
   selectedNode: string | null;
@@ -28,27 +28,17 @@ const MainLayoutMobile: React.FC<MainLayoutMobileProps> = ({
   onComponentClick,
   custodyData
 }) => {
-  if (!userPreference) {
-    return (
-      <main className="main-layout loading">
-        <div className="loading-message">
-          正在加载...
-        </div>
-      </main>
-    );
-  }
-
   // 获取传输方式对应的CSS类名
   const getTransferMethodClass = (method: string): string => {
     const methodClassMap: { [key: string]: string } = {
       'SD卡': 'sd-card',
-      'microSD 卡': 'sd-card', // 添加对 microSD 卡的支持
+      'microSD 卡': 'sd-card',
       '二维码': 'qr-code', 
       'USB': 'usb',
       '蓝牙': 'bluetooth',
       'NFC': 'nfc'
     };
-    return methodClassMap[method] || 'usb'; // 默认使用USB样式
+    return methodClassMap[method] || 'usb';
   };
 
   // 获取当前选中的传输方式
