@@ -19,8 +19,8 @@ const SignerColumn: React.FC<SignerColumnProps> = ({
   const selectedSignerIds = signerSlots.filter(s => s !== null) as string[];
 
   return (
-    <div className="column">
-      <div className="column-title">硬件签名器</div>
+    <div className="multisig-column">
+      <div className="multisig-column-title">硬件签名器</div>
       {signerSlots.map((signerId, index) => (
         <SignerSlot
           key={index}

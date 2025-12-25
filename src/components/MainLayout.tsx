@@ -105,7 +105,7 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
   // 渲染多签模式内容
   const renderMultisigContent = () => (
     <>
-      <div className="columns-container">
+      <div className="multisig-columns">
         <MultisigSignerColumn
           signerSlots={signerSlots}
           custodyData={custodyData}
@@ -153,7 +153,7 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
   // 渲染单签模式内容 - 使用与多签完全相同的架构
   const renderSinglesigContent = () => (
     <>
-      <div className="columns-container">
+      <div className="multisig-columns">
         <SinglesigSignerColumn
           selectedSigners={selectedSigners}
           custodyData={custodyData}

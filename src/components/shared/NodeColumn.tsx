@@ -36,8 +36,8 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
   };
 
   return (
-    <div className="column">
-      <div className="column-title">区块链节点</div>
+    <div className="multisig-column">
+      <div className="multisig-column-title">区块链节点</div>
       {custodyData.nodes.map(node => {
         // 如果提供了 getComponentState，使用单签模式的状态逻辑
         let isCompatible: boolean;
@@ -57,15 +57,15 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
         return (
           <div
             key={node.id}
-            className={`option-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
+            className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleNodeClick(node.id)}
           >
             <img
               src={node.logo}
               alt={node.name}
-              className="option-logo"
+              className="multisig-item-logo"
             />
-            <span className="option-name">{node.name}</span>
+            <span className="multisig-item-name">{node.name}</span>
           </div>
         );
       })}

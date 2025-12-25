@@ -23,8 +23,8 @@
   gap: 0;
 }
 
-/* 列容器 - 统一用于单签和多签模式 */
-.columns-container {
+/* 多签列容器 - 与单签模式 .singlesig-layout-container 完全统一 */
+.multisig-columns {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -35,8 +35,8 @@
   padding-top: 0; /* 确保无额外顶部间距 */
 }
 
-/* 列样式 - 统一用于单签和多签模式 */
-.column {
+/* 列样式 - 与单签模式 .singlesig-column-wrapper 完全统一 */
+.multisig-column {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,8 +48,8 @@
   padding: 0;
 }
 
-/* 列标题 - 统一用于单签和多签模式 */
-.column-title {
+/* 多签列标题 - 与单签模式 .column-title 完全统一 */
+.multisig-column-title {
   font-size: 1rem;
   font-weight: 600;
   color: hsl(var(--foreground));
@@ -203,8 +203,8 @@
   color: white;
 }
 
-/* 选项项目样式 - 统一用于单签和多签模式 */
-.option-item {
+/* 钱包/节点项目样式 */
+.multisig-item {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -219,21 +219,21 @@
   box-sizing: border-box;
 }
 
-.option-item.compatible {
+.multisig-item.compatible {
   opacity: 1;
   border-color: hsl(var(--border));
 }
 
-.option-item.compatible:hover {
+.multisig-item.compatible:hover {
   border-color: #F7931A;
   background-color: #fff7ed;
 }
 
-.option-item.breathing {
-  animation: optionBreathing 2s ease-in-out infinite;
+.multisig-item.breathing {
+  animation: multisigBreathing 2s ease-in-out infinite;
 }
 
-@keyframes optionBreathing {
+@keyframes multisigBreathing {
   0%, 100% {
     box-shadow: 0 0 0 0 rgba(247, 147, 26, 0);
     border-color: hsl(var(--border));
@@ -244,7 +244,7 @@
   }
 }
 
-.option-item.selected {
+.multisig-item.selected {
   opacity: 1;
   border-color: #F7931A;
   background-color: #fff7ed;
@@ -252,7 +252,7 @@
   animation: none;
 }
 
-.option-logo {
+.multisig-item-logo {
   width: 40px;
   height: 40px;
   border-radius: 8px;
@@ -261,13 +261,13 @@
   padding: 4px;
 }
 
-.option-name {
+.multisig-item-name {
   flex: 1;
   font-weight: 500;
   color: hsl(var(--foreground));
 }
 
-.option-info {
+.multisig-item-info {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -282,7 +282,7 @@
   transition: all 0.2s ease;
 }
 
-.option-info:hover {
+.multisig-item-info:hover {
   background-color: #F7931A;
   color: white;
 }
@@ -650,8 +650,8 @@
   line-height: 1.4;
 }
 
-/* 底部特性框 - 统一用于单签和多签模式 */
-.bottom-feature-dock {
+/* 多签模式底部特性框 */
+.multisig-bottom-feature-dock {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -661,7 +661,7 @@
   z-index: 20;
 }
 
-.feature-box {
+.multisig-feature-box {
   background: white;
   border-radius: 12px;
   padding: 16px;
@@ -671,7 +671,7 @@
   max-width: 300px;
 }
 
-.feature-box .feature-title {
+.multisig-feature-box .feature-title {
   font-size: 0.9rem;
   font-weight: 600;
   color: hsl(var(--foreground));
@@ -680,13 +680,13 @@
   border-bottom: 1px solid hsl(var(--border));
 }
 
-.feature-box .feature-list {
+.multisig-feature-box .feature-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.feature-box .feature-item {
+.multisig-feature-box .feature-item {
   display: flex;
   align-items: flex-start;
   gap: 8px;
@@ -694,10 +694,10 @@
   line-height: 1.4;
 }
 
-.feature-box .feature-icon {
+.multisig-feature-box .feature-icon {
   flex-shrink: 0;
 }
 
-.feature-box .feature-text {
+.multisig-feature-box .feature-text {
   color: hsl(var(--foreground));
 }

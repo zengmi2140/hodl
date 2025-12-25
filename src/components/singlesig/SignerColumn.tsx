@@ -31,8 +31,8 @@ const SignerColumn: React.FC<SignerColumnProps> = ({
   });
 
   return (
-    <div className="column">
-      <div className="column-title">硬件签名器</div>
+    <div className="multisig-column">
+      <div className="multisig-column-title">硬件签名器</div>
       {sortedHardwareSigners.map(signer => {
         const state = getComponentState(signer.id, 'signer');
         const isSelected = selectedSigners.includes(signer.id);
@@ -42,21 +42,21 @@ const SignerColumn: React.FC<SignerColumnProps> = ({
         return (
           <div
             key={signer.id}
-            className={`option-item ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''} ${isInactive ? '' : 'compatible'}`}
+            className={`multisig-item ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''} ${isInactive ? '' : 'compatible'}`}
             onClick={() => onComponentClick(signer.id, 'signer')}
           >
             {isEmoji(signer.logo) || signer.id === 'none' ? (
-              <span className="option-logo" style={{ fontSize: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span className="multisig-item-logo" style={{ fontSize: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {signer.logo}
               </span>
             ) : (
               <img
                 src={signer.logo}
                 alt={signer.name}
-                className="option-logo"
+                className="multisig-item-logo"
               />
             )}
-            <span className="option-name">{signer.name}</span>
+            <span className="multisig-item-name">{signer.name}</span>
           </div>
         );
       })}

@@ -40,8 +40,8 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   const deviceIcon = userPreference?.deviceType === 'mobile' ? '📱' : '💻';
 
   return (
-    <div className="column">
-      <div className="column-title">
+    <div className="multisig-column">
+      <div className="multisig-column-title">
         软件钱包 {deviceIcon}
       </div>
       {custodyData.softwareWallets.map(wallet => {
@@ -63,15 +63,15 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
         return (
           <div
             key={wallet.id}
-            className={`option-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
+            className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleWalletClick(wallet.id)}
           >
             <img
               src={wallet.logo}
               alt={wallet.name}
-              className="option-logo"
+              className="multisig-item-logo"
             />
-            <span className="option-name">{wallet.name}</span>
+            <span className="multisig-item-name">{wallet.name}</span>
           </div>
         );
       })}

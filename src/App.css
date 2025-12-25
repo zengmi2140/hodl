@@ -886,7 +886,30 @@ body {
 
 
 
-/* .column-title 已迁移到 MultisigPage.css */
+.column-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2d3748;
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
+  width: 100%;
+  
+  /* 使用CSS Grid强制居中 */
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr;
+  
+  /* 确保完全居中对齐 */
+  box-sizing: border-box;
+  position: relative;
+  
+  /* 让标题粘在顶部Header下方 */
+  position: sticky;
+  top: 128px; /* Header固定在顶部，标题紧随其下（精确到128px） */
+  z-index: 15; /* 高于滚动内容，低于Header与底部特性框 */
+  background: #f8fafc; /* 与页面背景一致，避免滚动时透出 */
+}
 
 .components-grid {
   display: grid;
