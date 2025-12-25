@@ -29,30 +29,53 @@ const MultisigBottomFeatureDock: React.FC<MultisigBottomFeatureDockProps> = ({
   }
 
   const content = (
-    <div className="bottom-feature-dock">
-      {selectedWallet && (
-        <div className="feature-box wallet">
-          <h4 className="feature-title">软件钱包特性</h4>
-          <div className="feature-list">
-            {(() => {
-              const wallet = custodyData.softwareWallets.find(w => w.id === selectedWallet);
-              return wallet ? renderFeatureItems(wallet.features) : null;
-            })()}
-          </div>
+    <div className="bottom-feature-dock-aligned">
+      <div className="feature-dock-inner">
+        {/* 签名器列占位 - 多签模式下签名器特性通过 tooltip 显示 */}
+        <div className="feature-box-column">
+          <div className="feature-box-placeholder"></div>
         </div>
-      )}
 
-      {selectedNode && (
-        <div className="feature-box node">
-          <h4 className="feature-title">区块链节点特性</h4>
-          <div className="feature-list">
-            {(() => {
-              const node = custodyData.nodes.find(n => n.id === selectedNode);
-              return node ? renderFeatureItems(node.features) : null;
-            })()}
-          </div>
+        {/* 占位区域 - 对应数据流箭头区域 */}
+        <div className="feature-box-spacer"></div>
+
+        {/* 软件钱包特性 - 与钱包列对齐 */}
+        <div className="feature-box-column">
+          {selectedWallet ? (
+            <div className="feature-box wallet">
+              <h4 className="feature-title">软件钱包特性</h4>
+              <div className="feature-list">
+                {(() => {
+                  const wallet = custodyData.softwareWallets.find(w => w.id === selectedWallet);
+                  return wallet ? renderFeatureItems(wallet.features) : null;
+                })()}
+              </div>
+            </div>
+          ) : (
+            <div className="feature-box-placeholder"></div>
+          )}
         </div>
-      )}
+
+        {/* 占位区域 - 对应钱包-节点箭头区域 */}
+        <div className="feature-box-spacer"></div>
+
+        {/* 区块链节点特性 - 与节点列对齐 */}
+        <div className="feature-box-column">
+          {selectedNode ? (
+            <div className="feature-box node">
+              <h4 className="feature-title">区块链节点特性</h4>
+              <div className="feature-list">
+                {(() => {
+                  const node = custodyData.nodes.find(n => n.id === selectedNode);
+                  return node ? renderFeatureItems(node.features) : null;
+                })()}
+              </div>
+            </div>
+          ) : (
+            <div className="feature-box-placeholder"></div>
+          )}
+        </div>
+      </div>
     </div>
   );
 

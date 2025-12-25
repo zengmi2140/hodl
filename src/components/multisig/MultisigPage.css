@@ -732,18 +732,3 @@
   color: hsl(var(--foreground));
 }
 
-/* 底部特性框 - 居中版本（多签模式） */
-.bottom-feature-dock {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 24px;
-  z-index: 20;
-}
-
-.bottom-feature-dock .feature-box {
-  min-width: 240px;
-  max-width: 300px;
-}
