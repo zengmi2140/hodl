@@ -88,7 +88,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                 </div>
               );
             })}
-            <div ref={cardEndRef} />
+            <div ref={cardEndRef} style={{ scrollMarginTop: '110px' }} />
           </div>
         </div>
       </div>
