@@ -93,7 +93,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
                   className={`mobile-option-item ${state} ${isSelected ? 'selected' : ''}`}
                   onClick={() => handleWalletClick(wallet.id)}
                 >
-                  <img src={wallet.logo} alt={wallet.name} className="mobile-option-logo" />
+                  <img src={wallet.logo} alt={wallet.name} className="mobile-option-logo" loading="lazy" decoding="async" />
                   <span className="mobile-option-name">{wallet.name}</span>
                   {isSelected && <span className="mobile-option-check">✓</span>}
                   {wallet.features.length > 0 && (

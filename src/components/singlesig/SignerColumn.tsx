@@ -54,6 +54,8 @@ const SignerColumn: React.FC<SignerColumnProps> = ({
                 src={signer.logo}
                 alt={signer.name}
                 className="option-logo"
+                loading="lazy"
+                decoding="async"
               />
             )}
             <span className="option-name">{signer.name}</span>

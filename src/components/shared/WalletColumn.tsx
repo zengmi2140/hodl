@@ -70,6 +70,8 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
               src={wallet.logo}
               alt={wallet.name}
               className="option-logo"
+              loading="lazy"
+              decoding="async"
             />
             <span className="option-name">{wallet.name}</span>
           </div>

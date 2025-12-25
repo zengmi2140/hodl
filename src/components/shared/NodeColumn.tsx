@@ -64,6 +64,8 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
               src={node.logo}
               alt={node.name}
               className="option-logo"
+              loading="lazy"
+              decoding="async"
             />
             <span className="option-name">{node.name}</span>
           </div>
