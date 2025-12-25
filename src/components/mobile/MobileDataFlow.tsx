@@ -26,10 +26,10 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
   
   return (
     <div className={`mobile-data-flow-vertical ${isActive ? 'active' : ''}`}>
-      {/* 左侧箭头 - 向下流动 (签名和公钥 / 余额数据) - 标签在上方(源头) */}
+      {/* 左侧箭头 - 向下流动 */}
       <div className="mobile-arrow-column left">
         <span className="mobile-arrow-label top">
-          {isSignerToWallet ? '签名和公钥' : '余额数据'}
+          {isSignerToWallet ? '签名和公钥' : '地址；已签名交易'}
         </span>
         <div className="mobile-arrow-line">
           <div className="mobile-arrow-line-static"></div>
@@ -69,14 +69,14 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
         )}
       </div>
 
-      {/* 右侧箭头 - 向上流动 (待签名交易 / 交易广播) - 标签在下方(源头) */}
+      {/* 右侧箭头 - 向上流动 */}
       <div className="mobile-arrow-column right">
         <div className="mobile-arrow-line">
           <span className="mobile-arrow-head up">▲</span>
           <div className="mobile-arrow-line-static"></div>
         </div>
         <span className="mobile-arrow-label bottom">
-          {isSignerToWallet ? '待签名交易' : '交易广播'}
+          {isSignerToWallet ? '待签名交易' : '余额信息'}
         </span>
       </div>
     </div>
