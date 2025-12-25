@@ -32,9 +32,10 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  padding-top: 0; /* 确保无额外顶部间距 */
 }
 
-/* 列样式 - 与单签模式 .singlesig-column-wrapper 统一 */
+/* 列样式 - 与单签模式 .singlesig-column-wrapper 完全统一 */
 .multisig-column {
   display: flex;
   flex-direction: column;
@@ -43,6 +44,8 @@
   width: 240px;
   min-width: 240px;
   max-width: 240px;
+  margin: 0;
+  padding: 0;
 }
 
 /* 多签列标题 - 与单签模式 .column-title 完全统一 */
@@ -53,7 +56,7 @@
   text-align: center;
   padding-bottom: 8px;
   border-bottom: 2px solid hsl(var(--border));
-  margin-bottom: 8px;
+  margin: 0 0 8px 0; /* 显式重置所有 margin */
   width: 100%;
   position: sticky;
   top: 128px;

@@ -51,7 +51,7 @@ body {
   justify-content: center;
   padding: 8px 16px;
   padding-top: 120px; /* 为固定 Header 预留空间 */
-  padding-bottom: 24px; /* 统一与列表的间距 */
+  padding-bottom: 16px; /* 统一与列表的间距 */
   background-color: hsl(var(--background));
 }
 
@@ -62,5 +62,6 @@ body {
   align-items: center;
   width: 100%;
   max-width: 1400px;
-  padding-top: 8px; /* 统一顶部间距 */
+  padding: 0; /* 移除所有 padding，确保两种模式完全一致 */
+  margin: 0;
 }
