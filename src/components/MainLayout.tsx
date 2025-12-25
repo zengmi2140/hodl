@@ -77,11 +77,15 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
     if (!onLayoutMeasured || isMobile) return;
 
     const measureLayout = () => {
-      const columnsContainer = document.querySelector('.columns-container');
-      if (columnsContainer) {
-        const rect = columnsContainer.getBoundingClientRect();
+      // 测量最后一个列（节点列）的右边界
+      const columns = document.querySelectorAll('.columns-container .column');
+      const lastColumn = columns[columns.length - 1];
+      if (lastColumn) {
+        const rect = lastColumn.getBoundingClientRect();
+        const firstColumn = columns[0];
+        const firstRect = firstColumn?.getBoundingClientRect();
         onLayoutMeasured({
-          leftEdge: rect.left,
+          leftEdge: firstRect?.left ?? rect.left,
           rightEdge: rect.right
         });
       }

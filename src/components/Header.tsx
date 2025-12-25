@@ -65,12 +65,19 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
   // 判断是否为多签高进度
   const isMultisigHighProgress = completionPercentage === 130 || completionPercentage === 150;
 
+  // 计算按钮位置：使 FAQ 按钮右边与节点列右边对齐
+  const getButtonsRight = (): string | undefined => {
+    if (layoutRightEdge === undefined) return undefined;
+    // 页面右边距离 layoutRightEdge 的距离
+    return `${window.innerWidth - layoutRightEdge}px`;
+  };
+
   return (
     <header className="header">
-      {/* 右上角统一按钮组 - 相对于 main-layout 定位 */}
+      {/* 右上角统一按钮组 */}
       <div 
         className="header-actions"
-        style={layoutRightEdge !== undefined ? { right: `calc(100vw - ${layoutRightEdge}px)` } : undefined}
+        style={{ right: getButtonsRight() }}
       >
         <button 
           className="header-btn"
