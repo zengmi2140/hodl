@@ -525,16 +525,22 @@
   border-bottom: 1px solid #f0f0f0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
 }
 
 .mobile-bottom-sheet-title {
   font-size: 1.1rem;
   font-weight: 600;
   color: #1f2937;
+  text-align: center;
 }
 
 .mobile-bottom-sheet-close {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 32px;
   height: 32px;
   border-radius: 50%;
