@@ -282,26 +282,32 @@
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  min-width: 100px;
-  flex: 1;
-  padding-top: 48px;
+  min-width: 140px;
+  padding: 48px 8px 16px;
 }
 
 .transfer-arrows {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 8px;
+  gap: 12px;
   width: 100%;
 }
 
 .transfer-arrow-line {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 12px;
   color: hsl(var(--muted-foreground));
-  height: 20px;
+  height: 64px;
+}
+
+.arrow-head {
+  font-size: 18px;
+  color: #F7931A;
+  font-weight: bold;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 /* 虚线动画 */
