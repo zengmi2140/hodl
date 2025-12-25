@@ -67,8 +67,11 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
 
   return (
     <header className="header">
-      {/* 右上角统一按钮组 */}
-      <div className="header-actions">
+      {/* 右上角统一按钮组 - 相对于 main-layout 定位 */}
+      <div 
+        className="header-actions"
+        style={layoutRightEdge !== undefined ? { right: `calc(100vw - ${layoutRightEdge}px)` } : undefined}
+      >
         <button 
           className="header-btn"
           onClick={onResetPreference}

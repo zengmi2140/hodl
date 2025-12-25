@@ -78,15 +78,15 @@ body {
   margin-top: 16px;
 }
 
-/* 右上角统一按钮组 */
+/* 右上角统一按钮组 - 相对于 main-layout 定位 */
 .header-actions {
-  position: absolute;
-  right: 24px;
+  position: fixed;
   top: 12px;
+  right: calc((100vw - min(100vw - 40px, 1060px)) / 2);
   display: flex;
   align-items: center;
   gap: 8px;
-  z-index: 10;
+  z-index: 25;
 }
 
 /* 统一按钮样式 */
@@ -816,7 +816,7 @@ body {
   top: var(--lane-forward-top, 42%);
   left: 50%;
   transform: translate(-50%, -170%);
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   text-align: center;
   color: #F7931A;
   font-weight: 600;
