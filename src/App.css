@@ -57,6 +57,16 @@ body {
   text-align: center;
   margin: 0;
   padding-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.bitcoin-logo {
+  font-size: 1.75rem;
+  color: #F7931A;
+  line-height: 1;
 }
 
 .progress-section {
