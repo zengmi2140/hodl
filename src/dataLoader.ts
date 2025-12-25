@@ -40,7 +40,9 @@ export const loadCustodyData = async (): Promise<CustodyData> => {
     const data: CustodyData = await response.json();
     return data;
   } catch (error) {
-    console.error('Failed to load custody data:', error);
+    if (import.meta.env.DEV) {
+      console.error('Failed to load custody data:', error);
+    }
     return getFallbackData();
   }
 };

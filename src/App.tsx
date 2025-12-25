@@ -57,6 +57,18 @@ function App() {
   const [layoutBounds, setLayoutBounds] = useState<{ leftEdge: number; rightEdge: number } | null>(null);
   const isMobile = useIsMobile(769);
 
+  // 验证用户偏好数据结构
+  const isValidUserPreference = (data: unknown): data is UserPreference => {
+    return (
+      data !== null &&
+      typeof data === 'object' &&
+      'deviceType' in data &&
+      'signerWillingness' in data &&
+      ((data as UserPreference).deviceType === 'mobile' || (data as UserPreference).deviceType === 'desktop') &&
+      ((data as UserPreference).signerWillingness === 'no-signer' || (data as UserPreference).signerWillingness === 'with-signer')
+    );
+  };
+
   // 加载JSON数据
   useEffect(() => {
     const loadData = async () => {
@@ -68,7 +80,9 @@ function App() {
         const data: CustodyData = await response.json();
         setState(prev => ({ ...prev, custodyData: data, isLoading: false }));
       } catch (error) {
-        console.error('Failed to load custody data:', error);
+        if (import.meta.env.DEV) {
+          console.error('Failed to load custody data:', error);
+        }
         // 如果加载失败，使用备用数据
         const { getFallbackData } = await import('./dataLoader');
         const fallbackData = getFallbackData();
@@ -83,12 +97,22 @@ function App() {
   useEffect(() => {
     const savedPreference = localStorage.getItem('userPreference');
     if (savedPreference) {
-      const preference = JSON.parse(savedPreference);
-      setState(prev => ({
-        ...prev,
-        userPreference: preference,
-        showGuide: false
-      }));
+      try {
+        const parsed = JSON.parse(savedPreference);
+        if (isValidUserPreference(parsed)) {
+          setState(prev => ({
+            ...prev,
+            userPreference: parsed,
+            showGuide: false
+          }));
+        } else {
+          // 无效数据，清除并显示引导
+          localStorage.removeItem('userPreference');
+        }
+      } catch {
+        // 解析失败，清除损坏的数据
+        localStorage.removeItem('userPreference');
+      }
     }
   }, []);
 
