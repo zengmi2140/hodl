@@ -45,13 +45,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 签名模式选择器容器 */
+/* 签名模式选择器容器 - 固定高度确保两种模式下布局一致 */
 .signature-mode-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 8px 16px;
   padding-top: 120px; /* 为固定 Header 预留空间 */
-  padding-bottom: 16px; /* 统一与列表的间距 */
+  min-height: 180px; /* 固定最小高度，确保单签和多签模式下容器高度一致 */
+  box-sizing: border-box;
   background-color: hsl(var(--background));
 }
 
