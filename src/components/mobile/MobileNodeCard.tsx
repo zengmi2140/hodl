@@ -111,7 +111,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
                 </div>
               );
             })}
-            <div ref={cardEndRef} />
+            <div ref={cardEndRef} style={{ scrollMarginTop: '110px' }} />
           </div>
         </div>
       </div>
