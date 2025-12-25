@@ -130,7 +130,7 @@ const MainLayoutDesktop: React.FC<MainLayoutDesktopProps> = ({
   }, []);
 
   return (
-    <main className="main-layout">
+    <>
       <div className="singlesig-layout-container" ref={layoutRef}>
         {/* 硬件签名器列 */}
         <div className="singlesig-column-wrapper" ref={signerColumnRef}>
@@ -194,7 +194,7 @@ const MainLayoutDesktop: React.FC<MainLayoutDesktopProps> = ({
         selectedNode={selectedNode}
         custodyData={custodyData}
       />
-    </main>
+    </>
   );
 };
 
