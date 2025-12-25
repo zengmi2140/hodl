@@ -38,31 +38,29 @@ const SignatureModeSelector: React.FC<SignatureModeSelectorProps> = ({
         </div>
       </div>
 
-      {/* 多签阈值选择（仅在多签模式下显示） */}
-      {mode === 'multi' && (
-        <>
-          <div className="mode-divider" />
-          <div className="threshold-group">
-            <span className="threshold-label">多签阈值</span>
-            <div className="threshold-segmented">
-              <button
-                className={`threshold-segment ${threshold === '2-of-3' ? 'active' : ''}`}
-                onClick={() => onThresholdChange('2-of-3')}
-                title="3个签名器中需要2个签名"
-              >
-                2-of-3
-              </button>
-              <button
-                className={`threshold-segment ${threshold === '3-of-5' ? 'active' : ''}`}
-                onClick={() => onThresholdChange('3-of-5')}
-                title="5个签名器中需要3个签名"
-              >
-                3-of-5
-              </button>
-            </div>
+      {/* 多签阈值选择 - 始终渲染，单签模式下隐藏以保持布局一致 */}
+      <div className={`threshold-section ${mode === 'single' ? 'hidden' : ''}`}>
+        <div className="mode-divider" />
+        <div className="threshold-group">
+          <span className="threshold-label">多签阈值</span>
+          <div className="threshold-segmented">
+            <button
+              className={`threshold-segment ${threshold === '2-of-3' ? 'active' : ''}`}
+              onClick={() => onThresholdChange('2-of-3')}
+              title="3个签名器中需要2个签名"
+            >
+              2-of-3
+            </button>
+            <button
+              className={`threshold-segment ${threshold === '3-of-5' ? 'active' : ''}`}
+              onClick={() => onThresholdChange('3-of-5')}
+              title="5个签名器中需要3个签名"
+            >
+              3-of-5
+            </button>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };
