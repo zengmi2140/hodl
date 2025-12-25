@@ -1,5 +1,6 @@
 import React from 'react';
 import { CustodyData, ComponentState } from '../../types';
+import OptimizedImage from './OptimizedImage';
 
 interface NodeColumnProps {
   selectedNode: string | null;
@@ -60,12 +61,11 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
             className={`option-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleNodeClick(node.id)}
           >
-            <img
+            <OptimizedImage
               src={node.logo}
               alt={node.name}
               className="option-logo"
               loading="lazy"
-              decoding="async"
             />
             <span className="option-name">{node.name}</span>
           </div>

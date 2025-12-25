@@ -3,6 +3,7 @@ import { CustodyData, Feature } from '../../types';
 import { SLOT_COLORS } from '../../App';
 import MobileBottomSheet from './MobileBottomSheet';
 import MobileFeatureSheet from './MobileFeatureSheet';
+import OptimizedImage from '../shared/OptimizedImage';
 
 interface MobileMultisigSignerCardProps {
   signerSlots: (string | null)[];
@@ -157,7 +158,7 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
                   className={`mobile-option-item ${!isCompatible ? 'inactive' : ''}`}
                   onClick={() => isCompatible && handleSignerSelect(signer.id)}
                 >
-                  <img src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" decoding="async" />
+                  <OptimizedImage src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" />
                   <span className="mobile-option-name">{signer.name}</span>
                   {!isCompatible && (
                     <span style={{ fontSize: '0.75rem', color: '#9ca3af' }}>不兼容</span>

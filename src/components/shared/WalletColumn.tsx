@@ -1,5 +1,6 @@
 import React from 'react';
 import { CustodyData, UserPreference, ComponentState } from '../../types';
+import OptimizedImage from './OptimizedImage';
 
 interface WalletColumnProps {
   selectedWallet: string | null;
@@ -66,12 +67,11 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
             className={`option-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleWalletClick(wallet.id)}
           >
-            <img
+            <OptimizedImage
               src={wallet.logo}
               alt={wallet.name}
               className="option-logo"
               loading="lazy"
-              decoding="async"
             />
             <span className="option-name">{wallet.name}</span>
           </div>

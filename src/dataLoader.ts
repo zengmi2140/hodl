@@ -43,6 +43,7 @@ export const loadCustodyData = async (): Promise<CustodyData> => {
     if (import.meta.env.DEV) {
       console.error('Failed to load custody data:', error);
     }
+    // 生产环境静默失败，使用备用数据
     return getFallbackData();
   }
 };

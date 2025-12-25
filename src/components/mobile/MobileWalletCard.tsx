@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { CustodyData, ComponentState, Feature, UserPreference } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
+import OptimizedImage from '../shared/OptimizedImage';
 
 interface MobileWalletCardProps {
   selectedWallet: string | null;
@@ -107,7 +108,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
                   className={`mobile-option-item ${state} ${isSelected ? 'selected' : ''}`}
                   onClick={() => handleWalletClick(wallet.id)}
                 >
-                  <img src={wallet.logo} alt={wallet.name} className="mobile-option-logo" loading="lazy" decoding="async" />
+                  <OptimizedImage src={wallet.logo} alt={wallet.name} className="mobile-option-logo" loading="lazy" />
                   <span className="mobile-option-name">{wallet.name}</span>
                   {isSelected && <span className="mobile-option-check">✓</span>}
                   {wallet.features.length > 0 && (

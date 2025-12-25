@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { CustodyData, ComponentState, Feature } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
+import OptimizedImage from '../shared/OptimizedImage';
 
 interface MobileSignerCardProps {
   selectedSigners: string[];
@@ -77,7 +78,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
                       {signer.logo}
                     </span>
                   ) : (
-                    <img src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" decoding="async" />
+                    <OptimizedImage src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" />
                   )}
                   <span className="mobile-option-name">{signer.name}</span>
                   {isSelected && <span className="mobile-option-check">✓</span>}

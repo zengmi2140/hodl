@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { CustodyData, ComponentState, Feature } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
+import OptimizedImage from '../shared/OptimizedImage';
 
 interface MobileNodeCardProps {
   selectedNode: string | null;
@@ -102,7 +103,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
                   className={`mobile-option-item ${state} ${isSelected ? 'selected' : ''}`}
                   onClick={() => handleNodeClick(node.id)}
                 >
-                  <img src={node.logo} alt={node.name} className="mobile-option-logo" loading="lazy" decoding="async" />
+                  <OptimizedImage src={node.logo} alt={node.name} className="mobile-option-logo" loading="lazy" />
                   <span className="mobile-option-name">{node.name}</span>
                   {isSelected && <span className="mobile-option-check">✓</span>}
                   {node.features.length > 0 && (

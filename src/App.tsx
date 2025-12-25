@@ -83,7 +83,7 @@ function App() {
         if (import.meta.env.DEV) {
           console.error('Failed to load custody data:', error);
         }
-        // 如果加载失败，使用备用数据
+        // 如果加载失败，使用备用数据（生产环境静默失败）
         const { getFallbackData } = await import('./dataLoader');
         const fallbackData = getFallbackData();
         setState(prev => ({ ...prev, custodyData: fallbackData, isLoading: false }));

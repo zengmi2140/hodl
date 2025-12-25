@@ -3,7 +3,7 @@
     {
       "id": "coldcard",
       "name": "Coldcard",
-      "logo": "/images/logos/hardware/coldcard.jpg",
+      "logo": "/images/logos/hardware/coldcard.webp",
       "features": [
         {
           "type": "positive",
@@ -27,7 +27,7 @@
     {
       "id": "ledger",
       "name": "Ledger",
-      "logo": "/images/logos/hardware/ledger.jpg",
+      "logo": "/images/logos/hardware/ledger.webp",
       "features": [
         {
           "type": "positive",
@@ -51,7 +51,7 @@
     {
       "id": "jade",
       "name": "Blockstream Jade",
-      "logo": "/images/logos/hardware/jade.jpg",
+      "logo": "/images/logos/hardware/jade.webp",
       "features": [
         {
           "type": "warning",
@@ -76,7 +76,7 @@
     {
       "id": "trezor",
       "name": "Trezor",
-      "logo": "/images/logos/hardware/trezor.png",
+      "logo": "/images/logos/hardware/trezor.webp",
       "features": [
         {
           "type": "positive",
@@ -100,7 +100,7 @@
     {
       "id": "keystone",
       "name": "Keystone",
-      "logo": "/images/logos/hardware/keystone.jpg",
+      "logo": "/images/logos/hardware/keystone.webp",
       "features": [
         {
           "type": "positive",
@@ -150,7 +150,7 @@
     {
       "id": "bitbox",
       "name": "Bitbox 02",
-      "logo": "/images/logos/hardware/bitbox.png",
+      "logo": "/images/logos/hardware/bitbox.webp",
       "features": [
         {
           "type": "positive",
@@ -174,7 +174,7 @@
     {
       "id": "seedsigner",
       "name": "SeedSigner",
-      "logo": "/images/logos/hardware/seedsigner.png",
+      "logo": "/images/logos/hardware/seedsigner.webp",
       "features": [
         {
           "type": "warning",
@@ -216,7 +216,7 @@
     {
       "id": "sparrow",
       "name": "Sparrow",
-      "logo": "/images/logos/software/sparrow.png",
+      "logo": "/images/logos/software/sparrow.webp",
       "features": [
         {
           "type": "positive",
@@ -253,7 +253,7 @@
     {
       "id": "bluewallet",
       "name": "Blue Wallet",
-      "logo": "/images/logos/software/bluewallet.png",
+      "logo": "/images/logos/software/bluewallet.webp",
       "features": [
         {
           "type": "positive",
@@ -279,7 +279,7 @@
     {
       "id": "electrum",
       "name": "Electrum",
-      "logo": "/images/logos/software/electrum.jpg",
+      "logo": "/images/logos/software/electrum.webp",
       "features": [
         {
           "type": "positive",
@@ -308,7 +308,7 @@
     {
       "id": "nunchuk",
       "name": "Nunchuk",
-      "logo": "/images/logos/software/nunchuk.png",
+      "logo": "/images/logos/software/nunchuk.webp",
       "features": [
         {
           "type": "positive",
@@ -348,7 +348,7 @@
     {
       "id": "electrs",
       "name": "electrs",
-      "logo": "/images/logos/nodes/electrs.png",
+      "logo": "/images/logos/nodes/electrs.webp",
       "features": [
         {
           "type": "warning",
@@ -373,7 +373,7 @@
     {
       "id": "publicnode",
       "name": "默认/公开 节点",
-      "logo": "/images/logos/nodes/bitcoin-core.png",
+      "logo": "/images/logos/nodes/bitcoin-core.webp",
       "features": [
         {
           "type": "negative",
@@ -390,7 +390,7 @@
     {
       "id": "bitcoincore",
       "name": "Bitcoin Core",
-      "logo": "/images/logos/nodes/bitcoin-core.png",
+      "logo": "/images/logos/nodes/bitcoin-core.webp",
       "features": [
         {
           "type": "warning",
@@ -404,7 +404,7 @@
     {
       "id": "eps",
       "name": "Electrum Personal Server",
-      "logo": "/images/logos/nodes/electrum.jpg",
+      "logo": "/images/logos/nodes/electrum.webp",
       "features": [
         {
           "type": "warning",
@@ -425,7 +425,7 @@
     {
       "id": "knots",
       "name": "Bitcoin Knots",
-      "logo": "/images/logos/nodes/bitcoinknots.jpg",
+      "logo": "/images/logos/nodes/bitcoinknots.webp",
       "features": [
         {
           "type": "warning",

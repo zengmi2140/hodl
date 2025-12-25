@@ -1,5 +1,6 @@
 import React from 'react';
 import { CustodyData, ComponentState } from '../../types';
+import OptimizedImage from '../shared/OptimizedImage';
 
 interface SignerColumnProps {
   selectedSigners: string[];
@@ -50,12 +51,11 @@ const SignerColumn: React.FC<SignerColumnProps> = ({
                 {signer.logo}
               </span>
             ) : (
-              <img
+              <OptimizedImage
                 src={signer.logo}
                 alt={signer.name}
                 className="option-logo"
                 loading="lazy"
-                decoding="async"
               />
             )}
             <span className="option-name">{signer.name}</span>
