@@ -89,6 +89,7 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
           compatibleWallets={getMultisigCompatibleWallets()}
           onWalletSelect={onMultisigWalletSelect}
           hasSelectedSigners={signerSlots.some(s => s !== null)}
+          userPreference={userPreference}
         />
         
         <WalletNodeArrows

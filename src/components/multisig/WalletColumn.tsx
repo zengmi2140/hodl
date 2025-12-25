@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustodyData } from '../../types';
+import { CustodyData, UserPreference } from '../../types';
 
 interface WalletColumnProps {
   selectedWallet: string | null;
@@ -7,6 +7,7 @@ interface WalletColumnProps {
   compatibleWallets: string[];
   onWalletSelect: (walletId: string | null) => void;
   hasSelectedSigners: boolean;
+  userPreference?: UserPreference | null;
 }
 
 const WalletColumn: React.FC<WalletColumnProps> = ({
@@ -15,6 +16,7 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   compatibleWallets,
   onWalletSelect,
   hasSelectedSigners,
+  userPreference,
 }) => {
   const handleWalletClick = (walletId: string) => {
     if (selectedWallet === walletId) {
@@ -24,13 +26,16 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
     }
   };
 
+  const deviceIcon = userPreference?.deviceType === 'mobile' ? '📱' : '💻';
+
   return (
     <div className="multisig-column">
-      <div className="multisig-column-title">软件钱包</div>
+      <div className="multisig-column-title">
+        软件钱包 {deviceIcon}
+      </div>
       {custodyData.softwareWallets.map(wallet => {
         const isCompatible = compatibleWallets.includes(wallet.id);
         const isSelected = selectedWallet === wallet.id;
-        // 如果有选择签名器且钱包兼容，显示呼吸动画
         const isBreathing = hasSelectedSigners && isCompatible && !isSelected;
         
         return (
