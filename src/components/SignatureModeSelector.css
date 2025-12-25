@@ -121,6 +121,11 @@
 @media (max-width: 768px) {
   .signature-mode-selector {
     gap: 16px;
+    margin-top: 0; /* Remove desktop margin on mobile */
+    min-height: 48px;
+    height: auto;
+    max-height: none;
+    margin-bottom: 8px;
   }
   
   .mode-label,
