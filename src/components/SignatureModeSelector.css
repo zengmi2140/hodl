@@ -10,7 +10,7 @@
   max-height: 56px;
   box-sizing: border-box;
   overflow: hidden;
-  margin-top: 120px;
+  margin-top: 40px; /* 减小顶部间距 */
   margin-bottom: 0; /* 间距由 unified-columns-container 的 margin-top 控制 */
   flex-shrink: 0;
 }
