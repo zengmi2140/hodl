@@ -49,9 +49,10 @@ body {
 .signature-mode-container {
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* 内容底部对齐 */
+  align-items: center; /* 垂直居中 */
   padding-top: 120px; /* 为固定 Header 预留空间 */
-  height: 176px; /* 固定总高度 = 120px padding-top + 56px 内容区域 */
+  padding-bottom: 16px; /* 与列表的间距 */
+  height: 192px; /* 固定总高度 = 120px header + 56px 内容 + 16px 底部间距 */
   box-sizing: border-box;
   background-color: hsl(var(--background));
 }

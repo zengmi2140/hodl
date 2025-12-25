@@ -3,9 +3,10 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
-  padding: 16px 0;
+  padding: 0; /* 移除 padding，由容器控制间距 */
   flex-wrap: nowrap;
-  height: 56px; /* 固定高度，确保两种模式下高度完全一致 */
+  height: 56px; /* 固定高度 */
+  box-sizing: border-box; /* 确保 height 包含 padding */
 }
 
 .mode-selector-group {
