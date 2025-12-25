@@ -1,5 +1,4 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
 import { CustodyData, Feature } from '../../types';
 
 interface BottomFeatureDockProps {
@@ -32,52 +31,60 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
     return null;
   }
 
-  const content = (
-    <div className="bottom-feature-dock">
-      {/* 单签模式下显示签名器特性 */}
-      {selectedSigners && selectedSigners.length > 0 && (
-        <div className="feature-box signer">
-          <h4 className="feature-title">硬件签名器特性</h4>
-          <div className="feature-list">
-            {selectedSigners.flatMap(signerId => {
-              const signer = custodyData.hardwareSigners.find(s => s.id === signerId);
-              return signer ? renderFeatureItems(signer.features) : [];
-            })}
+  return (
+    <div className="bottom-feature-dock-aligned">
+      {/* 硬件签名器特性 - 与签名器列对齐 */}
+      <div className="feature-box-column">
+        {selectedSigners && selectedSigners.length > 0 && (
+          <div className="feature-box signer">
+            <h4 className="feature-title">硬件签名器特性</h4>
+            <div className="feature-list">
+              {selectedSigners.flatMap(signerId => {
+                const signer = custodyData.hardwareSigners.find(s => s.id === signerId);
+                return signer ? renderFeatureItems(signer.features) : [];
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
-      {selectedWallet && (
-        <div className="feature-box wallet">
-          <h4 className="feature-title">软件钱包特性</h4>
-          <div className="feature-list">
-            {(() => {
-              const wallet = custodyData.softwareWallets.find(w => w.id === selectedWallet);
-              return wallet ? renderFeatureItems(wallet.features) : null;
-            })()}
-          </div>
-        </div>
-      )}
+      {/* 占位区域 - 对应数据流箭头区域 */}
+      <div className="feature-box-spacer"></div>
 
-      {selectedNode && (
-        <div className="feature-box node">
-          <h4 className="feature-title">区块链节点特性</h4>
-          <div className="feature-list">
-            {(() => {
-              const node = custodyData.nodes.find(n => n.id === selectedNode);
-              return node ? renderFeatureItems(node.features) : null;
-            })()}
+      {/* 软件钱包特性 - 与钱包列对齐 */}
+      <div className="feature-box-column">
+        {selectedWallet && (
+          <div className="feature-box wallet">
+            <h4 className="feature-title">软件钱包特性</h4>
+            <div className="feature-list">
+              {(() => {
+                const wallet = custodyData.softwareWallets.find(w => w.id === selectedWallet);
+                return wallet ? renderFeatureItems(wallet.features) : null;
+              })()}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+
+      {/* 占位区域 - 对应钱包-节点箭头区域 */}
+      <div className="feature-box-spacer-small"></div>
+
+      {/* 区块链节点特性 - 与节点列对齐 */}
+      <div className="feature-box-column">
+        {selectedNode && (
+          <div className="feature-box node">
+            <h4 className="feature-title">区块链节点特性</h4>
+            <div className="feature-list">
+              {(() => {
+                const node = custodyData.nodes.find(n => n.id === selectedNode);
+                return node ? renderFeatureItems(node.features) : null;
+              })()}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
-
-  if (typeof document === 'undefined') {
-    return null;
-  }
-
-  return createPortal(content, document.body);
 };
 
 export default BottomFeatureDock;
