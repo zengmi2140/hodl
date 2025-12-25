@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CustodyData } from '../../types';
-import FeatureTooltip from './FeatureTooltip';
 
 interface WalletColumnProps {
   selectedWallet: string | null;
@@ -17,8 +16,6 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   onWalletSelect,
   hasSelectedSigners,
 }) => {
-  const [hoveredWallet, setHoveredWallet] = useState<string | null>(null);
-
   const handleWalletClick = (walletId: string) => {
     if (selectedWallet === walletId) {
       onWalletSelect(null);
@@ -41,7 +38,6 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
             key={wallet.id}
             className={`multisig-item ${isCompatible ? 'compatible' : ''} ${isSelected ? 'selected' : ''} ${isBreathing ? 'breathing' : ''}`}
             onClick={() => handleWalletClick(wallet.id)}
-            style={{ position: 'relative' }}
           >
             <img
               src={wallet.logo}
@@ -49,20 +45,6 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
               className="multisig-item-logo"
             />
             <span className="multisig-item-name">{wallet.name}</span>
-            <div
-              className="multisig-item-info"
-              onMouseEnter={(e) => {
-                e.stopPropagation();
-                setHoveredWallet(wallet.id);
-              }}
-              onMouseLeave={() => setHoveredWallet(null)}
-              onClick={(e) => e.stopPropagation()}
-            >
-              i
-            </div>
-            {hoveredWallet === wallet.id && (
-              <FeatureTooltip features={wallet.features} />
-            )}
           </div>
         );
       })}

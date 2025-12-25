@@ -8,6 +8,7 @@ import WalletColumn from './multisig/WalletColumn';
 import NodeColumn from './multisig/NodeColumn';
 import TransferMethodDisplay from './multisig/TransferMethodDisplay';
 import WalletNodeArrows from './multisig/WalletNodeArrows';
+import MultisigBottomFeatureDock from './multisig/MultisigBottomFeatureDock';
 import { UserPreference, ComponentState, CustodyData } from '../types';
 import './multisig/MultisigPage.css';
 
@@ -67,41 +68,50 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
 
   // 渲染多签模式内容 - 移除多余的包装层，直接使用 multisig-columns
   const renderMultisigContent = () => (
-    <div className="multisig-columns">
-      <SignerColumn
-        signerSlots={signerSlots}
-        custodyData={custodyData}
-        compatibleSigners={getMultisigCompatibleSigners()}
-        onSignerSelect={onMultisigSignerSelect}
-      />
+    <>
+      <div className="multisig-columns">
+        <SignerColumn
+          signerSlots={signerSlots}
+          custodyData={custodyData}
+          compatibleSigners={getMultisigCompatibleSigners()}
+          onSignerSelect={onMultisigSignerSelect}
+        />
+        
+        <TransferMethodDisplay
+          signerSlots={signerSlots}
+          selectedWallet={multisigWallet}
+          custodyData={custodyData}
+        />
+        
+        <WalletColumn
+          selectedWallet={multisigWallet}
+          custodyData={custodyData}
+          compatibleWallets={getMultisigCompatibleWallets()}
+          onWalletSelect={onMultisigWalletSelect}
+          hasSelectedSigners={signerSlots.some(s => s !== null)}
+        />
+        
+        <WalletNodeArrows
+          hasWallet={multisigWallet !== null}
+          hasNode={multisigNode !== null}
+        />
+        
+        <NodeColumn
+          selectedNode={multisigNode}
+          custodyData={custodyData}
+          compatibleNodes={getMultisigCompatibleNodes()}
+          onNodeSelect={onMultisigNodeSelect}
+          hasSelectedWallet={multisigWallet !== null}
+        />
+      </div>
       
-      <TransferMethodDisplay
-        signerSlots={signerSlots}
+      {/* 多签模式底部特性框 - 仅显示钱包和节点特性 */}
+      <MultisigBottomFeatureDock
         selectedWallet={multisigWallet}
-        custodyData={custodyData}
-      />
-      
-      <WalletColumn
-        selectedWallet={multisigWallet}
-        custodyData={custodyData}
-        compatibleWallets={getMultisigCompatibleWallets()}
-        onWalletSelect={onMultisigWalletSelect}
-        hasSelectedSigners={signerSlots.some(s => s !== null)}
-      />
-      
-      <WalletNodeArrows
-        hasWallet={multisigWallet !== null}
-        hasNode={multisigNode !== null}
-      />
-      
-      <NodeColumn
         selectedNode={multisigNode}
         custodyData={custodyData}
-        compatibleNodes={getMultisigCompatibleNodes()}
-        onNodeSelect={onMultisigNodeSelect}
-        hasSelectedWallet={multisigWallet !== null}
       />
-    </div>
+    </>
   );
 
   // 渲染单签模式内容（仅列区域，不含外层 main）
