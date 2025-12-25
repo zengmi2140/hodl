@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import SignatureModeSelector, { SignatureMode, ThresholdType } from './SignatureModeSelector';
 // 多签模式组件
@@ -69,7 +69,32 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
     selectedNode,
     getComponentState,
     onComponentClick,
+    onLayoutMeasured,
   } = props;
+
+  // 测量布局边界并通知父组件
+  useEffect(() => {
+    if (!onLayoutMeasured || isMobile) return;
+
+    const measureLayout = () => {
+      const columnsContainer = document.querySelector('.columns-container');
+      if (columnsContainer) {
+        const rect = columnsContainer.getBoundingClientRect();
+        onLayoutMeasured({
+          leftEdge: rect.left,
+          rightEdge: rect.right
+        });
+      }
+    };
+
+    // 延迟测量以确保布局完成
+    const timer = setTimeout(measureLayout, 100);
+    window.addEventListener('resize', measureLayout);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', measureLayout);
+    };
+  }, [onLayoutMeasured, isMobile, signatureMode, threshold]);
 
   // 移动端使用独立的布局组件
   if (isMobile) {
