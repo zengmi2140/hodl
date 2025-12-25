@@ -97,6 +97,19 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* 阈值选择区域容器 */
+.threshold-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 隐藏时使用 visibility: hidden 保持空间占位 */
+.threshold-section.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* 分隔线 */
 .mode-divider {
   width: 1px;
