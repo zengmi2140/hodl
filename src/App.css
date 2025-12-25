@@ -21,20 +21,20 @@ body {
   flex-direction: column;
 }
 
-/* Header 样式 */
+/* Header 样式 - 赛博朋克风 */
 .header {
-  background: #f8fafc;
+  background: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 100%);
   padding: 20px 0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #0ff3;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
   width: 100%;
-  --progress-max-width: 800px; /* 进度条最大宽度 */
-  --actions-gap-from-progress: 200px; /* 按钮与进度条端点的固定距离 */
-  --progress-half-width: calc(min(var(--progress-max-width), 100%) / 2);
+  
+  /* 底部霓虹边框发光 */
+  box-shadow: 0 1px 20px rgba(0, 255, 255, 0.15);
 }
 
 .header-content {
@@ -49,35 +49,130 @@ body {
 }
 
 .site-title {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   line-height: 1.2;
   text-align: center;
   margin: 0;
   padding-top: 4px;
+  text-transform: uppercase;
   
-  /* 渐变文字 - 从深色到带有比特币橙色调的暖灰 */
-  background: linear-gradient(
-    135deg,
-    #1e293b 0%,
-    #334155 40%,
-    #78716c 70%,
-    #92400e 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* 霓虹主色 - 青色 */
+  color: #0ff;
   
-  /* 微妙的阴影增加深度感 */
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+  /* 多层霓虹发光效果 */
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0099ff,
+    0 0 80px #0099ff;
   
-  /* 可选：添加微动效让标题更有生命力 */
-  transition: filter 0.3s ease;
+  /* 故障动画 */
+  animation: neonFlicker 3s ease-in-out infinite;
+  position: relative;
 }
 
-.site-title:hover {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+/* 霓虹闪烁动画 */
+@keyframes neonFlicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0099ff,
+      0 0 80px #0099ff;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.8;
+    text-shadow:
+      0 0 2px #0ff,
+      0 0 5px #0ff;
+  }
+  94% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 10px #0ff,
+      0 0 20px #0ff,
+      0 0 40px #0099ff,
+      0 0 80px #0099ff;
+  }
+  96% {
+    opacity: 0.9;
+  }
+  97% {
+    opacity: 1;
+  }
+}
+
+/* 故障效果伪元素 */
+.site-title::before,
+.site-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.site-title::before {
+  /* 洋红色层 - 左偏移 */
+  color: #f0f;
+  text-shadow: 0 0 10px #f0f;
+  animation: glitchLeft 2.5s ease-in-out infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.site-title::after {
+  /* 青色层 - 右偏移 */
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  animation: glitchRight 2.5s ease-in-out infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchLeft {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+}
+
+@keyframes glitchRight {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(2px);
+  }
+  40% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(1px);
+  }
+  80% {
+    transform: translateX(-1px);
+  }
 }
 
 .progress-section {
@@ -100,13 +195,13 @@ body {
   z-index: 10;
 }
 
-/* 统一按钮样式 */
+/* 统一按钮样式 - 赛博朋克风 */
 .header-btn {
-  background: white;
-  border: 1px solid #e2e8f0;
-  color: #64748b;
+  background: transparent;
+  border: 1px solid #0ff5;
+  color: #0ff;
   padding: 6px 14px;
-  border-radius: 6px;
+  border-radius: 2px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 13px;
@@ -115,16 +210,18 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .header-btn:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
-  color: #475569;
+  background: #0ff1;
+  border-color: #0ff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
 .header-btn:focus-visible {
-  outline: 2px solid #94a3b8;
+  outline: 1px solid #0ff;
   outline-offset: 2px;
 }
 

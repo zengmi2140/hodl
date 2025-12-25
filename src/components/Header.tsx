@@ -76,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, onResetPreference
       </div>
 
       <div className="header-content">
-        <h1 className="site-title">
+        <h1 className="site-title" data-text="比特币自主保管模拟器">
           比特币自主保管模拟器
         </h1>
         {/* 中央进度条区域 */}
