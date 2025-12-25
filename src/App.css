@@ -78,11 +78,11 @@ body {
   margin-top: 16px;
 }
 
-/* 右上角统一按钮组 - 相对于 main-layout 定位 */
+/* 右上角统一按钮组 */
 .header-actions {
-  position: fixed;
+  position: absolute;
   top: 12px;
-  right: calc((100vw - min(100vw - 40px, 1060px)) / 2);
+  right: 24px;
   display: flex;
   align-items: center;
   gap: 8px;
