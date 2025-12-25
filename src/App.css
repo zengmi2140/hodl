@@ -150,17 +150,19 @@ body {
 .progress-bar-container {
   position: relative;
   width: 100%;
-  height: 20px;
-  background-color: #e5e7eb;
-  border-radius: 10px;
+  height: 16px;
+  background-color: #f1f5f9;
+  border-radius: 8px;
   overflow: visible;
   transition: all 0.5s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 /* 100%时的延伸效果 - 使用单一渐变背景 */
 .progress-bar-container.extended {
   width: 120%;
-  background: #d1d5db;
+  background: #e2e8f0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 /* 庆祝emoji */
@@ -192,26 +194,27 @@ body {
 
 .progress-bar {
   height: 100%;
-  border-radius: 10px;
-  transition: all 0.5s ease;
+  border-radius: 8px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   min-width: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.05) 100%);
 }
 
 /* 100%时的状态 - 去除右端圆角 */
 .progress-bar.at-hundred {
   width: 83.33% !important;
   background-color: #ffb74d !important;
-  border-radius: 10px 0 0 10px;
+  border-radius: 8px 0 0 8px;
 }
 
 /* 当进度超过100%时的特殊效果 */
 .progress-bar[style*="120%"] {
   width: 100% !important;
   background: linear-gradient(90deg, #ffb74d 0%, #ffb74d 83.33%, #F7931A 83.33%, #F7931A 100%) !important;
-  box-shadow: 0 0 15px rgba(247, 147, 26, 0.4);
-  animation: overflowGlow 1.5s ease-in-out infinite alternate;
-  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(247, 147, 26, 0.35);
+  animation: overflowGlow 2s ease-in-out infinite alternate;
+  border-radius: 8px;
 }
 
 @keyframes overflowGlow {
@@ -223,15 +226,25 @@ body {
   }
 }
 
+.progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 0 2px;
+}
+
+.progress-stage {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
 .progress-percentage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   color: #374151;
-  pointer-events: none;
+  letter-spacing: 0.02em;
 }
 
 /* 旧的 reset-button 和 faq-button 样式已被 .header-btn 统一替代 */
