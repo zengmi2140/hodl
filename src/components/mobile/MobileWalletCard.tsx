@@ -45,13 +45,13 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
     // Single-sig mode
     if (getComponentState && onComponentClick) {
       const state = getComponentState(walletId, 'wallet');
-      if (state !== 'inactive') {
-        const wasSelected = selectedWallet === walletId;
-        onComponentClick(walletId, 'wallet');
-        // Only scroll if selecting (not deselecting)
-        if (!wasSelected) {
-          scrollToEnd();
-        }
+      const wasSelected = selectedWallet === walletId;
+      // 允许点击所有状态的钱包，包括 inactive 状态
+      // handleComponentClick 会处理 inactive 状态的钱包（重置并选择，同时更新设备类型）
+      onComponentClick(walletId, 'wallet');
+      // Only scroll if selecting (not deselecting)
+      if (!wasSelected) {
+        scrollToEnd();
       }
     }
     // Multi-sig mode

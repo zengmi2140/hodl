@@ -43,13 +43,13 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
     // Single-sig mode
     if (getComponentState && onComponentClick) {
       const state = getComponentState(nodeId, 'node');
-      if (state !== 'inactive') {
-        const wasSelected = selectedNode === nodeId;
-        onComponentClick(nodeId, 'node');
-        // Only scroll if selecting (not deselecting)
-        if (!wasSelected) {
-          scrollToEnd();
-        }
+      const wasSelected = selectedNode === nodeId;
+      // 允许点击所有状态的节点，包括 inactive 状态
+      // handleComponentClick 会处理 inactive 状态的节点（重置并选择）
+      onComponentClick(nodeId, 'node');
+      // Only scroll if selecting (not deselecting)
+      if (!wasSelected) {
+        scrollToEnd();
       }
     }
     // Multi-sig mode
