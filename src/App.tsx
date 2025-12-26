@@ -159,10 +159,41 @@ function App() {
 
   // 多签模式 - 选择钱包
   const handleMultisigWalletSelect = (walletId: string | null) => {
-    setState(prev => ({
-      ...prev,
-      multisigWallet: walletId,
-    }));
+    setState(prev => {
+      if (walletId === null) {
+        // 取消选择
+        return {
+          ...prev,
+          multisigWallet: null,
+        };
+      }
+      
+      // 选择新钱包
+      const wallet = prev.custodyData?.softwareWallets.find(w => w.id === walletId);
+      let newPreference = prev.userPreference;
+      
+      // 如果钱包只支持一个平台，且与当前设备类型不同，则更新设备类型
+      if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
+        const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
+        const currentDeviceType = prev.userPreference.deviceType;
+        
+        // 如果钱包只支持 desktop 但当前是 mobile，或钱包只支持 mobile 但当前是 desktop
+        if ((walletPlatform === 'desktop' && currentDeviceType === 'mobile') ||
+            (walletPlatform === 'mobile' && currentDeviceType === 'desktop')) {
+          newPreference = {
+            ...prev.userPreference,
+            deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile'
+          };
+          localStorage.setItem('userPreference', JSON.stringify(newPreference));
+        }
+      }
+      
+      return {
+        ...prev,
+        multisigWallet: walletId,
+        userPreference: newPreference
+      };
+    });
   };
 
   // 多签模式 - 选择节点
@@ -373,9 +404,29 @@ function App() {
           }
         } else if (type === 'wallet') {
           // 选择软件钱包
+          const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
+          let newPreference = prev.userPreference;
+          
+          // 如果钱包只支持一个平台，且与当前设备类型不同，则更新设备类型
+          if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
+            const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
+            const currentDeviceType = prev.userPreference.deviceType;
+            
+            // 如果钱包只支持 desktop 但当前是 mobile，或钱包只支持 mobile 但当前是 desktop
+            if ((walletPlatform === 'desktop' && currentDeviceType === 'mobile') ||
+                (walletPlatform === 'mobile' && currentDeviceType === 'desktop')) {
+              newPreference = {
+                ...prev.userPreference,
+                deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile'
+              };
+              localStorage.setItem('userPreference', JSON.stringify(newPreference));
+            }
+          }
+          
           return {
             ...newState,
-            selectedWallet: componentId
+            selectedWallet: componentId,
+            userPreference: newPreference
           };
         } else if (type === 'node') {
           // 选择区块链节点
@@ -422,10 +473,30 @@ function App() {
           };
         } else {
           // 选择新钱包
+          const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
+          let newPreference = prev.userPreference;
+          
+          // 如果钱包只支持一个平台，且与当前设备类型不同，则更新设备类型
+          if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
+            const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
+            const currentDeviceType = prev.userPreference.deviceType;
+            
+            // 如果钱包只支持 desktop 但当前是 mobile，或钱包只支持 mobile 但当前是 desktop
+            if ((walletPlatform === 'desktop' && currentDeviceType === 'mobile') ||
+                (walletPlatform === 'mobile' && currentDeviceType === 'desktop')) {
+              newPreference = {
+                ...prev.userPreference,
+                deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile'
+              };
+              localStorage.setItem('userPreference', JSON.stringify(newPreference));
+            }
+          }
+          
           return {
             ...prev,
             selectedWallet: componentId,
-            selectedNode: null // 清除节点选择，重新开始级联
+            selectedNode: null, // 清除节点选择，重新开始级联
+            userPreference: newPreference
           };
         }
       });

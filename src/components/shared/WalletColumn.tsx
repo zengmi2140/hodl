@@ -38,7 +38,22 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
     }
   };
 
-  const deviceIcon = userPreference?.deviceType === 'mobile' ? '📱' : '💻';
+  // 根据选中的钱包动态决定设备图标
+  // 如果已选择钱包且钱包只支持一个平台，显示该平台的图标
+  // 否则显示用户偏好中的设备类型图标
+  const getDeviceIcon = () => {
+    if (selectedWallet && custodyData) {
+      const wallet = custodyData.softwareWallets.find(w => w.id === selectedWallet);
+      if (wallet && wallet.supportedPlatforms.length === 1) {
+        // 钱包只支持一个平台，显示该平台的图标
+        return wallet.supportedPlatforms[0].toLowerCase() === 'mobile' ? '📱' : '💻';
+      }
+    }
+    // 否则使用用户偏好中的设备类型
+    return userPreference?.deviceType === 'mobile' ? '📱' : '💻';
+  };
+
+  const deviceIcon = getDeviceIcon();
 
   return (
     <div className="column">
