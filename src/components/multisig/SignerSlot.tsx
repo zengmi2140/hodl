@@ -133,33 +133,41 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
           <div className="signer-dropdown-header">
             选择签名器 #{slotIndex + 1}
           </div>
-          {availableSigners.map(signer => {
-            const isCompatible = isSignerCompatible(signer.id);
-            return (
-              <div
-                key={signer.id}
-                className={`signer-dropdown-item ${!isCompatible ? 'disabled' : ''}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (isCompatible) {
-                    handleSignerSelect(signer.id);
-                  }
-                }}
-              >
-                <img
-                  src={signer.logo}
-                  alt={signer.name}
-                  className="signer-dropdown-item-logo"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="signer-dropdown-item-name">{signer.name}</span>
-                {!isCompatible && (
-                  <span className="signer-dropdown-item-incompatible">不兼容</span>
-                )}
-              </div>
-            );
-          })}
+          {[...availableSigners]
+            .sort((a, b) => {
+              const aCompatible = isSignerCompatible(a.id);
+              const bCompatible = isSignerCompatible(b.id);
+              if (aCompatible && !bCompatible) return -1;
+              if (!aCompatible && bCompatible) return 1;
+              return 0;
+            })
+            .map(signer => {
+              const isCompatible = isSignerCompatible(signer.id);
+              return (
+                <div
+                  key={signer.id}
+                  className={`signer-dropdown-item ${!isCompatible ? 'disabled' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (isCompatible) {
+                      handleSignerSelect(signer.id);
+                    }
+                  }}
+                >
+                  <img
+                    src={signer.logo}
+                    alt={signer.name}
+                    className="signer-dropdown-item-logo"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="signer-dropdown-item-name">{signer.name}</span>
+                  {!isCompatible && (
+                    <span className="signer-dropdown-item-incompatible">不兼容</span>
+                  )}
+                </div>
+              );
+            })}
         </div>
       )}
     </div>
