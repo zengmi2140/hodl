@@ -95,7 +95,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
       {/* 数据流箭头 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-block">
-          <span className="arrow-label-top">签名和公钥</span>
+          <span className="arrow-label-top">公钥和签名</span>
           <div className="arrow-row">
             <div className="arrow-line-static"></div>
             <span className="arrow-head">▶</span>

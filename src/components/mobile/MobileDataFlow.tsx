@@ -21,7 +21,7 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
       {/* 左侧箭头 - 向下流动 */}
       <div className="mobile-arrow-column left">
         <span className="mobile-arrow-label top">
-          {isSignerToWallet ? '签名和公钥' : '地址；已签名交易'}
+          {isSignerToWallet ? '公钥和签名' : '地址；已签名交易'}
         </span>
         <div className="mobile-arrow-line">
           <div className="mobile-arrow-line-static"></div>
