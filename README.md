@@ -91,11 +91,6 @@ npm run preview
 - 私有节点：+20%
 - 最高：150%
 
-## 注意事项
-
-- Logo 及品牌素材位于 `public/images/logos/`，请确保使用符合对应品牌的授权要求
-- 本项目为纯前端静态站点，无需后端服务
-
 ## 贡献
 
 欢迎提交 Issue 和 Pull Request！
