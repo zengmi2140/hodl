@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { SLOT_COLORS } from '../../App';
 
 interface MobileDataFlowProps {
@@ -14,6 +15,7 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
   coloredLabels,
   flowType = 'signer-wallet',
 }) => {
+  const { t } = useTranslation();
   const isSignerToWallet = flowType === 'signer-wallet';
   
   return (
@@ -21,7 +23,7 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
       {/* 左侧箭头 - 向下流动 */}
       <div className="mobile-arrow-column left">
         <span className="mobile-arrow-label top">
-          {isSignerToWallet ? '公钥和签名' : '地址；已签名交易'}
+          {isSignerToWallet ? t('arrows.pubkey_sig') : t('arrows.address_signed')}
         </span>
         <div className="mobile-arrow-line">
           <div className="mobile-arrow-line-static"></div>
@@ -33,7 +35,7 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
       <div className="mobile-transfer-center">
         {!isActive && (
           <div className="mobile-transfer-hint">
-            {isSignerToWallet ? '选择签名器和钱包' : '选择钱包和节点'}
+            {isSignerToWallet ? t('arrows.select_hint_signer_wallet') : t('arrows.select_hint_wallet_node')}
           </div>
         )}
         
@@ -71,7 +73,7 @@ const MobileDataFlow: React.FC<MobileDataFlowProps> = ({
           <div className="mobile-arrow-line-static"></div>
         </div>
         <span className="mobile-arrow-label bottom">
-          {isSignerToWallet ? '待签名交易' : '余额信息'}
+          {isSignerToWallet ? t('arrows.unsigned_tx') : t('arrows.balance')}
         </span>
       </div>
     </div>

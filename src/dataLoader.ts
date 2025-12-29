@@ -31,9 +31,13 @@ export const getFallbackData = (): CustodyData => {
 };
 
 // 从JSON文件异步加载数据的函数
-export const loadCustodyData = async (): Promise<CustodyData> => {
+export const loadCustodyData = async (lang: string = 'zh-CN'): Promise<CustodyData> => {
   try {
-    const response = await fetch('/custody-data.json');
+    // 处理 zh-CN 别名，确保路径正确
+    // i18next 可能返回 'zh', 'zh-CN', 'en-US' 等，确保与文件夹名匹配
+    // 我们假设文件夹是 'zh-CN', 'zh-TW', 'en'
+    
+    const response = await fetch(`/locales/${lang}/data.json`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -41,7 +45,7 @@ export const loadCustodyData = async (): Promise<CustodyData> => {
     return data;
   } catch (error) {
     if (import.meta.env.DEV) {
-      console.error('Failed to load custody data:', error);
+      console.error(`Failed to load custody data for ${lang}:`, error);
     }
     // 生产环境静默失败，使用备用数据
     return getFallbackData();

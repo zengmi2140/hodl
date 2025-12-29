@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import type { Components } from 'react-markdown';
 import ReactMarkdown from 'react-markdown';
+import { useTranslation } from 'react-i18next';
 
 interface FaqDrawerProps {
   isOpen: boolean;
@@ -26,6 +27,7 @@ const markdownComponents: Components = {
 };
 
 const FaqDrawer: React.FC<FaqDrawerProps> = ({ isOpen, onClose, content }) => {
+  const { t } = useTranslation();
   const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,15 +65,15 @@ const FaqDrawer: React.FC<FaqDrawerProps> = ({ isOpen, onClose, content }) => {
         className="faq-drawer"
         role="dialog"
         aria-modal="true"
-        aria-label="常见问题"
+        aria-label={t('common.faq')}
         tabIndex={-1}
         ref={drawerRef}
       >
         <div className="faq-header">
-          <h2 className="faq-title">FAQ</h2>
+          <h2 className="faq-title">{t('common.faq')}</h2>
           <button 
             className="faq-close"
-            aria-label="关闭 FAQ"
+            aria-label={t('common.close')}
             onClick={onClose}
           >
             ×

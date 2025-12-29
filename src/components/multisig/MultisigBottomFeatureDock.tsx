@@ -1,5 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, Feature } from '../../types';
 
 interface MultisigBottomFeatureDockProps {
@@ -22,6 +23,7 @@ const MultisigBottomFeatureDock: React.FC<MultisigBottomFeatureDockProps> = ({
   selectedNode,
   custodyData,
 }) => {
+  const { t } = useTranslation();
   const hasAnySelection = selectedWallet || selectedNode;
 
   if (!hasAnySelection) {
@@ -43,7 +45,7 @@ const MultisigBottomFeatureDock: React.FC<MultisigBottomFeatureDockProps> = ({
         <div className="feature-box-column">
           {selectedWallet ? (
             <div className="feature-box wallet">
-              <h4 className="feature-title">软件钱包特性</h4>
+              <h4 className="feature-title">{t('features.wallet')}</h4>
               <div className="feature-list">
                 {(() => {
                   const wallet = custodyData.softwareWallets.find(w => w.id === selectedWallet);
@@ -63,7 +65,7 @@ const MultisigBottomFeatureDock: React.FC<MultisigBottomFeatureDockProps> = ({
         <div className="feature-box-column">
           {selectedNode ? (
             <div className="feature-box node">
-              <h4 className="feature-title">区块链节点特性</h4>
+              <h4 className="feature-title">{t('features.node')}</h4>
               <div className="feature-list">
                 {(() => {
                   const node = custodyData.nodes.find(n => n.id === selectedNode);

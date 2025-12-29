@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderMobileProps {
   completionPercentage: number;
@@ -13,6 +14,8 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
   onResetPreference,
   onOpenFaq
 }) => {
+  const { t, i18n } = useTranslation();
+
   const getProgressColor = (percentage: number): string => {
     if (percentage === 0) return '#fbbf24';
     if (percentage <= 60) return '#ffcc80';
@@ -41,23 +44,51 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
         <button
           className="header-mobile__icon header-mobile__icon--left"
           onClick={onResetPreference}
-          aria-label="重置偏好"
-          title="重置"
+          aria-label={t('header.resetPref')}
+          title={t('common.reset')}
         >
           ↺
         </button>
 
+        <div 
+          className="header-mobile__icon"
+          style={{ right: '58px' }}
+        >
+           <select
+             value={i18n.language}
+             onChange={(e) => i18n.changeLanguage(e.target.value)}
+             style={{
+               position: 'absolute',
+               top: 0,
+               left: 0,
+               width: '100%',
+               height: '100%',
+               opacity: 0,
+               cursor: 'pointer',
+               zIndex: 1
+             }}
+             aria-label={t('header.selectLang')}
+           >
+             <option value="zh-CN">简</option>
+             <option value="zh-TW">繁</option>
+             <option value="en">EN</option>
+           </select>
+           <span style={{ fontSize: '12px', fontWeight: 700 }}>
+             {i18n.language.includes('en') ? 'EN' : (i18n.language.includes('TW') ? '繁' : '简')}
+           </span>
+        </div>
+
         <button
           className="header-mobile__icon header-mobile__icon--right"
           onClick={onOpenFaq}
-          aria-label="查看 FAQ"
-          title="FAQ"
+          aria-label={t('header.viewFaq')}
+          title={t('common.faq')}
         >
           ?
         </button>
 
-        <div className="header-mobile__title" aria-label="比特币自主保管模拟器">
-          比特币自主保管模拟器
+        <div className="header-mobile__title" aria-label={t('header.title')}>
+          {t('header.title')}
         </div>
 
         <div className="header-mobile__progress">

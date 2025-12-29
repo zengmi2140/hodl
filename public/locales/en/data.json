@@ -1,0 +1,562 @@
+{
+  "hardwareSigners": [
+    {
+      "id": "coldcard",
+      "name": "Coldcard",
+      "logo": "/images/logos/hardware/coldcard.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Dice roll entropy"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped"
+        },
+        {
+          "type": "warning",
+          "text": "Bricks after failed PIN attempts"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum"
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "logo": "/images/logos/hardware/ledger.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Miniscript support"
+        },
+        {
+          "type": "negative",
+          "text": "Closed-source firmware"
+        },
+        {
+          "type": "negative",
+          "text": "Small display"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk"
+      ]
+    },
+    {
+      "id": "jade",
+      "name": "Blockstream Jade",
+      "logo": "/images/logos/hardware/jade.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "Virtual Secure Element"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped (Camera)"
+        },
+        {
+          "type": "positive",
+          "text": "Miniscript support"
+        }
+      ],
+      "compatibleWallets": [
+        "nunchuk",
+        "sparrow",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "trezor",
+      "name": "Trezor",
+      "logo": "/images/logos/hardware/trezor.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Taproot support"
+        },
+        {
+          "type": "positive",
+          "text": "Open-source Secure Element"
+        },
+        {
+          "type": "positive",
+          "text": "SLIP39 Shamir backup"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum"
+      ]
+    },
+    {
+      "id": "keystone",
+      "name": "Keystone",
+      "logo": "/images/logos/hardware/keystone.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Air-gapped (QR Code)"
+        },
+        {
+          "type": "positive",
+          "text": "Fingerprint unlock"
+        },
+        {
+          "type": "positive",
+          "text": "Dice roll entropy"
+        },
+        {
+          "type": "positive",
+          "text": "SLIP39 Shamir backup"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "none",
+      "name": "No Signer",
+      "logo": "🚫",
+      "features": [
+        {
+          "type": "negative",
+          "text": "Risk: Hot wallet attacks"
+        },
+        {
+          "type": "negative",
+          "text": "No hardware verification"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "bitbox",
+      "name": "Bitbox 02",
+      "logo": "/images/logos/hardware/bitbox.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Miniscript support"
+        },
+        {
+          "type": "positive",
+          "text": "BIP85 support"
+        },
+        {
+          "type": "positive",
+          "text": "Silent Payments"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum"
+      ]
+    },
+    {
+      "id": "seedsigner",
+      "name": "SeedSigner",
+      "logo": "/images/logos/hardware/seedsigner.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "Stateless (No key storage)"
+        },
+        {
+          "type": "positive",
+          "text": "Dice roll entropy"
+        },
+        {
+          "type": "positive",
+          "text": "Camera / Image entropy"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped"
+        },
+        {
+          "type": "positive",
+          "text": "Custom derivation paths"
+        },
+        {
+          "type": "positive",
+          "text": "Commodity hardware (RPi)"
+        },
+        {
+          "type": "negative",
+          "text": "No Secure Element"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "bluewallet"
+      ]
+    }
+  ],
+  "softwareWallets": [
+    {
+      "id": "sparrow",
+      "name": "Sparrow",
+      "logo": "/images/logos/software/sparrow.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Taproot support"
+        },
+        {
+          "type": "positive",
+          "text": "BIP329 Label Import/Export"
+        },
+        {
+          "type": "positive",
+          "text": "SLIP39 Shamir backup"
+        },
+        {
+          "type": "positive",
+          "text": "Descriptor Import/Export"
+        }
+      ],
+      "compatibleSigners": [
+        "trezor",
+        "ledger",
+        "keystone",
+        "coldcard",
+        "bitbox",
+        "seedsigner",
+        "none",
+        "jade"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ]
+    },
+    {
+      "id": "bluewallet",
+      "name": "Blue Wallet",
+      "logo": "/images/logos/software/bluewallet.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Silent Payments"
+        },
+        {
+          "type": "positive",
+          "text": "Descriptor Import/Export"
+        }
+      ],
+      "compatibleSigners": [
+        "keystone",
+        "seedsigner",
+        "none",
+        "jade"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "electrum",
+      "name": "Electrum",
+      "logo": "/images/logos/software/electrum.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "BIP329 Label Import/Export"
+        },
+        {
+          "type": "warning",
+          "text": "Non-standard seed format (Not BIP39)"
+        }
+      ],
+      "compatibleSigners": [
+        "ledger",
+        "trezor",
+        "keystone",
+        "none",
+        "jade",
+        "coldcard",
+        "bitbox"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "nunchuk",
+      "name": "Nunchuk",
+      "logo": "/images/logos/software/nunchuk.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Taproot Single-Sig"
+        },
+        {
+          "type": "positive",
+          "text": "Taproot Multisig"
+        },
+        {
+          "type": "positive",
+          "text": "Miniscript support"
+        },
+        {
+          "type": "positive",
+          "text": "Descriptor Import/Export"
+        }
+      ],
+      "compatibleSigners": [
+        "trezor",
+        "keystone",
+        "jade",
+        "seedsigner",
+        "none",
+        "ledger",
+        "coldcard",
+        "bitbox"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "electrs",
+      "name": "electrs",
+      "logo": "/images/logos/nodes/electrs.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "Requires Bitcoin Core backend"
+        },
+        {
+          "type": "positive",
+          "text": "No address clustering"
+        },
+        {
+          "type": "warning",
+          "text": "Requires index storage (~50GB)"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "publicnode",
+      "name": "Default / Public Node",
+      "logo": "/images/logos/nodes/bitcoin-core.webp",
+      "features": [
+        {
+          "type": "negative",
+          "text": "Privacy Risk: Address Clustering"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "bitcoincore",
+      "name": "Bitcoin Core",
+      "logo": "/images/logos/nodes/bitcoin-core.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "Local address index only"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow"
+      ]
+    },
+    {
+      "id": "eps",
+      "name": "Electrum Personal Server",
+      "logo": "/images/logos/nodes/electrum.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "Local address index only"
+        },
+        {
+          "type": "warning",
+          "text": "Requires Bitcoin Core backend"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "knots",
+      "name": "Bitcoin Knots",
+      "logo": "/images/logos/nodes/bitcoinknots.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "Local address index only"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow"
+      ]
+    }
+  ],
+  "transferMethods": {
+    "seedsigner": {
+      "sparrow": [
+        "QR Code"
+      ],
+      "bluewallet": [
+        "QR Code"
+      ],
+      "nunchuk": [
+        "QR Code"
+      ]
+    },
+    "keystone": {
+      "sparrow": [
+        "USB",
+        "QR Code",
+        "microSD Card"
+      ],
+      "electrum": [
+        "USB",
+        "microSD Card"
+      ],
+      "nunchuk": [
+        "USB",
+        "QR Code",
+        "microSD Card"
+      ],
+      "bluewallet": [
+        "QR Code"
+      ]
+    },
+    "jade": {
+      "sparrow": [
+        "QR Code",
+        "USB"
+      ],
+      "bluewallet": [
+        "QR Code"
+      ],
+      "nunchuk": [
+        "QR Code",
+        "USB"
+      ],
+      "electrum": [
+        "USB"
+      ],
+      "liana": [
+        "USB"
+      ]
+    },
+    "none": {
+      "sparrow": [
+        "None"
+      ],
+      "electrum": [
+        "None"
+      ],
+      "bluewallet": [
+        "None"
+      ],
+      "nunchuk": [
+        "None"
+      ],
+      "liana": [
+        "None"
+      ]
+    },
+    "coldcard": {
+      "sparrow": [
+        "USB",
+        "microSD Card"
+      ],
+      "electrum": [
+        "USB",
+        "microSD Card"
+      ],
+      "liana": [
+        "USB",
+        "microSD Card"
+      ],
+      "nunchuk": [
+        "USB",
+        "microSD Card"
+      ]
+    },
+    "trezor": {
+      "sparrow": [
+        "USB"
+      ],
+      "electrum": [
+        "USB"
+      ],
+      "nunchuk": [
+        "USB"
+      ]
+    },
+    "bitbox": {
+      "sparrow": [
+        "USB"
+      ],
+      "liana": [
+        "USB"
+      ],
+      "nunchuk": [
+        "USB"
+      ]
+    },
+    "ledger": {
+      "sparrow": [
+        "USB"
+      ],
+      "electrum": [
+        "USB"
+      ],
+      "liana": [
+        "USB"
+      ],
+      "nunchuk": [
+        "USB"
+      ]
+    }
+  }
+}

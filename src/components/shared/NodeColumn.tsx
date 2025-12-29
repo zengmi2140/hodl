@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, ComponentState } from '../../types';
 import OptimizedImage from './OptimizedImage';
 
@@ -22,6 +23,8 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
   getComponentState,
   onComponentClick,
 }) => {
+  const { t } = useTranslation();
+
   const handleNodeClick = (nodeId: string) => {
     // 如果提供了单签模式的 onComponentClick，使用它
     if (onComponentClick) {
@@ -38,7 +41,7 @@ const NodeColumn: React.FC<NodeColumnProps> = ({
 
   return (
     <div className="column">
-      <div className="column-title">区块链节点</div>
+      <div className="column-title">{t('columns.node')}</div>
       {custodyData.nodes.map(node => {
         // 如果提供了 getComponentState，使用单签模式的状态逻辑
         let isCompatible: boolean;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { UserPreference } from '../types';
 
 interface InitialGuideProps {
@@ -6,6 +7,7 @@ interface InitialGuideProps {
 }
 
 const InitialGuide: React.FC<InitialGuideProps> = ({ onPreferenceSet }) => {
+  const { t } = useTranslation();
   const [step, setStep] = useState<'device' | 'signer'>('device');
   const [deviceType, setDeviceType] = useState<'mobile' | 'desktop' | null>(null);
 
@@ -28,8 +30,8 @@ const InitialGuide: React.FC<InitialGuideProps> = ({ onPreferenceSet }) => {
       <div className="initial-guide">
         {step === 'device' && (
           <div className="guide-step">
-            <h2>欢迎使用比特币自主保管模拟器</h2>
-            <p>首先，请告诉我们您主要使用什么设备来管理比特币：</p>
+            <h2>{t('guide.step1_title')}</h2>
+            <p>{t('guide.step1_desc')}</p>
             
             <div className="choice-cards">
               <button 
@@ -37,8 +39,8 @@ const InitialGuide: React.FC<InitialGuideProps> = ({ onPreferenceSet }) => {
                 onClick={() => handleDeviceChoice('mobile')}
               >
                 <div className="choice-icon">📱</div>
-                <div className="choice-title">手机</div>
-                <div className="choice-description">我希望使用手机来联网</div>
+                <div className="choice-title">{t('guide.device.mobile')}</div>
+                <div className="choice-description">{t('guide.device.mobileDesc')}</div>
               </button>
               
               <button 
@@ -46,8 +48,8 @@ const InitialGuide: React.FC<InitialGuideProps> = ({ onPreferenceSet }) => {
                 onClick={() => handleDeviceChoice('desktop')}
               >
                 <div className="choice-icon">💻</div>
-                <div className="choice-title">电脑</div>
-                <div className="choice-description">我使用电脑来联网</div>
+                <div className="choice-title">{t('guide.device.desktop')}</div>
+                <div className="choice-description">{t('guide.device.desktopDesc')}</div>
               </button>
             </div>
           </div>
@@ -55,8 +57,8 @@ const InitialGuide: React.FC<InitialGuideProps> = ({ onPreferenceSet }) => {
 
         {step === 'signer' && (
           <div className="guide-step">
-            <h2>关于硬件签名器</h2>
-            <p>硬件签名器可以提供更高的安全性，但需要额外的学习和设备投入。您的态度是：</p>
+            <h2>{t('guide.step2_title')}</h2>
+            <p>{t('guide.step2_desc')}</p>
             
             <div className="choice-cards">
               <button 
@@ -64,8 +66,8 @@ const InitialGuide: React.FC<InitialGuideProps> = ({ onPreferenceSet }) => {
                 onClick={() => handleSignerChoice('no-signer')}
               >
                 <div className="choice-icon">📱</div>
-                <div className="choice-title">暂不使用</div>
-                <div className="choice-description">我不想使用专门的签名器</div>
+                <div className="choice-title">{t('guide.signer.no')}</div>
+                <div className="choice-description">{t('guide.signer.noDesc')}</div>
               </button>
               
               <button 
@@ -73,8 +75,8 @@ const InitialGuide: React.FC<InitialGuideProps> = ({ onPreferenceSet }) => {
                 onClick={() => handleSignerChoice('with-signer')}
               >
                 <div className="choice-icon">🔒</div>
-                <div className="choice-title">愿意尝试</div>
-                <div className="choice-description">我愿意尝试硬件签名器</div>
+                <div className="choice-title">{t('guide.signer.yes')}</div>
+                <div className="choice-description">{t('guide.signer.yesDesc')}</div>
               </button>
             </div>
           </div>

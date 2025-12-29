@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "title": "Bitcoin Self-Custody Playground"
+  },
+  "common": {
+    "loading": "Loading...",
+    "reset": "Reset",
+    "faq": "FAQ",
+    "close": "Close",
+    "selected": "Selected",
+    "delete": "Delete"
+  },
+  "header": {
+    "title": "Bitcoin Self-Custody Playground",
+    "resetPref": "Reset Preferences",
+    "viewFaq": "View FAQ",
+    "selectLang": "Select Language"
+  },
+  "guide": {
+    "step1_title": "Welcome to Bitcoin Self-Custody Playground",
+    "step1_desc": "First, which device do you primarily use for Bitcoin management?",
+    "step2_title": "About Hardware Signers",
+    "step2_desc": "Hardware signers offer enhanced security but require extra learning and investment. What is your preference?",
+    "device": {
+      "mobile": "Mobile",
+      "mobileDesc": "I use a mobile phone",
+      "desktop": "Desktop",
+      "desktopDesc": "I use a laptop or desktop"
+    },
+    "signer": {
+      "yes": "I'm interested",
+      "yesDesc": "I'm willing to try a hardware signer",
+      "no": "Software only",
+      "noDesc": "I prefer using just software"
+    }
+  },
+  "mode": {
+    "single": "Single-Sig",
+    "multi": "Multisig",
+    "single_short": "Single",
+    "multi_short": "Multisig",
+    "selectMode": "Select Security Model",
+    "threshold_label": "Threshold",
+    "threshold_hint_2of3": "2 signatures required from 3 signers",
+    "threshold_hint_3of5": "3 signatures required from 5 signers",
+    "threshold": "{{m}} of {{n}}"
+  },
+  "multisig": {
+    "signer_slot": "Signer {{index}}",
+    "drag_drop": "Add Signer",
+    "select_signer": "Select Signer",
+    "select_signer_with_index": "Select Signer #{{index}}",
+    "threshold_label": "Quorum"
+  },
+  "columns": {
+    "signer": "Hardware Signer",
+    "wallet": "Software Wallet",
+    "node": "Node"
+  },
+  "features": {
+    "signer": "Signer Features",
+    "wallet": "Wallet Features",
+    "node": "Node Features"
+  },
+  "arrows": {
+    "pubkey_sig": "Pubkey & Sig",
+    "unsigned_tx": "PSBT (Unsigned)",
+    "address_signed": "Address & Signed Tx",
+    "balance": "Balance Info",
+    "select_hint_signer_wallet": "Select signer & wallet",
+    "select_hint_wallet_node": "Select wallet & node",
+    "please_select_node": "Select node",
+    "please_select_wallet": "Select wallet",
+    "please_select_signer": "Select signer",
+    "no_signer_used": "No hardware signer used",
+    "connected": "Connected",
+    "incompatible": "Incompatible"
+  }
+}

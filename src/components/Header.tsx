@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderProps {
   completionPercentage: number;
@@ -10,6 +11,8 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120, onResetPreference, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
+  const { t, i18n } = useTranslation();
+
   // 进度条动态宽度计算（保持居中）
   const GAP_FROM_BUTTONS = 24; // 进度条与按钮之间的间隙（像素）
   const BUTTON_WIDTH = 72; // 按钮的大致宽度（像素）
@@ -79,26 +82,36 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
         className="header-actions"
         style={{ right: getButtonsRight() }}
       >
+        <select
+          className="header-lang-select"
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+          aria-label={t('header.selectLang')}
+        >
+          <option value="zh-CN">简体中文</option>
+          <option value="zh-TW">繁體中文</option>
+          <option value="en">English</option>
+        </select>
         <button 
           className="header-btn"
           onClick={onResetPreference}
-          title="重置偏好"
+          title={t('header.resetPref')}
         >
-          重置
+          {t('common.reset')}
         </button>
         <button 
           className="header-btn"
           onClick={onOpenFaq}
-          aria-label="查看 FAQ"
+          aria-label={t('header.viewFaq')}
         >
-          FAQ
+          {t('common.faq')}
         </button>
       </div>
 
       <div className="header-content">
         <h1 className="site-title">
           <span className="bitcoin-logo">₿</span>
-          比特币自主保管模拟器
+          {t('header.title')}
         </h1>
         {/* 中央进度条区域 */}
         <div 

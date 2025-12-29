@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './SignatureModeSelector.css';
 
 export type SignatureMode = 'single' | 'multi';
@@ -17,23 +18,25 @@ const SignatureModeSelector: React.FC<SignatureModeSelectorProps> = ({
   onModeChange,
   onThresholdChange,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="signature-mode-selector">
       {/* 签名模式选择 */}
       <div className="mode-selector-group">
-        <span className="mode-label">选择您的签名模式</span>
+        <span className="mode-label">{t('mode.selectMode')}</span>
         <div className="mode-segmented">
           <button
             className={`mode-segment ${mode === 'single' ? 'active' : ''}`}
             onClick={() => onModeChange('single')}
           >
-            单签
+            {t('mode.single_short')}
           </button>
           <button
             className={`mode-segment ${mode === 'multi' ? 'active' : ''}`}
             onClick={() => onModeChange('multi')}
           >
-            多签
+            {t('mode.multi_short')}
           </button>
         </div>
       </div>
@@ -42,19 +45,19 @@ const SignatureModeSelector: React.FC<SignatureModeSelectorProps> = ({
       <div className={`threshold-section ${mode === 'single' ? 'hidden' : ''}`}>
         <div className="mode-divider" />
         <div className="threshold-group">
-          <span className="threshold-label">多签阈值</span>
+          <span className="threshold-label">{t('mode.threshold_label')}</span>
           <div className="threshold-segmented">
             <button
               className={`threshold-segment ${threshold === '2-of-3' ? 'active' : ''}`}
               onClick={() => onThresholdChange('2-of-3')}
-              title="3个签名器中需要2个签名"
+              title={t('mode.threshold_hint_2of3')}
             >
               2-of-3
             </button>
             <button
               className={`threshold-segment ${threshold === '3-of-5' ? 'active' : ''}`}
               onClick={() => onThresholdChange('3-of-5')}
-              title="5个签名器中需要3个签名"
+              title={t('mode.threshold_hint_3of5')}
             >
               3-of-5
             </button>

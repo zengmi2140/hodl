@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData } from '../../types';
 
 interface TransferMethodDisplayProps {
@@ -16,9 +17,12 @@ const getTransferMethodClass = (method: string): string => {
   const methodClassMap: { [key: string]: string } = {
     'SD卡': 'sd-card',
     'microSD 卡': 'sd-card',
+    'microSD Card': 'sd-card',
     '二维码': 'qr-code',
+    'QR Code': 'qr-code',
     'USB': 'usb',
     '蓝牙': 'bluetooth',
+    'Bluetooth': 'bluetooth',
     'NFC': 'nfc'
   };
   return methodClassMap[method] || 'usb';
@@ -39,6 +43,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
   signerSlots,
   custodyData,
 }) => {
+  const { t } = useTranslation();
   // 判断是单签还是多签模式
   const isMultisigMode = signerSlots !== undefined;
   
@@ -95,14 +100,14 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
       {/* 数据流箭头 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-block">
-          <span className="arrow-label-top">公钥和签名</span>
+          <span className="arrow-label-top">{t('arrows.pubkey_sig')}</span>
           <div className="arrow-row">
             <div className="arrow-line-static"></div>
             <span className="arrow-head">▶</span>
           </div>
         </div>
         <div className="transfer-arrow-block reverse">
-          <span className="arrow-label-top">待签名交易</span>
+          <span className="arrow-label-top">{t('arrows.unsigned_tx')}</span>
           <div className="arrow-row">
             <span className="arrow-head">◀</span>
             <div className="arrow-line-static"></div>
@@ -130,16 +135,18 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
 
       {/* 提示信息 */}
       {!hasSigners && !hasWallet && !isNoSignerSelected && (
-        <div className="transfer-method-hint">选择签名器和钱包</div>
+        <div className="transfer-method-hint">{t('arrows.select_hint_signer_wallet')}</div>
       )}
       {!hasSigners && hasWallet && !isNoSignerSelected && (
-        <div className="transfer-method-hint">请选择签名器</div>
+        <div className="transfer-method-hint">{t('arrows.please_select_signer')}</div>
       )}
       {hasSigners && !hasWallet && (
-        <div className="transfer-method-hint">请选择钱包</div>
+        <div className="transfer-method-hint">{t('arrows.please_select_wallet')}</div>
       )}
       {isNoSignerSelected && (
-        <div className="transfer-method-hint">未使用硬件签名器</div>
+        <div className="transfer-method-hint">
+          {i18n.language.startsWith('en') ? 'No hardware signer used' : '未使用硬件签名器'}
+        </div>
       )}
     </div>
   );

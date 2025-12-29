@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "title": "比特币自主保管模拟器"
+  },
+  "common": {
+    "loading": "加载中...",
+    "reset": "重置",
+    "faq": "FAQ",
+    "close": "关闭",
+    "selected": "已选",
+    "delete": "删除"
+  },
+  "header": {
+    "title": "比特币自主保管模拟器",
+    "resetPref": "重置偏好",
+    "viewFaq": "查看 FAQ",
+    "selectLang": "选择语言"
+  },
+  "guide": {
+    "step1_title": "欢迎使用比特币自主保管模拟器",
+    "step1_desc": "首先，请告诉我们您主要使用什么设备来管理比特币：",
+    "step2_title": "关于硬件签名器",
+    "step2_desc": "硬件签名器可以提供更高的安全性，但需要额外的学习和设备投入。您的态度是：",
+    "device": {
+      "mobile": "手机",
+      "mobileDesc": "我希望使用手机来联网",
+      "desktop": "电脑",
+      "desktopDesc": "我使用电脑来联网"
+    },
+    "signer": {
+      "yes": "愿意尝试",
+      "yesDesc": "我愿意尝试硬件签名器",
+      "no": "暂不使用",
+      "noDesc": "我不想使用专门的签名器"
+    }
+  },
+  "mode": {
+    "single": "单签名模式",
+    "multi": "多重签名模式",
+    "single_short": "单签",
+    "multi_short": "多签",
+    "selectMode": "选择您的签名模式",
+    "threshold_label": "多签阈值",
+    "threshold_hint_2of3": "3个签名器中需要2个签名",
+    "threshold_hint_3of5": "5个签名器中需要3个签名",
+    "threshold": "{{m}} / {{n}} 多签"
+  },
+  "multisig": {
+    "signer_slot": "签名器 {{index}}",
+    "drag_drop": "点击选择签名器",
+    "select_signer": "选择签名器",
+    "select_signer_with_index": "选择签名器 #{{index}}",
+    "threshold_label": "所需签名数"
+  },
+  "columns": {
+    "signer": "硬件签名器",
+    "wallet": "软件钱包",
+    "node": "区块链节点"
+  },
+  "features": {
+    "signer": "硬件签名器特性",
+    "wallet": "软件钱包特性",
+    "node": "区块链节点特性"
+  },
+  "arrows": {
+    "pubkey_sig": "公钥和签名",
+    "unsigned_tx": "待签名交易",
+    "address_signed": "地址；已签名交易",
+    "balance": "余额信息",
+    "select_hint_signer_wallet": "选择签名器和钱包",
+    "select_hint_wallet_node": "选择钱包和节点",
+    "please_select_node": "请选择节点",
+    "please_select_wallet": "请选择钱包",
+    "please_select_signer": "请选择签名器",
+    "no_signer_used": "未使用硬件签名器",
+    "connected": "已连接",
+    "incompatible": "不兼容"
+  }
+}

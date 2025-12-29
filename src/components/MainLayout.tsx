@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '../hooks/useIsMobile';
 import SignatureModeSelector, { SignatureMode, ThresholdType } from './SignatureModeSelector';
 // 多签模式组件
@@ -45,7 +46,8 @@ interface MainLayoutProps {
   getMultisigCompatibleNodes: () => string[];
 }
 
-const MainLayout: React.FC<MainLayoutProps> = (props) => {
+  const MainLayout: React.FC<MainLayoutProps> = (props) => {
+  const { t } = useTranslation();
   const isMobile = useIsMobile(769);
   const {
     signatureMode,
@@ -138,7 +140,7 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
           onModeChange={onModeChange}
           onThresholdChange={onThresholdChange}
         />
-        <div className="loading-message">正在加载...</div>
+        <div className="loading-message">{t('common.loading')}</div>
       </main>
     );
   }

@@ -56,7 +56,8 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
             {sortedSigners.map(signer => {
               const state = getComponentState(signer.id, 'signer');
               const isSelected = selectedSigners.includes(signer.id);
-              const isEmoji = /^[\p{Emoji}]/u.test(signer.logo);
+              // 使用更兼容的方式判断是否为 Emoji，替换了可能导致崩溃的正则
+              const isEmoji = signer.id === 'none' || (signer.logo.length <= 10 && !signer.logo.includes('/') && !signer.logo.includes('.'));
 
               return (
                 <div

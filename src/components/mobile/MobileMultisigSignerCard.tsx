@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, Feature } from '../../types';
 import { SLOT_COLORS } from '../../App';
 import MobileBottomSheet from './MobileBottomSheet';
@@ -18,6 +19,7 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
   compatibleSigners,
   onSignerSelect,
 }) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(true);
   const [activeSlotIndex, setActiveSlotIndex] = useState<number | null>(null);
   const [featureSheetOpen, setFeatureSheetOpen] = useState(false);
@@ -60,10 +62,10 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
         <div className="mobile-card-header" onClick={() => setIsExpanded(!isExpanded)}>
           <div className="mobile-card-title">
             <span className="mobile-card-title-icon">🔐</span>
-            硬件签名器
+            {t('columns.signer')}
             {filledCount > 0 && (
               <span className="mobile-card-selected-badge">
-                已选 {filledCount}/{signerSlots.length}
+                {t('common.selected', '已选')} {filledCount}/{signerSlots.length}
               </span>
             )}
           </div>
@@ -124,7 +126,7 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
                   ) : (
                     <div className="mobile-signer-slot-empty">
                       <span className="mobile-signer-slot-add">+</span>
-                      <span>选择签名器</span>
+                      <span>{t('multisig.select_signer')}</span>
                     </div>
                   )}
                 </div>
@@ -138,7 +140,7 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
       <MobileBottomSheet
         isOpen={activeSlotIndex !== null}
         onClose={() => setActiveSlotIndex(null)}
-        title={`选择签名器 #${activeSlotIndex !== null ? activeSlotIndex + 1 : ''}`}
+        title={t('multisig.select_signer_with_index', { index: activeSlotIndex !== null ? activeSlotIndex + 1 : '' })}
       >
         <div className="mobile-card-content">
           {/* Sort signers: compatible first, incompatible last */}
@@ -161,7 +163,7 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
                   <OptimizedImage src={signer.logo} alt={signer.name} className="mobile-option-logo" loading="lazy" />
                   <span className="mobile-option-name">{signer.name}</span>
                   {!isCompatible && (
-                    <span style={{ fontSize: '0.75rem', color: '#9ca3af' }}>不兼容</span>
+                    <span style={{ fontSize: '0.75rem', color: '#9ca3af' }}>{t('arrows.incompatible')}</span>
                   )}
                 </div>
               );
@@ -172,7 +174,7 @@ const MobileMultisigSignerCard: React.FC<MobileMultisigSignerCardProps> = ({
       <MobileFeatureSheet
         isOpen={featureSheetOpen}
         onClose={() => setFeatureSheetOpen(false)}
-        featureGroups={[{ title: '签名器特性', features: selectedFeatures }]}
+        featureGroups={[{ title: t('features.signer'), features: selectedFeatures }]}
       />
     </>
   );

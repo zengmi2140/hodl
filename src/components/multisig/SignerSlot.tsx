@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData } from '../../types';
 import { SLOT_COLORS } from '../../App';
 import FeatureTooltip from './FeatureTooltip';
@@ -20,6 +21,7 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
   selectedSignerIds,
   onSelect,
 }) => {
+  const { t } = useTranslation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -106,7 +108,7 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
           <button
             className="signer-slot-delete"
             onClick={handleDelete}
-            title="删除"
+            title={t('common.delete', '删除')}
           >
             ×
           </button>
@@ -124,14 +126,14 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
       ) : (
         <div className="signer-slot-empty-content">
           <div className="signer-slot-add-icon">+</div>
-          <span className="signer-slot-hint">选择签名器</span>
+          <span className="signer-slot-hint">{t('multisig.select_signer')}</span>
         </div>
       )}
 
       {isDropdownOpen && (
         <div className="signer-dropdown">
           <div className="signer-dropdown-header">
-            选择签名器 #{slotIndex + 1}
+            {t('multisig.select_signer_with_index', { index: slotIndex + 1 })}
           </div>
           {[...availableSigners]
             .sort((a, b) => {
@@ -163,7 +165,7 @@ const SignerSlot: React.FC<SignerSlotProps> = ({
                   />
                   <span className="signer-dropdown-item-name">{signer.name}</span>
                   {!isCompatible && (
-                    <span className="signer-dropdown-item-incompatible">不兼容</span>
+                    <span className="signer-dropdown-item-incompatible">{t('arrows.incompatible')}</span>
                   )}
                 </div>
               );

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { UserPreference, ComponentState, CustodyData } from './types';
 import Header from './components/Header';
 import HeaderMobile from './components/HeaderMobile';
 import FaqDrawer from './components/FaqDrawer';
-import faqContent from './content/FAQ.md?raw';
 import MainLayout from './components/MainLayout';
 import InitialGuide from './components/InitialGuide';
 import { useIsMobile } from './hooks/useIsMobile';
 import { SignatureMode, ThresholdType } from './components/SignatureModeSelector';
+import { loadCustodyData } from './dataLoader';
 import './index.css';
 import './App.css';
 
-// 槽位颜色配置（从 MultisigPage 移过来）
+// 槽位颜色配置
 export const SLOT_COLORS = [
   { bg: '#dcfce7', border: '#86efac', label: '浅绿' },  // 槽位1
   { bg: '#dbeafe', border: '#93c5fd', label: '浅蓝' },  // 槽位2
@@ -21,7 +22,6 @@ export const SLOT_COLORS = [
 ];
 
 interface AppState {
-  // 单签模式状态
   selectedSigners: string[];
   selectedWallet: string | null;
   selectedNode: string | null;
@@ -29,9 +29,7 @@ interface AppState {
   showGuide: boolean;
   custodyData: CustodyData | null;
   isLoading: boolean;
-  // 签名模式
   signatureMode: SignatureMode;
-  // 多签模式状态
   threshold: ThresholdType;
   signerSlots: (string | null)[];
   multisigWallet: string | null;
@@ -39,6 +37,7 @@ interface AppState {
 }
 
 function App() {
+  const { t, i18n } = useTranslation();
   const [state, setState] = useState<AppState>({
     selectedSigners: [],
     selectedWallet: null,
@@ -54,6 +53,7 @@ function App() {
     multisigNode: null
   });
   const [isFaqOpen, setIsFaqOpen] = useState(false);
+  const [faqContent, setFaqContent] = useState('');
   const [layoutBounds, setLayoutBounds] = useState<{ leftEdge: number; rightEdge: number } | null>(null);
   const isMobile = useIsMobile(769);
 
@@ -69,21 +69,33 @@ function App() {
     );
   };
 
-  // 加载JSON数据
+  // SEO & Language settings
+  useEffect(() => {
+    document.title = t('meta.title', '比特币自主保管模拟器');
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language, t]);
+
+  // 加载数据
   useEffect(() => {
     const loadData = async () => {
+      setState(prev => ({ ...prev, isLoading: true }));
       try {
-        const response = await fetch('/custody-data.json');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data: CustodyData = await response.json();
+        // 加载托管数据
+        const data = await loadCustodyData(i18n.language);
         setState(prev => ({ ...prev, custodyData: data, isLoading: false }));
+
+        // 加载FAQ
+        const faqResponse = await fetch(`/locales/${i18n.language}/faq.md`);
+        if (faqResponse.ok) {
+          const text = await faqResponse.text();
+          setFaqContent(text);
+        } else {
+          console.error('Failed to load FAQ');
+        }
       } catch (error) {
         if (import.meta.env.DEV) {
-          console.error('Failed to load custody data:', error);
+          console.error('Failed to load data:', error);
         }
-        // 如果加载失败，使用备用数据（生产环境静默失败）
         const { getFallbackData } = await import('./dataLoader');
         const fallbackData = getFallbackData();
         setState(prev => ({ ...prev, custodyData: fallbackData, isLoading: false }));
@@ -91,7 +103,7 @@ function App() {
     };
     
     loadData();
-  }, []);
+  }, [i18n.language]);
 
   // 从本地存储加载用户偏好
   useEffect(() => {
@@ -106,11 +118,9 @@ function App() {
             showGuide: false
           }));
         } else {
-          // 无效数据，清除并显示引导
           localStorage.removeItem('userPreference');
         }
       } catch {
-        // 解析失败，清除损坏的数据
         localStorage.removeItem('userPreference');
       }
     }
@@ -121,7 +131,6 @@ function App() {
     setState(prev => ({
       ...prev,
       signatureMode: mode,
-      // 切换模式时重置对应的选择
       selectedSigners: [],
       selectedWallet: null,
       selectedNode: null,
@@ -161,23 +170,16 @@ function App() {
   const handleMultisigWalletSelect = (walletId: string | null) => {
     setState(prev => {
       if (walletId === null) {
-        // 取消选择
-        return {
-          ...prev,
-          multisigWallet: null,
-        };
+        return { ...prev, multisigWallet: null };
       }
       
-      // 选择新钱包
       const wallet = prev.custodyData?.softwareWallets.find(w => w.id === walletId);
       let newPreference = prev.userPreference;
       
-      // 如果钱包只支持一个平台，且与当前设备类型不同，则更新设备类型
       if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
         const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
         const currentDeviceType = prev.userPreference.deviceType;
         
-        // 如果钱包只支持 desktop 但当前是 mobile，或钱包只支持 mobile 但当前是 desktop
         if ((walletPlatform === 'desktop' && currentDeviceType === 'mobile') ||
             (walletPlatform === 'mobile' && currentDeviceType === 'desktop')) {
           newPreference = {
@@ -204,15 +206,13 @@ function App() {
     }));
   };
 
-  // 多签模式 - 获取兼容的钱包列表
+  // 多签模式 - 获取兼容的列表
   const getMultisigCompatibleWallets = (): string[] => {
     if (!state.custodyData) return [];
-    
     const selectedSigners = state.signerSlots.filter(s => s !== null) as string[];
     if (selectedSigners.length === 0) {
       return state.custodyData.softwareWallets.map(w => w.id);
     }
-    
     return state.custodyData.softwareWallets
       .filter(wallet => 
         selectedSigners.every(signerId => 
@@ -222,30 +222,23 @@ function App() {
       .map(w => w.id);
   };
 
-  // 多签模式 - 获取兼容的签名器列表
   const getMultisigCompatibleSigners = (): string[] => {
     if (!state.custodyData) return [];
-    
     if (!state.multisigWallet) {
       return state.custodyData.hardwareSigners
         .filter(s => s.id !== 'none')
         .map(s => s.id);
     }
-    
     const wallet = state.custodyData.softwareWallets.find(w => w.id === state.multisigWallet);
     if (!wallet) return [];
-    
     return wallet.compatibleSigners.filter(id => id !== 'none');
   };
 
-  // 多签模式 - 获取兼容的节点列表
   const getMultisigCompatibleNodes = (): string[] => {
     if (!state.custodyData) return [];
-    
     if (!state.multisigWallet) {
       return state.custodyData.nodes.map(n => n.id);
     }
-    
     return state.custodyData.nodes
       .filter(node => node.compatibleWallets.includes(state.multisigWallet!))
       .map(n => n.id);
@@ -254,348 +247,152 @@ function App() {
   // 计算组件状态（单签模式）
   const getComponentState = (componentId: string, type: 'signer' | 'wallet' | 'node'): ComponentState => {
     if (!state.custodyData || !state.userPreference) return 'inactive';
-    
-    // 使用用户偏好中存储的设备类型
     const userDeviceType = state.userPreference.deviceType;
     
     if (type === 'signer') {
-      // 已选中的签名器显示为active
       if (state.selectedSigners.includes(componentId)) return 'active';
-      
-      // 如果该列已有选中项，其他项不呼吸
-      if (state.selectedSigners.length > 0) {
-        return 'inactive';
-      }
-      
-      // 特殊处理："不使用签名器"选项
+      if (state.selectedSigners.length > 0) return 'inactive';
       if (componentId === 'none') {
-        // 如果用户选择了"愿意尝试硬件签名器"，则"不使用签名器"不呼吸
-        if (state.userPreference.signerWillingness === 'with-signer') {
-          return 'inactive';
-        }
-        // 如果用户选择了"暂不使用"，则"不使用签名器"正常呼吸
+        if (state.userPreference.signerWillingness === 'with-signer') return 'inactive';
         return 'breathing';
       }
-      
-      // 检查与当前选择的钱包是否兼容（反向兼容）
       if (state.selectedWallet) {
         const wallet = state.custodyData.softwareWallets.find(w => w.id === state.selectedWallet);
-        if (wallet && wallet.compatibleSigners.includes(componentId)) {
-          return 'breathing';
-        }
+        if (wallet && wallet.compatibleSigners.includes(componentId)) return 'breathing';
       }
-      
-      // 初始状态：如果用户选择了"愿意尝试硬件签名器"，硬件签名器列呼吸（除了"不使用签名器"）
       if (state.userPreference.signerWillingness === 'with-signer' && state.selectedWallet === null && state.selectedNode === null) {
         return 'breathing';
       }
-      
       return 'inactive';
     }
     
     if (type === 'wallet') {
-      // 已选中的钱包显示为active
       if (state.selectedWallet === componentId) return 'active';
-      
-      // 如果该列已有选中项，其他项不呼吸
-      if (state.selectedWallet !== null) {
-        return 'inactive';
-      }
-      
+      if (state.selectedWallet !== null) return 'inactive';
       const wallet = state.custodyData.softwareWallets.find(w => w.id === componentId);
       if (!wallet) return 'inactive';
-      
-      // 检查是否支持用户选择的设备类型
-      if (!wallet.supportedPlatforms.some(platform => 
-        platform.toLowerCase() === userDeviceType
-      )) {
-        return 'inactive';
-      }
-      
-      // 检查与选择的签名器是否兼容（正向兼容）
+      if (!wallet.supportedPlatforms.some(platform => platform.toLowerCase() === userDeviceType)) return 'inactive';
       if (state.selectedSigners.length > 0) {
-        // 如果选中的是"不使用签名器"，支持当前设备的钱包就呼吸
-        if (state.selectedSigners.includes('none')) {
-          return 'breathing';
-        }
-        // 如果选中的是其他硬件签名器，检查兼容性
-        if (state.selectedSigners.some(signer => signer !== 'none' && wallet.compatibleSigners.includes(signer))) {
-          return 'breathing';
-        }
+        if (state.selectedSigners.includes('none')) return 'breathing';
+        if (state.selectedSigners.some(signer => signer !== 'none' && wallet.compatibleSigners.includes(signer))) return 'breathing';
       }
-      
-      // 检查与当前选择的节点是否兼容（反向兼容）
       if (state.selectedNode) {
         const node = state.custodyData.nodes.find(n => n.id === state.selectedNode);
-        if (node && node.compatibleWallets.includes(componentId)) {
-          return 'breathing';
-        }
+        if (node && node.compatibleWallets.includes(componentId)) return 'breathing';
       }
-      
       return 'inactive';
     }
     
     if (type === 'node') {
-      // 已选中的节点显示为active
       if (state.selectedNode === componentId) return 'active';
-      
-      // 如果该列已有选中项，其他项不呼吸
-      if (state.selectedNode !== null) {
-        return 'inactive';
-      }
-      
-      // 检查与选择的钱包是否兼容（正向兼容）
+      if (state.selectedNode !== null) return 'inactive';
       if (state.selectedWallet) {
         const node = state.custodyData.nodes.find(n => n.id === componentId);
-        if (node && node.compatibleWallets.includes(state.selectedWallet)) {
-          return 'breathing';
-        }
+        if (node && node.compatibleWallets.includes(state.selectedWallet)) return 'breathing';
       }
-      
       return 'inactive';
     }
     
     return 'inactive';
   };
 
-  // 处理组件点击（单签模式）
+  // 处理组件点击
   const handleComponentClick = (componentId: string, type: 'signer' | 'wallet' | 'node') => {
     const currentState = getComponentState(componentId, type);
-    
-    // 如果点击的是非呼吸状态（inactive）的选项，执行重置逻辑
     if (currentState === 'inactive') {
       setState(prev => {
-        // 重置所有选择
-        const newState = {
-          ...prev,
-          selectedSigners: [],
-          selectedWallet: null,
-          selectedNode: null
-        };
-        
-        // 根据点击的组件类型，设置相应的选择
+        const newState = { ...prev, selectedSigners: [], selectedWallet: null, selectedNode: null };
         if (type === 'signer') {
-          // 如果点击的是"不使用签名器"
-          if (componentId === 'none') {
-            const newPreference = {
-              ...prev.userPreference!,
-              signerWillingness: 'no-signer' as const
-            };
-            localStorage.setItem('userPreference', JSON.stringify(newPreference));
-            
-            return {
-              ...newState,
-              userPreference: newPreference,
-              selectedSigners: [componentId]
-            };
-          } else {
-            // 选择硬件签名器
-            const newPreference = {
-              ...prev.userPreference!,
-              signerWillingness: 'with-signer' as const
-            };
-            localStorage.setItem('userPreference', JSON.stringify(newPreference));
-            
-            return {
-              ...newState,
-              userPreference: newPreference,
-              selectedSigners: [componentId]
-            };
-          }
+          const newWillingness = componentId === 'none' ? 'no-signer' : 'with-signer';
+          const newPreference = { ...prev.userPreference!, signerWillingness: newWillingness };
+          localStorage.setItem('userPreference', JSON.stringify(newPreference));
+          return { ...newState, userPreference: newPreference, selectedSigners: [componentId] };
         } else if (type === 'wallet') {
-          // 选择软件钱包
           const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
           let newPreference = prev.userPreference;
-          
-          // 如果钱包只支持一个平台，且与当前设备类型不同，则更新设备类型
           if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
             const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
-            const currentDeviceType = prev.userPreference.deviceType;
-            
-            // 如果钱包只支持 desktop 但当前是 mobile，或钱包只支持 mobile 但当前是 desktop
-            if ((walletPlatform === 'desktop' && currentDeviceType === 'mobile') ||
-                (walletPlatform === 'mobile' && currentDeviceType === 'desktop')) {
-              newPreference = {
-                ...prev.userPreference,
-                deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile'
-              };
-              localStorage.setItem('userPreference', JSON.stringify(newPreference));
-            }
+            newPreference = { ...prev.userPreference, deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile' };
+            localStorage.setItem('userPreference', JSON.stringify(newPreference));
           }
-          
-          return {
-            ...newState,
-            selectedWallet: componentId,
-            userPreference: newPreference
-          };
+          return { ...newState, selectedWallet: componentId, userPreference: newPreference };
         } else if (type === 'node') {
-          // 选择区块链节点
-          return {
-            ...newState,
-            selectedNode: componentId
-          };
+          return { ...newState, selectedNode: componentId };
         }
-        
         return newState;
       });
       return;
     }
     
-    // 如果点击的是呼吸状态（breathing）或已选中（active）的选项，执行级联选择逻辑
     if (type === 'signer') {
       setState(prev => {
         const isSelected = prev.selectedSigners.includes(componentId);
-        
         if (isSelected) {
-          // 取消选择
-          return {
-            ...prev,
-            selectedSigners: prev.selectedSigners.filter(id => id !== componentId),
-            selectedWallet: null,
-            selectedNode: null
-          };
-        } else {
-          // 添加到选择中
-          return {
-            ...prev,
-            selectedSigners: [...prev.selectedSigners, componentId]
-          };
+          return { ...prev, selectedSigners: prev.selectedSigners.filter(id => id !== componentId), selectedWallet: null, selectedNode: null };
         }
+        return { ...prev, selectedSigners: [...prev.selectedSigners, componentId] };
       });
     } else if (type === 'wallet') {
       setState(prev => {
         if (prev.selectedWallet === componentId) {
-          // 取消选择
-          return {
-            ...prev,
-            selectedWallet: null,
-            selectedNode: null
-          };
-        } else {
-          // 选择新钱包
-          const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
-          let newPreference = prev.userPreference;
-          
-          // 如果钱包只支持一个平台，且与当前设备类型不同，则更新设备类型
-          if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
-            const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
-            const currentDeviceType = prev.userPreference.deviceType;
-            
-            // 如果钱包只支持 desktop 但当前是 mobile，或钱包只支持 mobile 但当前是 desktop
-            if ((walletPlatform === 'desktop' && currentDeviceType === 'mobile') ||
-                (walletPlatform === 'mobile' && currentDeviceType === 'desktop')) {
-              newPreference = {
-                ...prev.userPreference,
-                deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile'
-              };
-              localStorage.setItem('userPreference', JSON.stringify(newPreference));
-            }
-          }
-          
-          return {
-            ...prev,
-            selectedWallet: componentId,
-            selectedNode: null, // 清除节点选择，重新开始级联
-            userPreference: newPreference
-          };
+          return { ...prev, selectedWallet: null, selectedNode: null };
         }
+        const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
+        let newPreference = prev.userPreference;
+        if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
+          const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
+          newPreference = { ...prev.userPreference, deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile' };
+          localStorage.setItem('userPreference', JSON.stringify(newPreference));
+        }
+        return { ...prev, selectedWallet: componentId, selectedNode: null, userPreference: newPreference };
       });
     } else if (type === 'node') {
-      setState(prev => {
-        if (prev.selectedNode === componentId) {
-          // 取消选择
-          return {
-            ...prev,
-            selectedNode: null
-          };
-        } else {
-          // 选择新节点
-          return {
-            ...prev,
-            selectedNode: componentId
-          };
-        }
-      });
+      setState(prev => ({
+        ...prev,
+        selectedNode: prev.selectedNode === componentId ? null : componentId
+      }));
     }
   };
 
   // 计算完成度
   const getCompletionPercentage = (): number => {
     if (!state.userPreference) return 0;
-    
     if (state.signatureMode === 'multi') {
-      // 多签模式进度计算
-      const slotCount = state.threshold === '2-of-3' ? 3 : 5;
       const filledSlots = state.signerSlots.filter(s => s !== null).length;
-      
-      let progress = 0; // 阈值选择不计入进度
-      
-      if (state.threshold === '2-of-3') {
-        // 2-of-3模式：每个槽位 +20%（共60%）
-        progress += filledSlots * 20;
-      } else {
-        // 3-of-5模式：每个槽位 +15%（共75%），填满额外 +5%
-        progress += filledSlots * 15;
-        if (filledSlots === 5) progress += 5; // 完整填满奖励
-      }
-      
-      // 软件钱包 +50%
+      let progress = state.threshold === '2-of-3' ? filledSlots * 20 : filledSlots * 15;
+      if (state.threshold === '3-of-5' && filledSlots === 5) progress += 5;
       if (state.multisigWallet) progress += 50;
-      
-      // 节点：公开节点 +0%，私有节点 +20%
-      if (state.multisigNode && state.multisigNode !== 'publicnode') {
-        progress += 20;
-      }
-      
-      return progress; // 2-of-3最高130%，3-of-5最高150%
+      if (state.multisigNode && state.multisigNode !== 'publicnode') progress += 20;
+      return progress;
     }
-    
-    // 单签模式进度计算
     const hasWallet = state.selectedWallet !== null;
-    const hasSigner = state.selectedSigners.length > 0;
     const hasNode = state.selectedNode !== null && state.selectedNode !== 'publicnode';
     const hasNoneSigner = state.selectedSigners.includes('none');
     const hasHardwareSigner = state.selectedSigners.some(id => id !== 'none');
-    
     if (hasHardwareSigner && hasWallet && hasNode) return 120;
     if (hasHardwareSigner && hasWallet) return 100;
     if (hasNoneSigner && hasWallet && hasNode) return 80;
     if (hasNoneSigner && hasWallet) return 60;
     if (hasHardwareSigner && !hasWallet) return 50;
-    
     return 0;
   };
 
-  // 处理用户偏好设置
   const handlePreferenceSet = (preference: UserPreference) => {
     setState(prev => {
-      const newState = {
-        ...prev,
-        userPreference: preference,
-        showGuide: false
-      };
-      
-      // 如果用户选择了"暂时不用硬件签名器"，自动选中"不使用签名器"
+      const newState = { ...prev, userPreference: preference, showGuide: false };
       if (preference.signerWillingness === 'no-signer') {
         newState.selectedSigners = ['none'];
         newState.selectedWallet = null;
         newState.selectedNode = null;
       }
-      
       return newState;
     });
     localStorage.setItem('userPreference', JSON.stringify(preference));
   };
 
-  const handleOpenFaq = () => {
-    setIsFaqOpen(true);
-  };
+  const handleOpenFaq = () => setIsFaqOpen(true);
+  const handleCloseFaq = () => setIsFaqOpen(false);
 
-  const handleCloseFaq = () => {
-    setIsFaqOpen(false);
-  };
-
-  // 重置偏好
   const handleResetPreference = () => {
     setState(prev => ({
       ...prev,
@@ -613,19 +410,11 @@ function App() {
     localStorage.removeItem('userPreference');
   };
 
-  // 如果数据还在加载中，显示加载状态
   if (state.isLoading || !state.custodyData) {
     return (
       <div className="App">
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          height: '100vh',
-          fontSize: '1.2rem',
-          color: '#666'
-        }}>
-          加载中...
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '1.2rem', color: '#666' }}>
+          {t('common.loading', '加载中...')}
         </div>
       </div>
     );

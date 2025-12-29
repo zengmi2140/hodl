@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, ComponentState } from '../../types';
 import OptimizedImage from '../shared/OptimizedImage';
 
@@ -24,6 +25,7 @@ const SignerColumn: React.FC<SignerColumnProps> = ({
   getComponentState,
   onComponentClick,
 }) => {
+  const { t } = useTranslation();
   // 对硬件签名器列表进行排序，确保"不使用签名器"始终在最后
   const sortedHardwareSigners = [...custodyData.hardwareSigners].sort((a, b) => {
     if (a.id === 'none' && b.id !== 'none') return 1;
@@ -33,7 +35,7 @@ const SignerColumn: React.FC<SignerColumnProps> = ({
 
   return (
     <div className="column">
-      <div className="column-title">硬件签名器</div>
+      <div className="column-title">{t('columns.signer')}</div>
       {sortedHardwareSigners.map(signer => {
         const state = getComponentState(signer.id, 'signer');
         const isSelected = selectedSigners.includes(signer.id);

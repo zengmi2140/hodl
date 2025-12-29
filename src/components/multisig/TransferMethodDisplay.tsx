@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData } from '../../types';
 import { SLOT_COLORS } from '../../App';
 
@@ -13,6 +14,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
   selectedWallet,
   custodyData,
 }) => {
+  const { t } = useTranslation();
   // 获取每个签名器到钱包的传输方式
   const getTransferMethods = (signerId: string, walletId: string): string[] => {
     if (!custodyData.transferMethods) return [];
@@ -47,14 +49,14 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
       {/* 数据流箭头 - 文字在上方 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-block">
-          <span className="arrow-label-top">公钥和签名</span>
+          <span className="arrow-label-top">{t('arrows.pubkey_sig')}</span>
           <div className="arrow-row">
             <div className="arrow-line-static"></div>
             <span className="arrow-head">▶</span>
           </div>
         </div>
         <div className="transfer-arrow-block reverse">
-          <span className="arrow-label-top">待签名交易</span>
+          <span className="arrow-label-top">{t('arrows.unsigned_tx')}</span>
           <div className="arrow-row">
             <span className="arrow-head">◀</span>
             <div className="arrow-line-static"></div>
@@ -97,10 +99,10 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
           </div>
         ) : (
           <div className="transfer-method-hint">
-            {!hasSigners && !hasWallet && '选择签名器和钱包'}
-            {hasSigners && !hasWallet && '请选择钱包'}
-            {!hasSigners && hasWallet && '请选择签名器'}
-            {hasSigners && hasWallet && '无传输方式'}
+            {!hasSigners && !hasWallet && t('arrows.select_hint_signer_wallet')}
+            {hasSigners && !hasWallet && t('arrows.please_select_wallet')}
+            {!hasSigners && hasWallet && t('arrows.please_select_signer')}
+            {hasSigners && hasWallet && (i18n.language.startsWith('en') ? 'No transfer method' : '无传输方式')}
           </div>
         )}
       </div>

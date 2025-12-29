@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, UserPreference, ComponentState } from '../../types';
 import OptimizedImage from './OptimizedImage';
 
@@ -24,6 +25,8 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   getComponentState,
   onComponentClick,
 }) => {
+  const { t } = useTranslation();
+
   const handleWalletClick = (walletId: string) => {
     // 如果提供了单签模式的 onComponentClick，使用它
     if (onComponentClick) {
@@ -58,7 +61,7 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   return (
     <div className="column">
       <div className="column-title">
-        软件钱包 {deviceIcon}
+        {t('columns.wallet')} {deviceIcon}
       </div>
       {custodyData.softwareWallets.map(wallet => {
         // 如果提供了 getComponentState，使用单签模式的状态逻辑

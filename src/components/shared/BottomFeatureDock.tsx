@@ -1,5 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, Feature } from '../../types';
 
 interface BottomFeatureDockProps {
@@ -26,6 +27,7 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
   selectedNode,
   custodyData,
 }) => {
+  const { t } = useTranslation();
   const hasAnySelection = (selectedSigners && selectedSigners.length > 0) || selectedWallet || selectedNode;
 
   if (!hasAnySelection) {
@@ -39,7 +41,7 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
         <div className="feature-box-column">
           {selectedSigners && selectedSigners.length > 0 ? (
             <div className="feature-box signer">
-              <h4 className="feature-title">硬件签名器特性</h4>
+              <h4 className="feature-title">{t('features.signer')}</h4>
               <div className="feature-list">
                 {selectedSigners.flatMap(signerId => {
                   const signer = custodyData.hardwareSigners.find(s => s.id === signerId);
@@ -59,7 +61,7 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
         <div className="feature-box-column">
           {selectedWallet ? (
             <div className="feature-box wallet">
-              <h4 className="feature-title">软件钱包特性</h4>
+              <h4 className="feature-title">{t('features.wallet')}</h4>
               <div className="feature-list">
                 {(() => {
                   const wallet = custodyData.softwareWallets.find(w => w.id === selectedWallet);
@@ -79,7 +81,7 @@ const BottomFeatureDock: React.FC<BottomFeatureDockProps> = ({
         <div className="feature-box-column">
           {selectedNode ? (
             <div className="feature-box node">
-              <h4 className="feature-title">区块链节点特性</h4>
+              <h4 className="feature-title">{t('features.node')}</h4>
               <div className="feature-list">
                 {(() => {
                   const node = custodyData.nodes.find(n => n.id === selectedNode);
