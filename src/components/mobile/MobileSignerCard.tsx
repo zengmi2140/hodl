@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, ComponentState, Feature } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
 import OptimizedImage from '../shared/OptimizedImage';
@@ -16,6 +17,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
   getComponentState,
   onComponentClick,
 }) => {
+  const { t } = useTranslation();
   const cardEndRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const [featureSheetOpen, setFeatureSheetOpen] = useState(false);
@@ -44,7 +46,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
         <div className="mobile-card-header" onClick={() => setIsExpanded(!isExpanded)}>
           <div className="mobile-card-title">
             <span className="mobile-card-title-icon">🔐</span>
-            硬件签名器
+            {t('columns.signer')}
             {selectedSigner && (
               <span className="mobile-card-selected-badge">{selectedSigner.name}</span>
             )}
@@ -102,7 +104,7 @@ const MobileSignerCard: React.FC<MobileSignerCardProps> = ({
       <MobileFeatureSheet
         isOpen={featureSheetOpen}
         onClose={() => setFeatureSheetOpen(false)}
-        featureGroups={[{ title: '签名器特性', features: selectedFeatures }]}
+        featureGroups={[{ title: t('features.signer'), features: selectedFeatures }]}
       />
     </>
   );

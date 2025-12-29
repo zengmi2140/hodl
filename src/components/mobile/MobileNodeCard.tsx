@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, ComponentState, Feature } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
 import OptimizedImage from '../shared/OptimizedImage';
@@ -22,6 +23,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
   onComponentClick,
   onNodeSelect,
 }) => {
+  const { t } = useTranslation();
   const cardEndRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const [featureSheetOpen, setFeatureSheetOpen] = useState(false);
@@ -84,7 +86,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
         <div className="mobile-card-header" onClick={() => setIsExpanded(!isExpanded)}>
           <div className="mobile-card-title">
             <span className="mobile-card-title-icon">🌐</span>
-            区块链节点
+            {t('columns.node')}
             {selectedNodeData && (
               <span className="mobile-card-selected-badge">{selectedNodeData.name}</span>
             )}
@@ -125,7 +127,7 @@ const MobileNodeCard: React.FC<MobileNodeCardProps> = ({
       <MobileFeatureSheet
         isOpen={featureSheetOpen}
         onClose={() => setFeatureSheetOpen(false)}
-        featureGroups={[{ title: '节点特性', features: selectedFeatures }]}
+        featureGroups={[{ title: t('features.node'), features: selectedFeatures }]}
       />
     </>
   );

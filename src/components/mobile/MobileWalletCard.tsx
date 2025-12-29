@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, ComponentState, Feature, UserPreference } from '../../types';
 import MobileFeatureSheet from './MobileFeatureSheet';
 import OptimizedImage from '../shared/OptimizedImage';
@@ -26,6 +27,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
   onWalletSelect,
   onToggleDeviceType,
 }) => {
+  const { t } = useTranslation();
   const cardEndRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const [featureSheetOpen, setFeatureSheetOpen] = useState(false);
@@ -110,7 +112,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
         <div className="mobile-card-header" onClick={() => setIsExpanded(!isExpanded)}>
           <div className="mobile-card-title">
             <span className="mobile-card-title-icon">{deviceIcon}</span>
-            软件钱包
+            {t('columns.wallet')}
             {selectedWalletData && (
               <span className="mobile-card-selected-badge">{selectedWalletData.name}</span>
             )}
@@ -165,7 +167,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
       <MobileFeatureSheet
         isOpen={featureSheetOpen}
         onClose={() => setFeatureSheetOpen(false)}
-        featureGroups={[{ title: '钱包特性', features: selectedFeatures }]}
+        featureGroups={[{ title: t('features.wallet'), features: selectedFeatures }]}
       />
     </>
   );

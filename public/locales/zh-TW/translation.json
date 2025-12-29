@@ -60,7 +60,10 @@
   "features": {
     "signer": "硬體簽名器特性",
     "wallet": "軟體錢包特性",
-    "node": "區塊鏈節點特性"
+    "node": "區塊鏈節點特性",
+    "title": "特性詳情",
+    "empty": "暫无特性資訊",
+    "selected_title": "已選選項特性"
   },
   "arrows": {
     "pubkey_sig": "公鑰和簽名",

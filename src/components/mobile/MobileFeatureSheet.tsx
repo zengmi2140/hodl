@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Feature } from '../../types';
 import MobileBottomSheet from './MobileBottomSheet';
 
@@ -18,6 +19,7 @@ const MobileFeatureSheet: React.FC<MobileFeatureSheetProps> = ({
   onClose,
   featureGroups,
 }) => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
 
   // Filter out empty groups
@@ -25,8 +27,8 @@ const MobileFeatureSheet: React.FC<MobileFeatureSheetProps> = ({
 
   if (validGroups.length === 0) {
     return (
-      <MobileBottomSheet isOpen={isOpen} onClose={onClose} title="特性详情">
-        <div className="mobile-empty-state">暂无特性信息</div>
+      <MobileBottomSheet isOpen={isOpen} onClose={onClose} title={t('features.title', '特性详情')}>
+        <div className="mobile-empty-state">{t('features.empty', '暂无特性信息')}</div>
       </MobileBottomSheet>
     );
   }
@@ -45,7 +47,7 @@ const MobileFeatureSheet: React.FC<MobileFeatureSheetProps> = ({
   };
 
   return (
-    <MobileBottomSheet isOpen={isOpen} onClose={onClose} title="特性详情">
+    <MobileBottomSheet isOpen={isOpen} onClose={onClose} title={t('features.title', '特性详情')}>
       {validGroups.length > 1 && (
         <div className="mobile-feature-tabs">
           {validGroups.map((group, index) => (

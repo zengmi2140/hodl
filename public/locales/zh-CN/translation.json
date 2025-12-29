@@ -60,7 +60,10 @@
   "features": {
     "signer": "硬件签名器特性",
     "wallet": "软件钱包特性",
-    "node": "区块链节点特性"
+    "node": "区块链节点特性",
+    "title": "特性详情",
+    "empty": "暂无特性信息",
+    "selected_title": "已选选项特性"
   },
   "arrows": {
     "pubkey_sig": "公钥和签名",

@@ -60,7 +60,10 @@
   "features": {
     "signer": "Signer Features",
     "wallet": "Wallet Features",
-    "node": "Node Features"
+    "node": "Node Features",
+    "title": "Feature Details",
+    "empty": "No feature information available",
+    "selected_title": "Selected Option Features"
   },
   "arrows": {
     "pubkey_sig": "Pubkey & Sig",

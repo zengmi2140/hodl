@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CustodyData, Feature } from '../../types';
 import { SignatureMode } from '../SignatureModeSelector';
 
@@ -26,6 +27,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
   multisigNode,
   custodyData,
 }) => {
+  const { t } = useTranslation();
   const getFeatureIcon = (type: Feature['type']) => {
     switch (type) {
       case 'positive':
@@ -69,7 +71,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
 
   return (
     <div className="mobile-feature-display">
-      <h3 className="mobile-feature-display-title">已选选项特性</h3>
+      <h3 className="mobile-feature-display-title">{t('features.selected_title', '已选选项特性')}</h3>
 
       {/* Signers Features */}
       {selectedSignerIds.map((signerId, index) => {
@@ -85,7 +87,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
                 className="mobile-feature-display-logo"
               />
               <span className="mobile-feature-display-name">{signer.name}</span>
-              <span className="mobile-feature-display-type">签名器</span>
+              <span className="mobile-feature-display-type">{t('columns.signer')}</span>
             </div>
             <div className="mobile-feature-display-list">
               {signer.features.map((feature, fIndex) => (
@@ -113,7 +115,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
                 className="mobile-feature-display-logo"
               />
               <span className="mobile-feature-display-name">{wallet.name}</span>
-              <span className="mobile-feature-display-type">钱包</span>
+              <span className="mobile-feature-display-type">{t('columns.wallet')}</span>
             </div>
             <div className="mobile-feature-display-list">
               {wallet.features.map((feature, fIndex) => (
@@ -141,7 +143,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
                 className="mobile-feature-display-logo"
               />
               <span className="mobile-feature-display-name">{node.name}</span>
-              <span className="mobile-feature-display-type">节点</span>
+              <span className="mobile-feature-display-type">{t('columns.node')}</span>
             </div>
             <div className="mobile-feature-display-list">
               {node.features.map((feature, fIndex) => (
