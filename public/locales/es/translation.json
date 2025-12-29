@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Bitcoin Self-Custody Playground - Laboratorio de Autocustodia"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "reset": "Reiniciar",
+    "faq": "Preguntas Frecuentes",
+    "close": "Cerrar",
+    "selected": "Seleccionado",
+    "delete": "Eliminar"
+  },
+  "header": {
+    "title": "Bitcoin Self-Custody Playground",
+    "resetPref": "Restablecer Preferencias",
+    "viewFaq": "Ver FAQ",
+    "selectLang": "Seleccionar Idioma"
+  },
+  "guide": {
+    "step1_title": "Bienvenido al Bitcoin Self-Custody Playground",
+    "step1_desc": "Primero, ¿qué dispositivo utilizas principalmente para gestionar tus Bitcoin?",
+    "step2_title": "Sobre los Firmadores de Hardware",
+    "step2_desc": "Los firmadores de hardware ofrecen mayor seguridad, pero requieren aprendizaje e inversión adicional. ¿Cuál es tu preferencia?",
+    "device": {
+      "mobile": "Móvil",
+      "mobileDesc": "Uso un teléfono móvil",
+      "desktop": "Escritorio",
+      "desktopDesc": "Uso una laptop o computadora"
+    },
+    "signer": {
+      "yes": "Me interesa",
+      "yesDesc": "Estoy dispuesto a usar un firmador de hardware",
+      "no": "Solo software",
+      "noDesc": "Prefiero usar únicamente software"
+    }
+  },
+  "mode": {
+    "single": "Firma Única",
+    "multi": "Multifirma",
+    "single_short": "Simple",
+    "multi_short": "Multi",
+    "selectMode": "Seleccionar Modelo de Seguridad",
+    "threshold_label": "Umbral",
+    "threshold_hint_2of3": "Se requieren 2 firmas de 3 firmadores",
+    "threshold_hint_3of5": "Se requieren 3 firmas de 5 firmadores",
+    "threshold": "{{m}} de {{n}}"
+  },
+  "multisig": {
+    "signer_slot": "Firmador {{index}}",
+    "drag_drop": "Añadir Firmador",
+    "select_signer": "Seleccionar Firmador",
+    "select_signer_with_index": "Seleccionar Firmador #{{index}}",
+    "threshold_label": "Quórum"
+  },
+  "columns": {
+    "signer": "Firmador de Hardware",
+    "wallet": "Billetera de Software",
+    "node": "Nodo"
+  },
+  "features": {
+    "signer": "Características del Firmador",
+    "wallet": "Características de la Billetera",
+    "node": "Características del Nodo",
+    "title": "Detalles de la Función",
+    "empty": "No hay información disponible",
+    "selected_title": "Funciones de la Opción Seleccionada"
+  },
+  "arrows": {
+    "pubkey_sig": "Clave pública y firma",
+    "unsigned_tx": "PSBT (Sin firmar)",
+    "address_signed": "Dirección y Tx firmada",
+    "balance": "Información de saldo",
+    "select_hint_signer_wallet": "Selecciona firmador y billetera",
+    "select_hint_wallet_node": "Selecciona billetera y nodo",
+    "please_select_node": "Selecciona un nodo",
+    "please_select_wallet": "Selecciona una billetera",
+    "please_select_signer": "Selecciona un firmador",
+    "no_signer_used": "No se usa firmador de hardware",
+    "connected": "Conectado",
+    "incompatible": "Incompatible"
+  }
+}

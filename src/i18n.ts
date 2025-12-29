@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'zh-CN',
-    supportedLngs: ['zh-CN', 'zh-TW', 'en', 'zh'],
+    supportedLngs: ['zh-CN', 'zh-TW', 'en', 'es', 'de', 'zh'],
     load: 'currentOnly',
     nonExplicitSupportedLngs: true,
     

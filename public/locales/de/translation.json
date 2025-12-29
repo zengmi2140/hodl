@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Bitcoin Eigenverwahrung Spielplatz"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "reset": "Zurücksetzen",
+    "faq": "FAQ",
+    "close": "Schließen",
+    "selected": "Ausgewählt",
+    "delete": "Löschen"
+  },
+  "header": {
+    "title": "Bitcoin Eigenverwahrung Spielplatz",
+    "resetPref": "Einstellungen zurücksetzen",
+    "viewFaq": "FAQ anzeigen",
+    "selectLang": "Sprache wählen"
+  },
+  "guide": {
+    "step1_title": "Willkommen beim Bitcoin Eigenverwahrung Spielplatz",
+    "step1_desc": "Zuerst: Welches Gerät nutzt du hauptsächlich für deine Bitcoin-Verwaltung?",
+    "step2_title": "Über Hardware-Signierer",
+    "step2_desc": "Hardware-Signierer bieten erhöhte Sicherheit, erfordern aber Einarbeitung und eine Investition. Was bevorzugst du?",
+    "device": {
+      "mobile": "Mobil",
+      "mobileDesc": "Ich nutze ein Smartphone",
+      "desktop": "Desktop",
+      "desktopDesc": "Ich nutze einen Laptop oder Desktop-PC"
+    },
+    "signer": {
+      "yes": "Ich bin interessiert",
+      "yesDesc": "Ich bin bereit, einen Hardware-Signierer auszuprobieren",
+      "no": "Nur Software",
+      "noDesc": "Ich bevorzuge die Nutzung von reiner Software"
+    }
+  },
+  "mode": {
+    "single": "Single-Sig",
+    "multi": "Multisig",
+    "single_short": "Single",
+    "multi_short": "Multisig",
+    "selectMode": "Sicherheitsmodell wählen",
+    "threshold_label": "Schwellenwert",
+    "threshold_hint_2of3": "2 Signaturen von 3 Signierern erforderlich",
+    "threshold_hint_3of5": "3 Signaturen von 5 Signierern erforderlich",
+    "threshold": "{{m}} von {{n}}"
+  },
+  "multisig": {
+    "signer_slot": "Signierer {{index}}",
+    "drag_drop": "Signierer hinzufügen",
+    "select_signer": "Signierer wählen",
+    "select_signer_with_index": "Signierer #{{index}} wählen",
+    "threshold_label": "Quorum"
+  },
+  "columns": {
+    "signer": "Hardware-Signierer",
+    "wallet": "Software-Wallet",
+    "node": "Node"
+  },
+  "features": {
+    "signer": "Signierer-Funktionen",
+    "wallet": "Wallet-Funktionen",
+    "node": "Node-Funktionen",
+    "title": "Funktionsdetails",
+    "empty": "Keine Funktionsinformationen verfügbar",
+    "selected_title": "Funktionen der Auswahl"
+  },
+  "arrows": {
+    "pubkey_sig": "Pubkey & Signatur",
+    "unsigned_tx": "PSBT (Unsigniert)",
+    "address_signed": "Adresse & Signierte Tx",
+    "balance": "Kontostands-Info",
+    "select_hint_signer_wallet": "Signierer & Wallet wählen",
+    "select_hint_wallet_node": "Wallet & Node wählen",
+    "please_select_node": "Node wählen",
+    "please_select_wallet": "Wallet wählen",
+    "please_select_signer": "Signierer wählen",
+    "no_signer_used": "Kein Hardware-Signierer verwendet",
+    "connected": "Verbunden",
+    "incompatible": "Inkompatibel"
+  }
+}

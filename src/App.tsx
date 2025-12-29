@@ -71,12 +71,15 @@ function App() {
     const loadData = async () => {
       setState(prev => ({ ...prev, isLoading: true }));
       try {
+        // 使用 resolvedLanguage 确保获取到支持的语言代码 (如 'es', 'zh-CN')
+        const currentLang = i18n.resolvedLanguage || i18n.language;
+        
         // 加载托管数据
-        const data = await loadCustodyData(i18n.language);
+        const data = await loadCustodyData(currentLang);
         setState(prev => ({ ...prev, custodyData: data, isLoading: false }));
 
         // 加载FAQ
-        const faqResponse = await fetch(`/locales/${i18n.language}/faq.md`);
+        const faqResponse = await fetch(`/locales/${currentLang}/faq.md`);
         if (faqResponse.ok) {
           const text = await faqResponse.text();
           setFaqContent(text);
