@@ -2,22 +2,45 @@
 
 一个帮助用户了解比特币自主保管方案的教育工具。通过交互式界面，用户可以探索硬件签名器、软件钱包和区块链节点的组合，理解不同配置的安全性和便利性权衡。
 
-## 功能特点
+## 核心功能
 
-- **单签/多签模式**：支持传统单签名 (1-of-1) 和多签名 (2-of-3、3-of-5) 配置
-- **组件兼容性展示**：自动筛选并高亮兼容的硬件签名器、软件钱包和节点组合
-- **数据传输方式可视化**：展示 USB、QR 码、microSD、蓝牙等连接方式
-- **进度评估系统**：根据选择的组件计算安全性得分，帮助用户理解各配置的优劣
-- **响应式设计**：完整支持桌面端和移动端体验
-- **初始引导**：帮助新用户根据设备类型和偏好开始探索
+- **多语言支持**：全面支持简体中文 (zh-CN)、繁体中文 (zh-TW) 和英文 (en)，自动根据浏览器设置进行切换。
+- **单签/多签模式切换**：通过统一的模式选择器，用户可以随时在传统单签名 (1-of-1) 和多签名 (2-of-3、3-of-5) 配置间切换。
+- **组件兼容性动态分析**：自动筛选并高亮兼容的硬件签名器、软件钱包和节点组合，并展示 USB、QR 码、microSD 等数据传输方式。
+- **进度评估系统**：根据当前选择的组件组合，实时计算安全性得分，帮助用户直观理解不同配置的优劣。
+- **跨平台适配**：完美适配桌面端和移动端，并支持手动切换模拟不同设备的体验。
 
-## 技术栈
+## 技术架构
 
-- React 18 + TypeScript
-- Vite 5
-- TailwindCSS 3
-- react-markdown（用于 FAQ 渲染）
-- react-router-dom（路由管理）
+- **前端框架**：React 18 + TypeScript + Vite 5
+- **样式方案**：TailwindCSS 3
+- **国际化 (i18n)**：基于 `i18next` 实现了 UI 文本和业务数据的多语言动态加载。
+- **数据管理**：采用异步数据加载模式，根据选定语言从 `/public/locales/` 动态获取 `data.json` 和 `faq.md`。
+
+## 项目结构
+
+```
+├── public/
+│   ├── locales/             # 多语言资源文件
+│   │   ├── en/              # 英文数据与翻译
+│   │   ├── zh-CN/           # 简体中文数据与翻译
+│   │   └── zh-TW/           # 繁体中文数据与翻译
+│   └── images/logos/        # 品牌 Logo 资源
+├── src/
+│   ├── components/
+│   │   ├── mobile/          # 移动端专用组件
+│   │   ├── multisig/        # 多签模式专用组件
+│   │   ├── singlesig/       # 单签模式专用组件
+│   │   └── shared/          # 跨模式共享组件
+│   ├── hooks/               # 自定义 Hooks（如 useIsMobile）
+│   ├── dataLoader.ts        # 异步数据加载器
+│   ├── i18n.ts              # 国际化配置
+│   ├── types.ts             # TypeScript 类型定义
+│   └── App.tsx              # 应用核心状态管理
+├── tailwind.config.js
+├── vite.config.ts
+└── index.html
+```
 
 ## 快速开始
 
@@ -35,42 +58,18 @@ npm run build
 npm run preview
 ```
 
-## 项目结构
+## 数据配置说明
 
-```
-├── public/
-│   ├── custody-data.json    # 组件数据与兼容性配置
-│   └── images/logos/        # 品牌 Logo 资源
-├── src/
-│   ├── components/
-│   │   ├── mobile/          # 移动端专用组件
-│   │   ├── multisig/        # 多签模式组件
-│   │   ├── shared/          # 共享组件（钱包列、节点列等）
-│   │   └── singlesig/       # 单签模式组件
-│   ├── content/
-│   │   └── FAQ.md           # FAQ 内容
-│   ├── hooks/               # 自定义 Hooks
-│   ├── data.ts              # 备用数据
-│   ├── dataLoader.ts        # 数据加载逻辑
-│   ├── types.ts             # TypeScript 类型定义
-│   └── main.tsx             # 应用入口
-├── tailwind.config.js
-├── vite.config.ts
-└── index.html
-```
+数据现在按语言存储在 `public/locales/{lang}/data.json` 中。包含以下核心内容：
 
-## 数据配置
+- **硬件签名器** (hardwareSigners)：如 Coldcard, Ledger, Jade 等。
+- **软件钱包** (softwareWallets)：如 Sparrow, Blue Wallet, Electrum 等。
+- **区块链节点** (nodes)：如 Bitcoin Core, Electrs, 公共节点等。
+- **传输方法** (transferMethods)：定义不同签名器与钱包之间的连接媒介。
 
-所有组件数据存储在 `public/custody-data.json`，包括：
+如需修改或翻译数据，请前往对应的语言文件夹编辑 JSON 文件。
 
-- **硬件签名器**：Coldcard、Ledger、Jade、Keystone、Seedsigner、Trezor、BitBox02
-- **软件钱包**：Sparrow、Blue Wallet、Electrum、Green、Liana、Nunchuk
-- **区块链节点**：electrs、公共节点、Bitcoin Core、Bitcoin Knots
-- **兼容性映射**：签名器与钱包的连接方式
-
-如需自定义数据，直接修改该 JSON 文件即可。
-
-## 进度计算规则
+## 安全性评估规则
 
 ### 单签模式
 - 仅硬件签名器：50%
@@ -93,7 +92,7 @@ npm run preview
 
 ## 贡献
 
-欢迎提交 Issue 和 Pull Request！
+欢迎提交 Issue 和 Pull Request 来完善这个教育工具。
 
 ## 许可证
 
