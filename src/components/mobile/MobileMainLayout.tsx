@@ -12,7 +12,7 @@ import { SLOT_COLORS } from '../../App';
 import './Mobile.css';
 
 interface MobileMainLayoutProps {
-  userPreference: UserPreference | null;
+  userPreference: UserPreference;
   custodyData: CustodyData;
   // Signature mode
   signatureMode: SignatureMode;
@@ -35,6 +35,7 @@ interface MobileMainLayoutProps {
   getMultisigCompatibleSigners: () => string[];
   getMultisigCompatibleWallets: () => string[];
   getMultisigCompatibleNodes: () => string[];
+  onToggleDeviceType: () => void;
 }
 
 const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
@@ -60,22 +61,8 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
   getMultisigCompatibleSigners,
   getMultisigCompatibleWallets,
   getMultisigCompatibleNodes,
+  onToggleDeviceType,
 }) => {
-  if (!userPreference) {
-    return (
-      <main className="mobile-main-layout">
-        <SignatureModeSelector
-          mode={signatureMode}
-          threshold={threshold}
-          onModeChange={onModeChange}
-          onThresholdChange={onThresholdChange}
-        />
-        <div style={{ textAlign: 'center', padding: '40px 20px', color: '#6b7280' }}>
-          正在加载...
-        </div>
-      </main>
-    );
-  }
 
   // Get transfer method labels for data flow
   const getTransferMethodLabels = () => {
@@ -162,6 +149,7 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
           userPreference={userPreference}
           getComponentState={getComponentState}
           onComponentClick={onComponentClick}
+          onToggleDeviceType={onToggleDeviceType}
         />
       ) : (
         <MobileWalletCard
@@ -170,6 +158,7 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
           compatibleWallets={getMultisigCompatibleWallets()}
           userPreference={userPreference}
           onWalletSelect={onMultisigWalletSelect}
+          onToggleDeviceType={onToggleDeviceType}
         />
       )}
 

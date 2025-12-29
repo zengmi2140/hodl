@@ -662,6 +662,36 @@
   font-weight: 500;
 }
 
+/* 移动端设备切换分段控制 */
+.mobile-device-segmented {
+  display: flex;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  padding: 2px;
+  margin-left: 8px;
+}
+
+.mobile-device-segment {
+  padding: 4px 10px;
+  font-size: 0.9rem;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+}
+
+.mobile-device-segment.active {
+  background-color: white;
+  color: #F7931A;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 /* Empty state for no compatible options */
 .mobile-empty-state {
   text-align: center;

@@ -21,7 +21,7 @@ import { UserPreference, ComponentState, CustodyData } from '../types';
 import './multisig/MultisigPage.css';
 
 interface MainLayoutProps {
-  userPreference: UserPreference | null;
+  userPreference: UserPreference;
   selectedSigners: string[];
   selectedWallet: string | null;
   selectedNode: string | null;
@@ -44,6 +44,7 @@ interface MainLayoutProps {
   getMultisigCompatibleSigners: () => string[];
   getMultisigCompatibleWallets: () => string[];
   getMultisigCompatibleNodes: () => string[];
+  onToggleDeviceType: () => void;
 }
 
   const MainLayout: React.FC<MainLayoutProps> = (props) => {
@@ -72,6 +73,7 @@ interface MainLayoutProps {
     getComponentState,
     onComponentClick,
     onLayoutMeasured,
+    onToggleDeviceType,
   } = props;
 
   // 测量布局边界并通知父组件
@@ -126,22 +128,8 @@ interface MainLayoutProps {
         getMultisigCompatibleSigners={getMultisigCompatibleSigners}
         getMultisigCompatibleWallets={getMultisigCompatibleWallets}
         getMultisigCompatibleNodes={getMultisigCompatibleNodes}
+        onToggleDeviceType={onToggleDeviceType}
       />
-    );
-  }
-
-  // 渲染加载状态内容
-  if (!userPreference) {
-    return (
-      <main className="main-layout loading">
-        <SignatureModeSelector
-          mode={signatureMode}
-          threshold={threshold}
-          onModeChange={onModeChange}
-          onThresholdChange={onThresholdChange}
-        />
-        <div className="loading-message">{t('common.loading')}</div>
-      </main>
     );
   }
 
@@ -183,6 +171,7 @@ interface MainLayoutProps {
           onWalletSelect={onMultisigWalletSelect}
           hasSelectedSigners={signerSlots.some(s => s !== null)}
           userPreference={userPreference}
+          onToggleDeviceType={onToggleDeviceType}
         />
         
         <MultisigWalletNodeArrows
@@ -233,6 +222,7 @@ interface MainLayoutProps {
           userPreference={userPreference}
           getComponentState={getComponentState}
           onComponentClick={onComponentClick}
+          onToggleDeviceType={onToggleDeviceType}
         />
         
         <WalletNodeArrows

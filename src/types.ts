@@ -48,7 +48,6 @@ export type ComponentState = 'inactive' | 'breathing' | 'active';
 // 用户偏好类型
 export interface UserPreference {
   deviceType: 'mobile' | 'desktop';
-  signerWillingness: 'no-signer' | 'with-signer';
 }
 
 // 数据存储类型

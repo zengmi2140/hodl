@@ -13,6 +13,7 @@ interface WalletColumnProps {
   // 单签模式使用
   getComponentState?: (componentId: string, type: 'signer' | 'wallet' | 'node') => ComponentState;
   onComponentClick?: (componentId: string, type: 'signer' | 'wallet' | 'node') => void;
+  onToggleDeviceType: () => void;
 }
 
 const WalletColumn: React.FC<WalletColumnProps> = ({
@@ -24,6 +25,7 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
   userPreference,
   getComponentState,
   onComponentClick,
+  onToggleDeviceType,
 }) => {
   const { t } = useTranslation();
 
@@ -58,12 +60,36 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
 
   const deviceIcon = getDeviceIcon();
 
+  // 过滤出与当前设备类型兼容的钱包
+  const filteredWallets = custodyData.softwareWallets.filter(wallet => 
+    wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(userPreference?.deviceType || 'desktop')
+  );
+
   return (
     <div className="column">
-      <div className="column-title">
-        {t('columns.wallet')} {deviceIcon}
+      <div className="column-title" style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative', justifyContent: 'center' }}>
+        <div style={{ flex: 1 }}></div>
+        <span>{t('columns.wallet')}</span>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="device-segmented">
+            <button
+              className={`device-segment ${userPreference?.deviceType === 'desktop' ? 'active' : ''}`}
+              onClick={() => userPreference?.deviceType !== 'desktop' && onToggleDeviceType()}
+              title={t('guide.device.desktop')}
+            >
+              💻
+            </button>
+            <button
+              className={`device-segment ${userPreference?.deviceType === 'mobile' ? 'active' : ''}`}
+              onClick={() => userPreference?.deviceType !== 'mobile' && onToggleDeviceType()}
+              title={t('guide.device.mobile')}
+            >
+              📱
+            </button>
+          </div>
+        </div>
       </div>
-      {custodyData.softwareWallets.map(wallet => {
+      {filteredWallets.map(wallet => {
         // 如果提供了 getComponentState，使用单签模式的状态逻辑
         let isCompatible: boolean;
         let isBreathing: boolean;

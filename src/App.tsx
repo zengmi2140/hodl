@@ -5,7 +5,6 @@ import Header from './components/Header';
 import HeaderMobile from './components/HeaderMobile';
 import FaqDrawer from './components/FaqDrawer';
 import MainLayout from './components/MainLayout';
-import InitialGuide from './components/InitialGuide';
 import { useIsMobile } from './hooks/useIsMobile';
 import { SignatureMode, ThresholdType } from './components/SignatureModeSelector';
 import { loadCustodyData } from './dataLoader';
@@ -25,8 +24,7 @@ interface AppState {
   selectedSigners: string[];
   selectedWallet: string | null;
   selectedNode: string | null;
-  userPreference: UserPreference | null;
-  showGuide: boolean;
+  userPreference: UserPreference;
   custodyData: CustodyData | null;
   isLoading: boolean;
   signatureMode: SignatureMode;
@@ -38,12 +36,18 @@ interface AppState {
 
 function App() {
   const { t, i18n } = useTranslation();
+  const isMobile = useIsMobile(769);
+  
+  // 根据屏幕宽度初始化设备类型
+  const getInitialDeviceType = (): 'mobile' | 'desktop' => {
+    return window.innerWidth <= 769 ? 'mobile' : 'desktop';
+  };
+  
   const [state, setState] = useState<AppState>({
     selectedSigners: [],
     selectedWallet: null,
     selectedNode: null,
-    userPreference: null,
-    showGuide: true,
+    userPreference: { deviceType: getInitialDeviceType() },
     custodyData: null,
     isLoading: true,
     signatureMode: 'single',
@@ -55,19 +59,6 @@ function App() {
   const [isFaqOpen, setIsFaqOpen] = useState(false);
   const [faqContent, setFaqContent] = useState('');
   const [layoutBounds, setLayoutBounds] = useState<{ leftEdge: number; rightEdge: number } | null>(null);
-  const isMobile = useIsMobile(769);
-
-  // 验证用户偏好数据结构
-  const isValidUserPreference = (data: unknown): data is UserPreference => {
-    return (
-      data !== null &&
-      typeof data === 'object' &&
-      'deviceType' in data &&
-      'signerWillingness' in data &&
-      ((data as UserPreference).deviceType === 'mobile' || (data as UserPreference).deviceType === 'desktop') &&
-      ((data as UserPreference).signerWillingness === 'no-signer' || (data as UserPreference).signerWillingness === 'with-signer')
-    );
-  };
 
   // SEO & Language settings
   useEffect(() => {
@@ -104,27 +95,6 @@ function App() {
     
     loadData();
   }, [i18n.language]);
-
-  // 从本地存储加载用户偏好
-  useEffect(() => {
-    const savedPreference = localStorage.getItem('userPreference');
-    if (savedPreference) {
-      try {
-        const parsed = JSON.parse(savedPreference);
-        if (isValidUserPreference(parsed)) {
-          setState(prev => ({
-            ...prev,
-            userPreference: parsed,
-            showGuide: false
-          }));
-        } else {
-          localStorage.removeItem('userPreference');
-        }
-      } catch {
-        localStorage.removeItem('userPreference');
-      }
-    }
-  }, []);
 
   // 切换签名模式
   const handleModeChange = (mode: SignatureMode) => {
@@ -176,17 +146,15 @@ function App() {
       const wallet = prev.custodyData?.softwareWallets.find(w => w.id === walletId);
       let newPreference = prev.userPreference;
       
-      if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
+      if (wallet && wallet.supportedPlatforms.length === 1) {
         const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
         const currentDeviceType = prev.userPreference.deviceType;
         
         if ((walletPlatform === 'desktop' && currentDeviceType === 'mobile') ||
             (walletPlatform === 'mobile' && currentDeviceType === 'desktop')) {
           newPreference = {
-            ...prev.userPreference,
             deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile'
           };
-          localStorage.setItem('userPreference', JSON.stringify(newPreference));
         }
       }
       
@@ -246,21 +214,18 @@ function App() {
 
   // 计算组件状态（单签模式）
   const getComponentState = (componentId: string, type: 'signer' | 'wallet' | 'node'): ComponentState => {
-    if (!state.custodyData || !state.userPreference) return 'inactive';
+    if (!state.custodyData) return 'inactive';
     const userDeviceType = state.userPreference.deviceType;
     
     if (type === 'signer') {
       if (state.selectedSigners.includes(componentId)) return 'active';
       if (state.selectedSigners.length > 0) return 'inactive';
-      if (componentId === 'none') {
-        if (state.userPreference.signerWillingness === 'with-signer') return 'inactive';
-        return 'breathing';
-      }
+      // 允许直接选择任何签名器，包括"不使用签名器"
       if (state.selectedWallet) {
         const wallet = state.custodyData.softwareWallets.find(w => w.id === state.selectedWallet);
         if (wallet && wallet.compatibleSigners.includes(componentId)) return 'breathing';
       }
-      if (state.userPreference.signerWillingness === 'with-signer' && state.selectedWallet === null && state.selectedNode === null) {
+      if (state.selectedWallet === null && state.selectedNode === null) {
         return 'breathing';
       }
       return 'inactive';
@@ -303,17 +268,13 @@ function App() {
       setState(prev => {
         const newState = { ...prev, selectedSigners: [], selectedWallet: null, selectedNode: null };
         if (type === 'signer') {
-          const newWillingness = componentId === 'none' ? 'no-signer' : 'with-signer';
-          const newPreference = { ...prev.userPreference!, signerWillingness: newWillingness };
-          localStorage.setItem('userPreference', JSON.stringify(newPreference));
-          return { ...newState, userPreference: newPreference, selectedSigners: [componentId] };
+          return { ...newState, selectedSigners: [componentId] };
         } else if (type === 'wallet') {
           const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
           let newPreference = prev.userPreference;
-          if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
+          if (wallet && wallet.supportedPlatforms.length === 1) {
             const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
-            newPreference = { ...prev.userPreference, deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile' };
-            localStorage.setItem('userPreference', JSON.stringify(newPreference));
+            newPreference = { deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile' };
           }
           return { ...newState, selectedWallet: componentId, userPreference: newPreference };
         } else if (type === 'node') {
@@ -339,10 +300,9 @@ function App() {
         }
         const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
         let newPreference = prev.userPreference;
-        if (wallet && prev.userPreference && wallet.supportedPlatforms.length === 1) {
+        if (wallet && wallet.supportedPlatforms.length === 1) {
           const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
-          newPreference = { ...prev.userPreference, deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile' };
-          localStorage.setItem('userPreference', JSON.stringify(newPreference));
+          newPreference = { deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile' };
         }
         return { ...prev, selectedWallet: componentId, selectedNode: null, userPreference: newPreference };
       });
@@ -377,38 +337,39 @@ function App() {
     return 0;
   };
 
-  const handlePreferenceSet = (preference: UserPreference) => {
+  // 切换设备类型
+  const toggleDeviceType = () => {
     setState(prev => {
-      const newState = { ...prev, userPreference: preference, showGuide: false };
-      if (preference.signerWillingness === 'no-signer') {
-        newState.selectedSigners = ['none'];
-        newState.selectedWallet = null;
-        newState.selectedNode = null;
+      const newDeviceType = prev.userPreference.deviceType === 'mobile' ? 'desktop' : 'mobile';
+      const newState = {
+        ...prev,
+        userPreference: { deviceType: newDeviceType }
+      };
+
+      // 检查当前选中的钱包是否与新设备类型兼容
+      if (prev.selectedWallet && prev.custodyData) {
+        const wallet = prev.custodyData.softwareWallets.find(w => w.id === prev.selectedWallet);
+        if (wallet && !wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(newDeviceType)) {
+          newState.selectedWallet = null;
+          newState.selectedNode = null;
+        }
       }
+
+      // 检查多签模式下的钱包
+      if (prev.multisigWallet && prev.custodyData) {
+        const wallet = prev.custodyData.softwareWallets.find(w => w.id === prev.multisigWallet);
+        if (wallet && !wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(newDeviceType)) {
+          newState.multisigWallet = null;
+          newState.multisigNode = null;
+        }
+      }
+
       return newState;
     });
-    localStorage.setItem('userPreference', JSON.stringify(preference));
   };
 
   const handleOpenFaq = () => setIsFaqOpen(true);
   const handleCloseFaq = () => setIsFaqOpen(false);
-
-  const handleResetPreference = () => {
-    setState(prev => ({
-      ...prev,
-      selectedSigners: [],
-      selectedWallet: null,
-      selectedNode: null,
-      userPreference: null,
-      showGuide: true,
-      signatureMode: 'single',
-      threshold: '2-of-3',
-      signerSlots: [null, null, null],
-      multisigWallet: null,
-      multisigNode: null
-    }));
-    localStorage.removeItem('userPreference');
-  };
 
   if (state.isLoading || !state.custodyData) {
     return (
@@ -422,22 +383,16 @@ function App() {
 
   return (
     <div className="App">
-      {state.showGuide && (
-        <InitialGuide onPreferenceSet={handlePreferenceSet} />
-      )}
-      
       {isMobile ? (
         <HeaderMobile
           completionPercentage={getCompletionPercentage()}
           maxProgress={state.signatureMode === 'multi' ? (state.threshold === '2-of-3' ? 130 : 150) : 120}
-          onResetPreference={handleResetPreference}
           onOpenFaq={handleOpenFaq}
         />
       ) : (
         <Header 
           completionPercentage={getCompletionPercentage()}
           maxProgress={state.signatureMode === 'multi' ? (state.threshold === '2-of-3' ? 130 : 150) : 120}
-          onResetPreference={handleResetPreference}
           onOpenFaq={handleOpenFaq}
           layoutLeftEdge={layoutBounds?.leftEdge}
           layoutRightEdge={layoutBounds?.rightEdge}
@@ -466,6 +421,7 @@ function App() {
         getMultisigCompatibleSigners={getMultisigCompatibleSigners}
         getMultisigCompatibleWallets={getMultisigCompatibleWallets}
         getMultisigCompatibleNodes={getMultisigCompatibleNodes}
+        onToggleDeviceType={toggleDeviceType}
       />
 
       <FaqDrawer 

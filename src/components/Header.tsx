@@ -4,13 +4,12 @@ import { useTranslation } from 'react-i18next';
 interface HeaderProps {
   completionPercentage: number;
   maxProgress?: number;
-  onResetPreference: () => void;
   onOpenFaq: () => void;
   layoutLeftEdge?: number;
   layoutRightEdge?: number;
 }
 
-const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120, onResetPreference, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
+const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
   const { t, i18n } = useTranslation();
 
   // 进度条动态宽度计算（保持居中）
@@ -92,13 +91,6 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
           <option value="zh-TW">繁體中文</option>
           <option value="en">English</option>
         </select>
-        <button 
-          className="header-btn"
-          onClick={onResetPreference}
-          title={t('header.resetPref')}
-        >
-          {t('common.reset')}
-        </button>
         <button 
           className="header-btn"
           onClick={onOpenFaq}

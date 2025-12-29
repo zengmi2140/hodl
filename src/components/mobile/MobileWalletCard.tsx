@@ -7,12 +7,13 @@ interface MobileWalletCardProps {
   selectedWallet: string | null;
   custodyData: CustodyData;
   compatibleWallets: string[];
-  userPreference: UserPreference | null;
+  userPreference: UserPreference;
   // For single-sig mode
   getComponentState?: (componentId: string, type: 'signer' | 'wallet' | 'node') => ComponentState;
   onComponentClick?: (componentId: string, type: 'signer' | 'wallet' | 'node') => void;
   // For multi-sig mode
   onWalletSelect?: (walletId: string | null) => void;
+  onToggleDeviceType: () => void;
 }
 
 const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
@@ -23,6 +24,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
   getComponentState,
   onComponentClick,
   onWalletSelect,
+  onToggleDeviceType,
 }) => {
   const cardEndRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -81,7 +83,7 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
     : null;
 
   // 根据选中的钱包动态决定设备图标
-  // 如果已选择钱包且钱包只支持一个平台，显示该平台的图标
+  // 如果已选择钱包且钱包只支持一个平台,显示该平台的图标
   // 否则显示用户偏好中的设备类型图标
   const getDeviceIcon = () => {
     if (selectedWallet) {
@@ -92,10 +94,15 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
       }
     }
     // 否则使用用户偏好中的设备类型
-    return userPreference?.deviceType === 'mobile' ? '📱' : '💻';
+    return userPreference.deviceType === 'mobile' ? '📱' : '💻';
   };
 
   const deviceIcon = getDeviceIcon();
+
+  // 过滤出与当前设备类型兼容的钱包
+  const filteredWallets = custodyData.softwareWallets.filter(wallet => 
+    wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(userPreference.deviceType)
+  );
 
   return (
     <>
@@ -107,12 +114,26 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
             {selectedWalletData && (
               <span className="mobile-card-selected-badge">{selectedWalletData.name}</span>
             )}
+            <div className="mobile-device-segmented" onClick={(e) => e.stopPropagation()}>
+              <button
+                className={`mobile-device-segment ${userPreference.deviceType === 'desktop' ? 'active' : ''}`}
+                onClick={() => userPreference.deviceType !== 'desktop' && onToggleDeviceType()}
+              >
+                💻
+              </button>
+              <button
+                className={`mobile-device-segment ${userPreference.deviceType === 'mobile' ? 'active' : ''}`}
+                onClick={() => userPreference.deviceType !== 'mobile' && onToggleDeviceType()}
+              >
+                📱
+              </button>
+            </div>
           </div>
           <span className={`mobile-card-toggle ${isExpanded ? 'expanded' : ''}`}>▼</span>
         </div>
         <div className={`mobile-card-body ${isExpanded ? 'expanded' : ''}`}>
           <div className="mobile-card-content">
-            {custodyData.softwareWallets.map(wallet => {
+            {filteredWallets.map(wallet => {
               const state = getWalletState(wallet.id);
               const isSelected = selectedWallet === wallet.id;
 

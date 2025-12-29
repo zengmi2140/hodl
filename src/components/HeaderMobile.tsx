@@ -4,14 +4,12 @@ import { useTranslation } from 'react-i18next';
 interface HeaderMobileProps {
   completionPercentage: number;
   maxProgress?: number;
-  onResetPreference: () => void;
   onOpenFaq: () => void;
 }
 
 const HeaderMobile: React.FC<HeaderMobileProps> = ({
   completionPercentage,
   maxProgress = 120,
-  onResetPreference,
   onOpenFaq
 }) => {
   const { t, i18n } = useTranslation();
@@ -41,18 +39,9 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
   return (
     <header className="header-mobile">
       <div className="header-mobile__content">
-        <button
-          className="header-mobile__icon header-mobile__icon--left"
-          onClick={onResetPreference}
-          aria-label={t('header.resetPref')}
-          title={t('common.reset')}
-        >
-          ↺
-        </button>
-
         <div 
-          className="header-mobile__icon"
-          style={{ right: '58px' }}
+          className="header-mobile__icon header-mobile__icon--left"
+          style={{ left: '12px' }}
         >
            <select
              value={i18n.language}
