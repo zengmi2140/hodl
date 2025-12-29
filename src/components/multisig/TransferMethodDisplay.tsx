@@ -14,7 +14,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
   selectedWallet,
   custodyData,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   // 获取每个签名器到钱包的传输方式
   const getTransferMethods = (signerId: string, walletId: string): string[] => {
     if (!custodyData.transferMethods) return [];

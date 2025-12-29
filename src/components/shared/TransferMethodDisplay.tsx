@@ -43,7 +43,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
   signerSlots,
   custodyData,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   // 判断是单签还是多签模式
   const isMultisigMode = signerSlots !== undefined;
   
