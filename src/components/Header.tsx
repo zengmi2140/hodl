@@ -91,7 +91,6 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
           <option value="zh-TW">繁體中文</option>
           <option value="en">English</option>
           <option value="es">Español</option>
-          <option value="de">Deutsch</option>
         </select>
         <button 
           className="header-btn"

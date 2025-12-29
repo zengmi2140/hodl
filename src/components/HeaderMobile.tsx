@@ -62,12 +62,10 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
              <option value="zh-TW">繁</option>
              <option value="en">EN</option>
              <option value="es">ES</option>
-             <option value="de">DE</option>
            </select>
            <span style={{ fontSize: '12px', fontWeight: 700 }}>
              {i18n.language.includes('en') ? 'EN' : 
               i18n.language.includes('es') ? 'ES' : 
-              i18n.language.includes('de') ? 'DE' : 
               (i18n.language.includes('TW') ? '繁' : '简')}
            </span>
         </div>
