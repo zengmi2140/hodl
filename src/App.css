@@ -382,14 +382,30 @@ body {
 }
 
 .header-mobile__title {
-  font-size: 1.25rem;
+  /* 核心修复：设置左右内边距，预留出左右按钮的空间 */
+  padding: 0 52px;
+  
+  /* 优化字号：响应式字号 */
+  font-size: clamp(1rem, 4.5vw, 1.15rem);
+  
+  /* 增强布局 */
+  width: 100%;
+  box-sizing: border-box;
+  
+  /* 文本处理 */
+  line-height: 1.2;
   font-weight: 800;
   color: #0f172a;
-  line-height: 1.4;
   min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  
+  /* 语言适配 */
+  hyphens: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .header-mobile__progress {
