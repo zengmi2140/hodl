@@ -8,31 +8,15 @@
     "faq": "FAQ",
     "close": "關閉",
     "selected": "已選",
-    "delete": "刪除"
+    "delete": "刪除",
+    "mobile": "手機",
+    "desktop": "電腦"
   },
   "header": {
     "title": "比特幣自主保管模擬器",
     "resetPref": "重置偏好",
     "viewFaq": "查看 FAQ",
     "selectLang": "選擇語言"
-  },
-  "guide": {
-    "step1_title": "歡迎使用比特幣自主保管模擬器",
-    "step1_desc": "首先，請告訴我們您主要使用什麼設備來管理比特幣：",
-    "step2_title": "關於硬體簽名器",
-    "step2_desc": "硬體簽名器可以提供更高的安全性，但需要額外的學習和設備投入。您的態度是：",
-    "device": {
-      "mobile": "手機",
-      "mobileDesc": "我希望使用手機來聯網",
-      "desktop": "電腦",
-      "desktopDesc": "我使用電腦來聯網"
-    },
-    "signer": {
-      "yes": "願意嘗試",
-      "yesDesc": "我願意嘗試硬體簽名器",
-      "no": "暫不使用",
-      "noDesc": "我不想使用專門的簽名器"
-    }
   },
   "mode": {
     "single": "單簽名模式",

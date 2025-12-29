@@ -8,31 +8,15 @@
     "faq": "FAQ",
     "close": "关闭",
     "selected": "已选",
-    "delete": "删除"
+    "delete": "删除",
+    "mobile": "手机",
+    "desktop": "电脑"
   },
   "header": {
     "title": "比特币自主保管模拟器",
     "resetPref": "重置偏好",
     "viewFaq": "查看 FAQ",
     "selectLang": "选择语言"
-  },
-  "guide": {
-    "step1_title": "欢迎使用比特币自主保管模拟器",
-    "step1_desc": "首先，请告诉我们您主要使用什么设备来管理比特币：",
-    "step2_title": "关于硬件签名器",
-    "step2_desc": "硬件签名器可以提供更高的安全性，但需要额外的学习和设备投入。您的态度是：",
-    "device": {
-      "mobile": "手机",
-      "mobileDesc": "我希望使用手机来联网",
-      "desktop": "电脑",
-      "desktopDesc": "我使用电脑来联网"
-    },
-    "signer": {
-      "yes": "愿意尝试",
-      "yesDesc": "我愿意尝试硬件签名器",
-      "no": "暂不使用",
-      "noDesc": "我不想使用专门的签名器"
-    }
   },
   "mode": {
     "single": "单签名模式",

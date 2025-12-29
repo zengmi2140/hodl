@@ -15,30 +15,14 @@ declare module 'i18next' {
           close: string;
           selected: string;
           delete: string;
+          mobile: string;
+          desktop: string;
         };
         header: {
           title: string;
           resetPref: string;
           viewFaq: string;
           selectLang: string;
-        };
-        guide: {
-          step1_title: string;
-          step1_desc: string;
-          step2_title: string;
-          step2_desc: string;
-          device: {
-            mobile: string;
-            mobileDesc: string;
-            desktop: string;
-            desktopDesc: string;
-          };
-          signer: {
-            yes: string;
-            yesDesc: string;
-            no: string;
-            noDesc: string;
-          };
         };
         mode: {
           single: string;

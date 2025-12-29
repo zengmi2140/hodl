@@ -75,14 +75,14 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
             <button
               className={`device-segment ${userPreference?.deviceType === 'desktop' ? 'active' : ''}`}
               onClick={() => userPreference?.deviceType !== 'desktop' && onToggleDeviceType()}
-              title={t('guide.device.desktop')}
+              title={t('common.desktop')}
             >
               💻
             </button>
             <button
               className={`device-segment ${userPreference?.deviceType === 'mobile' ? 'active' : ''}`}
               onClick={() => userPreference?.deviceType !== 'mobile' && onToggleDeviceType()}
-              title={t('guide.device.mobile')}
+              title={t('common.mobile')}
             >
               📱
             </button>

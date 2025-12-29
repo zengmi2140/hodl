@@ -8,31 +8,15 @@
     "faq": "FAQ",
     "close": "Close",
     "selected": "Selected",
-    "delete": "Delete"
+    "delete": "Delete",
+    "mobile": "Mobile",
+    "desktop": "Desktop"
   },
   "header": {
     "title": "Bitcoin Self-Custody Playground",
     "resetPref": "Reset Preferences",
     "viewFaq": "View FAQ",
     "selectLang": "Select Language"
-  },
-  "guide": {
-    "step1_title": "Welcome to Bitcoin Self-Custody Playground",
-    "step1_desc": "First, which device do you primarily use for Bitcoin management?",
-    "step2_title": "About Hardware Signers",
-    "step2_desc": "Hardware signers offer enhanced security but require extra learning and investment. What is your preference?",
-    "device": {
-      "mobile": "Mobile",
-      "mobileDesc": "I use a mobile phone",
-      "desktop": "Desktop",
-      "desktopDesc": "I use a laptop or desktop"
-    },
-    "signer": {
-      "yes": "I'm interested",
-      "yesDesc": "I'm willing to try a hardware signer",
-      "no": "Software only",
-      "noDesc": "I prefer using just software"
-    }
   },
   "mode": {
     "single": "Single-Sig",
