@@ -4,19 +4,18 @@ This is a sandbox designed to help you explore the various hardware and software
 
 ## How do I use this tool?
 
-On the main dashboard, you can click on different hardware and software icons to build your setup. As you select components, the tool will show you:
-- Key features of each device or app.
-- Which other components are compatible with your current selection.
-- How they connect (e.g., USB, QR codes, microSD).
-- A real-time security assessment of your architecture.
+On the main dashboard, you can click on various icons to explore hardware and software options. As you make selections, the tool provides:
+- Key features and technical specs of each component.
+- Real-time compatibility filtering (highlighting what works with your current setup).
+- Connection methods (e.g., USB, QR codes, microSD).
+- A dynamic security assessment of your overall architecture.
 
 **The Workflow:**
-- Icons with a **pulsing effect** are available to be added to your setup.
-- Click a pulsing icon to **select** it.
-- Your setup is complete once you have selected a **Hardware Signer**, a **Software Wallet**, and a **Node**. 
-- You can then review the "Features" box at the bottom and the security score at the top to see the strengths and trade-offs of your configuration.
-- Click any **dimmed (inactive) icon** to **reset** that category and start over.
-- If you get lost, simply **refresh the page** to reset everything and start from scratch.
+- Icons with a **pulsing effect** are available to be added. Click one to **select** it.
+- **Active (highlighted)** icons represent your current setup. Click an active icon to **remove** it; the tool will maintain your other choices so you can swap components easily.
+- **Dimmed (inactive)** icons are either incompatible with your current selection or can be clicked to **reset** that entire category.
+- Once you have selected a **Hardware Signer**, a **Software Wallet**, and a **Node**, your setup is complete. You can then review the full security analysis at the top and the feature breakdown at the bottom.
+- If you ever feel stuck, simply **refresh the page** to start over from scratch :)
 
 **Note for Multisig:** 
 The Multisig page works slightly differently. We recommend choosing your **Software Wallet** first, as it will determine which hardware signers are compatible with that specific coordinator.
