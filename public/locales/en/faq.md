@@ -16,7 +16,7 @@ On the main dashboard, you can click on different hardware and software icons to
 - Your setup is complete once you have selected a **Hardware Signer**, a **Software Wallet**, and a **Node**. 
 - You can then review the "Features" box at the bottom and the security score at the top to see the strengths and trade-offs of your configuration.
 - Click any **dimmed (inactive) icon** to **reset** that category and start over.
-- Use the **Reset** button in the top-right corner to clear everything and start from scratch.
+- If you get lost, simply **refresh the page** to reset everything and start from scratch.
 
 **Note for Multisig:** 
 The Multisig page works slightly differently. We recommend choosing your **Software Wallet** first, as it will determine which hardware signers are compatible with that specific coordinator.
