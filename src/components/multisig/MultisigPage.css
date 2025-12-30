@@ -58,7 +58,7 @@
   border-bottom: 2px solid hsl(var(--border));
   margin: 0 0 8px 0; /* 显式重置所有 margin */
   width: 100%;
-  background: #f8fafc;
+  background: hsl(var(--background));
 }
 
 /* 设备切换分段控制 */
@@ -89,7 +89,7 @@
 }
 
 .device-segment.active {
-  background-color: white;
+  background-color: hsl(var(--card));
   color: #F7931A;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -182,7 +182,7 @@
   height: 40px;
   border-radius: 8px;
   object-fit: contain;
-  background-color: white;
+  background-color: hsl(var(--card));
   padding: 4px;
 }
 
@@ -269,6 +269,11 @@
   background-color: #fff7ed;
 }
 
+.dark .option-item.compatible:hover {
+  background-color: hsl(var(--secondary));
+  border-color: #F7931A;
+}
+
 .option-item.breathing {
   animation: optionBreathing 2s ease-in-out infinite;
 }
@@ -292,12 +297,26 @@
   animation: none;
 }
 
+.dark .option-item.selected {
+  background-color: hsl(var(--secondary));
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.4);
+}
+
+.dark .option-item.selected .option-name {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+
+.dark .option-item.selected .option-logo {
+  filter: brightness(1.1) contrast(1.1);
+}
+
 .option-logo {
   width: 40px;
   height: 40px;
   border-radius: 8px;
   object-fit: contain;
-  background-color: white;
+  background-color: hsl(var(--card));
   padding: 4px;
 }
 
@@ -546,7 +565,7 @@
   left: 0;
   right: 0;
   margin-top: 4px;
-  background-color: white;
+  background-color: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -554,6 +573,10 @@
   max-height: 320px;
   overflow-y: auto;
   animation: dropdownFadeIn 0.15s ease-out;
+}
+
+.dark .signer-dropdown {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes dropdownFadeIn {
@@ -596,6 +619,10 @@
   background-color: #fff7ed;
 }
 
+.dark .signer-dropdown-item:hover {
+  background-color: hsl(var(--secondary));
+}
+
 .signer-dropdown-item.disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -628,6 +655,11 @@
   border-radius: 4px;
 }
 
+.dark .signer-dropdown-item-incompatible {
+  color: #f87171;
+  background-color: hsl(0 84% 60% / 0.2);
+}
+
 .signer-dropdown-item-logo {
   width: 32px;
   height: 32px;
@@ -649,11 +681,15 @@
   top: 0;
   width: 200px;
   padding: 12px;
-  background-color: white;
+  background-color: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 50;
+}
+
+.dark .feature-tooltip {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .feature-tooltip-item {
@@ -696,7 +732,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(248, 250, 252, 1) 80%, rgba(248, 250, 252, 0));
+  background: linear-gradient(to top, hsl(var(--background)) 80%, hsl(var(--background) / 0));
   padding: 20px 20px 24px;
   z-index: 20;
 }
@@ -731,7 +767,7 @@
 }
 
 .feature-box {
-  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+  background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--secondary) / 0.3) 100%);
   border-radius: 14px;
   padding: 18px;
   box-shadow: 
@@ -743,6 +779,13 @@
   overflow-y: auto;
   animation: featureBoxFadeIn 0.3s ease-out;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dark .feature-box {
+  background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .feature-box:hover {
@@ -818,12 +861,24 @@
   background: hsl(142 76% 36% / 0.08);
 }
 
+.dark .feature-box .feature-item.positive {
+  background: hsl(142 76% 36% / 0.15);
+}
+
 .feature-box .feature-item.negative {
   background: hsl(0 84% 60% / 0.08);
 }
 
+.dark .feature-box .feature-item.negative {
+  background: hsl(0 84% 60% / 0.15);
+}
+
 .feature-box .feature-item.warning {
   background: hsl(38 92% 50% / 0.08);
+}
+
+.dark .feature-box .feature-item.warning {
+  background: hsl(38 92% 50% / 0.15);
 }
 
 .feature-box .feature-icon {

@@ -5,12 +5,16 @@ interface HeaderMobileProps {
   completionPercentage: number;
   maxProgress?: number;
   onOpenFaq: () => void;
+  theme?: 'light' | 'dark';
+  onToggleTheme?: () => void;
 }
 
 const HeaderMobile: React.FC<HeaderMobileProps> = ({
   completionPercentage,
   maxProgress = 120,
-  onOpenFaq
+  onOpenFaq,
+  theme,
+  onToggleTheme
 }) => {
   const { t, i18n } = useTranslation();
 
@@ -23,6 +27,10 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
     if (percentage <= 150) return '#ff6b00';
     return '#fbbf24';
   };
+
+  const adjustedProgressColor = theme === 'dark' && completionPercentage <= 100
+    ? getProgressColor(completionPercentage)
+    : getProgressColor(completionPercentage);
 
   // 计算进度条显示宽度（按最大进度值比例缩放）
   const getProgressBarWidth = (): number => {
@@ -79,6 +87,16 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
           ?
         </button>
 
+        <button
+          className="header-mobile__icon"
+          style={{ position: 'absolute', top: '0', right: '56px' }}
+          onClick={onToggleTheme}
+          aria-label="Toggle theme"
+          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+
         <div className="header-mobile__title" aria-label={t('header.title')}>
           {t('header.title')}
         </div>
@@ -89,7 +107,7 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
               className={`progress-bar-mobile ${completionPercentage === 100 ? 'at-hundred' : ''} ${completionPercentage === 120 ? 'singlesig-complete' : ''} ${completionPercentage === 130 ? 'multisig-130' : ''} ${completionPercentage === 150 ? 'multisig-150' : ''}`}
               style={{
                 width: `${getProgressBarWidth()}%`,
-                backgroundColor: getProgressColor(completionPercentage)
+                backgroundColor: adjustedProgressColor
               }}
             />
             <span className={`progress-percentage-mobile ${isMultisigHighProgress ? 'multisig-high' : ''} ${completionPercentage >= 80 ? 'on-bar' : ''}`}>

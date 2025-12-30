@@ -15,6 +15,17 @@
   --border: 214.3 31.8% 91.4%;
   --muted: 210 40% 96%;
   --muted-foreground: 215.4 16.3% 46.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  /* Slot Colors */
+  --slot-1-bg: #dcfce7; --slot-1-border: #86efac;
+  --slot-2-bg: #dbeafe; --slot-2-border: #93c5fd;
+  --slot-3-bg: #ede9fe; --slot-3-border: #c4b5fd;
+  --slot-4-bg: #fce7f3; --slot-4-border: #f9a8d4;
+  --slot-5-bg: #fef9c3; --slot-5-border: #fde047;
 }
 
 .dark {
@@ -29,6 +40,17 @@
   --border: 217.2 32.6% 17.5%;
   --muted: 217.2 32.6% 17.5%;
   --muted-foreground: 215 20.2% 65.1%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+
+  /* Slot Colors - Dark Mode (More muted/deeper) */
+  --slot-1-bg: #064e3b; --slot-1-border: #065f46;
+  --slot-2-bg: #1e3a8a; --slot-2-border: #1e40af;
+  --slot-3-bg: #4c1d95; --slot-3-border: #5b21b6;
+  --slot-4-bg: #831843; --slot-4-border: #9d174d;
+  --slot-5-bg: #713f12; --slot-5-border: #854d0e;
 }
 
 * {

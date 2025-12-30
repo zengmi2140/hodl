@@ -7,9 +7,19 @@ interface HeaderProps {
   onOpenFaq: () => void;
   layoutLeftEdge?: number;
   layoutRightEdge?: number;
+  theme?: 'light' | 'dark';
+  onToggleTheme?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120, onOpenFaq, layoutLeftEdge, layoutRightEdge }) => {
+const Header: React.FC<HeaderProps> = ({ 
+  completionPercentage, 
+  maxProgress = 120, 
+  onOpenFaq, 
+  layoutLeftEdge, 
+  layoutRightEdge,
+  theme,
+  onToggleTheme
+}) => {
   const { t, i18n } = useTranslation();
 
   // 进度条动态宽度计算（保持居中）
@@ -52,6 +62,11 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
     if (percentage <= 150) return '#ff6b00';  // 深橙色 - 3-of-5完整配置
     return '#fbbf24'; // 默认黄色
   };
+
+  // 在夜间模式下，某些颜色可能需要调整以获得更好的对比度
+  const adjustedProgressColor = theme === 'dark' && completionPercentage <= 100 
+    ? getProgressColor(completionPercentage) // 可以根据需要进一步调整
+    : getProgressColor(completionPercentage);
 
   // 计算进度条显示宽度（按最大进度值比例缩放）
   const getProgressBarWidth = (): number => {
@@ -99,6 +114,14 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
         >
           {t('common.faq')}
         </button>
+        <button 
+          className="header-btn"
+          onClick={onToggleTheme}
+          aria-label="Toggle theme"
+          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
       </div>
 
       <div className="header-content">
@@ -116,7 +139,7 @@ const Header: React.FC<HeaderProps> = ({ completionPercentage, maxProgress = 120
               className={`progress-bar ${completionPercentage === 100 ? 'at-hundred' : ''} ${completionPercentage === 120 ? 'singlesig-complete' : ''} ${completionPercentage === 130 ? 'multisig-130' : ''} ${completionPercentage === 150 ? 'multisig-150' : ''}`}
               style={{
                 width: `${getProgressBarWidth()}%`,
-                backgroundColor: getProgressColor(completionPercentage)
+                backgroundColor: adjustedProgressColor
               }}
             />
           </div>

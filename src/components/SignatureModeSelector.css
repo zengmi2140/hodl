@@ -51,7 +51,7 @@
 }
 
 .mode-segment.active {
-  background-color: white;
+  background-color: hsl(var(--card));
   color: #F7931A;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -92,7 +92,7 @@
 }
 
 .threshold-segment.active {
-  background-color: white;
+  background-color: hsl(var(--card));
   color: #F7931A;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }

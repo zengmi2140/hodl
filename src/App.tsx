@@ -6,6 +6,7 @@ import HeaderMobile from './components/HeaderMobile';
 import FaqDrawer from './components/FaqDrawer';
 import MainLayout from './components/MainLayout';
 import { useIsMobile } from './hooks/useIsMobile';
+import { useDarkMode } from './hooks/useDarkMode';
 import { SignatureMode, ThresholdType } from './components/SignatureModeSelector';
 import { loadCustodyData } from './dataLoader';
 import './index.css';
@@ -13,11 +14,11 @@ import './App.css';
 
 // 槽位颜色配置
 export const SLOT_COLORS = [
-  { bg: '#dcfce7', border: '#86efac', label: '浅绿' },  // 槽位1
-  { bg: '#dbeafe', border: '#93c5fd', label: '浅蓝' },  // 槽位2
-  { bg: '#ede9fe', border: '#c4b5fd', label: '浅紫' },  // 槽位3
-  { bg: '#fce7f3', border: '#f9a8d4', label: '浅粉' },  // 槽位4
-  { bg: '#fef9c3', border: '#fde047', label: '浅黄' },  // 槽位5
+  { bg: 'var(--slot-1-bg)', border: 'var(--slot-1-border)', label: '1' },  // 槽位1
+  { bg: 'var(--slot-2-bg)', border: 'var(--slot-2-border)', label: '2' },  // 槽位2
+  { bg: 'var(--slot-3-bg)', border: 'var(--slot-3-border)', label: '3' },  // 槽位3
+  { bg: 'var(--slot-4-bg)', border: 'var(--slot-4-border)', label: '4' },  // 槽位4
+  { bg: 'var(--slot-5-bg)', border: 'var(--slot-5-border)', label: '5' },  // 槽位5
 ];
 
 interface AppState {
@@ -37,6 +38,7 @@ interface AppState {
 function App() {
   const { t, i18n } = useTranslation();
   const isMobile = useIsMobile(769);
+  const { theme, toggleTheme } = useDarkMode();
   
   // 根据屏幕宽度初始化设备类型
   const getInitialDeviceType = (): 'mobile' | 'desktop' => {
@@ -391,6 +393,8 @@ function App() {
           completionPercentage={getCompletionPercentage()}
           maxProgress={state.signatureMode === 'multi' ? (state.threshold === '2-of-3' ? 130 : 150) : 120}
           onOpenFaq={handleOpenFaq}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
       ) : (
         <Header 
@@ -399,6 +403,8 @@ function App() {
           onOpenFaq={handleOpenFaq}
           layoutLeftEdge={layoutBounds?.leftEdge}
           layoutRightEdge={layoutBounds?.rightEdge}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
       )}
       
