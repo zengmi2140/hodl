@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Bitcoin Self-Custody Playground - Laboratorio de Autocustodia"
+    "title": "Laboratorio de Autocustodia de Bitcoin"
   },
   "common": {
     "loading": "Cargando...",
     "reset": "Reiniciar",
-    "faq": "Preguntas Frecuentes",
+    "faq": "FAQ",
     "close": "Cerrar",
     "selected": "Seleccionado",
     "delete": "Eliminar",
@@ -13,7 +13,7 @@
     "desktop": "Escritorio"
   },
   "header": {
-    "title": "Bitcoin Self-Custody Playground",
+    "title": "Laboratorio de Autocustodia de Bitcoin",
     "resetPref": "Restablecer Preferencias",
     "viewFaq": "Ver FAQ",
     "selectLang": "Seleccionar Idioma"
