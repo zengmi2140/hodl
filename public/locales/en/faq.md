@@ -1,80 +1,87 @@
-## What is this website for?
+## What Is Bitcoin Self-Custody Playground?
 
-This sandbox helps you explore Bitcoin self-custody. It visualizes the different hardware and software components, their functions, how they connect, and how data flows between them.
+This is a sandbox designed to help you explore the various hardware and software components involved in Bitcoin self-custody. It visualizes how these pieces fit together, what each one does, and how they communicate. Use it to experiment with different setups and understand the data flow between your devices.
 
-## How to use this website
+## How do I use this tool?
 
-On the main interface, click the icons to explore different software and hardware. You'll see their features, compatibility, connection methods (USB, QR code, etc.), and a security assessment of your current setup.
+On the main dashboard, you can click on different hardware and software icons to build your setup. As you select components, the tool will show you:
+- Key features of each device or app.
+- Which other components are compatible with your current selection.
+- How they connect (e.g., USB, QR codes, microSD).
+- A real-time security assessment of your architecture.
 
-1. **Build your setup:** Click a *pulsing icon* to select it.
-2. **Follow the flow:** Once you pick a component (e.g., a Hardware Signer), compatible options in other columns (like Software Wallets) will pulse.
-3. **Complete the chain:** Your setup is complete when you have selected a "Hardware Signer," "Software Wallet," and "Node."
+**The Workflow:**
+- Icons with a **pulsing effect** are available to be added to your setup.
+- Click a pulsing icon to **select** it.
+- Your setup is complete once you have selected a **Hardware Signer**, a **Software Wallet**, and a **Node**. 
+- You can then review the "Features" box at the bottom and the security score at the top to see the strengths and trade-offs of your configuration.
+- Click any **dimmed (inactive) icon** to **reset** that category and start over.
+- Use the **Reset** button in the top-right corner to clear everything and start from scratch.
 
-**Tip:** Click any *dimmed icon* to **reset** your choices and start over.
+**Note for Multisig:** 
+The Multisig page works slightly differently. We recommend choosing your **Software Wallet** first, as it will determine which hardware signers are compatible with that specific coordinator.
 
-**Example Flow:**
-1. Select **Blockstream Jade** (Hardware Signer).
-2. Compatible wallets like **BlueWallet**, **Electrum**, or **Nunchuk** will pulse. Select one.
-3. Finally, select a **Node** to complete the setup.
+## Why so many components? Can't I just use a wallet app?
 
-Once paired, you'll see connection details (like "USB" or "QR Code") between your devices.
+While some mobile apps simplify the experience by hiding the complexity, a complete Bitcoin setup always involves three distinct roles:
+1. **Key Management & Signing:** Generating and storing your private keys and signing transactions.
+2. **Transaction Coordination:** Tracking your history, managing balances, and constructing new transactions.
+3. **Network Validation:** Communicating with the Bitcoin network to verify incoming funds and broadcast new transactions.
 
-**Multisig Mode:**
-In "Multisig" mode, you select multiple hardware signers. We recommend choosing your **Software Wallet** first in this mode, as it determines which signers are compatible.
+A standard "wallet app" on your phone often performs all three roles at once. While convenient, this "all-in-one" approach is less secure because your private keys are stored on an internet-connected device.
 
-## Why do I need multiple devices? Can't I just use a phone app?
+By separating these roles—specifically by using a **Hardware Signer** for keys and your own **Node** for network validation—you significantly harden your security. This tool exists to help you visualize and adopt these more robust practices.
 
-You *can* just use a phone app (a "Software Wallet"), but it's less secure.
+## What does the progress bar mean? (And why "120%"?)
 
-A complete Bitcoin setup involves three distinct functions:
-1.  **Key Storage & Signing:** Protecting your private keys.
-2.  **Wallet Management:** Constructing transactions and viewing history.
-3.  **Network Communication:** Broadcasting transactions to the Bitcoin network.
+The progress bar tracks the completeness and security of your setup.
+- A setup is considered "functional" (100%) once you have a Signer, a Wallet, and a connection to a Node.
+- We show **120%** (or higher) as a nod to best practices: while you *can* use a public node to get up and running (100%), running your **own node** provides superior privacy and sovereignty, taking your setup "above and beyond" the standard configuration.
 
-A phone app does all three. However, keeping your private keys on an internet-connected device (your phone) exposes them to remote attacks.
+## Can I just use a software wallet alone?
 
-**Self-custody separates these concerns:** A **Hardware Signer** isolates your keys from the internet, significantly improving security. This website helps you understand and build this more secure architecture.
+Yes. From a functional standpoint, a software wallet can generate keys and sign transactions on its own. In this tool, selecting the **"No Signer"** option represents this "hot wallet" approach.
 
-## What does the progress bar mean?
+## How do you select which hardware and software to list?
 
-The progress bar shows how complete and secure your setup is.
-*   **100%:** You have a working setup (Signer + Wallet + Public Node).
-*   **120%:** You are running your own Node, which provides better privacy than relying on public servers.
+We prioritize tools that are **"Bitcoin-only"** or have a strong Bitcoin-first focus. 
+- **Software Wallets:** Must be Bitcoin-only.
+- **Hardware Signers:** Must be Bitcoin-only or offer Bitcoin-only firmware. 
+We also consider market reputation, open-source status, and support for modern features like Taproot and Miniscript.
 
-## Can I use only a software wallet?
+## Does the "Features" box show everything?
 
-Yes. Select the **"No Signer"** option in the first column. This represents a standard "hot wallet" setup where keys are stored on your computer or phone.
+No. The features box focuses on comparing similar products and highlighting unique selling points. Common industry standards (like support for standard address types) are generally assumed and not listed individually.
 
-## What criteria determine which wallets are listed?
+## What exactly is "Air-gapped"?
 
-We prioritize **Bitcoin-only** tools.
-*   **Software Wallets:** Must be Bitcoin-only.
-*   **Hardware Signers:** Must be Bitcoin-only or support Bitcoin-only firmware.
-We also consider market share and support for modern features (like Taproot and Miniscript).
+For a hardware signer, "Air-gapped" means the device never has a direct, persistent connection (like USB or Bluetooth) to an internet-connected computer or phone. Instead, data is transferred via "stateless" methods such as:
+- **QR Codes:** Using a camera to scan data.
+- **microSD Cards:** Physically moving a card between devices.
 
-## What is "Air-gapped"?
+This ensures that even if your computer is compromised, the attacker cannot reach your private keys through a digital cable.
 
-**Air-gapped** means the device *never* physically connects to a computer or the internet (no USB, no Bluetooth). Instead, it communicates via **QR codes** (camera) or **microSD cards**. This strictly isolates your private keys from online malware.
+## Can I use an old, offline device as a hardware signer?
 
-## Can I use an old offline phone as a signer?
+Absolutely. If you take an old phone or laptop, wipe it, install a wallet app, and keep it permanently offline, it functions on the same principle as a dedicated hardware signer. The security depends on how strictly you maintain that "air gap."
 
-Yes! If you install a wallet on an old phone, put it in airplane mode, and never connect it to the internet, it functions just like a hardware signer.
+## What is Multisig? And what's a "Threshold"?
 
-## What is "Multisig"?
+Bitcoin allows you to create addresses that require more than one signature to spend funds. 
+- **Single-Sig:** One key, one signature. If you lose the key or it's stolen, your funds are gone.
+- **Multisig:** Multiple keys are used to build one address. You can set a **Threshold** (e.g., 2-of-3), meaning you need any 2 out of the 3 keys to move the money.
 
-*   **Single-Sig:** One key, one signature to spend. Like a standard key to your door.
-*   **Multisig:** Multiple keys, multiple signatures required. Like a bank vault requiring 2 out of 3 keys to open.
+This provides both **security** (an attacker needs to steal multiple keys) and **redundancy** (if you lose one key, you can still recover your funds with the remaining ones).
 
-A common setup is **2-of-3 Multisig**: You create a wallet with 3 keys. You only need *any 2* of them to move funds. This offers redundancy: if you lose one key, you don't lose your coins.
+## What is a "Wallet Descriptor"?
 
-## What is a "Descriptor"?
+A descriptor is a human-readable string that acts as a "recipe" for your wallet. It describes exactly how your addresses are derived from your public keys.
 
-An **Output Descriptor** is a technical string (like a mathematical formula) that describes exactly how to derive your wallet addresses from your public keys.
+In a Multisig setup, backing up your keys is not enough; you **must** also back up the descriptor. Without it, you might have all your keys but no way to know which specific mathematical path leads to your balance. Descriptors contain public information only—they cannot be used to spend your funds, but they should be kept private to protect your financial history.
 
-*   **Crucial for backup:** In multisig setups, you *must* back up your descriptor. Without it, you might have the keys but not know which addresses to look for.
-*   **Privacy only:** Descriptors contain public keys, not private keys. Someone with your descriptor can see your balance but cannot spend your funds.
+## Does this website collect my data?
 
-## Does this website collect data?
+Not at all. This is a purely client-side educational tool. There are no tracking scripts, no database, and no data collection modules.
 
-**No.** There is no tracking or data collection.
-The code is open source. You can audit it or run it offline: [https://github.com/zengmi2140/hodl](https://github.com/zengmi2140/hodl)
+In fact, the project is completely open-source. You can download the code and run it locally on an offline machine if you prefer.
+- **Source Code:** [https://github.com/zengmi2140/hodl](https://github.com/zengmi2140/hodl)
