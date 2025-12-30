@@ -66,9 +66,9 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
              }}
              aria-label={t('header.selectLang')}
            >
+             <option value="en">EN</option>
              <option value="zh-CN">简</option>
              <option value="zh-TW">繁</option>
-             <option value="en">EN</option>
            </select>
            <span style={{ fontSize: '12px', fontWeight: 700 }}>
              {i18n.language.includes('en') ? 'EN' : 

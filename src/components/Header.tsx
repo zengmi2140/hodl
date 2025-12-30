@@ -102,9 +102,9 @@ const Header: React.FC<HeaderProps> = ({
           onChange={(e) => i18n.changeLanguage(e.target.value)}
           aria-label={t('header.selectLang')}
         >
+          <option value="en">English</option>
           <option value="zh-CN">简体中文</option>
           <option value="zh-TW">繁體中文</option>
-          <option value="en">English</option>
         </select>
         <button 
           className="header-btn"
