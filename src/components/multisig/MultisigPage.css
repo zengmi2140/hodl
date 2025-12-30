@@ -112,6 +112,14 @@
   box-sizing: border-box;
 }
 
+.dark .signer-slot {
+  background-color: hsl(var(--muted));
+}
+
+.dark .signer-slot.filled {
+  background-color: hsl(var(--muted));
+}
+
 .signer-slot.dropdown-open {
   z-index: 100;
 }
@@ -145,6 +153,12 @@
   font-size: 0.75rem;
   font-weight: 600;
   z-index: 1;
+}
+
+.dark .signer-slot-number {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .signer-slot-empty-content {
