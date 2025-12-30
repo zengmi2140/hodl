@@ -39,7 +39,7 @@
         },
         {
           "type": "negative",
-          "text": "小螢幕"
+          "text": "螢幕較小"
         }
       ],
       "compatibleWallets": [
@@ -55,7 +55,7 @@
       "features": [
         {
           "type": "warning",
-          "text": "虛擬安全晶片"
+          "text": "虛擬化安全晶片"
         },
         {
           "type": "positive",
@@ -186,7 +186,7 @@
         },
         {
           "type": "positive",
-          "text": "攝像生成種子詞"
+          "text": "攝影生成種子詞"
         },
         {
           "type": "positive",
@@ -194,7 +194,7 @@
         },
         {
           "type": "positive",
-          "text": "自定義公鑰衍生路徑"
+          "text": "自訂公鑰衍生路徑"
         },
         {
           "type": "positive",
@@ -372,7 +372,7 @@
     },
     {
       "id": "publicnode",
-      "name": "預設/公開 節點",
+      "name": "預設/公開節點",
       "logo": "/images/logos/nodes/bitcoin-core.webp",
       "features": [
         {

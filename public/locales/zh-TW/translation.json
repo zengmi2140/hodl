@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "比特幣自主保管模擬器"
+    "title": "比特幣自主保管示範工具"
   },
   "common": {
     "loading": "載入中...",
@@ -13,7 +13,7 @@
     "desktop": "電腦"
   },
   "header": {
-    "title": "比特幣自主保管模擬器",
+    "title": "比特幣自主保管示範工具",
     "resetPref": "重置偏好",
     "viewFaq": "查看 FAQ",
     "selectLang": "選擇語言"
@@ -61,6 +61,6 @@
     "please_select_signer": "請選擇簽名器",
     "no_signer_used": "未使用硬體簽名器",
     "connected": "已連接",
-    "incompatible": "不兼容"
+    "incompatible": "不相容"
   }
 }
