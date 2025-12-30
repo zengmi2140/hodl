@@ -242,13 +242,18 @@ function App() {
       const wallet = state.custodyData.softwareWallets.find(w => w.id === componentId);
       if (!wallet) return 'inactive';
       if (!wallet.supportedPlatforms.some(platform => platform.toLowerCase() === userDeviceType)) return 'inactive';
-      if (state.selectedSigners.length > 0) {
-        if (state.selectedSigners.includes('none')) return 'breathing';
-        if (state.selectedSigners.some(signer => signer !== 'none' && wallet.compatibleSigners.includes(signer))) return 'breathing';
-      }
+      
+      // 如果已选择节点，优先检查钱包是否与节点兼容
       if (state.selectedNode) {
         const node = state.custodyData.nodes.find(n => n.id === state.selectedNode);
         if (node && node.compatibleWallets.includes(componentId)) return 'breathing';
+        return 'inactive';
+      }
+      
+      // 如果没有选择节点，检查签名器兼容性
+      if (state.selectedSigners.length > 0) {
+        if (state.selectedSigners.includes('none')) return 'breathing';
+        if (state.selectedSigners.some(signer => signer !== 'none' && wallet.compatibleSigners.includes(signer))) return 'breathing';
       }
       return 'inactive';
     }
@@ -294,22 +299,47 @@ function App() {
       setState(prev => {
         const isSelected = prev.selectedSigners.includes(componentId);
         if (isSelected) {
-          return { ...prev, selectedSigners: prev.selectedSigners.filter(id => id !== componentId), selectedWallet: null, selectedNode: null };
+          // 只移除该签名器，保留钱包和节点
+          // 兼容性会在 getComponentState 中重新计算
+          return { 
+            ...prev, 
+            selectedSigners: prev.selectedSigners.filter(id => id !== componentId)
+          };
         }
         return { ...prev, selectedSigners: [...prev.selectedSigners, componentId] };
       });
     } else if (type === 'wallet') {
       setState(prev => {
         if (prev.selectedWallet === componentId) {
-          return { ...prev, selectedWallet: null, selectedNode: null };
+          // 取消选择钱包，但保留节点（如果节点仍然兼容）
+          // 节点兼容性会在 getComponentState 中重新计算
+          return { ...prev, selectedWallet: null };
         }
+        
         const wallet = prev.custodyData?.softwareWallets.find(w => w.id === componentId);
         let newPreference = prev.userPreference;
         if (wallet && wallet.supportedPlatforms.length === 1) {
           const walletPlatform = wallet.supportedPlatforms[0].toLowerCase();
           newPreference = { deviceType: walletPlatform === 'desktop' ? 'desktop' : 'mobile' };
         }
-        return { ...prev, selectedWallet: componentId, selectedNode: null, userPreference: newPreference };
+        
+        // 检查钱包是否与已选节点兼容
+        let newSelectedNode = prev.selectedNode;
+        if (prev.selectedNode && wallet) {
+          const node = prev.custodyData?.nodes.find(n => n.id === prev.selectedNode);
+          if (node && !node.compatibleWallets.includes(componentId)) {
+            // 不兼容，清除节点
+            newSelectedNode = null;
+          }
+          // 兼容，保留节点
+        }
+        
+        return { 
+          ...prev, 
+          selectedWallet: componentId, 
+          selectedNode: newSelectedNode, 
+          userPreference: newPreference 
+        };
       });
     } else if (type === 'node') {
       setState(prev => ({
