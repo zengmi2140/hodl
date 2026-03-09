@@ -21,7 +21,10 @@
       "compatibleWallets": [
         "sparrow",
         "nunchuk",
-        "electrum"
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -45,7 +48,10 @@
       "compatibleWallets": [
         "sparrow",
         "electrum",
-        "nunchuk"
+        "nunchuk",
+        "keeper",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -70,7 +76,10 @@
         "nunchuk",
         "sparrow",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -94,7 +103,10 @@
       "compatibleWallets": [
         "sparrow",
         "nunchuk",
-        "electrum"
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -123,7 +135,10 @@
         "sparrow",
         "electrum",
         "nunchuk",
-        "bluewallet"
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -144,7 +159,10 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -168,7 +186,10 @@
       "compatibleWallets": [
         "sparrow",
         "nunchuk",
-        "electrum"
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -208,7 +229,9 @@
       "compatibleWallets": [
         "sparrow",
         "nunchuk",
-        "bluewallet"
+        "bluewallet",
+        "keeper",
+        "specter"
       ]
     },
     {
@@ -233,7 +256,9 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper",
+        "specter"
       ]
     },
     {
@@ -273,7 +298,9 @@
       "compatibleWallets": [
         "sparrow",
         "nunchuk",
-        "bluewallet"
+        "bluewallet",
+        "keeper",
+        "specter"
       ]
     },
     {
@@ -300,7 +327,8 @@
       ],
       "compatibleWallets": [
         "sparrow",
-        "nunchuk"
+        "nunchuk",
+        "keeper"
       ]
     }
   ],
@@ -443,6 +471,106 @@
         "Desktop",
         "Mobile"
       ]
+    },
+    {
+      "id": "keeper",
+      "name": "Bitcoin Keeper",
+      "logo": "/images/logos/software/keeper.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Taproot support"
+        },
+        {
+          "type": "positive",
+          "text": "BIP329 Label Import/Export"
+        },
+        {
+          "type": "positive",
+          "text": "Miniscript support"
+        },
+        {
+          "type": "positive",
+          "text": "Descriptor Import/Export"
+        },
+        {
+          "type": "positive",
+          "text": "Inheritance planning"
+        }
+      ],
+      "compatibleSigners": [
+        "coldcard",
+        "ledger",
+        "trezor",
+        "bitbox",
+        "jade",
+        "keystone",
+        "seedsigner",
+        "passport",
+        "krux",
+        "tapsigner",
+        "none"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "specter",
+      "name": "Specter Desktop",
+      "logo": "/images/logos/software/specter.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Deep Bitcoin Core integration"
+        },
+        {
+          "type": "positive",
+          "text": "Descriptor Import/Export"
+        }
+      ],
+      "compatibleSigners": [
+        "coldcard",
+        "ledger",
+        "trezor",
+        "bitbox",
+        "jade",
+        "keystone",
+        "seedsigner",
+        "passport",
+        "krux",
+        "none"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ]
+    },
+    {
+      "id": "wasabi",
+      "name": "Wasabi",
+      "logo": "/images/logos/software/wasabi.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "CoinJoin"
+        }
+      ],
+      "compatibleSigners": [
+        "coldcard",
+        "ledger",
+        "trezor",
+        "bitbox",
+        "jade",
+        "keystone",
+        "none"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ]
     }
   ],
   "nodes": [
@@ -548,6 +676,12 @@
       ],
       "nunchuk": [
         "QR Code"
+      ],
+      "keeper": [
+        "QR Code"
+      ],
+      "specter": [
+        "QR Code"
       ]
     },
     "keystone": {
@@ -567,6 +701,17 @@
       ],
       "bluewallet": [
         "QR Code"
+      ],
+      "keeper": [
+        "USB",
+        "QR Code"
+      ],
+      "specter": [
+        "QR Code",
+        "microSD Card"
+      ],
+      "wasabi": [
+        "USB"
       ]
     },
     "jade": {
@@ -586,6 +731,17 @@
       ],
       "liana": [
         "USB"
+      ],
+      "keeper": [
+        "QR Code",
+        "USB"
+      ],
+      "specter": [
+        "QR Code",
+        "USB"
+      ],
+      "wasabi": [
+        "USB"
       ]
     },
     "none": {
@@ -602,6 +758,15 @@
         "None"
       ],
       "liana": [
+        "None"
+      ],
+      "keeper": [
+        "None"
+      ],
+      "specter": [
+        "None"
+      ],
+      "wasabi": [
         "None"
       ]
     },
@@ -621,6 +786,17 @@
       "nunchuk": [
         "USB",
         "microSD Card"
+      ],
+      "keeper": [
+        "USB"
+      ],
+      "specter": [
+        "USB",
+        "microSD Card"
+      ],
+      "wasabi": [
+        "USB",
+        "microSD Card"
       ]
     },
     "trezor": {
@@ -632,6 +808,15 @@
       ],
       "nunchuk": [
         "USB"
+      ],
+      "keeper": [
+        "USB"
+      ],
+      "specter": [
+        "USB"
+      ],
+      "wasabi": [
+        "USB"
       ]
     },
     "bitbox": {
@@ -642,6 +827,15 @@
         "USB"
       ],
       "nunchuk": [
+        "USB"
+      ],
+      "keeper": [
+        "USB"
+      ],
+      "specter": [
+        "USB"
+      ],
+      "wasabi": [
         "USB"
       ]
     },
@@ -656,6 +850,15 @@
         "USB"
       ],
       "nunchuk": [
+        "USB"
+      ],
+      "keeper": [
+        "USB"
+      ],
+      "specter": [
+        "USB"
+      ],
+      "wasabi": [
         "USB"
       ]
     },
@@ -672,6 +875,13 @@
       ],
       "bluewallet": [
         "QR Code"
+      ],
+      "keeper": [
+        "QR Code"
+      ],
+      "specter": [
+        "QR Code",
+        "microSD Card"
       ]
     },
     "krux": {
@@ -684,6 +894,13 @@
       ],
       "bluewallet": [
         "QR Code"
+      ],
+      "keeper": [
+        "QR Code"
+      ],
+      "specter": [
+        "QR Code",
+        "SD Card"
       ]
     },
     "tapsigner": {
@@ -691,6 +908,9 @@
         "NFC"
       ],
       "nunchuk": [
+        "NFC"
+      ],
+      "keeper": [
         "NFC"
       ]
     }
