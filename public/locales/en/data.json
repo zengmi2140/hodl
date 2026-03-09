@@ -596,7 +596,8 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper"
       ]
     },
     {
@@ -613,7 +614,8 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper"
       ]
     },
     {
@@ -627,7 +629,9 @@
         }
       ],
       "compatibleWallets": [
-        "sparrow"
+        "sparrow",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -648,7 +652,8 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper"
       ]
     },
     {
@@ -662,7 +667,39 @@
         }
       ],
       "compatibleWallets": [
-        "sparrow"
+        "sparrow",
+        "specter",
+        "wasabi"
+      ]
+    },
+    {
+      "id": "fulcrum",
+      "name": "Fulcrum",
+      "logo": "/images/logos/nodes/fulcrum.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "Requires Bitcoin Core backend"
+        },
+        {
+          "type": "positive",
+          "text": "No address clustering"
+        },
+        {
+          "type": "warning",
+          "text": "Requires significant storage (~130 GB)"
+        },
+        {
+          "type": "warning",
+          "text": "Higher memory requirement (8 GB+ recommended)"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper"
       ]
     }
   ],

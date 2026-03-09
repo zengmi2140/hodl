@@ -596,7 +596,8 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper"
       ]
     },
     {
@@ -613,7 +614,8 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper"
       ]
     },
     {
@@ -627,7 +629,9 @@
         }
       ],
       "compatibleWallets": [
-        "sparrow"
+        "sparrow",
+        "specter",
+        "wasabi"
       ]
     },
     {
@@ -648,7 +652,8 @@
         "sparrow",
         "nunchuk",
         "electrum",
-        "bluewallet"
+        "bluewallet",
+        "keeper"
       ]
     },
     {
@@ -662,7 +667,39 @@
         }
       ],
       "compatibleWallets": [
-        "sparrow"
+        "sparrow",
+        "specter",
+        "wasabi"
+      ]
+    },
+    {
+      "id": "fulcrum",
+      "name": "Fulcrum",
+      "logo": "/images/logos/nodes/fulcrum.webp",
+      "features": [
+        {
+          "type": "warning",
+          "text": "依赖于 Bitcoin Core/Bitcoin Knots"
+        },
+        {
+          "type": "positive",
+          "text": "服务端不留存地址集群信息"
+        },
+        {
+          "type": "warning",
+          "text": "需要大量存储空间（~130 GB）"
+        },
+        {
+          "type": "warning",
+          "text": "需要较多内存（建议 8 GB+）"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper"
       ]
     }
   ],
