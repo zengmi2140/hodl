@@ -74,14 +74,16 @@ function App() {
       setState(prev => ({ ...prev, isLoading: true }));
       try {
         // 使用 resolvedLanguage 确保获取到支持的语言代码 (如 'es', 'zh-CN')
+        const SUPPORTED_LANGS = ['en', 'zh-CN', 'zh-TW', 'zh'];
         const currentLang = i18n.resolvedLanguage || i18n.language;
+        const safeLang = SUPPORTED_LANGS.includes(currentLang) ? currentLang : 'en';
         
         // 加载托管数据
-        const data = await loadCustodyData(currentLang);
+        const data = await loadCustodyData(safeLang);
         setState(prev => ({ ...prev, custodyData: data, isLoading: false }));
 
         // 加载FAQ
-        const faqResponse = await fetch(`/locales/${currentLang}/faq.md`);
+        const faqResponse = await fetch(`/locales/${safeLang}/faq.md`);
         if (faqResponse.ok) {
           const text = await faqResponse.text();
           setFaqContent(text);
@@ -375,7 +377,7 @@ function App() {
   // 切换设备类型
   const toggleDeviceType = () => {
     setState(prev => {
-      const newDeviceType = prev.userPreference.deviceType === 'mobile' ? 'desktop' : 'mobile';
+      const newDeviceType: 'mobile' | 'desktop' = prev.userPreference.deviceType === 'mobile' ? 'desktop' : 'mobile';
       const newState = {
         ...prev,
         userPreference: { deviceType: newDeviceType }

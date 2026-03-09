@@ -31,13 +31,12 @@ export const getFallbackData = (): CustodyData => {
 };
 
 // 从JSON文件异步加载数据的函数
+const SUPPORTED_LANGS = ['en', 'zh-CN', 'zh-TW', 'zh'];
+
 export const loadCustodyData = async (lang: string = 'zh-CN'): Promise<CustodyData> => {
   try {
-    // 处理 zh-CN 别名，确保路径正确
-    // i18next 可能返回 'zh', 'zh-CN', 'en-US' 等，确保与文件夹名匹配
-    // 我们假设文件夹是 'zh-CN', 'zh-TW', 'en'
-    
-    const response = await fetch(`/locales/${lang}/data.json`);
+    const safeLang = SUPPORTED_LANGS.includes(lang) ? lang : 'en';
+    const response = await fetch(`/locales/${safeLang}/data.json`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
