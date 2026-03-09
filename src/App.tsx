@@ -377,7 +377,7 @@ function App() {
   // 切换设备类型
   const toggleDeviceType = () => {
     setState(prev => {
-      const newDeviceType = prev.userPreference.deviceType === 'mobile' ? 'desktop' : 'mobile';
+      const newDeviceType: 'mobile' | 'desktop' = prev.userPreference.deviceType === 'mobile' ? 'desktop' : 'mobile';
       const newState = {
         ...prev,
         userPreference: { deviceType: newDeviceType }
