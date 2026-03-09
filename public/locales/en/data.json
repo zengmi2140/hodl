@@ -223,6 +223,10 @@
         {
           "type": "positive",
           "text": "Dice roll entropy"
+        },
+        {
+          "type": "positive",
+          "text": "BIP85 support"
         }
       ],
       "compatibleWallets": [

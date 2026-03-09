@@ -223,6 +223,10 @@
         {
           "type": "positive",
           "text": "掷骰子生成种子词"
+        },
+        {
+          "type": "positive",
+          "text": "支持 BIP85"
         }
       ],
       "compatibleWallets": [
