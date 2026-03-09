@@ -210,6 +210,94 @@
         "nunchuk",
         "bluewallet"
       ]
+    },
+    {
+      "id": "passport",
+      "name": "Passport",
+      "logo": "/images/logos/hardware/passport.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Air-gapped 體驗"
+        },
+        {
+          "type": "positive",
+          "text": "擲骰子生成種子詞"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "krux",
+      "name": "Krux",
+      "logo": "/images/logos/hardware/krux.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "擲骰子生成種子詞"
+        },
+        {
+          "type": "positive",
+          "text": "攝影生成種子詞"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped 體驗"
+        },
+        {
+          "type": "positive",
+          "text": "加密助記詞"
+        },
+        {
+          "type": "positive",
+          "text": "自訂公鑰衍生路徑"
+        },
+        {
+          "type": "positive",
+          "text": "基於通用硬體"
+        },
+        {
+          "type": "negative",
+          "text": "無安全晶片"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "tapsigner",
+      "name": "TapSigner",
+      "logo": "/images/logos/hardware/tapsigner.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "卡片形態"
+        },
+        {
+          "type": "warning",
+          "text": "NFC"
+        },
+        {
+          "type": "negative",
+          "text": "韌體不開源"
+        },
+        {
+          "type": "negative",
+          "text": "無螢幕"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk"
+      ]
     }
   ],
   "softwareWallets": [
@@ -243,7 +331,10 @@
         "bitbox",
         "seedsigner",
         "none",
-        "jade"
+        "jade",
+        "passport",
+        "krux",
+        "tapsigner"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -268,7 +359,9 @@
         "keystone",
         "seedsigner",
         "none",
-        "jade"
+        "jade",
+        "passport",
+        "krux"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -297,7 +390,8 @@
         "none",
         "jade",
         "coldcard",
-        "bitbox"
+        "bitbox",
+        "passport"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -335,7 +429,10 @@
         "none",
         "ledger",
         "coldcard",
-        "bitbox"
+        "bitbox",
+        "passport",
+        "krux",
+        "tapsigner"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -556,6 +653,41 @@
       ],
       "nunchuk": [
         "USB"
+      ]
+    },
+    "passport": {
+      "sparrow": [
+        "二維碼",
+        "microSD 卡"
+      ],
+      "nunchuk": [
+        "二維碼"
+      ],
+      "electrum": [
+        "microSD 卡"
+      ],
+      "bluewallet": [
+        "二維碼"
+      ]
+    },
+    "krux": {
+      "sparrow": [
+        "二維碼",
+        "SD 卡"
+      ],
+      "nunchuk": [
+        "二維碼"
+      ],
+      "bluewallet": [
+        "二維碼"
+      ]
+    },
+    "tapsigner": {
+      "sparrow": [
+        "NFC"
+      ],
+      "nunchuk": [
+        "NFC"
       ]
     }
   }

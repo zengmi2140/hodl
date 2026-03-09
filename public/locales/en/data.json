@@ -210,6 +210,94 @@
         "nunchuk",
         "bluewallet"
       ]
+    },
+    {
+      "id": "passport",
+      "name": "Passport",
+      "logo": "/images/logos/hardware/passport.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Air-gapped"
+        },
+        {
+          "type": "positive",
+          "text": "Dice roll entropy"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "krux",
+      "name": "Krux",
+      "logo": "/images/logos/hardware/krux.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Dice roll entropy"
+        },
+        {
+          "type": "positive",
+          "text": "Camera / Image entropy"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped"
+        },
+        {
+          "type": "positive",
+          "text": "Encrypted mnemonics"
+        },
+        {
+          "type": "positive",
+          "text": "Custom derivation paths"
+        },
+        {
+          "type": "positive",
+          "text": "Commodity hardware"
+        },
+        {
+          "type": "negative",
+          "text": "No Secure Element"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "bluewallet"
+      ]
+    },
+    {
+      "id": "tapsigner",
+      "name": "TapSigner",
+      "logo": "/images/logos/hardware/tapsigner.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Card form factor"
+        },
+        {
+          "type": "warning",
+          "text": "NFC"
+        },
+        {
+          "type": "negative",
+          "text": "Closed-source firmware"
+        },
+        {
+          "type": "negative",
+          "text": "No display"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk"
+      ]
     }
   ],
   "softwareWallets": [
@@ -243,7 +331,10 @@
         "bitbox",
         "seedsigner",
         "none",
-        "jade"
+        "jade",
+        "passport",
+        "krux",
+        "tapsigner"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -268,7 +359,9 @@
         "keystone",
         "seedsigner",
         "none",
-        "jade"
+        "jade",
+        "passport",
+        "krux"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -297,7 +390,8 @@
         "none",
         "jade",
         "coldcard",
-        "bitbox"
+        "bitbox",
+        "passport"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -335,7 +429,10 @@
         "none",
         "ledger",
         "coldcard",
-        "bitbox"
+        "bitbox",
+        "passport",
+        "krux",
+        "tapsigner"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -556,6 +653,41 @@
       ],
       "nunchuk": [
         "USB"
+      ]
+    },
+    "passport": {
+      "sparrow": [
+        "QR Code",
+        "microSD Card"
+      ],
+      "nunchuk": [
+        "QR Code"
+      ],
+      "electrum": [
+        "microSD Card"
+      ],
+      "bluewallet": [
+        "QR Code"
+      ]
+    },
+    "krux": {
+      "sparrow": [
+        "QR Code",
+        "SD Card"
+      ],
+      "nunchuk": [
+        "QR Code"
+      ],
+      "bluewallet": [
+        "QR Code"
+      ]
+    },
+    "tapsigner": {
+      "sparrow": [
+        "NFC"
+      ],
+      "nunchuk": [
+        "NFC"
       ]
     }
   }
