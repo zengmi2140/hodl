@@ -101,10 +101,12 @@ const MobileWalletCard: React.FC<MobileWalletCardProps> = ({
 
   const deviceIcon = getDeviceIcon();
 
-  // 过滤出与当前设备类型兼容的钱包
-  const filteredWallets = custodyData.softwareWallets.filter(wallet => 
-    wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(userPreference.deviceType)
-  );
+  const isSinglesigMode = !!getComponentState;
+
+  const filteredWallets = custodyData.softwareWallets.filter(wallet => {
+    if (isSinglesigMode && wallet.multisigOnly) return false;
+    return wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(userPreference.deviceType);
+  });
 
   return (
     <>

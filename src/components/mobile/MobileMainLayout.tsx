@@ -144,6 +144,7 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
           selectedWallet={selectedWallet}
           custodyData={custodyData}
           compatibleWallets={custodyData.softwareWallets
+            .filter(w => !w.multisigOnly)
             .filter(w => getComponentState(w.id, 'wallet') !== 'inactive')
             .map(w => w.id)}
           userPreference={userPreference}

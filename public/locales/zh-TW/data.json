@@ -24,7 +24,8 @@
         "electrum",
         "keeper",
         "specter",
-        "wasabi"
+        "wasabi",
+        "liana"
       ]
     },
     {
@@ -51,7 +52,8 @@
         "nunchuk",
         "keeper",
         "specter",
-        "wasabi"
+        "wasabi",
+        "liana"
       ]
     },
     {
@@ -79,7 +81,8 @@
         "bluewallet",
         "keeper",
         "specter",
-        "wasabi"
+        "wasabi",
+        "liana"
       ]
     },
     {
@@ -162,7 +165,8 @@
         "bluewallet",
         "keeper",
         "specter",
-        "wasabi"
+        "wasabi",
+        "liana"
       ]
     },
     {
@@ -189,7 +193,8 @@
         "electrum",
         "keeper",
         "specter",
-        "wasabi"
+        "wasabi",
+        "liana"
       ]
     },
     {
@@ -300,7 +305,8 @@
         "nunchuk",
         "bluewallet",
         "keeper",
-        "specter"
+        "specter",
+        "liana"
       ]
     },
     {
@@ -571,6 +577,22 @@
       "supportedPlatforms": [
         "Desktop"
       ]
+    },
+    {
+      "id": "liana",
+      "name": "Liana",
+      "logo": "/images/logos/software/liana.webp",
+      "features": [
+        { "type": "positive", "text": "支援 Taproot" },
+        { "type": "positive", "text": "支援 Miniscript" },
+        { "type": "positive", "text": "地址描述符 匯入/匯出" },
+        { "type": "positive", "text": "繼承規劃" },
+        { "type": "positive", "text": "時間鎖恢復" }
+      ],
+      "compatibleSigners": ["coldcard", "ledger", "jade", "bitbox", "krux", "none"],
+      "compatibleNodes": [],
+      "supportedPlatforms": ["Desktop"],
+      "multisigOnly": true
     }
   ],
   "nodes": [
@@ -597,7 +619,8 @@
         "nunchuk",
         "electrum",
         "bluewallet",
-        "keeper"
+        "keeper",
+        "liana"
       ]
     },
     {
@@ -615,7 +638,8 @@
         "nunchuk",
         "electrum",
         "bluewallet",
-        "keeper"
+        "keeper",
+        "liana"
       ]
     },
     {
@@ -631,7 +655,8 @@
       "compatibleWallets": [
         "sparrow",
         "specter",
-        "wasabi"
+        "wasabi",
+        "liana"
       ]
     },
     {
@@ -653,7 +678,8 @@
         "nunchuk",
         "electrum",
         "bluewallet",
-        "keeper"
+        "keeper",
+        "liana"
       ]
     },
     {
@@ -669,7 +695,8 @@
       "compatibleWallets": [
         "sparrow",
         "specter",
-        "wasabi"
+        "wasabi",
+        "liana"
       ]
     },
     {
@@ -699,7 +726,8 @@
         "nunchuk",
         "electrum",
         "bluewallet",
-        "keeper"
+        "keeper",
+        "liana"
       ]
     }
   ],
@@ -936,6 +964,10 @@
         "二維碼"
       ],
       "specter": [
+        "二維碼",
+        "SD 卡"
+      ],
+      "liana": [
         "二維碼",
         "SD 卡"
       ]

@@ -136,6 +136,7 @@ interface MainLayoutProps {
   // 获取单签模式的兼容钱包列表
   const getSinglesigCompatibleWallets = (): string[] => {
     return custodyData.softwareWallets
+      .filter(wallet => !wallet.multisigOnly)
       .filter(wallet => getComponentState(wallet.id, 'wallet') !== 'inactive')
       .map(wallet => wallet.id);
   };

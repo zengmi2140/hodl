@@ -60,10 +60,12 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
 
   const deviceIcon = getDeviceIcon();
 
-  // 过滤出与当前设备类型兼容的钱包
-  const filteredWallets = custodyData.softwareWallets.filter(wallet => 
-    wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(userPreference?.deviceType || 'desktop')
-  );
+  const isSinglesigMode = !!getComponentState;
+
+  const filteredWallets = custodyData.softwareWallets.filter(wallet => {
+    if (isSinglesigMode && wallet.multisigOnly) return false;
+    return wallet.supportedPlatforms.map(p => p.toLowerCase()).includes(userPreference?.deviceType || 'desktop');
+  });
 
   return (
     <div className="column">

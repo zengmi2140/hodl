@@ -22,6 +22,7 @@ export interface SoftwareWallet {
   compatibleSigners: string[];
   compatibleNodes: string[];
   supportedPlatforms: string[];
+  multisigOnly?: boolean;
 }
 
 // 区块链节点类型
