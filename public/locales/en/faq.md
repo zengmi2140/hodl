@@ -37,6 +37,10 @@ The progress bar tracks the completeness and security of your setup.
 - A setup is considered "functional" (100%) once you have a Signer, a Wallet, and a connection to a Node.
 - We show **120%** (or higher) as a nod to best practices: while you *can* use a public node to get up and running (100%), running your **own node** provides superior privacy and sovereignty, taking your setup "above and beyond" the standard configuration.
 
+## What do the legend buttons beside the "Software Wallet" section mean?
+
+The legend buttons on the side of the Software Wallet section let you specify which type of device you're using to run your software wallet. The first icon represents desktop, and the second represents mobile. Different device types support different sets of software wallets.
+
 ## Can I just use a software wallet alone?
 
 Yes. From a functional standpoint, a software wallet can generate keys and sign transactions on its own. In this tool, selecting the **"No Signer"** option represents this "hot wallet" approach.
