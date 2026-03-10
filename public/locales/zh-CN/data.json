@@ -562,6 +562,18 @@
         {
           "type": "positive",
           "text": "CoinJoin"
+        },
+        {
+          "type": "positive",
+          "text": "内置 Tor"
+        },
+        {
+          "type": "positive",
+          "text": "BIP-158 区块过滤"
+        },
+        {
+          "type": "positive",
+          "text": "支持 SLIP39 Shamir 备份"
         }
       ],
       "compatibleSigners": [

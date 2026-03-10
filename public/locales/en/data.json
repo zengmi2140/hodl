@@ -562,6 +562,18 @@
         {
           "type": "positive",
           "text": "CoinJoin"
+        },
+        {
+          "type": "positive",
+          "text": "Built-in Tor"
+        },
+        {
+          "type": "positive",
+          "text": "BIP-158 block filtering"
+        },
+        {
+          "type": "positive",
+          "text": "SLIP39 Shamir backup"
         }
       ],
       "compatibleSigners": [
