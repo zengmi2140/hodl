@@ -54,7 +54,7 @@ We also consider market reputation, open-source status, and support for modern f
 
 ## Does the "Features" box show everything?
 
-No. The features box focuses on comparing similar products and highlighting unique selling points. Common industry standards (like support for standard address types) are generally assumed and not listed individually.
+No. The features box is mainly for comparing products within the same category. Some very basic or widely implemented properties — for example, support for common address types and whether a device supports Passphrase — are generally assumed and therefore not shown explicitly.
 
 ## What exactly is "Air-gapped"?
 
