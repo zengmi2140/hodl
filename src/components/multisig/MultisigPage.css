@@ -904,3 +904,358 @@
   color: hsl(var(--foreground));
 }
 
+/* =========================================================
+   P2 + P3 — Cypherpunk Atelier Override Layer
+   Letterpress cards · Mineral palette · Ritual focus
+   All overrides; no logic touched.
+   ========================================================= */
+
+/* --- Columns: act numbering & generous gap --- */
+.columns-container {
+  gap: 48px;
+}
+
+.column {
+  position: relative;
+}
+
+.column-title {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+  border-bottom: 1px solid hsl(var(--ink));
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+}
+
+.column-title::before {
+  content: attr(data-act);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: hsl(var(--signal));
+  letter-spacing: 0;
+}
+
+/* --- Option cards: typewriter label aesthetic --- */
+.option-item {
+  border-radius: 0;
+  border: 1px solid hsl(var(--ink) / 0.18);
+  background: hsl(var(--card));
+  padding: 14px 16px 14px 18px;
+  position: relative;
+  box-shadow: none;
+  transition: transform 240ms var(--ease-craft, ease-out),
+              opacity 240ms ease-out,
+              border-color 240ms ease-out;
+}
+
+.option-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: hsl(var(--ink) / 0.15);
+  transition: background 240ms var(--ease-craft, ease-out);
+}
+
+.option-item.compatible {
+  opacity: 1;
+  border-color: hsl(var(--ink) / 0.35);
+}
+
+.option-item.compatible:hover {
+  background: hsl(var(--card));
+  border-color: hsl(var(--ink));
+  transform: translateY(-1px);
+}
+
+.option-item.compatible:hover::before {
+  background: hsl(var(--signal) / 0.55);
+}
+
+.option-item.breathing {
+  animation: optionBreathingInk 2.4s ease-in-out infinite;
+}
+
+@keyframes optionBreathingInk {
+  0%, 100% {
+    box-shadow: none;
+    border-color: hsl(var(--ink) / 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 2px hsl(var(--signal) / 0.18);
+    border-color: hsl(var(--signal) / 0.65);
+  }
+}
+
+.option-item.selected {
+  border-color: hsl(var(--ink));
+  background: hsl(var(--card));
+  box-shadow: none;
+  transform: translateY(-2px);
+  animation: none;
+}
+
+.option-item.selected::before {
+  background: hsl(var(--signal));
+  height: 4px;
+}
+
+.dark .option-item.selected {
+  background: hsl(var(--card));
+  box-shadow: 0 0 60px -20px hsl(var(--signal) / 0.45);
+}
+
+.option-item.selected::after {
+  content: '▸ SELECTED';
+  position: absolute;
+  bottom: 6px;
+  right: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: hsl(var(--signal));
+  font-weight: 500;
+}
+
+.option-name {
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* --- Ritual focus: dim other cards in a column when one is selected --- */
+.column:has(.option-item.selected) .option-item:not(.selected):not(.breathing) {
+  opacity: 0.4;
+}
+
+/* --- Signer slots (multisig): same letterpress treatment --- */
+.signer-slot {
+  border-radius: 0;
+  border: 1px dashed hsl(var(--ink) / 0.35);
+  background: hsl(var(--card));
+  box-shadow: none;
+  transition: transform 240ms var(--ease-craft, ease-out),
+              border-color 240ms ease-out;
+}
+
+.signer-slot::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: hsl(var(--ink) / 0.15);
+  z-index: 0;
+}
+
+.signer-slot:hover {
+  border-color: hsl(var(--ink));
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.signer-slot.filled {
+  border-style: solid;
+  border-color: hsl(var(--ink));
+}
+
+.signer-slot.filled::before {
+  background: hsl(var(--signal));
+  height: 4px;
+}
+
+.signer-slot-number {
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 0;
+  width: 22px;
+  height: 22px;
+  font-size: 0.7rem;
+  background: hsl(var(--ink)) !important;
+  color: hsl(var(--paper)) !important;
+}
+
+.signer-slot-add-icon {
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid hsl(var(--ink) / 0.4);
+  font-weight: 200;
+}
+
+.signer-slot:hover .signer-slot-add-icon {
+  background: hsl(var(--signal));
+  color: hsl(var(--paper));
+  border-color: hsl(var(--signal));
+}
+
+.signer-slot-info,
+.option-info {
+  border-radius: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid hsl(var(--ink) / 0.4);
+}
+
+.signer-slot-info:hover,
+.option-info:hover {
+  background: hsl(var(--signal));
+  border-color: hsl(var(--signal));
+  color: hsl(var(--paper));
+}
+
+/* --- Device segmented: print-style toggle --- */
+.device-segmented {
+  background: transparent;
+  border: 1px solid hsl(var(--ink) / 0.4);
+  border-radius: 0;
+  padding: 0;
+}
+
+.device-segment {
+  border-radius: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+
+.device-segment.active {
+  background: hsl(var(--ink));
+  color: hsl(var(--paper));
+  box-shadow: none;
+}
+
+/* --- Transfer method tags: mono capsules with ink border --- */
+.transfer-method-tag,
+.transfer-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 0;
+  padding: 3px 8px;
+  border: 1px solid hsl(var(--ink) / 0.4);
+}
+
+.transfer-method-signer {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+
+.arrow-label-top,
+.arrow-head,
+.arrow-line-static,
+.flow-track,
+.flow-track::after,
+.flow-label-center,
+.arrow-label,
+.arrow-label-group {
+  color: hsl(var(--signal));
+}
+
+.arrow-label-top,
+.flow-label-center {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.arrow-line-static {
+  border-top-color: hsl(var(--signal));
+}
+
+/* --- Dropdown: print-style menu --- */
+.signer-dropdown {
+  border-radius: 0;
+  border: 1px solid hsl(var(--ink));
+  box-shadow: 4px 4px 0 hsl(var(--ink) / 0.08);
+  background: hsl(var(--card));
+}
+
+.signer-dropdown-header {
+  border-radius: 0;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.15em;
+  background: hsl(var(--paper-tint));
+  border-bottom: 1px solid hsl(var(--ink));
+}
+
+.signer-dropdown-item:last-child,
+.signer-dropdown-item-logo {
+  border-radius: 0;
+}
+
+.signer-dropdown-item:hover {
+  background: hsl(var(--paper-tint));
+}
+
+.signer-dropdown-item-incompatible {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+/* --- Bottom feature dock: specifications sheet --- */
+.feature-box {
+  border-radius: 0;
+  border: 1px solid hsl(var(--ink) / 0.35);
+  background: hsl(var(--card));
+  box-shadow: none;
+  position: relative;
+}
+
+.feature-box::before {
+  content: 'SPECIFICATIONS';
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  background: hsl(var(--background));
+  color: hsl(var(--ink-muted));
+  padding: 0 6px;
+}
+
+.feature-box:hover {
+  box-shadow: none;
+  transform: none;
+  border-color: hsl(var(--ink));
+}
+
+.feature-box .feature-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+  border-bottom: 1px solid hsl(var(--ink) / 0.25);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.feature-box .feature-item {
+  border-radius: 0;
+  background: transparent;
+  border-left: 2px solid hsl(var(--ink) / 0.15);
+  padding: 4px 8px;
+}
+
+.feature-box .feature-item.positive { border-left-color: #2D5F3F; background: transparent; }
+.feature-box .feature-item.negative { border-left-color: #6B2737; background: transparent; }
+.feature-box .feature-item.warning  { border-left-color: hsl(var(--signal)); background: transparent; }
+
+/* --- Reduced motion respect --- */
+@media (prefers-reduced-motion: reduce) {
+  .option-item.breathing { animation: none; }
+}
+
