@@ -139,3 +139,66 @@
     font-size: 0.8rem;
   }
 }
+
+/* =========================================================
+   P3 — Cypherpunk override: page-flip indicator style
+   ========================================================= */
+.signature-mode-selector {
+  gap: 32px;
+}
+
+.mode-label,
+.threshold-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+.mode-segmented,
+.threshold-segmented {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  gap: 0;
+  border-bottom: 1px solid hsl(var(--ink) / 0.2);
+}
+
+.mode-segment,
+.threshold-segment {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 0;
+  padding: 8px 14px;
+  position: relative;
+  background: transparent;
+  color: hsl(var(--ink-muted));
+}
+
+.mode-segment.active,
+.threshold-segment.active {
+  background: transparent;
+  color: hsl(var(--ink));
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.mode-segment.active::after,
+.threshold-segment.active::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: -1px;
+  height: 2px;
+  background: hsl(var(--signal));
+}
+
+.mode-divider {
+  background: hsl(var(--ink) / 0.25);
+}
+

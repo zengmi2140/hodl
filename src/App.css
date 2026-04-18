@@ -1673,3 +1673,190 @@ body {
   color: hsl(var(--signal));
 }
 
+/* =========================================================
+   P2 + P3 — Cypherpunk Atelier (App-level overrides)
+   FAQ drawer · Drawer slide · Component cards · Ritual layer
+   ========================================================= */
+
+.site-title {
+  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.site-title strong, .site-title b { font-weight: 700; }
+
+/* --- Component grid cards (single-sig view) --- */
+.component-item {
+  border-radius: 0;
+  border: 1px solid hsl(var(--ink) / 0.18);
+  background: hsl(var(--card));
+  box-shadow: none;
+  position: relative;
+  transition: transform 240ms var(--ease-craft, ease-out),
+              border-color 240ms ease-out, opacity 240ms ease-out;
+}
+
+.component-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: hsl(var(--ink) / 0.15);
+  transition: background 240ms var(--ease-craft, ease-out);
+}
+
+.component-item:hover {
+  box-shadow: none;
+  border-color: hsl(var(--ink));
+  transform: translateY(-2px);
+}
+
+.component-item.breathing {
+  border-color: hsl(var(--ink) / 0.35);
+  box-shadow: none;
+  animation: breathingInk 2.4s ease-in-out infinite;
+}
+
+@keyframes breathingInk {
+  0%, 100% { box-shadow: none; border-color: hsl(var(--ink) / 0.35); }
+  50% { box-shadow: 0 0 0 2px hsl(var(--signal) / 0.18); border-color: hsl(var(--signal) / 0.65); }
+}
+
+.component-item.active {
+  border-color: hsl(var(--ink));
+  background: hsl(var(--card));
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+.component-item.active::before { background: hsl(var(--signal)); height: 4px; }
+
+.dark .component-item.active {
+  background: hsl(var(--card));
+  box-shadow: 0 0 60px -20px hsl(var(--signal) / 0.45);
+}
+
+.component-name {
+  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  color: hsl(var(--foreground));
+  font-weight: 500;
+}
+
+/* --- FAQ Drawer: serif reading-room --- */
+.faq-overlay {
+  background: hsl(var(--ink) / 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.faq-drawer {
+  background: hsl(var(--paper));
+  box-shadow: -1px 0 0 hsl(var(--ink) / 0.25), -16px 0 40px hsl(var(--ink) / 0.12);
+  animation: faqSlideInCraft 0.32s var(--ease-craft, ease-out);
+}
+
+@keyframes faqSlideInCraft {
+  from { transform: translateX(8%) skewX(-1deg); opacity: 0; }
+  to   { transform: translateX(0) skewX(0); opacity: 1; }
+}
+
+.faq-title {
+  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.faq-close {
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid hsl(var(--ink) / 0.4);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.faq-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.faq-heading {
+  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-weight: 500;
+  border-top: 1px solid hsl(var(--ink) / 0.2);
+  padding-top: 18px;
+  margin-top: 24px;
+}
+
+.faq-heading:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+.faq-heading-icon {
+  border-radius: 0;
+  background: hsl(var(--ink));
+  color: hsl(var(--paper));
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  box-shadow: none;
+}
+
+.faq-heading-text {
+  border-left: none;
+  padding-left: 0;
+  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+}
+
+.faq-paragraph,
+.faq-list,
+.faq-list-item {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+  font-size: 0.96rem;
+  line-height: 1.75;
+  color: hsl(var(--ink));
+}
+
+.faq-quote {
+  border-radius: 0;
+  border-left: 3px solid hsl(var(--signal));
+  background: hsl(var(--paper-tint));
+  font-family: 'Noto Serif SC', Georgia, serif;
+  font-style: italic;
+  box-shadow: none;
+}
+
+/* --- 100% milestone whisper (P3 easter egg) --- */
+.progress-bar-container.extended::after,
+.progress-bar-container-mobile.extended::after {
+  content: '> NOT YOUR KEYS, NOT YOUR COINS';
+  position: absolute;
+  top: -22px;
+  right: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: hsl(var(--signal));
+  opacity: 0;
+  animation: whisperFade 4s ease-out 0.5s forwards;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes whisperFade {
+  0%   { opacity: 0; transform: translateY(4px); }
+  20%  { opacity: 0.85; transform: translateY(0); }
+  80%  { opacity: 0.85; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
+@media (max-width: 768px) {
+  .progress-bar-container-mobile.extended::after {
+    font-size: 0.5rem;
+    top: -16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .component-item.breathing,
+  .progress-bar-container.extended::after,
+  .progress-bar-container-mobile.extended::after {
+    animation: none;
+  }
+}
+
