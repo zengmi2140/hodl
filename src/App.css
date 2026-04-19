@@ -2037,3 +2037,287 @@ body {
   .progress-bar.multisig-150::after { animation: none; }
 }
 
+
+/* =========================================================
+   ARCHITECTURAL BLUEPRINT — APP.CSS OVERRIDES
+   Applied last so they win over earlier rules.
+   ========================================================= */
+
+/* --- Header: title-block --- */
+.header.bp-header {
+  background: hsl(var(--background));
+  border-bottom: 1px solid hsl(var(--border));
+  padding: 14px 0 12px;
+  box-shadow: none;
+}
+
+.bp-header .header-content {
+  align-items: stretch;
+  min-height: auto;
+  gap: 14px;
+}
+
+.bp-title-block {
+  align-self: center;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0;
+  padding: 6px 16px 4px;
+  background: hsl(var(--background));
+  font-family: 'Recursive', ui-monospace, monospace;
+  font-variation-settings: 'MONO' 1;
+  position: relative;
+  min-width: 280px;
+  text-align: center;
+}
+
+.bp-title-block::before,
+.bp-title-block::after {
+  content: '+';
+  position: absolute;
+  top: -7px;
+  font-size: 11px;
+  line-height: 1;
+  color: hsl(var(--ink));
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+}
+.bp-title-block::before { left: -4px; }
+.bp-title-block::after  { right: -4px; }
+
+.bp-title-block__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--ink));
+}
+
+.bp-title-block__signal {
+  color: hsl(var(--signal));
+  font-size: 16px;
+  line-height: 1;
+}
+
+.bp-title-block__name { font-variation-settings: 'MONO' 1; }
+
+.bp-title-block__meta {
+  margin-top: 2px;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  color: hsl(var(--ink-muted));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bp-title-block__sep { opacity: 0.5; }
+
+/* Header buttons — wireframe style */
+.bp-header .header-btn,
+.bp-header .header-lang-select {
+  background: transparent;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0;
+  color: hsl(var(--ink));
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  min-height: 28px;
+  box-shadow: none;
+}
+
+.bp-header .header-btn:hover,
+.bp-header .header-lang-select:hover {
+  background: hsl(var(--ink));
+  color: hsl(var(--background));
+  border-color: hsl(var(--ink));
+}
+
+.bp-header .header-actions { gap: 6px; top: 14px; }
+
+/* --- Ruler --- */
+.bp-ruler-section {
+  margin-top: 6px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  max-width: 720px;
+}
+
+.bp-ruler {
+  position: relative;
+  width: 100%;
+  height: 38px;
+  padding-top: 18px;
+}
+
+.bp-ruler__track {
+  position: relative;
+  height: 14px;
+  border: 1px solid hsl(var(--border));
+  background: transparent;
+}
+
+.bp-ruler__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: hsl(var(--signal) / 0.18);
+  border-right: 1px solid hsl(var(--signal));
+  transition: width 0.4s var(--ease-craft);
+}
+
+.bp-ruler.optimal .bp-ruler__fill {
+  background: hsl(var(--signal) / 0.32);
+}
+
+.bp-ruler__tick {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.bp-ruler__tick-mark {
+  display: block;
+  width: 1px;
+  height: 5px;
+  background: hsl(var(--ink));
+  margin-bottom: 0;
+}
+
+.bp-ruler__tick.major .bp-ruler__tick-mark { height: 9px; }
+
+.bp-ruler__tick-label {
+  position: absolute;
+  bottom: 16px;
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  color: hsl(var(--ink-muted));
+  white-space: nowrap;
+}
+
+.bp-ruler__cursor {
+  position: absolute;
+  top: -10px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: left 0.4s var(--ease-craft);
+}
+
+.bp-ruler__cursor-mark {
+  display: block;
+  font-size: 11px;
+  line-height: 1;
+  color: hsl(var(--signal));
+  text-shadow: 0 0 0 transparent;
+}
+
+.bp-ruler.optimal .bp-ruler__cursor-mark {
+  color: hsl(var(--signal));
+  animation: bpCursorPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes bpCursorPulse {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%      { transform: translateY(-2px); opacity: 0.7; }
+}
+
+.progress-percentage {
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: hsl(var(--ink));
+}
+
+.progress-percentage.optimal { color: hsl(var(--signal)); }
+
+.bp-ruler__optimal-flag {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  margin-left: 8px;
+  color: hsl(var(--signal));
+}
+
+.progress-section.bp-ruler-section .progress-info {
+  justify-content: center;
+  width: 100%;
+}
+
+/* Hide legacy progress bar (we replace with ruler) */
+.bp-header .progress-bar-container { display: none !important; }
+.bp-header .celebration-emoji { display: none !important; }
+
+/* --- Title block legacy hiding --- */
+.bp-header .site-title { display: none; }
+
+/* --- Three-column module frames --- */
+.layout-container,
+.columns-container {
+  position: relative;
+  padding-top: 28px;
+  padding-bottom: 16px;
+}
+
+.column {
+  position: relative;
+  border: 1px solid hsl(var(--border));
+  background: transparent;
+  padding: 20px 14px 14px;
+  border-radius: 0;
+}
+
+/* Crosshair corners on each module frame */
+.column::before,
+.column::after {
+  content: '+';
+  position: absolute;
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 11px;
+  line-height: 1;
+  color: hsl(var(--ink));
+  pointer-events: none;
+}
+.column::before { top: -7px; left: -4px; }
+.column::after  { top: -7px; right: -4px; }
+
+.column > .column-title {
+  position: relative;
+  background: hsl(var(--background));
+  border-bottom: none;
+  padding: 0 8px 4px;
+  margin: -10px auto 14px;
+  width: auto;
+  display: inline-block;
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--ink));
+  font-weight: 600;
+}
+
+/* Add bottom-corner crosshairs via the column-title's pseudo? — keep simple, only top corners */
+
+/* --- App-level dark mode body grid uses tokens already --- */
+
