@@ -48,8 +48,15 @@
   --slot-4-bg: #EFE2E5; --slot-4-border: #6B2737;  /* Oxide Red 氧化红 */
   --slot-5-bg: #EEE9DA; --slot-5-border: #6B5B1F;  /* Antique Gold 古金 */
 
+  /* --- Rules (border hierarchy) --- */
+  --rule-strong: 45 8% 18%;        /* card outlines */
+  --rule-soft:   45 8% 18% / 0.18; /* internal dividers — used as alpha */
+
   /* --- Motion --- */
   --ease-craft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-micro: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-micro: 180ms;
+  --dur-panel: 320ms;
 }
 
 .dark {
