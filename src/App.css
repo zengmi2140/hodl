@@ -1736,10 +1736,10 @@ body {
   to   { transform: translateX(0); opacity: 1; }
 }
 
-/* Header: 左对齐眉题 + 主标题，底部一条墨线 */
+/* Header: 左对齐 FAQ 大标题，底部一条墨线 */
 .faq-header {
   display: flex !important;
-  align-items: flex-end !important;
+  align-items: center !important;
   justify-content: space-between !important;
   gap: 12px;
   padding-bottom: 16px !important;
@@ -1749,22 +1749,6 @@ body {
 
 .faq-header::before { content: none !important; }
 
-.faq-header-titles {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  text-align: left;
-  flex: 1;
-}
-
-.faq-eyebrow {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: hsl(var(--ink-muted));
-}
-
 .faq-title {
   font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
   font-weight: 350;
@@ -1773,6 +1757,7 @@ body {
   color: hsl(var(--ink));
   text-align: left !important;
   margin: 0;
+  flex: 1;
 }
 
 .faq-close {
