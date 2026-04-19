@@ -121,12 +121,15 @@ body {
 .header-lang-select {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--ink-muted));
   padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 13px;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   min-height: 32px;
   outline: none;
   transition: all 0.2s ease;
@@ -136,6 +139,17 @@ body {
   background-position: right 8px center;
   background-size: 12px;
   padding-right: 28px;
+}
+
+/* 下拉展开后的选项（受系统限制，仅能改基础样式） */
+.header-lang-select option {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: hsl(var(--ink));
+  background: hsl(var(--card));
+  letter-spacing: 0.04em;
+  padding: 8px 12px;
 }
 
 .dark .header-lang-select {
