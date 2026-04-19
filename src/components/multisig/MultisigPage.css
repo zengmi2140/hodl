@@ -1697,3 +1697,20 @@
 :lang(zh-TW) .mobile-feature-text {
   font-weight: 350;
 }
+
+/* =========================================================
+   FeatureIcon vertical alignment fix
+   容器使用 flex-start（为支持多行文本），但 16px 方框图标
+   需要与文字第一行的视觉中心对齐，否则图标偏上、文字偏下。
+   通过 margin-top 微调让图标视觉中心落在文字 cap-height 中点。
+   ========================================================= */
+.feature-item .feature-icon-svg,
+.mobile-feature-item .feature-icon-svg,
+.mobile-feature-display-item .feature-icon-svg,
+.mobile-drawer-body .feature-item .feature-icon-svg {
+  /* 文字 line-height 1.55 * 0.84rem ≈ 20.8px，图标 16px
+     需要下移约 (20.8 - 16) / 2 ≈ 2.4px，并补偿基线偏移 */
+  margin-top: 2px;
+  align-self: flex-start;
+}
+
