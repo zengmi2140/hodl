@@ -82,7 +82,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
             <div className="mobile-feature-display-list">
               {signer.features.map((feature, fIndex) => (
                 <div key={fIndex} className="mobile-feature-display-item">
-                  <span className="mobile-feature-display-icon">{getFeatureIcon(feature.type)}</span>
+                  <FeatureIcon type={feature.type} size={16} />
                   <span className="mobile-feature-display-text">{feature.text}</span>
                 </div>
               ))}
@@ -110,7 +110,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
             <div className="mobile-feature-display-list">
               {wallet.features.map((feature, fIndex) => (
                 <div key={fIndex} className="mobile-feature-display-item">
-                  <span className="mobile-feature-display-icon">{getFeatureIcon(feature.type)}</span>
+                  <FeatureIcon type={feature.type} size={16} />
                   <span className="mobile-feature-display-text">{feature.text}</span>
                 </div>
               ))}
@@ -138,7 +138,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
             <div className="mobile-feature-display-list">
               {node.features.map((feature, fIndex) => (
                 <div key={fIndex} className="mobile-feature-display-item">
-                  <span className="mobile-feature-display-icon">{getFeatureIcon(feature.type)}</span>
+                  <FeatureIcon type={feature.type} size={16} />
                   <span className="mobile-feature-display-text">{feature.text}</span>
                 </div>
               ))}
