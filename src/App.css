@@ -1977,31 +1977,25 @@ body {
   position: relative;
 }
 
+/* 刻度尺：统一等高小刻度，仅作纹理装饰，不暗示百分比档位
+   - 每 5% 一根（共 20 根），高度 3px，颜色极淡
+   - 不再使用大小双层刻度，避免用户误以为大刻度=25%/50% */
 .progress-bar-container::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -7px;
-  height: 5px;
-  background-image: linear-gradient(to right, hsl(var(--ink) / 0.45) 0 1px, transparent 1px 100%);
-  background-size: 10% 100%;
+  bottom: -6px;
+  height: 3px;
+  background-image: linear-gradient(to right, hsl(var(--ink) / 0.28) 0 1px, transparent 1px 100%);
+  background-size: 5% 100%;
   background-repeat: repeat-x;
   pointer-events: none;
 }
 
+/* 移除原本的大刻度层（::before），统一为单一小刻度 */
 .progress-bar-container::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -9px;
-  height: 7px;
-  background-image: linear-gradient(to right, hsl(var(--ink) / 0.7) 0 1px, transparent 1px 100%);
-  background-size: 25% 100%;
-  background-repeat: repeat-x;
-  pointer-events: none;
-  z-index: 1;
+  content: none;
 }
 
 .progress-bar.singlesig-complete::after,
