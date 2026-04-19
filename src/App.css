@@ -1889,3 +1889,74 @@ body {
   letter-spacing: -0.005em;
 }
 
+/* =========================================================
+   ▼ Batch 2 — Micro-interactions & card refinement
+   - Sliding underline on header buttons
+   - Micro-bounce on selection
+   - Letterpress depth on selected cards
+   ========================================================= */
+
+/* --- Sliding underline for header buttons --- */
+.header-btn,
+.header-lang-select {
+  position: relative;
+  border-bottom-color: transparent !important;
+  overflow: visible;
+}
+
+.header-btn::after,
+.header-lang-select::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: hsl(var(--ink) / 0.5);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 220ms var(--ease-craft);
+  pointer-events: none;
+}
+
+.header-btn:hover::after,
+.header-lang-select:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.header-btn:focus-visible::after,
+.header-lang-select:focus::after {
+  background: hsl(var(--signal));
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* --- Letterpress depth on selected component card --- */
+.component-item.active {
+  box-shadow:
+    inset 0 1px 0 hsl(0 0% 100% / 0.6),
+    0 1px 2px hsl(var(--ink) / 0.08),
+    0 0 0 1px hsl(var(--ink) / 0.08);
+}
+
+.dark .component-item.active {
+  box-shadow:
+    inset 0 1px 0 hsl(var(--paper) / 0.4),
+    0 0 60px -20px hsl(var(--signal) / 0.45);
+}
+
+/* --- Micro-bounce on selection --- */
+@keyframes microBounce {
+  0%   { transform: translateY(-2px) scale(1); }
+  40%  { transform: translateY(-3px) scale(1.018); }
+  100% { transform: translateY(-2px) scale(1); }
+}
+
+.component-item.active {
+  animation: microBounce 220ms var(--ease-micro, cubic-bezier(0.32, 0.72, 0, 1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .component-item.active { animation: none; }
+}
