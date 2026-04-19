@@ -1255,3 +1255,107 @@
   .option-item.breathing { animation: none; }
 }
 
+
+/* =========================================================
+   Custom Language Select — letterpress dropdown
+   Replaces native <select> for full font/style control.
+   ========================================================= */
+.lang-select {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-select__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 4px 0;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+  transition: color 200ms ease, border-color 200ms ease;
+  outline: none;
+}
+
+.lang-select__trigger:hover,
+.lang-select__trigger.is-open,
+.lang-select__trigger:focus-visible {
+  color: hsl(var(--ink));
+  border-bottom-color: hsl(var(--signal));
+}
+
+.lang-select__caret {
+  font-size: 0.7rem;
+  line-height: 1;
+  color: hsl(var(--ink-muted));
+  transition: transform 200ms ease;
+}
+
+.lang-select__trigger.is-open .lang-select__caret {
+  transform: rotate(180deg);
+  color: hsl(var(--signal));
+}
+
+.lang-select__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--ink));
+  border-radius: 0;
+  box-shadow: 4px 4px 0 hsl(var(--ink) / 0.08);
+  z-index: 30;
+  animation: langMenuIn 160ms ease-out;
+}
+
+@keyframes langMenuIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lang-select__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: hsl(var(--ink));
+  transition: background 160ms ease, color 160ms ease;
+  white-space: nowrap;
+}
+
+.lang-select__option:hover {
+  background: hsl(var(--paper-tint));
+  color: hsl(var(--ink));
+}
+
+.lang-select__option.is-active {
+  color: hsl(var(--signal));
+}
+
+.lang-select__check {
+  width: 12px;
+  display: inline-flex;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: hsl(var(--signal));
+}
+
+.lang-select__option-label {
+  flex: 1;
+}
