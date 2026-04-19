@@ -87,11 +87,11 @@ const Header: React.FC<HeaderProps> = ({
             <span className="bp-title-block__name">{t('header.title')}</span>
           </div>
           <div className="bp-title-block__meta">
-            <span>SHEET&nbsp;01/01</span>
+            <span>TTY/01</span>
             <span className="bp-title-block__sep">·</span>
-            <span>SCALE&nbsp;1:1</span>
+            <span>UTF-8</span>
             <span className="bp-title-block__sep">·</span>
-            <span>REV.&nbsp;A</span>
+            <span>v1.0</span>
           </div>
         </div>
 
