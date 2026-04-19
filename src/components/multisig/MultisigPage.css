@@ -1488,3 +1488,84 @@
   letter-spacing: 0.16em;
   font-size: 0.52rem;
 }
+
+/* =========================================================
+   ▼ Batch 2 — Letterpress depth, micro-bounce, refined tags
+   ========================================================= */
+
+/* --- Letterpress depth on selected option-item / signer-slot --- */
+.option-item.selected,
+.signer-slot.filled {
+  box-shadow:
+    inset 0 1px 0 hsl(0 0% 100% / 0.5),
+    0 1px 2px hsl(var(--ink) / 0.08),
+    0 0 0 1px hsl(var(--ink) / 0.06);
+}
+
+.dark .option-item.selected,
+.dark .signer-slot.filled {
+  box-shadow:
+    inset 0 1px 0 hsl(var(--paper) / 0.35),
+    0 0 60px -20px hsl(var(--signal) / 0.45);
+}
+
+/* --- Micro-bounce on selection --- */
+@keyframes ritualBounce {
+  0%   { transform: translateY(-2px) scale(1); }
+  40%  { transform: translateY(-3px) scale(1.015); }
+  100% { transform: translateY(-2px) scale(1); }
+}
+
+.option-item.selected {
+  animation: ritualBounce 220ms var(--ease-micro, cubic-bezier(0.32, 0.72, 0, 1));
+}
+
+/* --- Transfer tags: outline style (no fill) for refinement --- */
+.transfer-method-tag,
+.transfer-tag {
+  background: transparent !important;
+  color: hsl(var(--ink)) !important;
+  border: 1px solid hsl(var(--ink) / 0.45);
+}
+
+.transfer-method-tag.colored,
+.transfer-tag.colored {
+  background: transparent !important;
+}
+
+/* Default colored tag classes — override fills, keep border tone */
+.transfer-tag.sd-card,
+.transfer-tag.qr-code,
+.transfer-tag.usb,
+.transfer-tag.bluetooth,
+.transfer-tag.nfc {
+  background: transparent;
+  color: hsl(var(--ink));
+  border: 1px solid hsl(var(--ink) / 0.45);
+}
+
+/* --- Arrow heads: thinner, more precise --- */
+.arrow-head {
+  font-size: 9px;
+  font-weight: 300;
+}
+
+.arrow-line-static {
+  border-top-width: 1px;
+}
+
+/* --- Feature-box badge refinement --- */
+.feature-box::before {
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  padding: 3px 8px;
+  background: hsl(var(--paper));
+  border: 1px solid hsl(var(--ink) / 0.18);
+  color: hsl(var(--ink));
+  top: -9px;
+}
+
+/* --- Reduced motion respects bounce --- */
+@media (prefers-reduced-motion: reduce) {
+  .option-item.selected { animation: none; }
+}
