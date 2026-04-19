@@ -96,16 +96,7 @@ const Header: React.FC<HeaderProps> = ({
         className="header-actions"
         style={{ right: getButtonsRight() }}
       >
-        <select
-          className="header-lang-select"
-          value={i18n.language}
-          onChange={(e) => i18n.changeLanguage(e.target.value)}
-          aria-label={t('header.selectLang')}
-        >
-          <option value="en">English</option>
-          <option value="zh-CN">简体中文</option>
-          <option value="zh-TW">繁體中文</option>
-        </select>
+        <LanguageSelect />
         <button 
           className="header-btn"
           onClick={onOpenFaq}
