@@ -69,10 +69,10 @@ const WalletColumn: React.FC<WalletColumnProps> = ({
 
   return (
     <div className="column">
-      <div className="column-title" style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative', justifyContent: 'center' }}>
-        <div style={{ flex: 1 }}></div>
-        <span>{t('columns.wallet')}</span>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+      <div className="column-title" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', width: '100%' }}>
+        <div></div>
+        <span style={{ justifySelf: 'center' }}>{t('columns.wallet')}</span>
+        <div style={{ justifySelf: 'end' }}>
           <div className="device-segmented">
             <button
               className={`device-segment ${userPreference?.deviceType === 'desktop' ? 'active' : ''}`}

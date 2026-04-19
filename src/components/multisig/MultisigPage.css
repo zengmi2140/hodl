@@ -755,8 +755,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* 与 columns-container 完全相同的间距 */
-  gap: 24px;
+  /* 与 columns-container 完全相同的间距（P2 已改为 48px） */
+  gap: 48px;
   width: 100%;
 }
 
@@ -929,19 +929,15 @@
   border-bottom: 1px solid hsl(var(--ink));
   padding-bottom: 10px;
   margin-bottom: 14px;
+  /* 居中标题文本 */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   background: transparent;
 }
 
-.column-title::before {
-  content: attr(data-act);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: hsl(var(--signal));
-  letter-spacing: 0;
-}
+/* 章节编号已移除：原 ::before 会破坏居中且当前未传 data-act */
 
 /* --- Option cards: typewriter label aesthetic --- */
 .option-item {
