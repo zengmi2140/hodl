@@ -1356,7 +1356,7 @@
 
 .lang-select__menu {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 2px);
   right: 0;
   margin: 0;
   padding: 0;
@@ -1369,7 +1369,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 6px;
+  gap: 0;
 }
 
 @keyframes langMenuIn {
@@ -1381,19 +1381,20 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 2px 0;
+  padding: 1px 0;
   cursor: pointer;
   background: transparent;
   border: none;
   border-bottom: 1px solid transparent;
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: hsl(var(--ink-muted));
   transition: color 160ms ease, border-color 160ms ease;
   white-space: nowrap;
+  line-height: 1.4;
 }
 
 .lang-select__option:hover {
