@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import LanguageSelect from './LanguageSelect';
 
 interface HeaderProps {
   completionPercentage: number;
@@ -20,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({
   theme,
   onToggleTheme
 }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // 进度条动态宽度计算（保持居中）
   const GAP_FROM_BUTTONS = 24; // 进度条与按钮之间的间隙（像素）
@@ -96,16 +97,7 @@ const Header: React.FC<HeaderProps> = ({
         className="header-actions"
         style={{ right: getButtonsRight() }}
       >
-        <select
-          className="header-lang-select"
-          value={i18n.language}
-          onChange={(e) => i18n.changeLanguage(e.target.value)}
-          aria-label={t('header.selectLang')}
-        >
-          <option value="en">English</option>
-          <option value="zh-CN">简体中文</option>
-          <option value="zh-TW">繁體中文</option>
-        </select>
+        <LanguageSelect />
         <button 
           className="header-btn"
           onClick={onOpenFaq}
