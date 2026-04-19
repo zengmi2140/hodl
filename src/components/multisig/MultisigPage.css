@@ -1105,24 +1105,53 @@
   color: hsl(var(--paper));
 }
 
-/* --- Device segmented: print-style toggle --- */
+/* --- Device segmented: borderless icon toggle --- */
 .device-segmented {
   background: transparent;
-  border: 1px solid hsl(var(--ink) / 0.4);
+  border: none;
   border-radius: 0;
   padding: 0;
+  gap: 10px;
+  margin-left: auto;
 }
 
 .device-segment {
+  position: relative;
   border-radius: 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
+  background: transparent;
+  border: none;
+  padding: 4px 2px 8px;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: hsl(var(--ink-muted));
+  filter: grayscale(1) opacity(0.55);
+  transition: filter 180ms ease, color 180ms ease, transform 180ms ease;
+  cursor: pointer;
+}
+
+.device-segment:hover:not(.active) {
+  filter: grayscale(0.4) opacity(0.85);
+  transform: translateY(-1px);
+  background: transparent;
+  color: hsl(var(--ink));
 }
 
 .device-segment.active {
-  background: hsl(var(--ink));
-  color: hsl(var(--paper));
+  background: transparent;
+  color: hsl(var(--ink));
+  filter: none;
   box-shadow: none;
+}
+
+.device-segment.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 18px;
+  height: 2px;
+  background: hsl(var(--signal));
+  transform: translateX(-50%);
 }
 
 /* --- Transfer method tags: mono capsules with ink border --- */
