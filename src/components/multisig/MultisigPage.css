@@ -1582,3 +1582,90 @@
 @media (prefers-reduced-motion: reduce) {
   .option-item.selected { animation: none; }
 }
+
+/* =========================================================
+   ▼ Typographic refinement — option names & feature text
+   Ensure Inter Tight everywhere, balance Chinese weight,
+   improve reading rhythm in option list and feature dock.
+   ========================================================= */
+
+/* Option list item names (signer / wallet / node columns) */
+.option-name {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+  color: hsl(var(--ink));
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+/* Chinese characters slightly lighter to match Latin visual weight */
+:lang(zh) .option-name,
+:lang(zh-CN) .option-name,
+:lang(zh-TW) .option-name {
+  font-weight: 450;
+}
+
+/* Feature dock items: refined editorial reading rhythm */
+.feature-box .feature-text,
+.feature-item .feature-text {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  letter-spacing: -0.003em;
+  color: hsl(var(--ink) / 0.88);
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+:lang(zh) .feature-box .feature-text,
+:lang(zh-CN) .feature-box .feature-text,
+:lang(zh-TW) .feature-box .feature-text,
+:lang(zh) .feature-item .feature-text,
+:lang(zh-CN) .feature-item .feature-text,
+:lang(zh-TW) .feature-item .feature-text {
+  font-weight: 350;
+  letter-spacing: 0;
+}
+
+/* Feature box section title: keep mono eyebrow, refine size */
+.feature-box .feature-title {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+/* Mobile parity */
+.mobile-option-name {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+:lang(zh) .mobile-option-name,
+:lang(zh-CN) .mobile-option-name,
+:lang(zh-TW) .mobile-option-name {
+  font-weight: 450;
+}
+
+.mobile-feature-text {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  color: hsl(var(--ink) / 0.88);
+}
+
+:lang(zh) .mobile-feature-text,
+:lang(zh-CN) .mobile-feature-text,
+:lang(zh-TW) .mobile-feature-text {
+  font-weight: 350;
+}
