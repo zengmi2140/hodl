@@ -12,131 +12,123 @@ interface HeaderProps {
   onToggleTheme?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ 
-  completionPercentage, 
-  maxProgress = 120, 
-  onOpenFaq, 
-  layoutLeftEdge, 
+const Header: React.FC<HeaderProps> = ({
+  completionPercentage,
+  maxProgress = 120,
+  onOpenFaq,
+  layoutLeftEdge,
   layoutRightEdge,
   theme,
-  onToggleTheme
+  onToggleTheme,
 }) => {
   const { t } = useTranslation();
 
-  // 进度条动态宽度计算（保持居中）
-  const GAP_FROM_BUTTONS = 24; // 进度条与按钮之间的间隙（像素）
-  const BUTTON_WIDTH = 72; // 按钮的大致宽度（像素）
-  
+  // Progress ruler width — keep the prior responsive sizing
+  const GAP_FROM_BUTTONS = 24;
+  const BUTTON_WIDTH = 72;
+
   const calculateProgressMaxWidth = (): number | null => {
-    if (layoutLeftEdge === undefined || layoutRightEdge === undefined) {
-      return null; // 使用默认样式
-    }
-    
-    // 页面中心点
+    if (layoutLeftEdge === undefined || layoutRightEdge === undefined) return null;
     const pageCenter = window.innerWidth / 2;
-    
-    // 左侧按钮右边界
     const leftButtonRight = layoutLeftEdge + BUTTON_WIDTH + GAP_FROM_BUTTONS;
-    // 右侧按钮左边界
     const rightButtonLeft = layoutRightEdge - BUTTON_WIDTH - GAP_FROM_BUTTONS;
-    
-    // 从页面中心到左侧的可用距离
     const leftHalfSpace = pageCenter - leftButtonRight;
-    // 从页面中心到右侧的可用距离
     const rightHalfSpace = rightButtonLeft - pageCenter;
-    
-    // 取较小值作为半宽度，保证两侧都不超出
     const halfWidth = Math.min(leftHalfSpace, rightHalfSpace);
-    
-    // 进度条总宽度，最小200px，最大800px
-    return Math.min(Math.max(halfWidth * 2, 200), 800);
+    return Math.min(Math.max(halfWidth * 2, 240), 720);
   };
 
   const progressMaxWidth = calculateProgressMaxWidth();
-  
-  const getProgressColor = (percentage: number): string => {
-    if (percentage === 0) return '#fbbf24';   // 黄色 - 空状态
-    if (percentage <= 60) return '#ffcc80';   // 更浅橙色 - 部分配置
-    if (percentage <= 100) return '#ffb74d';  // 浅橙色 - 基础完成
-    if (percentage <= 120) return '#F7931A';  // 比特币橙色 - 单签完整配置
-    if (percentage <= 130) return '#F7931A';  // 比特币橙色 - 2-of-3完整配置
-    if (percentage <= 150) return '#ff6b00';  // 深橙色 - 3-of-5完整配置
-    return '#fbbf24'; // 默认黄色
-  };
 
-  // 在夜间模式下，某些颜色可能需要调整以获得更好的对比度
-  const adjustedProgressColor = theme === 'dark' && completionPercentage <= 100 
-    ? getProgressColor(completionPercentage) // 可以根据需要进一步调整
-    : getProgressColor(completionPercentage);
+  // Cursor position on the ruler (clamped 0–100% of visible track).
+  const cursorPercent = Math.min(
+    Math.max((completionPercentage / maxProgress) * 100, 0),
+    100,
+  );
 
-  // 计算进度条显示宽度（按最大进度值比例缩放）
-  const getProgressBarWidth = (): number => {
-    // 按比例缩放：实际进度 / 最大进度 * 100
-    // 例如：2-of-3模式下 110% / 130% = 84.6%
-    return Math.min((completionPercentage / maxProgress) * 100, 100);
-  };
+  const isOptimal =
+    completionPercentage === 120 ||
+    completionPercentage === 130 ||
+    completionPercentage === 150;
 
-  // 判断是否显示庆祝emoji
-  const showCelebration = completionPercentage >= 120;
-  // 判断是否显示灰色延伸区域（仅单签100%时）
-  const showGrayExtension = completionPercentage === 100;
-  // 判断是否为多签高进度
-  const isMultisigHighProgress = completionPercentage === 130 || completionPercentage === 150;
-
-  // 计算按钮位置：使 FAQ 按钮右边与节点列右边对齐
   const getButtonsRight = (): string | undefined => {
     if (layoutRightEdge === undefined) return undefined;
-    // 页面右边距离 layoutRightEdge 的距离
     return `${window.innerWidth - layoutRightEdge}px`;
   };
 
+  // Ruler tick marks (0, 20, 40, …, maxProgress)
+  const tickStep = 20;
+  const ticks: number[] = [];
+  for (let v = 0; v <= maxProgress; v += tickStep) ticks.push(v);
+
   return (
-    <header className="header">
-      {/* 右上角统一按钮组 */}
-      <div 
-        className="header-actions"
-        style={{ right: getButtonsRight() }}
-      >
+    <header className="header bp-header">
+      {/* Right-side actions — drafting toolbar */}
+      <div className="header-actions" style={{ right: getButtonsRight() }}>
         <LanguageSelect />
-        <button 
-          className="header-btn"
-          onClick={onOpenFaq}
-          aria-label={t('header.viewFaq')}
-        >
+        <button className="header-btn" onClick={onOpenFaq} aria-label={t('header.viewFaq')}>
           {t('common.faq')}
         </button>
-        <button 
+        <button
           className="header-btn"
           onClick={onToggleTheme}
           aria-label="Toggle theme"
           title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
         >
-          {theme === 'dark' ? '☀️' : '🌙'}
+          {theme === 'dark' ? '☀' : '☾'}
         </button>
       </div>
 
       <div className="header-content">
-        <h1 className="site-title">
-          <span className="bitcoin-logo">₿</span>
-          {t('header.title')}
-        </h1>
-        {/* 中央进度条区域 */}
-        <div 
-          className="progress-section" 
+        {/* Title block — architectural drawing convention */}
+        <div className="bp-title-block">
+          <div className="bp-title-block__main">
+            <span className="bp-title-block__signal">₿</span>
+            <span className="bp-title-block__name">{t('header.title')}</span>
+          </div>
+          <div className="bp-title-block__meta">
+            <span>SHEET&nbsp;01/01</span>
+            <span className="bp-title-block__sep">·</span>
+            <span>SCALE&nbsp;1:1</span>
+            <span className="bp-title-block__sep">·</span>
+            <span>REV.&nbsp;A</span>
+          </div>
+        </div>
+
+        {/* Progress ruler */}
+        <div
+          className="progress-section bp-ruler-section"
           style={progressMaxWidth ? { maxWidth: `${progressMaxWidth}px` } : undefined}
         >
-          <div className={`progress-bar-container ${showGrayExtension ? 'extended' : ''} ${isMultisigHighProgress ? 'multisig-complete' : ''}`}>
-            <div 
-              className={`progress-bar ${completionPercentage === 100 ? 'at-hundred' : ''} ${completionPercentage === 120 ? 'singlesig-complete' : ''} ${completionPercentage === 130 ? 'multisig-130' : ''} ${completionPercentage === 150 ? 'multisig-150' : ''}`}
-              style={{
-                width: `${getProgressBarWidth()}%`,
-                backgroundColor: adjustedProgressColor
-              }}
-            />
+          <div className={`bp-ruler ${isOptimal ? 'optimal' : ''}`}>
+            {/* Ruler baseline + ticks */}
+            <div className="bp-ruler__track">
+              {ticks.map((v) => {
+                const left = (v / maxProgress) * 100;
+                const isMajor = v % 40 === 0;
+                return (
+                  <div
+                    key={v}
+                    className={`bp-ruler__tick ${isMajor ? 'major' : ''}`}
+                    style={{ left: `${left}%` }}
+                  >
+                    <span className="bp-ruler__tick-mark" />
+                    {isMajor && <span className="bp-ruler__tick-label">{v}</span>}
+                  </div>
+                );
+              })}
+              {/* Progress fill bar */}
+              <div className="bp-ruler__fill" style={{ width: `${cursorPercent}%` }} />
+              {/* Cursor (▼) */}
+              <div className="bp-ruler__cursor" style={{ left: `${cursorPercent}%` }}>
+                <span className="bp-ruler__cursor-mark">▼</span>
+              </div>
+            </div>
           </div>
           <div className="progress-info">
-            <span className={`progress-percentage ${isMultisigHighProgress ? 'multisig-high' : ''}`}>
+            <span className={`progress-percentage ${isOptimal ? 'optimal' : ''}`}>
               {completionPercentage}%
+              {isOptimal && <span className="bp-ruler__optimal-flag"> ◉ OPTIMAL</span>}
             </span>
           </div>
         </div>

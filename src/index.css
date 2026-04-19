@@ -3,28 +3,35 @@
 @tailwind utilities;
 
 /* =========================================================
-   Cypherpunk Atelier — Design Tokens (P1: Foundations)
-   Paper × Ink × Signal. Bitcoin Orange used as a SIGNAL only.
+   Architectural Blueprint — Design Tokens
+   "Self-Custody Blueprint" — Drafting × Wireframe × Signal.
+   Light = Draft Paper (奶白草稿纸).
+   Dark  = Prussian Blueprint (普鲁士蓝图).
    All colors expressed in HSL for shadcn/Tailwind compatibility.
    ========================================================= */
 
 :root {
-  /* --- Surface (Paper) --- */
-  --paper:        38 30% 94%;   /* #F4F1EA warm ivory */
-  --paper-tint:   38 25% 89%;   /* #ECE7DB block tint */
-  --paper-deep:   36 22% 84%;
+  /* --- Surface (Draft Paper) --- */
+  --paper:        40 35% 94%;   /* #F5F1E8 cream draft paper */
+  --paper-tint:   40 25% 89%;   /* tinted block */
+  --paper-deep:   38 22% 84%;
 
-  /* --- Text (Ink) --- */
-  --ink:           45 8% 6%;    /* #0F0F0E near-black ink */
-  --ink-muted:     38 6% 40%;   /* #6B6760 light ink */
-  --ink-rule:      45 8% 9%;
+  /* --- Lines (Drafting Ink) --- */
+  --ink:           28 32% 17%;  /* #3A2E1F sepia drafting ink */
+  --ink-muted:     28 18% 38%;  /* faded note */
+  --ink-rule:      28 32% 17%;
 
   /* --- Signal (Bitcoin Orange) --- */
   --signal:        29 92% 53%;  /* #F7931A */
-  --signal-deep:   28 87% 41%;  /* #C56F0E */
+  --signal-deep:   28 87% 41%;
   --signal-soft:   29 92% 53%;
 
-  /* --- shadcn-compatible mapping (DO NOT remove names; only values) --- */
+  /* --- Auxiliary (faint guides) --- */
+  --aux:           28 25% 50% / 0.30;
+  --grid-line:     28 32% 17% / 0.08;
+  --grid-line-major: 28 32% 17% / 0.16;
+
+  /* --- shadcn-compatible mapping --- */
   --background:           var(--paper);
   --foreground:           var(--ink);
   --primary:              var(--signal);
@@ -33,24 +40,24 @@
   --secondary-foreground: var(--ink);
   --accent:               var(--paper-tint);
   --accent-foreground:    var(--ink);
-  --border:               45 8% 18%;
+  --border:               28 32% 17%;
   --muted:                var(--paper-tint);
   --muted-foreground:     var(--ink-muted);
-  --card:                 0 0% 100%;
+  --card:                 40 40% 97%;
   --card-foreground:      var(--ink);
   --popover:              var(--paper);
   --popover-foreground:   var(--ink);
 
-  /* --- Slot Colors (Mineral palette — replaces candy palette) --- */
-  --slot-1-bg: #E4ECE6; --slot-1-border: #2D5F3F;  /* Verdigris 铜绿 */
-  --slot-2-bg: #E2E8EE; --slot-2-border: #1E3A5F;  /* Deep Sea 深海 */
-  --slot-3-bg: #ECE5ED; --slot-3-border: #4A2B4D;  /* Ink Plum 墨紫 */
-  --slot-4-bg: #EFE2E5; --slot-4-border: #6B2737;  /* Oxide Red 氧化红 */
-  --slot-5-bg: #EEE9DA; --slot-5-border: #6B5B1F;  /* Antique Gold 古金 */
+  /* --- Slot Colors (kept — multisig signer slot identity) --- */
+  --slot-1-bg: #E4ECE6; --slot-1-border: #2D5F3F;
+  --slot-2-bg: #E2E8EE; --slot-2-border: #1E3A5F;
+  --slot-3-bg: #ECE5ED; --slot-3-border: #4A2B4D;
+  --slot-4-bg: #EFE2E5; --slot-4-border: #6B2737;
+  --slot-5-bg: #EEE9DA; --slot-5-border: #6B5B1F;
 
-  /* --- Rules (border hierarchy) --- */
-  --rule-strong: 45 8% 18%;        /* card outlines */
-  --rule-soft:   45 8% 18% / 0.18; /* internal dividers — used as alpha */
+  /* --- Rules --- */
+  --rule-strong: 28 32% 17%;
+  --rule-soft:   28 32% 17% / 0.18;
 
   /* --- Motion --- */
   --ease-craft: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -60,20 +67,24 @@
 }
 
 .dark {
-  /* --- Surface (Carbon) --- */
-  --paper:        45 12% 4%;    /* #0A0A09 carbon */
-  --paper-tint:   45 10% 7%;    /* #15140F */
-  --paper-deep:   45 10% 10%;
+  /* --- Surface (Prussian Blueprint) --- */
+  --paper:        212 67% 17%;  /* #0E2A47 prussian blue */
+  --paper-tint:   212 50% 22%;
+  --paper-deep:   212 50% 27%;
 
-  /* --- Text (Bone) --- */
-  --ink:           42 28% 88%;  /* #E8E3D6 bone white */
-  --ink-muted:     42 8% 53%;   /* #8B867A */
-  --ink-rule:      42 28% 88%;
+  /* --- Lines (Cyan-tinted white) --- */
+  --ink:           45 25% 95%;  /* #F4F4F0 drafting white */
+  --ink-muted:     200 35% 73%; /* #6FB3D2-ish faded */
+  --ink-rule:      45 25% 95%;
 
-  /* --- Signal (Bitcoin Orange — slightly brighter on dark) --- */
-  --signal:        32 100% 64%; /* #FFB347 */
+  /* --- Signal --- */
+  --signal:        32 100% 64%;
   --signal-deep:   29 92% 53%;
   --signal-soft:   32 100% 64%;
+
+  --aux:           200 50% 75% / 0.30;
+  --grid-line:     45 25% 95% / 0.07;
+  --grid-line-major: 45 25% 95% / 0.14;
 
   --background:           var(--paper);
   --foreground:           var(--ink);
@@ -83,15 +94,14 @@
   --secondary-foreground: var(--ink);
   --accent:               var(--paper-tint);
   --accent-foreground:    var(--ink);
-  --border:               42 28% 88%;
+  --border:               45 25% 95%;
   --muted:                var(--paper-tint);
   --muted-foreground:     var(--ink-muted);
-  --card:                 var(--paper-tint);
+  --card:                 212 60% 19%;
   --card-foreground:      var(--ink);
   --popover:              var(--paper-tint);
   --popover-foreground:   var(--ink);
 
-  /* --- Slot Colors — Dark (deeper mineral) --- */
   --slot-1-bg: #15251C; --slot-1-border: #4F8A6A;
   --slot-2-bg: #142031; --slot-2-border: #5A82B0;
   --slot-3-bg: #221525; --slot-3-border: #8A6190;
@@ -106,34 +116,44 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Noto Sans SC', 'PingFang SC', 'Roboto', 'Helvetica Neue', sans-serif;
-  font-feature-settings: 'ss01', 'cv11';
+  font-family: 'Recursive', 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Noto Sans SC', 'PingFang SC', 'Roboto', sans-serif;
+  font-variation-settings: 'MONO' 0, 'CASL' 0, 'CRSV' 0, 'slnt' 0;
+  font-feature-settings: 'ss01';
   font-weight: 400;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.55;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.003em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Subtle paper grain — inline SVG noise, ~3% opacity */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  background-repeat: repeat;
+  /* 24×24 grid background — fine line every 24px, major line every 5×24=120px */
+  background-image:
+    linear-gradient(to right, hsl(var(--grid-line-major)) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--grid-line-major)) 1px, transparent 1px),
+    linear-gradient(to right, hsl(var(--grid-line)) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--grid-line)) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+  background-position: 0 0;
+  background-attachment: fixed;
 }
 
-/* Chinese-locale weight balancing: Noto Sans SC visually heavier than Inter Tight */
 :lang(zh) body,
 html[lang^="zh"] body {
-  font-weight: 350;
+  font-weight: 400;
 }
 
-/* Headings: tighter tracking, controlled hierarchy (1.25 modular scale) */
-h1 { font-size: 24px; line-height: 1.2; letter-spacing: -0.018em; font-weight: 500; }
-h2 { font-size: 19px; line-height: 1.3; letter-spacing: -0.012em; font-weight: 500; }
-h3 { font-size: 15px; line-height: 1.4; letter-spacing: -0.005em; font-weight: 500; }
-h4 { font-size: 13px; line-height: 1.4; letter-spacing: 0.005em; font-weight: 500; }
+/* Headings — drafting label hierarchy */
+h1 { font-size: 22px; line-height: 1.2; letter-spacing: 0; font-weight: 600; }
+h2 { font-size: 16px; line-height: 1.3; letter-spacing: 0.005em; font-weight: 600; }
+h3 { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 600; }
+h4 { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 600; text-transform: uppercase; }
 
-/* Numeric stability — prevent percentage jitter */
+/* Numeric stability */
 .tabular-nums,
 .progress-percentage,
 .progress-percentage-mobile {
@@ -141,25 +161,73 @@ h4 { font-size: 13px; line-height: 1.4; letter-spacing: 0.005em; font-weight: 50
   font-feature-settings: 'tnum', 'zero';
 }
 
-/* Eyebrow / badge label */
-.eyebrow {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+/* Eyebrow / drafting annotation label */
+.eyebrow,
+.bp-label {
+  font-family: 'Recursive', ui-monospace, monospace;
+  font-variation-settings: 'MONO' 1;
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: hsl(var(--ink-muted));
 }
 
-/* Mono utility for code-like data: hashes, methods, percentages */
+/* Mono utility — technical/data text */
 .mono,
 .font-mono {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: 'Recursive', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-variation-settings: 'MONO' 1;
   font-feature-settings: 'zero', 'ss01';
 }
 
-/* Serif utility for long-form reading (FAQ etc.) */
+/* Serif utility (FAQ/long-form) — kept for technical-notes feel */
 .serif {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+}
+
+/* ------- Blueprint primitives (reusable) ------- */
+
+/* Crosshair corners on a frame: <div class="bp-frame">…</div> */
+.bp-frame {
+  position: relative;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0;
+  background: transparent;
+}
+.bp-frame::before,
+.bp-frame::after,
+.bp-frame > .bp-corner-tl,
+.bp-frame > .bp-corner-tr,
+.bp-frame > .bp-corner-bl,
+.bp-frame > .bp-corner-br {
+  content: '+';
+  position: absolute;
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 12px;
+  line-height: 1;
+  color: hsl(var(--ink));
+  pointer-events: none;
+}
+.bp-frame::before { top: -6px; left: -4px; }
+.bp-frame::after  { top: -6px; right: -4px; }
+.bp-frame > .bp-corner-bl { bottom: -6px; left: -4px; }
+.bp-frame > .bp-corner-br { bottom: -6px; right: -4px; }
+
+/* Module label (top-left of a frame) */
+.bp-module-label {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  background: hsl(var(--background));
+  padding: 0 8px;
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--ink));
+  z-index: 2;
 }
 
 /* Reduced motion */
