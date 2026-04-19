@@ -74,10 +74,7 @@ const FaqDrawer: React.FC<FaqDrawerProps> = ({ isOpen, onClose, content }) => {
         ref={drawerRef}
       >
         <div className="faq-header">
-          <div className="faq-header-titles">
-            <span className="faq-eyebrow" aria-hidden="true">DOCS / 0x01</span>
-            <h2 className="faq-title">{t('common.faq')}</h2>
-          </div>
+          <h2 className="faq-title">{t('common.faq')}</h2>
           <button 
             className="faq-close"
             aria-label={t('common.close')}
