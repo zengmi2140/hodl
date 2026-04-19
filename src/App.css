@@ -1479,9 +1479,9 @@ body {
 
 .site-title {
   font-family: 'Inter Tight', sans-serif;
-  font-weight: 300;
-  font-size: 1.4rem;
-  letter-spacing: -0.02em;
+  font-weight: 350;
+  font-size: 1.7rem;
+  letter-spacing: -0.022em;
   color: hsl(var(--foreground));
   text-transform: none;
 }
@@ -1489,7 +1489,7 @@ body {
 .site-title .bitcoin-logo {
   font-weight: 700;
   color: hsl(var(--signal));
-  font-size: 1.5rem;
+  font-size: 1.85rem;
 }
 
 /* --- Header buttons: underlined-text style (no chrome) --- */
