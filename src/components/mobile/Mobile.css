@@ -799,3 +799,504 @@
   color: hsl(var(--foreground));
   line-height: 1.4;
 }
+
+/* =========================================================
+   ▼ Cypherpunk Atelier — Mobile Visual Overrides
+   Mirrors desktop refinements: paper layering, letterpress
+   cards, signal-orange restraint, mono eyebrows, refined
+   typography. Sits at end to override base styles.
+   ========================================================= */
+
+/* --- Cards: paper texture instead of soft rounded chip --- */
+.mobile-card {
+  background: hsl(var(--paper));
+  border-radius: 0;
+  border: 1px solid hsl(var(--rule-strong));
+  box-shadow: none;
+}
+
+.mobile-card-header {
+  border-bottom-color: hsl(var(--rule-soft));
+  padding: 12px 16px;
+}
+
+.mobile-card-header:active {
+  background: hsl(var(--paper-tint));
+  transform: none;
+}
+
+.mobile-card-title {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: hsl(var(--ink));
+  letter-spacing: -0.005em;
+}
+
+:lang(zh) .mobile-card-title,
+:lang(zh-CN) .mobile-card-title,
+:lang(zh-TW) .mobile-card-title {
+  font-weight: 450;
+}
+
+.mobile-card-toggle {
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-card-content {
+  background: hsl(var(--paper));
+}
+
+/* --- Selected badge: outline pill, not solid orange chip --- */
+.mobile-card-selected-badge {
+  background: transparent;
+  color: hsl(var(--signal));
+  border: 1px solid hsl(var(--signal));
+  border-radius: 0;
+  padding: 1px 7px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* --- Option items: letterpress (sharp corners, inset on selected) --- */
+.mobile-option-item {
+  background: hsl(var(--paper-tint));
+  border-radius: 0;
+  border: 1px solid hsl(var(--ink) / 0.15);
+  margin-bottom: 8px;
+  padding: 12px 14px;
+  min-height: 56px;
+  transition: transform 180ms var(--ease-craft, ease-out),
+              border-color 180ms ease-out,
+              background 180ms ease-out;
+}
+
+.mobile-option-item:active {
+  transform: scale(0.98);
+  background: hsl(var(--paper-deep));
+  box-shadow: inset 0 1px 0 hsl(var(--ink) / 0.1);
+}
+
+.mobile-option-item.selected {
+  background: hsl(var(--paper));
+  border-color: hsl(var(--signal));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4),
+              0 1px 2px hsl(var(--ink) / 0.08);
+}
+
+.mobile-option-item.selected:active {
+  background: hsl(var(--paper));
+}
+
+.dark .mobile-option-item.selected {
+  background: hsl(var(--paper-tint));
+  border-color: hsl(var(--signal));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),
+              0 1px 2px hsl(0 0% 0% / 0.3);
+}
+
+.mobile-option-item.breathing {
+  animation: mobileBreathingCraft 2.4s ease-in-out infinite;
+  border-color: hsl(var(--signal) / 0.4);
+}
+
+@keyframes mobileBreathingCraft {
+  0%, 100% { border-color: hsl(var(--signal) / 0.3); }
+  50%      { border-color: hsl(var(--signal) / 0.8); }
+}
+
+.mobile-option-item.just-selected {
+  animation: mobileMicroBounce 200ms ease-out;
+}
+
+@keyframes mobileMicroBounce {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.015); }
+}
+
+/* --- Option logo + name: typographic refinement --- */
+.mobile-option-logo {
+  border-radius: 4px;
+}
+
+.mobile-option-name {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: hsl(var(--ink));
+  letter-spacing: -0.005em;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+:lang(zh) .mobile-option-name,
+:lang(zh-CN) .mobile-option-name,
+:lang(zh-TW) .mobile-option-name {
+  font-weight: 450;
+}
+
+/* --- Check mark: subtle outline check, not solid orange dot --- */
+.mobile-option-check {
+  background: transparent;
+  color: hsl(var(--signal));
+  border: 1.5px solid hsl(var(--signal));
+  font-weight: 600;
+}
+
+/* --- Info "i" button: minimal --- */
+.mobile-option-info,
+.mobile-signer-slot-info {
+  background: transparent;
+  color: hsl(var(--ink-muted));
+  border: 1px solid hsl(var(--ink) / 0.2);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.mobile-option-info:active,
+.mobile-signer-slot-info:active {
+  background: hsl(var(--paper-tint));
+  border-color: hsl(var(--ink));
+  color: hsl(var(--ink));
+}
+
+/* --- Signer slots: dashed paper outline --- */
+.mobile-signer-slot {
+  border-radius: 0;
+  border: 1px dashed hsl(var(--ink) / 0.25);
+  background: hsl(var(--paper-tint));
+}
+
+.mobile-signer-slot:not(.filled):active {
+  border-color: hsl(var(--ink));
+  background: hsl(var(--paper-deep));
+}
+
+.mobile-signer-slot.filled {
+  border-style: solid;
+  border-color: hsl(var(--rule-strong));
+  background: hsl(var(--paper));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.mobile-signer-slot-number {
+  border-radius: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.mobile-signer-slot-name {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 500;
+  color: hsl(var(--ink));
+}
+
+:lang(zh) .mobile-signer-slot-name,
+:lang(zh-CN) .mobile-signer-slot-name,
+:lang(zh-TW) .mobile-signer-slot-name {
+  font-weight: 450;
+}
+
+.mobile-signer-slot-empty {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-signer-slot-delete {
+  background: transparent;
+  border: 1px solid hsl(var(--ink) / 0.2);
+  border-radius: 0;
+  color: hsl(var(--ink-muted));
+  font-weight: 400;
+}
+
+.mobile-signer-slot-delete:active {
+  background: hsl(var(--paper-deep));
+  color: hsl(var(--ink));
+}
+
+/* --- Data flow arrows: signal-orange restraint --- */
+.mobile-data-flow-vertical.active .mobile-arrow-line-static {
+  border-color: hsl(var(--signal));
+}
+
+.mobile-data-flow-vertical.active .mobile-arrow-head {
+  color: hsl(var(--signal));
+}
+
+.mobile-data-flow-vertical.active .mobile-arrow-label {
+  color: hsl(var(--signal));
+}
+
+.mobile-arrow-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-arrow-line-static {
+  border-left-color: hsl(var(--ink) / 0.2);
+}
+
+.mobile-arrow-head {
+  color: hsl(var(--ink) / 0.3);
+}
+
+/* --- Transfer tags: outline, not solid orange --- */
+.mobile-transfer-hint {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-transfer-tag {
+  background: transparent;
+  color: hsl(var(--ink));
+  border: 1px solid hsl(var(--ink) / 0.4);
+  border-radius: 0;
+  padding: 4px 10px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mobile-transfer-tag.colored {
+  border-radius: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --- Bottom sheet: paper feel --- */
+.mobile-bottom-sheet {
+  background: hsl(var(--paper));
+  border-radius: 12px 12px 0 0;
+  border-top: 1px solid hsl(var(--rule-strong));
+}
+
+.mobile-bottom-sheet-handle {
+  background: hsl(var(--ink) / 0.2);
+}
+
+.mobile-bottom-sheet-header {
+  border-bottom-color: hsl(var(--rule-soft));
+}
+
+.mobile-bottom-sheet-title {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: hsl(var(--ink));
+  letter-spacing: -0.005em;
+}
+
+:lang(zh) .mobile-bottom-sheet-title,
+:lang(zh-CN) .mobile-bottom-sheet-title,
+:lang(zh-TW) .mobile-bottom-sheet-title {
+  font-weight: 450;
+}
+
+.mobile-bottom-sheet-close {
+  background: transparent;
+  border: 1px solid hsl(var(--ink) / 0.2);
+  border-radius: 0;
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-bottom-sheet-close:active {
+  background: hsl(var(--paper-tint));
+  color: hsl(var(--ink));
+}
+
+/* --- Feature sheet: tabs + items --- */
+.mobile-feature-tabs {
+  border-bottom-color: hsl(var(--rule-soft));
+}
+
+.mobile-feature-tab {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-feature-tab.active {
+  color: hsl(var(--signal));
+  border-bottom-color: hsl(var(--signal));
+}
+
+.mobile-feature-item {
+  background: hsl(var(--paper-tint));
+  border: 1px solid hsl(var(--ink) / 0.15);
+  border-left: 2px solid hsl(var(--ink) / 0.25);
+  border-radius: 0;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+}
+
+.mobile-feature-text {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: hsl(var(--ink) / 0.88);
+  letter-spacing: -0.003em;
+}
+
+:lang(zh) .mobile-feature-text,
+:lang(zh-CN) .mobile-feature-text,
+:lang(zh-TW) .mobile-feature-text {
+  font-weight: 350;
+  letter-spacing: 0;
+}
+
+/* --- Feature display sections (inline in main scroll) --- */
+.mobile-feature-display-title {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-feature-display-section {
+  background: hsl(var(--paper));
+  border: 1px solid hsl(var(--rule-strong));
+  border-radius: 0;
+}
+
+.mobile-feature-display-header {
+  background: hsl(var(--paper-tint));
+  border-bottom-color: hsl(var(--rule-soft));
+}
+
+.mobile-feature-display-logo {
+  border-radius: 4px;
+  background: hsl(var(--paper));
+}
+
+.mobile-feature-display-name {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 500;
+  color: hsl(var(--ink));
+  letter-spacing: -0.005em;
+}
+
+:lang(zh) .mobile-feature-display-name,
+:lang(zh-CN) .mobile-feature-display-name,
+:lang(zh-TW) .mobile-feature-display-name {
+  font-weight: 450;
+}
+
+.mobile-feature-display-type {
+  background: transparent;
+  color: hsl(var(--ink-muted));
+  border: 1px solid hsl(var(--ink) / 0.2);
+  border-radius: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+}
+
+.mobile-feature-display-item:not(:last-child) {
+  border-bottom-color: hsl(var(--ink) / 0.1);
+}
+
+.mobile-feature-display-text {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
+    'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: hsl(var(--ink) / 0.88);
+}
+
+:lang(zh) .mobile-feature-display-text,
+:lang(zh-CN) .mobile-feature-display-text,
+:lang(zh-TW) .mobile-feature-display-text {
+  font-weight: 350;
+}
+
+/* --- Mobile device segmented (in wallet card): minimal underline --- */
+.mobile-device-segmented {
+  background: transparent;
+  padding: 0;
+  margin-left: 8px;
+  gap: 6px;
+}
+
+.mobile-device-segment {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 2px 4px;
+  position: relative;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: opacity 180ms ease, filter 180ms ease, transform 180ms ease;
+  color: hsl(var(--ink-muted));
+}
+
+.mobile-device-segment.active {
+  background: transparent;
+  box-shadow: none;
+  filter: grayscale(0);
+  opacity: 1;
+  color: hsl(var(--ink));
+}
+
+.mobile-device-segment.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 16px;
+  height: 2px;
+  background: hsl(var(--signal));
+  transform: translateX(-50%);
+}
+
+.mobile-device-segment:active {
+  transform: scale(0.95);
+}
+
+/* --- Empty state typography --- */
+.mobile-empty-state {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--ink-muted));
+}
+
+/* --- Reduced motion respects bounce --- */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-option-item.just-selected { animation: none; }
+  .mobile-option-item.breathing { animation: none; }
+}
