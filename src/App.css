@@ -1835,3 +1835,57 @@ body {
   }
 }
 
+/* =========================================================
+   ▼ Batch 1 — Typography & Color refinement (P1.5)
+   - Tighter type scale, signal-orange restraint, paper layering
+   ========================================================= */
+
+/* --- Header refinement: tighter rhythm --- */
+.header {
+  padding: 14px 0 12px;
+}
+
+.header-content {
+  min-height: 64px;
+}
+
+.site-title {
+  font-size: 1.32rem;
+  letter-spacing: -0.022em;
+}
+
+.site-title .bitcoin-logo {
+  font-size: 1.42rem;
+}
+
+/* Header buttons: hover uses ink, signal reserved for active/focus */
+.header-btn:hover {
+  color: hsl(var(--foreground)) !important;
+  border-bottom-color: hsl(var(--ink) / 0.5) !important;
+}
+
+.header-btn:focus-visible {
+  border-bottom-color: hsl(var(--signal)) !important;
+}
+
+/* --- Progress: softer track tint, tabular numerals --- */
+.progress-bar-container {
+  background-color: hsl(var(--paper-tint));
+  border-color: hsl(var(--rule-strong));
+}
+
+.progress-percentage {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* --- Component cards: second-paper tint when active for ritual layering --- */
+.component-item.active,
+.dark .component-item.active {
+  background: hsl(var(--paper-tint));
+}
+
+.component-name {
+  letter-spacing: -0.005em;
+}
+
