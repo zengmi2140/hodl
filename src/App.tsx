@@ -38,7 +38,14 @@ interface AppState {
 function App() {
   const { t, i18n } = useTranslation();
   const isMobile = useIsMobile(769);
-  const { theme, toggleTheme } = useDarkMode();
+  const { theme, toggleTheme, setTheme } = useDarkMode();
+
+  // 移动端强制使用浅色（白天）模式
+  useEffect(() => {
+    if (isMobile && theme !== 'light') {
+      setTheme('light');
+    }
+  }, [isMobile, theme, setTheme]);
   
   // 根据屏幕宽度初始化设备类型
   const getInitialDeviceType = (): 'mobile' | 'desktop' => {
