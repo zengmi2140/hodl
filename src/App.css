@@ -1788,6 +1788,8 @@ body {
   border-radius: 0;
   padding: 0 !important;
   max-width: none !important;
+  /* CSS counter：为每个 .faq-heading 自动编号 01/02/03，DOM 顺序绝对正确 */
+  counter-reset: faq-q;
 }
 
 /* Headings: 编号作为眉题独立一行，主标题用无衬线压字 */
@@ -1801,6 +1803,7 @@ body {
   border-top: 1px solid hsl(var(--ink) / 0.18);
   padding-top: 22px !important;
   margin: 32px 0 14px !important;
+  counter-increment: faq-q;
 }
 
 .faq-heading:first-of-type {
@@ -1809,18 +1812,15 @@ body {
   margin-top: 8px !important;
 }
 
-.faq-heading-num {
+/* 用 ::before 注入 mono 编号 — 01 / — 02 / — 03 … */
+.faq-heading::before {
+  content: '— ' counter(faq-q, decimal-leading-zero);
+  display: block;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.68rem;
   letter-spacing: 0.2em;
   color: hsl(var(--signal));
   text-transform: uppercase;
-}
-
-.faq-heading-num::before {
-  content: '— ';
-  color: hsl(var(--ink-muted));
-  margin-right: 2px;
 }
 
 .faq-heading-text {
