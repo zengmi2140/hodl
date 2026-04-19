@@ -1960,3 +1960,80 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .component-item.active { animation: none; }
 }
+
+/* =========================================================
+   ▼ Batch 3 — Progress ritual & rhythm (P3)
+   - Tick marks under bar, milestone end-cap dot
+   - Hide legacy 🎉, 8px header rhythm
+   ========================================================= */
+
+.celebration-emoji,
+.celebration-emoji-mobile {
+  display: none !important;
+}
+
+.progress-bar-container {
+  overflow: visible;
+  position: relative;
+}
+
+.progress-bar-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 5px;
+  background-image: linear-gradient(to right, hsl(var(--ink) / 0.45) 0 1px, transparent 1px 100%);
+  background-size: 10% 100%;
+  background-repeat: repeat-x;
+  pointer-events: none;
+}
+
+.progress-bar-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 7px;
+  background-image: linear-gradient(to right, hsl(var(--ink) / 0.7) 0 1px, transparent 1px 100%);
+  background-size: 25% 100%;
+  background-repeat: repeat-x;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.progress-bar.singlesig-complete::after,
+.progress-bar.multisig-130::after,
+.progress-bar.multisig-150::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: hsl(var(--signal));
+  box-shadow: 0 0 0 2px hsl(var(--paper)), 0 0 12px 2px hsl(var(--signal) / 0.6);
+  animation: milestonePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes milestonePulse {
+  0%, 100% { box-shadow: 0 0 0 2px hsl(var(--paper)), 0 0 8px 1px hsl(var(--signal) / 0.45); }
+  50%      { box-shadow: 0 0 0 2px hsl(var(--paper)), 0 0 18px 4px hsl(var(--signal) / 0.85); }
+}
+
+.header-actions {
+  top: 16px;
+  right: 24px;
+  gap: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar.singlesig-complete::after,
+  .progress-bar.multisig-130::after,
+  .progress-bar.multisig-150::after { animation: none; }
+}
+
