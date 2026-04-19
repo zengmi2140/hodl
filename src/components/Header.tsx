@@ -105,14 +105,7 @@ const Header: React.FC<HeaderProps> = ({
         >
           {t('common.faq')}
         </button>
-        <button 
-          className="header-btn"
-          onClick={onToggleTheme}
-          aria-label="Toggle theme"
-          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          {theme === 'dark' ? '☀️' : '🌙'}
-        </button>
+        {/* 黑夜模式入口已隐藏（功能保留在 useDarkMode），如需重新开启可恢复此按钮 */}
       </div>
 
       <div className="header-content">
