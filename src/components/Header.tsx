@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({
   theme,
   onToggleTheme
 }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // 进度条动态宽度计算（保持居中）
   const GAP_FROM_BUTTONS = 24; // 进度条与按钮之间的间隙（像素）
