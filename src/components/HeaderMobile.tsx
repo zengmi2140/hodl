@@ -85,15 +85,6 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
           ?
         </button>
 
-        <button
-          className="header-mobile__icon"
-          style={{ position: 'absolute', top: '0', right: '56px' }}
-          onClick={onToggleTheme}
-          aria-label="Toggle theme"
-          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          {theme === 'dark' ? '☀️' : '🌙'}
-        </button>
 
         <div className="header-mobile__title" aria-label={t('header.title')}>
           {t('header.title')}
