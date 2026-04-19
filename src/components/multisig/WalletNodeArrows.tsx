@@ -14,27 +14,25 @@ const WalletNodeArrows: React.FC<WalletNodeArrowsProps> = ({
 
   return (
     <div className="transfer-method-display">
+      {/* 数据流箭头 - 文字在上方 */}
       <div className="transfer-arrows">
         <div className="transfer-arrow-block">
           <span className="arrow-label-top">{t('arrows.address_signed')}</span>
           <div className="arrow-row">
-            <span className="bp-terminal">[*]</span>
             <div className="arrow-line-static"></div>
-            <span className="arrow-head">&gt;</span>
-            <span className="bp-terminal">[*]</span>
+            <span className="arrow-head">▶</span>
           </div>
         </div>
         <div className="transfer-arrow-block reverse">
           <span className="arrow-label-top">{t('arrows.balance')}</span>
           <div className="arrow-row">
-            <span className="bp-terminal">[*]</span>
-            <span className="arrow-head">&lt;</span>
+            <span className="arrow-head">◀</span>
             <div className="arrow-line-static"></div>
-            <span className="bp-terminal">[*]</span>
           </div>
         </div>
       </div>
 
+      {/* 连接状态 */}
       <div className="transfer-methods-container">
         <div className="transfer-method-hint">
           {!hasWallet && !hasNode && t('arrows.select_hint_wallet_node')}

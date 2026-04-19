@@ -51,19 +51,15 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
         <div className="transfer-arrow-block">
           <span className="arrow-label-top">{t('arrows.pubkey_sig')}</span>
           <div className="arrow-row">
-            <span className="bp-terminal">◉</span>
             <div className="arrow-line-static"></div>
             <span className="arrow-head">▶</span>
-            <span className="bp-terminal">◉</span>
           </div>
         </div>
         <div className="transfer-arrow-block reverse">
           <span className="arrow-label-top">{t('arrows.unsigned_tx')}</span>
           <div className="arrow-row">
-            <span className="bp-terminal">◉</span>
             <span className="arrow-head">◀</span>
             <div className="arrow-line-static"></div>
-            <span className="bp-terminal">◉</span>
           </div>
         </div>
       </div>
