@@ -941,6 +941,12 @@
 }
 
 /* 钱包列：设备切换器绝对定位到右侧，不影响标题基线高度 */
+.column-title:has(.device-segmented) {
+  /* 给标题文本预留右侧空间，避免与设备切换器贴得过近 */
+  padding-right: 72px;
+  padding-left: 72px;
+}
+
 .column-title .device-segmented {
   position: absolute;
   right: 0;
@@ -1123,7 +1129,7 @@
   border: none;
   border-radius: 0;
   padding: 0;
-  gap: 10px;
+  gap: 2px;
   margin-left: auto;
 }
 
