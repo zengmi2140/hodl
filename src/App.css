@@ -121,12 +121,15 @@ body {
 .header-lang-select {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--ink-muted));
   padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 13px;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   min-height: 32px;
   outline: none;
   transition: all 0.2s ease;
@@ -136,6 +139,17 @@ body {
   background-position: right 8px center;
   background-size: 12px;
   padding-right: 28px;
+}
+
+/* 下拉展开后的选项（受系统限制，仅能改基础样式） */
+.header-lang-select option {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: hsl(var(--ink));
+  background: hsl(var(--card));
+  letter-spacing: 0.04em;
+  padding: 8px 12px;
 }
 
 .dark .header-lang-select {
@@ -1096,34 +1110,27 @@ body {
 /* 旧底部特性框容器（将被移除，暂不使用） */
 .bottom-features { display: none; }
 
+/* 注：.feature-box / .feature-title / .feature-item 的视觉风格
+   已统一迁移到 src/components/multisig/MultisigPage.css 的
+   "Cypherpunk Atelier Override Layer"（letterpress 风格）。
+   这里仅保留最小的 fallback 占位，避免颜色/圆角/边框冲突。 */
+
 .feature-box {
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
-  /* 移除 max-width: 350px; 让宽度完全由 JavaScript 控制 */
   flex: 1;
-  position: relative; /* 允许控制 z-index */
-  z-index: 5; /* 低于 Header（z-index:20），避免遮挡 */
-  height: 264px; /* 统一高度：标题+分割+列表(188)+上下内边距等 */
+  position: relative;
+  z-index: 5;
 }
 
 .feature-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #374151;
   margin: 0 0 12px 0;
-  text-align: center;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 8px;
+  text-align: left;
 }
 
 .feature-list {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 188px; /* 约4.5条特性 */
+  max-height: 188px;
   overflow-y: auto;
 }
 
@@ -1131,48 +1138,16 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: white;
-  border: 1px solid #e5e7eb;
   font-size: 0.9rem;
 }
 
 .feature-icon {
-  font-size: 1rem;
   flex-shrink: 0;
 }
 
 .feature-text {
-  color: #4b5563;
   line-height: 1.4;
-}
-
-.feature-item.positive {
-  border-color: #d1fae5;
-  background: #f0fdf4;
-}
-
-.feature-item.positive .feature-text {
-  color: #059669;
-}
-
-.feature-item.negative {
-  border-color: #fecaca;
-  background: #fef2f2;
-}
-
-.feature-item.negative .feature-text {
-  color: #dc2626;
-}
-
-.feature-item.warning {
-  border-color: #fed7aa;
-  background: #fffbeb;
-}
-
-.feature-item.warning .feature-text {
-  color: #d97706;
+  color: hsl(var(--foreground));
 }
 
 /* 移动端数据流指示器样式 */
