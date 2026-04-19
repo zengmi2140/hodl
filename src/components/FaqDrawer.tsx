@@ -9,38 +9,29 @@ interface FaqDrawerProps {
   content: string;
 }
 
-// 用闭包计数器为每个 Q 自动编号（01, 02, 03 …）
-const createMarkdownComponents = (): Components => {
-  let questionIndex = 0;
-  return {
-    h2: ({ children }) => {
-      questionIndex += 1;
-      const num = String(questionIndex).padStart(2, '0');
-      return (
-        <h2 className="faq-heading">
-          <span className="faq-heading-num" aria-hidden="true">{num}</span>
-          <span className="faq-heading-text">{children}</span>
-        </h2>
-      );
-    },
-    p: ({ children }) => <p className="faq-paragraph">{children}</p>,
-    ul: ({ children }) => <ul className="faq-list">{children}</ul>,
-    ol: ({ children }) => <ol className="faq-list faq-list-ordered">{children}</ol>,
-    li: ({ children }) => <li className="faq-list-item">{children}</li>,
-    blockquote: ({ children }) => (
-      <blockquote className="faq-quote">
-        <span className="faq-quote-label" aria-hidden="true">NOTE</span>
-        <div className="faq-quote-body">{children}</div>
-      </blockquote>
-    ),
-    strong: ({ children }) => <strong className="faq-strong">{children}</strong>
-  };
+// 用 CSS counter 自动为每个 h2 编号（01, 02, 03 …）
+// 避免 JS 闭包计数器在 React 多次渲染/严格模式下跳号
+const markdownComponents: Components = {
+  h2: ({ children }) => (
+    <h2 className="faq-heading">
+      <span className="faq-heading-text">{children}</span>
+    </h2>
+  ),
+  p: ({ children }) => <p className="faq-paragraph">{children}</p>,
+  ul: ({ children }) => <ul className="faq-list">{children}</ul>,
+  ol: ({ children }) => <ol className="faq-list faq-list-ordered">{children}</ol>,
+  li: ({ children }) => <li className="faq-list-item">{children}</li>,
+  blockquote: ({ children }) => (
+    <blockquote className="faq-quote">
+      <span className="faq-quote-label" aria-hidden="true">NOTE</span>
+      <div className="faq-quote-body">{children}</div>
+    </blockquote>
+  ),
+  strong: ({ children }) => <strong className="faq-strong">{children}</strong>
 };
 
 const FaqDrawer: React.FC<FaqDrawerProps> = ({ isOpen, onClose, content }) => {
   const { t } = useTranslation();
-  // 每次渲染都重置编号计数器
-  const markdownComponents = React.useMemo(() => createMarkdownComponents(), [content, isOpen]);
   const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
