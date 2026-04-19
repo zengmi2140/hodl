@@ -1,110 +1,122 @@
 
 
-## 用户疑问：设计改造是否会影响原有功能？
+# 方案 C — Architectural Blueprint 实施计划
 
-用户担心 Cypherpunk Atelier 设计改造会破坏现有的桌面端 + 移动端功能。这是一次澄清性回答，不是实施任务，无需 ask_questions，直接给出明确结论。
-
-## 核心结论：**功能零影响，仅视觉层重构**
-
-整个改造方案是**纯 CSS + 视觉层**的，不触碰任何业务逻辑、状态管理、数据流、交互行为。下面分维度逐一说明。
+把整个网站重构为一张"自托管系统蓝图"。用户不是在选 UI，而是在**绘制属于自己的安全架构图**。
 
 ---
 
-### 一、不会被影响的部分（100% 保留）
+## 一、设计 Token 重构（`src/index.css`）
 
-**1. 业务逻辑层（App.tsx）**
-- 单签 / 多签模式切换逻辑
-- 2-of-3 / 3-of-5 阈值切换
-- 组件兼容性级联过滤（`getComponentState`、`getMultisigCompatibleSigners` 等）
-- 进度计算系统（50% / 60% / 80% / 100% / 120% / 130% / 150% 全部规则保留）
-- localStorage 用户偏好存储
-- 多语言切换（i18n）
-- 数据加载与 fallback 机制
+替换当前的 Paper × Ink × Signal 系统为 **Blueprint × Drafting × Signal**：
 
-**2. 数据结构**
-- `custody-data.json`、`SLOT_COLORS` 常量、`transferMethods` 映射表全部保留
-- `SLOT_COLORS` 仅替换**颜色值**（糖果色 → 矿物色），数组结构、索引、数量不变
-- 类型定义（`UserPreference`、`ComponentState`、`CustodyData`）完全不动
+```text
+Light（草稿纸模式 / 默认）         Dark（蓝图模式 / 主打）
+─────────────────────────         ─────────────────────────
+背景  奶白 #F5F1E8 网格底         背景  普鲁士蓝 #0E2A47 网格底
+线条  深褐 #3A2E1F 0.5px          线条  白 #F4F4F0 0.5px
+辅助  浅褐 30% alpha               辅助  青 #6FB3D2 30% alpha
+信号  比特币橙 #F7931A             信号  比特币橙 #FFB347
+高亮  奶黄填充                     高亮  白色填充 / 蓝底反白
+```
 
-**3. 交互行为**
-- 所有点击、选中、取消选中行为不变
-- 卡片的 inactive / breathing / active 三态机制保留（只是视觉表现升级）
-- 兼容性灰显逻辑保留
-- FAQ 抽屉的开关、Esc 关闭、Overlay 点击关闭保留
-
-**4. 移动端**
-- `useIsMobile(769)` 断点保留
-- `MobileMainLayout` 整套移动端组件结构保留
-- 底部抽屉（MobileBottomSheet）选择流程保留
-- 移动端卡片布局、垂直数据流保留
-- **移动端只继承新的颜色变量与字体**，布局结构不动
-
-**5. 桌面端布局骨架**
-- 三列布局保留
-- Header + 进度条 + FAQ/Reset 按钮保留（仅视觉重设计）
-- BottomFeatureDock 位置保留
-- SignatureModeSelector 位置保留
+- 全局背景叠加 **24px × 24px 网格 SVG**（细线 + 每 5 格一条加粗）
+- 引入坐标字号系统：`H1 = 标注尺寸字`、`H2 = 模块标题字`、`正文 = 注释字`
+- 新增字体：**Recursive Mono**（Google Fonts）替代 JetBrains Mono，线条更接近技术制图
 
 ---
 
-### 二、会发生变化的部分（仅视觉/感受）
+## 二、组件视觉改造清单
 
-| 维度 | 变化内容 | 是否影响功能 |
-|---|---|---|
-| 字体 | 引入 Inter Tight / JetBrains Mono / Noto Serif SC | 否 |
-| 配色 | CSS 变量值替换（paper/ink/signal） | 否 |
-| 卡片样式 | 圆角→直角、阴影→边框+色带 | 否 |
-| 进度条样式 | 填充条 → 刻度尺风格 | 否（计算逻辑不变） |
-| 槽位颜色 | 糖果色 → 矿物色 | 否（仅 5 个颜色值替换） |
-| 按钮样式 | 背景按钮 → 下划线文字按钮 | 否（onClick 不变） |
-| 动效曲线 | 统一 cubic-bezier 时长 | 否 |
-| Drawer 字体 | 无衬线 → 衬线（Noto Serif SC） | 否 |
-| 暗色模式色调 | 蓝灰 → 碳黑 | 否（toggle 逻辑不变） |
+### 1. 三列容器 → 蓝图分区
+- 每列变成一个标注框：左上角 `MODULE A / SIGNER`、`MODULE B / WALLET`、`MODULE C / NODE`
+- 框边为 1px 实线 + 四角小十字标记 `+`
+- 列间增加比例尺 `├──── 1:1 ────┤`
 
----
+### 2. 选项卡片 → 工程零件图
+- 每个 signer/wallet/node 用线框风格呈现：1px 边框、零阴影、零圆角
+- 左侧保留 logo（去色 / 描边化处理 via `filter: grayscale(1) contrast(1.2)`）
+- 右侧加技术标注 `// air-gapped`、`// open-source`
+- 选中态 = **底色翻转**（深蓝底白字 / 白底深蓝字）+ 四角十字变橙色
 
-### 三、唯一需要小心的两处「双向修改」
+### 3. 数据传输箭头 → 真实接线图
+- 当前的方向箭头改为**带接口符号的连线**：`◉═══[ USB ]═══◉`、`◉╌╌╌[ QR ]╌╌╌◉`
+- QR 用虚线（无线/光学），USB/SD 用实线（物理），蓝牙/NFC 用点线
+- 连线两端加端子符号 `◉ / ◍ / ▣`
+- 多签时多条线汇聚到 wallet，呈现真实多输入接线感
 
-这两处涉及 TS 常量与 CSS 变量同步，但仍是**安全的非破坏性修改**：
+### 4. 进度条 → 工程进度尺
+- 横向标尺样式：刻度 + 数字 `0  20  40  60  80  100  120`
+- 当前进度用橙色三角游标 `▼` 指示
+- 满配位置（120/130/150）标 `◉ OPTIMAL`
 
-1. **`SLOT_COLORS` 常量**（`src/App.tsx`）：替换 5 个颜色值时，需同步更新 `index.css` 的 `--slot-N-bg/border` 与 `TransferMethodDisplay.tsx` 的 `SLOT_COLORS` 常量。索引、数量、用法不变。
+### 5. 底部 Feature Dock → 规格表（Spec Sheet）
+- 改为表格风格：左列 attribute、右列 value
+- 特性列表前缀改为 `[+] / [-] / [!]` 替代 emoji
+- 标题改为 `SPECIFICATION — COLDCARD MK4`
 
-2. **CSS 变量名**：保留 `--primary` `--background` `--foreground` 等 shadcn 兼容变量名，仅替换值。新增 `--paper` `--ink` `--signal` 等新变量并存，避免破坏任何依赖原变量的组件。
+### 6. Header → 图纸标题栏（Title Block）
+- 模仿建筑图纸右下角的 title block：
+  ```
+  ┌─────────────────────────────────────┐
+  │ HODL — SELF-CUSTODY BLUEPRINT       │
+  │ SHEET 01/01    SCALE 1:1    REV.A   │
+  └─────────────────────────────────────┘
+  ```
+- 语言切换 / FAQ / 主题切换以小图标排布在 title block 右侧
 
----
-
-### 四、风险评估与回滚策略
-
-**风险等级：极低**
-- 不修改任何 `.tsx` 业务逻辑（仅可能调整 className 字符串与极少量样式属性）
-- 不修改任何 props、state、effect、handler
-- 不修改任何 i18n key 或翻译文件
-- 不修改任何数据 schema
-
-**回滚成本：极低**
-- 每个 P1/P2/P3 批次独立提交，任意阶段可回退
-- 若某个视觉变化用户不满意，单独还原对应 CSS 文件即可
-- 移动端可单独控制是否套用新视觉（通过 media query 隔离）
-
----
-
-### 五、给用户的明确承诺
-
-> ✅ 桌面端三列选择、级联过滤、进度计算、模式切换 —— **完全保留**  
-> ✅ 移动端卡片布局、底部抽屉、垂直数据流 —— **完全保留**  
-> ✅ 多语言、暗色模式、FAQ 抽屉、localStorage —— **完全保留**  
-> ✅ 所有点击、选中、动画触发条件 —— **完全保留**  
-> 🎨 只改：字体、颜色、卡片质感、进度条外观、按钮样式、动效曲线
-
-如果你担心，我们可以采用**最保守的策略**：先只做 P1（字体 + 配色变量），观察一周；满意再推进 P2（卡片重设计）；最后才是 P3（仪式感与彩蛋）。每一步都可独立验证、独立回滚。
+### 7. FAQ 抽屉 → 技术说明文档
+- 标题 `TECHNICAL NOTES`
+- 每个 Q&A 编号 `§01 / §02`
+- 保留 Noto Serif 衬线字带来"文档感"
 
 ---
 
-### 附加建议
+## 三、移动端同步
 
-注意到当前有一批 **TS build error**（`Property 'includes' does not exist on type 'string[]'`），是因为 `tsconfig.json` 的 `lib` 配置仍是 `["dom","dom.iterable","es6"]`，而 `target` 已升级到 `es2017`。建议在启动设计改造前，先把 `lib` 升级到 `["dom","dom.iterable","es2019"]`，让 `Array.includes` / `flatMap` 正常可用。这是一个独立的小修复，与设计无关，但会阻塞后续任何改动的编译。
+- 保持白天模式 + 草稿纸底
+- 卡片改为线框零件图风格（去除阴影 / 直角 / 1px 实线）
+- bottom sheet 顶部加 `─── DRAWER · MODULE A ───` 制图风分隔线
+- 进度条采用同款工程标尺
 
 ---
 
-**确认方向后，我会按 P1 → P2 → P3 顺序推进，每批完成后请你验收，再决定是否继续。**
+## 四、文件改动范围
+
+| 文件 | 改动 |
+|---|---|
+| `src/index.css` | 设计 token 全量替换 + 网格背景 + 字体引入 |
+| `src/App.css` | header / 进度条 / 三列容器 → 蓝图风 |
+| `src/components/multisig/MultisigPage.css` | 选项卡片 / 传输标签 / dock → 蓝图风 |
+| `src/components/mobile/Mobile.css` | 移动端同步 |
+| `src/components/Header.tsx` | 改为 title block 结构 |
+| `src/components/shared/TransferMethodDisplay.tsx` | 接口符号化 |
+| `src/components/multisig/TransferMethodDisplay.tsx` | 接口符号化 |
+| `index.html` | 引入 Recursive Mono 字体 |
+
+---
+
+## 五、分阶段落地（建议）
+
+**P1 基础层**（1 步完成）
+设计 token + 网格背景 + 字体 + body 全局样式
+
+**P2 结构层**
+header title block + 三列模块标注框 + 进度尺
+
+**P3 细节层**
+选项卡片线框化 + 接线图传输方式 + dock 规格表
+
+**P4 移动端 + FAQ**
+移动端同步 + FAQ 技术文档化
+
+---
+
+## 六、风险与取舍
+
+- **可读性**：深蓝底长时间阅读有疲劳风险 → 默认仍为浅色草稿纸底，深色模式才进入"蓝图态"
+- **字体加载**：新增 Recursive Mono 会增加 ~30KB → 用 `font-display: swap` 避免阻塞
+- **国际化**：所有英文制图标注（MODULE / SHEET / SCALE）保留英文不翻译，强化"工程图纸"气质（与项目"中文沟通、英文代码/网站内容"偏好一致）
+
+确认后我会按 P1 → P4 顺序落地。
 
