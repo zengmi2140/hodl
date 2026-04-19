@@ -1064,9 +1064,9 @@
 }
 
 .mobile-transfer-tag {
-  background: transparent;
+  background: hsl(var(--paper));
   color: hsl(var(--ink));
-  border: 1px solid hsl(var(--ink) / 0.4);
+  border: 1px solid hsl(var(--ink) / 0.35);
   border-radius: 0;
   padding: 4px 10px;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -1076,6 +1076,39 @@
   text-transform: uppercase;
 }
 
+/* Per-method tinted variants on mobile (matched to desktop palette) */
+.mobile-transfer-tag.qr-code,
+.mobile-transfer-tag[data-method="qr"] {
+  background: hsl(200 60% 94%);
+  border-color: hsl(200 55% 45%);
+  color: hsl(200 70% 25%);
+}
+.mobile-transfer-tag.sd-card,
+.mobile-transfer-tag[data-method="sd"] {
+  background: hsl(150 45% 92%);
+  border-color: hsl(150 45% 38%);
+  color: hsl(150 55% 22%);
+}
+.mobile-transfer-tag.usb,
+.mobile-transfer-tag[data-method="usb"] {
+  background: hsl(35 70% 92%);
+  border-color: hsl(28 65% 45%);
+  color: hsl(25 70% 28%);
+}
+.mobile-transfer-tag.bluetooth,
+.mobile-transfer-tag[data-method="bluetooth"] {
+  background: hsl(220 60% 94%);
+  border-color: hsl(220 55% 50%);
+  color: hsl(220 65% 30%);
+}
+.mobile-transfer-tag.nfc,
+.mobile-transfer-tag[data-method="nfc"] {
+  background: hsl(280 45% 94%);
+  border-color: hsl(280 40% 50%);
+  color: hsl(280 50% 30%);
+}
+
+/* Multisig colored variant uses inline slot color from React */
 .mobile-transfer-tag.colored {
   border-radius: 0;
   font-family: 'JetBrains Mono', ui-monospace, monospace;

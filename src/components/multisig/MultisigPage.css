@@ -1533,28 +1533,48 @@
   animation: ritualBounce 220ms var(--ease-micro, cubic-bezier(0.32, 0.72, 0, 1));
 }
 
-/* --- Transfer tags: outline style (no fill) for refinement --- */
+/* --- Transfer tags: per-method tinted outline (paper-friendly) --- */
 .transfer-method-tag,
 .transfer-tag {
-  background: transparent !important;
-  color: hsl(var(--ink)) !important;
-  border: 1px solid hsl(var(--ink) / 0.45);
+  background: hsl(var(--paper));
+  color: hsl(var(--ink));
+  border: 1px solid hsl(var(--ink) / 0.35);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
+/* Per-method color coding — muted, paper-tinted backgrounds + darker border */
+.transfer-tag.qr-code {
+  background: hsl(200 60% 94%);
+  border-color: hsl(200 55% 45%);
+  color: hsl(200 70% 25%);
+}
+.transfer-tag.sd-card {
+  background: hsl(150 45% 92%);
+  border-color: hsl(150 45% 38%);
+  color: hsl(150 55% 22%);
+}
+.transfer-tag.usb {
+  background: hsl(35 70% 92%);
+  border-color: hsl(28 65% 45%);
+  color: hsl(25 70% 28%);
+}
+.transfer-tag.bluetooth {
+  background: hsl(220 60% 94%);
+  border-color: hsl(220 55% 50%);
+  color: hsl(220 65% 30%);
+}
+.transfer-tag.nfc {
+  background: hsl(280 45% 94%);
+  border-color: hsl(280 40% 50%);
+  color: hsl(280 50% 30%);
+}
+
+/* Multisig: keep slot-color inline styles (set via React) — just normalize shape */
 .transfer-method-tag.colored,
 .transfer-tag.colored {
-  background: transparent !important;
-}
-
-/* Default colored tag classes — override fills, keep border tone */
-.transfer-tag.sd-card,
-.transfer-tag.qr-code,
-.transfer-tag.usb,
-.transfer-tag.bluetooth,
-.transfer-tag.nfc {
-  background: transparent;
-  color: hsl(var(--ink));
-  border: 1px solid hsl(var(--ink) / 0.45);
+  /* inline style from SLOT_COLORS provides bg + border */
 }
 
 /* --- Arrow heads: thinner, more precise --- */
