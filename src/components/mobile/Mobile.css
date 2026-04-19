@@ -1564,3 +1564,100 @@
   padding: 6px 0 4px;
 }
 
+
+/* ============================================================
+   TERMINAL LAYER · Mobile.css
+   Mobile sync — wireframe cards + bracket tags + terminal headers.
+   ============================================================ */
+
+.mobile-card {
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: inherit;
+}
+.mobile-card-header {
+  border-bottom: 1px dashed hsl(var(--border)) !important;
+  font-family: inherit !important;
+  font-size: 12px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: hsl(var(--ink)) !important;
+}
+.mobile-card-header::before {
+  content: '$ ';
+  color: hsl(var(--ink-muted));
+  margin-right: 4px;
+}
+
+.mobile-option-item {
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: inherit;
+}
+.mobile-option-item.selected,
+.mobile-option-item.active {
+  background: hsl(var(--ink)) !important;
+  color: hsl(var(--background)) !important;
+}
+.mobile-option-item.selected *,
+.mobile-option-item.active * {
+  color: hsl(var(--background)) !important;
+}
+.mobile-option-item.selected::before,
+.mobile-option-item.active::before {
+  content: '> ';
+  font-weight: 700;
+}
+
+.mobile-signer-slot {
+  border: 1px dashed hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mobile-bottom-sheet,
+.mobile-feature-sheet {
+  border-radius: 0 !important;
+  border-top: 1px solid hsl(var(--border)) !important;
+  background: hsl(var(--card)) !important;
+}
+.mobile-bottom-sheet-handle::after,
+.mobile-feature-sheet-handle::after {
+  content: '─── DRAWER ───' !important;
+}
+
+/* Mobile transfer tags → bracketed */
+.mobile-data-flow-vertical .transfer-tag,
+.mobile-data-flow-vertical .transfer-method-tag {
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  color: hsl(var(--ink)) !important;
+  font-family: inherit !important;
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 2px 6px !important;
+}
+
+/* Mobile progress bar (legacy) wrapper */
+.progress-bar-mobile {
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.progress-fill-mobile {
+  background-image: repeating-linear-gradient(
+    to right,
+    hsl(var(--ink)) 0,
+    hsl(var(--ink)) 5px,
+    transparent 5px,
+    transparent 6px
+  ) !important;
+  background-color: transparent !important;
+}
