@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Feature } from '../types';
+import FeatureIcon from './shared/FeatureIcon';
 import './MobileFeatureDrawer.css';
 
 interface MobileFeatureDrawerProps {
@@ -51,9 +52,7 @@ const MobileFeatureDrawer: React.FC<MobileFeatureDrawerProps> = ({
           <div className="feature-list">
             {features.map((feature, index) => (
               <div key={index} className={`feature-item ${feature.type}`}>
-                <span className="feature-icon">
-                  {feature.type === 'positive' ? '✅' : feature.type === 'negative' ? '❌' : '⚠️'}
-                </span>
+                <FeatureIcon type={feature.type} size={16} />
                 <span className="feature-text">{feature.text}</span>
               </div>
             ))}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Feature } from '../../types';
 import MobileBottomSheet from './MobileBottomSheet';
+import FeatureIcon from '../shared/FeatureIcon';
 
 interface FeatureGroup {
   title: string;
@@ -33,18 +34,7 @@ const MobileFeatureSheet: React.FC<MobileFeatureSheetProps> = ({
     );
   }
 
-  const getFeatureIcon = (type: Feature['type']) => {
-    switch (type) {
-      case 'positive':
-        return '✅';
-      case 'negative':
-        return '❌';
-      case 'warning':
-        return '⚠️';
-      default:
-        return '📌';
-    }
-  };
+  // 图标改用极简线条 SVG 组件 FeatureIcon
 
   return (
     <MobileBottomSheet isOpen={isOpen} onClose={onClose} title={t('features.title', '特性详情')}>
@@ -64,7 +54,7 @@ const MobileFeatureSheet: React.FC<MobileFeatureSheetProps> = ({
       <div className="mobile-feature-list">
         {validGroups[activeTab]?.features.map((feature, index) => (
           <div key={index} className="mobile-feature-item">
-            <span className="mobile-feature-icon">{getFeatureIcon(feature.type)}</span>
+            <FeatureIcon type={feature.type} size={16} />
             <span className="mobile-feature-text">{feature.text}</span>
           </div>
         ))}

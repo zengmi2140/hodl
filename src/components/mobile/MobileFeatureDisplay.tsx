@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustodyData, Feature } from '../../types';
 import { SignatureMode } from '../SignatureModeSelector';
+import FeatureIcon from '../shared/FeatureIcon';
 
 interface MobileFeatureDisplayProps {
   signatureMode: SignatureMode;
@@ -28,18 +29,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
   custodyData,
 }) => {
   const { t } = useTranslation();
-  const getFeatureIcon = (type: Feature['type']) => {
-    switch (type) {
-      case 'positive':
-        return '✅';
-      case 'negative':
-        return '❌';
-      case 'warning':
-        return '⚠️';
-      default:
-        return '📌';
-    }
-  };
+  // 图标改用极简线条 SVG 组件 FeatureIcon
 
   // Get selected components based on mode
   const getSelectedSignerIds = (): string[] => {
@@ -92,7 +82,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
             <div className="mobile-feature-display-list">
               {signer.features.map((feature, fIndex) => (
                 <div key={fIndex} className="mobile-feature-display-item">
-                  <span className="mobile-feature-display-icon">{getFeatureIcon(feature.type)}</span>
+                  <FeatureIcon type={feature.type} size={16} />
                   <span className="mobile-feature-display-text">{feature.text}</span>
                 </div>
               ))}
@@ -120,7 +110,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
             <div className="mobile-feature-display-list">
               {wallet.features.map((feature, fIndex) => (
                 <div key={fIndex} className="mobile-feature-display-item">
-                  <span className="mobile-feature-display-icon">{getFeatureIcon(feature.type)}</span>
+                  <FeatureIcon type={feature.type} size={16} />
                   <span className="mobile-feature-display-text">{feature.text}</span>
                 </div>
               ))}
@@ -148,7 +138,7 @@ const MobileFeatureDisplay: React.FC<MobileFeatureDisplayProps> = ({
             <div className="mobile-feature-display-list">
               {node.features.map((feature, fIndex) => (
                 <div key={fIndex} className="mobile-feature-display-item">
-                  <span className="mobile-feature-display-icon">{getFeatureIcon(feature.type)}</span>
+                  <FeatureIcon type={feature.type} size={16} />
                   <span className="mobile-feature-display-text">{feature.text}</span>
                 </div>
               ))}
