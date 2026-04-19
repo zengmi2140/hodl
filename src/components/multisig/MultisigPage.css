@@ -1401,3 +1401,90 @@
 .lang-select__option-label {
   display: inline-block;
 }
+
+/* =========================================================
+   ▼ Batch 1 — Border hierarchy & paper layering (P1.5)
+   Apply --rule-strong / --rule-soft, restrain signal hover,
+   sink feature-box / dropdown to second-paper tint.
+   ========================================================= */
+
+/* --- Cards: stronger outline + softer internal divider --- */
+.option-item,
+.signer-slot {
+  border-color: hsl(var(--ink) / 0.22);
+}
+
+.option-item.compatible {
+  border-color: hsl(var(--rule-strong));
+}
+
+/* Restrain signal: hover uses ink (not orange) — orange reserved for selected */
+.option-item.compatible:hover {
+  border-color: hsl(var(--ink));
+  background: hsl(var(--card));
+}
+
+.option-item.compatible:hover::before {
+  background: hsl(var(--ink) / 0.45);
+}
+
+.signer-slot:hover {
+  border-color: hsl(var(--ink));
+}
+
+/* Column titles: tighter mono tracking */
+.column-title {
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+}
+
+/* --- Bottom feature dock sinks to paper-tint (second layer) --- */
+.feature-box {
+  background: hsl(var(--paper-tint));
+  border-color: hsl(var(--rule-strong));
+}
+
+.feature-box::before {
+  background: hsl(var(--paper));
+  letter-spacing: 0.22em;
+  font-size: 0.58rem;
+  padding: 2px 7px;
+}
+
+.feature-box .feature-title {
+  border-bottom-color: hsl(var(--ink) / 0.18);
+  letter-spacing: 0.18em;
+}
+
+.feature-box .feature-item {
+  border-left-width: 2px;
+  border-left-color: hsl(var(--ink) / 0.18);
+}
+
+/* --- Dropdown sinks to paper-tint --- */
+.signer-dropdown {
+  background: hsl(var(--paper-tint));
+  border-color: hsl(var(--rule-strong));
+}
+
+.signer-dropdown-header {
+  background: hsl(var(--paper-deep));
+  letter-spacing: 0.18em;
+}
+
+.signer-dropdown-item:hover {
+  background: hsl(var(--paper-deep));
+}
+
+/* --- Transfer tags: refined mono tracking --- */
+.transfer-method-tag,
+.transfer-tag {
+  letter-spacing: 0.08em;
+  font-size: 0.62rem;
+}
+
+/* --- Selected ribbon: tighter --- */
+.option-item.selected::after {
+  letter-spacing: 0.16em;
+  font-size: 0.52rem;
+}
