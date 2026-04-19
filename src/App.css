@@ -2321,3 +2321,115 @@ body {
 
 /* --- App-level dark mode body grid uses tokens already --- */
 
+
+/* =========================================================
+   ARCHITECTURAL BLUEPRINT — FAQ AS TECHNICAL NOTES
+   ========================================================= */
+
+.faq-overlay {
+  background: hsl(var(--ink) / 0.45) !important;
+  backdrop-filter: blur(2px);
+}
+
+.faq-drawer {
+  background: hsl(var(--background)) !important;
+  border-left: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  box-shadow: -1px 0 0 hsl(var(--border)) !important;
+}
+
+.faq-header {
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  padding: 16px 20px !important;
+}
+
+.faq-title {
+  font-family: 'Recursive', monospace !important;
+  font-variation-settings: 'MONO' 1 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: hsl(var(--ink)) !important;
+}
+
+.faq-title::before {
+  content: '§ ';
+  color: hsl(var(--signal));
+  margin-right: 4px;
+}
+
+.faq-close {
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  font-family: 'Recursive', monospace !important;
+  font-variation-settings: 'MONO' 1 !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.faq-close:hover {
+  background: hsl(var(--ink)) !important;
+  color: hsl(var(--background)) !important;
+}
+
+.faq-content {
+  font-family: 'Noto Serif SC', Georgia, serif !important;
+  counter-reset: faqsection;
+}
+
+.faq-heading {
+  font-family: 'Recursive', monospace !important;
+  font-variation-settings: 'MONO' 1 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  border-top: 1px solid hsl(var(--border));
+  padding-top: 14px !important;
+  margin-top: 18px !important;
+  counter-increment: faqsection;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.faq-heading::before {
+  content: '§' counter(faqsection, decimal-leading-zero);
+  font-family: 'Recursive', monospace;
+  font-variation-settings: 'MONO' 1;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: hsl(var(--signal));
+  flex-shrink: 0;
+}
+
+.faq-heading:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.faq-heading-icon { display: none !important; }
+
+.faq-paragraph,
+.faq-list-item {
+  font-family: 'Noto Serif SC', Georgia, serif !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: hsl(var(--ink)) !important;
+}
+
+.faq-quote {
+  border-left: 2px solid hsl(var(--signal)) !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding-left: 14px !important;
+  font-style: italic;
+  color: hsl(var(--ink-muted));
+}
+
+.faq-strong {
+  color: hsl(var(--signal)) !important;
+  font-weight: 600;
+}
+
