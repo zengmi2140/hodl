@@ -1451,10 +1451,12 @@
   border-color: hsl(var(--ink));
 }
 
-/* Column titles: tighter mono tracking */
+/* Column titles: tighter mono tracking, larger for hierarchy */
 .column-title {
-  letter-spacing: 0.2em;
-  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  font-size: 0.95rem;
+  font-weight: 550;
+  color: hsl(var(--ink));
 }
 
 /* --- Bottom feature dock sinks to paper-tint (second layer) --- */
