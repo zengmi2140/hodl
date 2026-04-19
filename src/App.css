@@ -2433,3 +2433,75 @@ body {
   font-weight: 600;
 }
 
+
+/* ============================================================
+   TERMINAL LAYER · App.css
+   Override blueprint header/option layouts with terminal style.
+   ============================================================ */
+
+.bp-header {
+  background: hsl(var(--background)) !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+}
+
+.header-content {
+  font-family: inherit;
+}
+
+/* Inverse selection (green-bg / black-fg in dark, ink-bg / paper-fg in light) */
+.option-item.selected,
+.option-item.active,
+.signer-slot.filled,
+.signer-slot.active {
+  background: hsl(var(--ink)) !important;
+  color: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--ink)) !important;
+}
+.option-item.selected *,
+.option-item.active *,
+.signer-slot.filled *,
+.signer-slot.active * {
+  color: hsl(var(--background)) !important;
+}
+.option-item.selected::before,
+.option-item.active::before {
+  content: '> ';
+  color: hsl(var(--background));
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+/* Breathing → blink underline instead of glow */
+@keyframes term-blink-underline {
+  0%, 50% { border-bottom-color: hsl(var(--signal)); }
+  51%, 100% { border-bottom-color: transparent; }
+}
+.option-item.breathing,
+.signer-slot.breathing,
+.component-item.breathing {
+  border: 1px solid hsl(var(--border)) !important;
+  border-bottom: 2px solid hsl(var(--signal)) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  animation: term-blink-underline 1.2s step-end infinite;
+}
+
+/* FAQ overlay → terminal pager */
+.faq-drawer {
+  background: hsl(var(--background)) !important;
+  border-left: 1px solid hsl(var(--border)) !important;
+  box-shadow: none !important;
+}
+.faq-drawer-header {
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  background: hsl(var(--background)) !important;
+}
+.faq-drawer-header::before {
+  content: '$ less ./TECHNICAL_NOTES.md';
+  display: block;
+  font-family: inherit;
+  font-size: 11px;
+  color: hsl(var(--ink-muted));
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}

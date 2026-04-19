@@ -3,47 +3,46 @@
 @tailwind utilities;
 
 /* =========================================================
-   Architectural Blueprint — Design Tokens
-   "Self-Custody Blueprint" — Drafting × Wireframe × Signal.
-   Light = Draft Paper (奶白草稿纸).
-   Dark  = Prussian Blueprint (普鲁士蓝图).
+   Terminal Console — Design Tokens
+   "Self-Custody Terminal" — Phosphor × Amber × Inverse.
+   Light = Paper printout (奶白打印输出 — 浅终端).
+   Dark  = CRT phosphor (磷光绿 / 琥珀 — 真终端).
    All colors expressed in HSL for shadcn/Tailwind compatibility.
    ========================================================= */
 
 :root {
-  /* --- Surface (Draft Paper) --- */
-  --paper:        40 35% 94%;   /* #F5F1E8 cream draft paper */
-  --paper-tint:   40 25% 89%;   /* tinted block */
-  --paper-deep:   38 22% 84%;
+  /* --- Surface (Paper printout — light terminal) --- */
+  --paper:        45 30% 95%;   /* #F5F2E9 paper */
+  --paper-tint:   45 22% 90%;
+  --paper-deep:   45 18% 84%;
 
-  /* --- Lines (Drafting Ink) --- */
-  --ink:           28 32% 17%;  /* #3A2E1F sepia drafting ink */
-  --ink-muted:     28 18% 38%;  /* faded note */
-  --ink-rule:      28 32% 17%;
+  /* --- Foreground (Dark phosphor on paper) --- */
+  --ink:          135 60% 18%;  /* #134B25 deep green */
+  --ink-muted:    135 25% 38%;
+  --ink-rule:     135 60% 18%;
 
-  /* --- Signal (Bitcoin Orange) --- */
-  --signal:        29 92% 53%;  /* #F7931A */
+  /* --- Signal (Bitcoin amber) --- */
+  --signal:        38 100% 45%;  /* amber-orange */
   --signal-deep:   28 87% 41%;
-  --signal-soft:   29 92% 53%;
+  --signal-soft:   38 100% 50%;
 
-  /* --- Auxiliary (faint guides) --- */
-  --aux:           28 25% 50% / 0.30;
-  --grid-line:     28 32% 17% / 0.08;
-  --grid-line-major: 28 32% 17% / 0.16;
+  /* --- Auxiliary --- */
+  --aux:           135 25% 38% / 0.30;
+  --scan-line:     135 60% 18% / 0.04;
 
   /* --- shadcn-compatible mapping --- */
   --background:           var(--paper);
   --foreground:           var(--ink);
-  --primary:              var(--signal);
+  --primary:              var(--ink);
   --primary-foreground:   var(--paper);
   --secondary:            var(--paper-tint);
   --secondary-foreground: var(--ink);
   --accent:               var(--paper-tint);
   --accent-foreground:    var(--ink);
-  --border:               28 32% 17%;
+  --border:               135 60% 18%;
   --muted:                var(--paper-tint);
   --muted-foreground:     var(--ink-muted);
-  --card:                 40 40% 97%;
+  --card:                 45 35% 97%;
   --card-foreground:      var(--ink);
   --popover:              var(--paper);
   --popover-foreground:   var(--ink);
@@ -56,8 +55,8 @@
   --slot-5-bg: #EEE9DA; --slot-5-border: #6B5B1F;
 
   /* --- Rules --- */
-  --rule-strong: 28 32% 17%;
-  --rule-soft:   28 32% 17% / 0.18;
+  --rule-strong: 135 60% 18%;
+  --rule-soft:   135 60% 18% / 0.18;
 
   /* --- Motion --- */
   --ease-craft: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -67,46 +66,45 @@
 }
 
 .dark {
-  /* --- Surface (Prussian Blueprint) --- */
-  --paper:        212 67% 17%;  /* #0E2A47 prussian blue */
-  --paper-tint:   212 50% 22%;
-  --paper-deep:   212 50% 27%;
+  /* --- Surface (CRT phosphor — true terminal) --- */
+  --paper:        0 0% 4%;     /* #0A0A0A near-black */
+  --paper-tint:   0 0% 8%;
+  --paper-deep:   0 0% 12%;
 
-  /* --- Lines (Cyan-tinted white) --- */
-  --ink:           45 25% 95%;  /* #F4F4F0 drafting white */
-  --ink-muted:     200 35% 73%; /* #6FB3D2-ish faded */
-  --ink-rule:      45 25% 95%;
+  /* --- Foreground (Phosphor green) --- */
+  --ink:          135 100% 50%;  /* #00FF41 phosphor green */
+  --ink-muted:    135 40% 55%;
+  --ink-rule:     135 100% 50%;
 
-  /* --- Signal --- */
-  --signal:        32 100% 64%;
-  --signal-deep:   29 92% 53%;
-  --signal-soft:   32 100% 64%;
+  /* --- Signal (Amber) --- */
+  --signal:        38 100% 50%;  /* #FFB000 amber */
+  --signal-deep:   38 100% 40%;
+  --signal-soft:   38 100% 60%;
 
-  --aux:           200 50% 75% / 0.30;
-  --grid-line:     45 25% 95% / 0.07;
-  --grid-line-major: 45 25% 95% / 0.14;
+  --aux:           135 40% 55% / 0.30;
+  --scan-line:     135 100% 50% / 0.04;
 
   --background:           var(--paper);
   --foreground:           var(--ink);
-  --primary:              var(--signal);
+  --primary:              var(--ink);
   --primary-foreground:   var(--paper);
   --secondary:            var(--paper-tint);
   --secondary-foreground: var(--ink);
   --accent:               var(--paper-tint);
   --accent-foreground:    var(--ink);
-  --border:               45 25% 95%;
+  --border:               135 100% 50%;
   --muted:                var(--paper-tint);
   --muted-foreground:     var(--ink-muted);
-  --card:                 212 60% 19%;
+  --card:                 0 0% 6%;
   --card-foreground:      var(--ink);
   --popover:              var(--paper-tint);
   --popover-foreground:   var(--ink);
 
-  --slot-1-bg: #15251C; --slot-1-border: #4F8A6A;
-  --slot-2-bg: #142031; --slot-2-border: #5A82B0;
-  --slot-3-bg: #221525; --slot-3-border: #8A6190;
-  --slot-4-bg: #2B1419; --slot-4-border: #B26173;
-  --slot-5-bg: #25200F; --slot-5-border: #B5A063;
+  --slot-1-bg: #0A1A0F; --slot-1-border: #4F8A6A;
+  --slot-2-bg: #0A1420; --slot-2-border: #5A82B0;
+  --slot-3-bg: #1A0A1C; --slot-3-border: #8A6190;
+  --slot-4-bg: #1F0A0F; --slot-4-border: #B26173;
+  --slot-5-bg: #1C170A; --slot-5-border: #B5A063;
 }
 
 * {
@@ -116,30 +114,40 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: 'Recursive', 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Noto Sans SC', 'PingFang SC', 'Roboto', sans-serif;
-  font-variation-settings: 'MONO' 0, 'CASL' 0, 'CRSV' 0, 'slnt' 0;
-  font-feature-settings: 'ss01';
+  font-family: 'Recursive', ui-monospace, 'JetBrains Mono', 'IBM Plex Mono',
+    SFMono-Regular, Menlo, Consolas, 'Noto Sans Mono CJK SC', monospace;
+  font-variation-settings: 'MONO' 1, 'CASL' 0, 'CRSV' 0, 'slnt' 0;
+  font-feature-settings: 'zero', 'ss01';
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.55;
-  letter-spacing: -0.003em;
+  line-height: 1.5;
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* 24×24 grid background — fine line every 24px, major line every 5×24=120px */
+  /* CRT scanlines + subtle vignette */
   background-image:
-    linear-gradient(to right, hsl(var(--grid-line-major)) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--grid-line-major)) 1px, transparent 1px),
-    linear-gradient(to right, hsl(var(--grid-line)) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--grid-line)) 1px, transparent 1px);
-  background-size:
-    120px 120px,
-    120px 120px,
-    24px 24px,
-    24px 24px;
-  background-position: 0 0;
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      hsl(var(--scan-line)) 2px,
+      hsl(var(--scan-line)) 3px
+    );
   background-attachment: fixed;
+}
+
+/* Subtle CRT vignette overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background:
+    radial-gradient(ellipse at center,
+      transparent 55%,
+      hsl(var(--background) / 0.55) 100%);
 }
 
 :lang(zh) body,
@@ -147,11 +155,11 @@ html[lang^="zh"] body {
   font-weight: 400;
 }
 
-/* Headings — drafting label hierarchy */
-h1 { font-size: 22px; line-height: 1.2; letter-spacing: 0; font-weight: 600; }
-h2 { font-size: 16px; line-height: 1.3; letter-spacing: 0.005em; font-weight: 600; }
-h3 { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 600; }
-h4 { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 600; text-transform: uppercase; }
+/* Headings — terminal output hierarchy (all mono) */
+h1 { font-size: 18px; line-height: 1.3; letter-spacing: 0; font-weight: 700; text-transform: uppercase; }
+h2 { font-size: 15px; line-height: 1.3; letter-spacing: 0.02em; font-weight: 600; text-transform: uppercase; }
+h3 { font-size: 13px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 600; text-transform: uppercase; }
+h4 { font-size: 11px; line-height: 1.4; letter-spacing: 0.08em; font-weight: 600; text-transform: uppercase; }
 
 /* Numeric stability */
 .tabular-nums,
@@ -161,33 +169,29 @@ h4 { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 600
   font-feature-settings: 'tnum', 'zero';
 }
 
-/* Eyebrow / drafting annotation label */
+/* Eyebrow / terminal annotation label */
 .eyebrow,
 .bp-label {
-  font-family: 'Recursive', ui-monospace, monospace;
-  font-variation-settings: 'MONO' 1;
+  font-family: inherit;
   font-size: 10px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: hsl(var(--ink-muted));
 }
 
-/* Mono utility — technical/data text */
 .mono,
 .font-mono {
-  font-family: 'Recursive', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-variation-settings: 'MONO' 1;
-  font-feature-settings: 'zero', 'ss01';
+  font-family: inherit;
 }
 
-/* Serif utility (FAQ/long-form) — kept for technical-notes feel */
+/* Serif utility (FAQ/long-form) — keep available */
 .serif {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
 }
 
-/* ------- Blueprint primitives (reusable) ------- */
+/* ------- Terminal primitives (override blueprint) ------- */
 
-/* Crosshair corners on a frame: <div class="bp-frame">…</div> */
+/* Frame: 1px solid border, ASCII corners */
 .bp-frame {
   position: relative;
   border: 1px solid hsl(var(--border));
@@ -202,32 +206,47 @@ h4 { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 600
 .bp-frame > .bp-corner-br {
   content: '+';
   position: absolute;
-  font-family: 'Recursive', monospace;
-  font-variation-settings: 'MONO' 1;
+  font-family: inherit;
   font-size: 12px;
   line-height: 1;
   color: hsl(var(--ink));
   pointer-events: none;
+  background: hsl(var(--background));
+  padding: 0 1px;
 }
-.bp-frame::before { top: -6px; left: -4px; }
-.bp-frame::after  { top: -6px; right: -4px; }
-.bp-frame > .bp-corner-bl { bottom: -6px; left: -4px; }
-.bp-frame > .bp-corner-br { bottom: -6px; right: -4px; }
+.bp-frame::before { content: '┌'; top: -7px; left: -1px; }
+.bp-frame::after  { content: '┐'; top: -7px; right: -1px; }
+.bp-frame > .bp-corner-bl { content: '└'; bottom: -7px; left: -1px; }
+.bp-frame > .bp-corner-br { content: '┘'; bottom: -7px; right: -1px; }
 
-/* Module label (top-left of a frame) */
+/* Module label */
 .bp-module-label {
   position: absolute;
   top: -10px;
   left: 14px;
   background: hsl(var(--background));
   padding: 0 8px;
-  font-family: 'Recursive', monospace;
-  font-variation-settings: 'MONO' 1;
+  font-family: inherit;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: hsl(var(--ink));
   z-index: 2;
+}
+
+/* Blinking terminal cursor */
+@keyframes terminal-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.term-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background: hsl(var(--ink));
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: terminal-blink 1s step-end infinite;
 }
 
 /* Reduced motion */
@@ -238,9 +257,10 @@ h4 { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 600
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  .term-cursor { animation: none; opacity: 1; }
 }
 
-/* 统一的列容器 - 确保单签和多签模式布局一致 */
+/* 统一的列容器 */
 .unified-columns-container {
   display: flex;
   flex-direction: column;
@@ -251,3 +271,163 @@ h4 { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 600
   margin: 0;
   margin-top: 24px;
 }
+
+/* ============================================================
+   TERMINAL LAYER OVERRIDES
+   Override blueprint-era components with terminal aesthetic.
+   ============================================================ */
+
+/* Title block → shell prompt */
+.bp-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  font-family: inherit;
+  color: hsl(var(--ink));
+}
+.bp-title-block__main {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.bp-title-block__signal {
+  color: hsl(var(--signal));
+  font-weight: 700;
+}
+.bp-title-block__name {
+  text-transform: uppercase;
+}
+.bp-title-block__name::before {
+  content: 'hodl@self-custody:~$ ';
+  color: hsl(var(--ink-muted));
+  font-weight: 400;
+  text-transform: lowercase;
+}
+.bp-title-block__name::after {
+  content: '▊';
+  margin-left: 4px;
+  color: hsl(var(--ink));
+  animation: terminal-blink 1s step-end infinite;
+}
+.bp-title-block__meta {
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+  color: hsl(var(--ink-muted));
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.bp-title-block__sep { opacity: 0.5; }
+
+/* Header buttons → terminal style */
+.header-btn {
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  color: hsl(var(--ink)) !important;
+  border-radius: 0 !important;
+  padding: 4px 10px !important;
+  font-family: inherit !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  cursor: pointer;
+  transition: none !important;
+  box-shadow: none !important;
+}
+.header-btn:hover {
+  background: hsl(var(--ink)) !important;
+  color: hsl(var(--background)) !important;
+}
+
+/* Ruler → ASCII progress bar */
+.bp-ruler {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  color: hsl(var(--ink));
+}
+.bp-ruler__track {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  border: 1px solid hsl(var(--border));
+  background: transparent;
+}
+.bp-ruler__tick,
+.bp-ruler__tick-mark,
+.bp-ruler__tick-label,
+.bp-ruler__cursor,
+.bp-ruler__cursor-mark {
+  display: none !important;
+}
+.bp-ruler__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: hsl(var(--ink));
+  background-image: repeating-linear-gradient(
+    to right,
+    hsl(var(--ink)) 0,
+    hsl(var(--ink)) 6px,
+    hsl(var(--background)) 6px,
+    hsl(var(--background)) 7px
+  );
+  transition: width 280ms var(--ease-craft);
+}
+.bp-ruler.optimal .bp-ruler__fill {
+  background-image: repeating-linear-gradient(
+    to right,
+    hsl(var(--signal)) 0,
+    hsl(var(--signal)) 6px,
+    hsl(var(--background)) 6px,
+    hsl(var(--background)) 7px
+  );
+}
+.bp-ruler__optimal-flag {
+  margin-left: 8px;
+  color: hsl(var(--signal));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.progress-percentage {
+  font-family: inherit;
+  color: hsl(var(--ink));
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.progress-percentage::before {
+  content: '[ ';
+  color: hsl(var(--ink-muted));
+}
+.progress-percentage::after {
+  content: ' ]';
+  color: hsl(var(--ink-muted));
+}
+.progress-percentage.optimal { color: hsl(var(--signal)); }
+
+/* Header frame → solid terminal border */
+.bp-header {
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  background: hsl(var(--background)) !important;
+}
+
+/* Terminal symbol replacement */
+.bp-terminal {
+  display: inline-block;
+  font-family: inherit;
+  color: hsl(var(--ink));
+  font-size: 12px;
+}
+.bp-terminal::before {
+  content: '[*]';
+}
+.bp-terminal:not(:empty) { font-size: 0; }
+.bp-terminal:not(:empty)::before { font-size: 12px; }

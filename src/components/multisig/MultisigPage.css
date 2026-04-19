@@ -2004,3 +2004,136 @@
   box-shadow: none !important;
 }
 
+
+/* ============================================================
+   TERMINAL LAYER · MultisigPage.css
+   Override option cards / transfer tags / dock for terminal style.
+   ============================================================ */
+
+/* Column → terminal panel */
+.column {
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  padding: 16px 12px !important;
+  box-shadow: none !important;
+  position: relative;
+}
+.column-title {
+  font-family: inherit !important;
+  font-size: 11px !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: hsl(var(--ink)) !important;
+  border-bottom: 1px dashed hsl(var(--border));
+  padding-bottom: 8px !important;
+  margin-bottom: 12px !important;
+}
+.column-title::before { content: '## '; color: hsl(var(--ink-muted)); }
+
+/* Option items → ASCII list rows */
+.option-item,
+.component-item {
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 8px 10px !important;
+  transition: none !important;
+  font-family: inherit;
+}
+.option-item:hover:not(.selected):not(.active) {
+  background: hsl(var(--ink) / 0.08) !important;
+}
+
+/* Signer slots → terminal placeholders */
+.signer-slot {
+  border: 1px dashed hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-family: inherit;
+}
+.signer-slot.empty::before {
+  content: '[ slot ' attr(data-slot) ' empty — click to fill ]';
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: hsl(var(--ink-muted));
+}
+
+/* Transfer method tags → [USB] / [QR] bracket text */
+.transfer-tag,
+.transfer-method-tag {
+  background: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  color: hsl(var(--ink)) !important;
+  font-family: inherit !important;
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 2px 6px !important;
+  box-shadow: none !important;
+}
+.transfer-tag::before,
+.transfer-method-tag::before {
+  content: '[';
+  margin-right: 2px;
+  color: hsl(var(--ink-muted));
+}
+.transfer-tag::after,
+.transfer-method-tag::after {
+  content: ']';
+  margin-left: 2px;
+  color: hsl(var(--ink-muted));
+}
+
+/* Transfer arrows → text-style wiring */
+.transfer-arrows .arrow-line-static {
+  height: 0 !important;
+  border-top: 1px solid hsl(var(--ink)) !important;
+  background: transparent !important;
+}
+.transfer-arrows .arrow-head {
+  color: hsl(var(--ink)) !important;
+  font-family: inherit;
+}
+.arrow-label-top {
+  font-family: inherit !important;
+  font-size: 10px !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: hsl(var(--ink-muted)) !important;
+}
+
+/* Wallet-node connection status */
+.wallet-node-connected {
+  color: hsl(var(--signal)) !important;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.wallet-node-connected::before {
+  content: '$ ';
+  color: hsl(var(--ink-muted));
+}
+.transfer-method-hint {
+  font-family: inherit !important;
+  font-size: 11px !important;
+  color: hsl(var(--ink-muted)) !important;
+  letter-spacing: 0.04em !important;
+}
+.transfer-method-hint::before {
+  content: '# ';
+  color: hsl(var(--ink-muted));
+}
+
+/* Bottom feature dock → spec sheet */
+.feature-dock-inner,
+.featureBox {
+  background: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: inherit;
+}
