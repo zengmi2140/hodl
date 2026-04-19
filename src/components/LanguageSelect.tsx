@@ -65,23 +65,20 @@ const LanguageSelect: React.FC = () => {
       </button>
       {open && (
         <ul className="lang-select__menu" role="listbox">
-          {LANGUAGE_OPTIONS.map(opt => {
+          {LANGUAGE_OPTIONS.filter(opt => {
             const isActive = i18n.language === opt.value || i18n.language.startsWith(opt.value);
-            return (
-              <li
-                key={opt.value}
-                role="option"
-                aria-selected={isActive}
-                className={`lang-select__option ${isActive ? 'is-active' : ''}`}
-                onClick={() => handleSelect(opt.value)}
-              >
-                <span className="lang-select__check" aria-hidden="true">
-                  {isActive ? '✓' : ''}
-                </span>
-                <span className="lang-select__option-label">{opt.label}</span>
-              </li>
-            );
-          })}
+            return !isActive;
+          }).map(opt => (
+            <li
+              key={opt.value}
+              role="option"
+              aria-selected={false}
+              className="lang-select__option"
+              onClick={() => handleSelect(opt.value)}
+            >
+              <span className="lang-select__option-label">{opt.label}</span>
+            </li>
+          ))}
         </ul>
       )}
     </div>
