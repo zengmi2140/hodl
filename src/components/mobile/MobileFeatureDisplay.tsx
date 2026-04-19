@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustodyData, Feature } from '../../types';
 import { SignatureMode } from '../SignatureModeSelector';
+import FeatureIcon from '../shared/FeatureIcon';
 
 interface MobileFeatureDisplayProps {
   signatureMode: SignatureMode;

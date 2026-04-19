@@ -2,6 +2,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { CustodyData, Feature } from '../../types';
+import FeatureIcon from '../shared/FeatureIcon';
 
 interface MultisigBottomFeatureDockProps {
   selectedWallet: string | null;
@@ -12,7 +13,7 @@ interface MultisigBottomFeatureDockProps {
 const renderFeatureItems = (features: Feature[]) => {
   return features.map((feature, index) => (
     <div key={index} className={`feature-item ${feature.type}`}>
-      <span className="feature-icon">{feature.type === 'positive' ? '✅' : feature.type === 'negative' ? '❌' : '⚠️'}</span>
+      <FeatureIcon type={feature.type} size={16} />
       <span className="feature-text">{feature.text}</span>
     </div>
   ));
