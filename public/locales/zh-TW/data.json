@@ -1,62 +1,6 @@
 {
   "hardwareSigners": [
     {
-      "id": "coldcard",
-      "name": "Coldcard",
-      "logo": "/images/logos/hardware/coldcard.webp",
-      "features": [
-        {
-          "type": "positive",
-          "text": "擲骰子生成種子詞"
-        },
-        {
-          "type": "positive",
-          "text": "Air-gapped 體驗"
-        },
-        {
-          "type": "warning",
-          "text": "多次輸錯 PIN 碼設備報廢"
-        }
-      ],
-      "compatibleWallets": [
-        "sparrow",
-        "nunchuk",
-        "electrum",
-        "keeper",
-        "specter",
-        "wasabi",
-        "liana"
-      ]
-    },
-    {
-      "id": "ledger",
-      "name": "Ledger",
-      "logo": "/images/logos/hardware/ledger.webp",
-      "features": [
-        {
-          "type": "positive",
-          "text": "支援 Miniscript"
-        },
-        {
-          "type": "negative",
-          "text": "韌體不開源"
-        },
-        {
-          "type": "negative",
-          "text": "螢幕較小"
-        }
-      ],
-      "compatibleWallets": [
-        "sparrow",
-        "electrum",
-        "nunchuk",
-        "keeper",
-        "specter",
-        "wasabi",
-        "liana"
-      ]
-    },
-    {
       "id": "jade",
       "name": "Blockstream Jade",
       "logo": "/images/logos/hardware/jade.webp",
@@ -142,31 +86,6 @@
         "keeper",
         "specter",
         "wasabi"
-      ]
-    },
-    {
-      "id": "none",
-      "name": "不使用簽名器",
-      "logo": "🚫",
-      "features": [
-        {
-          "type": "negative",
-          "text": "易受互聯網遠程攻擊"
-        },
-        {
-          "type": "negative",
-          "text": "無法校驗軟體錢包資訊"
-        }
-      ],
-      "compatibleWallets": [
-        "sparrow",
-        "nunchuk",
-        "electrum",
-        "bluewallet",
-        "keeper",
-        "specter",
-        "wasabi",
-        "liana"
       ]
     },
     {
@@ -336,6 +255,131 @@
         "nunchuk",
         "keeper"
       ]
+    },
+    {
+      "id": "specter-diy",
+      "name": "Specter-DIY",
+      "logo": "/images/logos/hardware/specter-diy.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "開源韌體，可自行組裝"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped 體驗"
+        },
+        {
+          "type": "positive",
+          "text": "支援 Miniscript"
+        },
+        {
+          "type": "warning",
+          "text": "可選斷電遺忘私鑰模式"
+        },
+        {
+          "type": "positive",
+          "text": "觸控輸入增加種子詞熵"
+        },
+        {
+          "type": "positive",
+          "text": "自訂公鑰衍生路徑"
+        },
+        {
+          "type": "positive",
+          "text": "基於通用硬體"
+        },
+        {
+          "type": "warning",
+          "text": "基本配置無安全晶片，可選智慧卡擴充"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "specter",
+        "liana"
+      ]
+    },
+    {
+      "id": "coldcard",
+      "name": "Coldcard",
+      "logo": "/images/logos/hardware/coldcard.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "擲骰子生成種子詞"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped 體驗"
+        },
+        {
+          "type": "warning",
+          "text": "多次輸錯 PIN 碼設備報廢"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "logo": "/images/logos/hardware/ledger.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "支援 Miniscript"
+        },
+        {
+          "type": "negative",
+          "text": "韌體不開源"
+        },
+        {
+          "type": "negative",
+          "text": "螢幕較小"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "none",
+      "name": "不使用簽名器",
+      "logo": "🚫",
+      "features": [
+        {
+          "type": "negative",
+          "text": "易受互聯網遠程攻擊"
+        },
+        {
+          "type": "negative",
+          "text": "無法校驗軟體錢包資訊"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
     }
   ],
   "softwareWallets": [
@@ -372,7 +416,8 @@
         "jade",
         "passport",
         "krux",
-        "tapsigner"
+        "tapsigner",
+        "specter-diy"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -547,7 +592,8 @@
         "seedsigner",
         "passport",
         "krux",
-        "none"
+        "none",
+        "specter-diy"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -601,7 +647,7 @@
         { "type": "positive", "text": "繼承規劃" },
         { "type": "positive", "text": "時間鎖恢復" }
       ],
-      "compatibleSigners": ["coldcard", "ledger", "jade", "bitbox", "krux", "none"],
+      "compatibleSigners": ["coldcard", "ledger", "jade", "bitbox", "krux", "none", "specter-diy"],
       "compatibleNodes": [],
       "supportedPlatforms": ["Desktop"],
       "multisigOnly": true
@@ -993,6 +1039,20 @@
       ],
       "keeper": [
         "NFC"
+      ]
+    },
+    "specter-diy": {
+      "sparrow": [
+        "二维码",
+        "microSD 卡"
+      ],
+      "specter": [
+        "二维码",
+        "microSD 卡",
+        "USB"
+      ],
+      "liana": [
+        "USB"
       ]
     }
   }

@@ -1,62 +1,6 @@
 {
   "hardwareSigners": [
     {
-      "id": "coldcard",
-      "name": "Coldcard",
-      "logo": "/images/logos/hardware/coldcard.webp",
-      "features": [
-        {
-          "type": "positive",
-          "text": "Dice roll entropy"
-        },
-        {
-          "type": "positive",
-          "text": "Air-gapped"
-        },
-        {
-          "type": "warning",
-          "text": "Bricks after failed PIN attempts"
-        }
-      ],
-      "compatibleWallets": [
-        "sparrow",
-        "nunchuk",
-        "electrum",
-        "keeper",
-        "specter",
-        "wasabi",
-        "liana"
-      ]
-    },
-    {
-      "id": "ledger",
-      "name": "Ledger",
-      "logo": "/images/logos/hardware/ledger.webp",
-      "features": [
-        {
-          "type": "positive",
-          "text": "Miniscript support"
-        },
-        {
-          "type": "negative",
-          "text": "Closed-source firmware"
-        },
-        {
-          "type": "negative",
-          "text": "Small display"
-        }
-      ],
-      "compatibleWallets": [
-        "sparrow",
-        "electrum",
-        "nunchuk",
-        "keeper",
-        "specter",
-        "wasabi",
-        "liana"
-      ]
-    },
-    {
       "id": "jade",
       "name": "Blockstream Jade",
       "logo": "/images/logos/hardware/jade.webp",
@@ -142,31 +86,6 @@
         "keeper",
         "specter",
         "wasabi"
-      ]
-    },
-    {
-      "id": "none",
-      "name": "No Signer",
-      "logo": "🚫",
-      "features": [
-        {
-          "type": "negative",
-          "text": "Risk: Hot wallet attacks"
-        },
-        {
-          "type": "negative",
-          "text": "No hardware verification"
-        }
-      ],
-      "compatibleWallets": [
-        "sparrow",
-        "nunchuk",
-        "electrum",
-        "bluewallet",
-        "keeper",
-        "specter",
-        "wasabi",
-        "liana"
       ]
     },
     {
@@ -336,6 +255,131 @@
         "nunchuk",
         "keeper"
       ]
+    },
+    {
+      "id": "specter-diy",
+      "name": "Specter-DIY",
+      "logo": "/images/logos/hardware/specter-diy.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Open-source firmware; DIY assembly"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped signing"
+        },
+        {
+          "type": "positive",
+          "text": "Miniscript support"
+        },
+        {
+          "type": "warning",
+          "text": "Optional forget-on-power-off key mode"
+        },
+        {
+          "type": "positive",
+          "text": "Touchscreen input adds seed entropy"
+        },
+        {
+          "type": "positive",
+          "text": "Custom derivation paths"
+        },
+        {
+          "type": "positive",
+          "text": "Commodity hardware"
+        },
+        {
+          "type": "warning",
+          "text": "No Secure Element in base build; optional smartcard expansion"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "specter",
+        "liana"
+      ]
+    },
+    {
+      "id": "coldcard",
+      "name": "Coldcard",
+      "logo": "/images/logos/hardware/coldcard.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Dice roll entropy"
+        },
+        {
+          "type": "positive",
+          "text": "Air-gapped"
+        },
+        {
+          "type": "warning",
+          "text": "Bricks after failed PIN attempts"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "logo": "/images/logos/hardware/ledger.webp",
+      "features": [
+        {
+          "type": "positive",
+          "text": "Miniscript support"
+        },
+        {
+          "type": "negative",
+          "text": "Closed-source firmware"
+        },
+        {
+          "type": "negative",
+          "text": "Small display"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "none",
+      "name": "No Signer",
+      "logo": "🚫",
+      "features": [
+        {
+          "type": "negative",
+          "text": "Risk: Hot wallet attacks"
+        },
+        {
+          "type": "negative",
+          "text": "No hardware verification"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
     }
   ],
   "softwareWallets": [
@@ -372,7 +416,8 @@
         "jade",
         "passport",
         "krux",
-        "tapsigner"
+        "tapsigner",
+        "specter-diy"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -547,7 +592,8 @@
         "seedsigner",
         "passport",
         "krux",
-        "none"
+        "none",
+        "specter-diy"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -622,7 +668,8 @@
         "jade",
         "bitbox",
         "krux",
-        "none"
+        "none",
+        "specter-diy"
       ],
       "compatibleNodes": [],
       "supportedPlatforms": [
@@ -1017,6 +1064,20 @@
       ],
       "keeper": [
         "NFC"
+      ]
+    },
+    "specter-diy": {
+      "sparrow": [
+        "QR Code",
+        "microSD Card"
+      ],
+      "specter": [
+        "QR Code",
+        "microSD Card",
+        "USB"
+      ],
+      "liana": [
+        "USB"
       ]
     }
   }
