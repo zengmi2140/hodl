@@ -1,6 +1,7 @@
 {
   "meta": {
-    "title": "比特幣自主保管模擬器"
+    "title": "比特幣自主保管模擬器",
+    "description": "互動式比特幣自主保管模擬器，幫助您選擇最適合的硬體簽名器、軟體錢包和區塊鏈節點組合。"
   },
   "common": {
     "loading": "載入中...",
@@ -47,7 +48,8 @@
     "node": "區塊鏈節點特性",
     "title": "特性詳情",
     "empty": "暫無特性資訊",
-    "selected_title": "已選選項特性"
+    "selected_title": "已選選項特性",
+    "specs": "規格"
   },
   "arrows": {
     "pubkey_sig": "公鑰和簽名",

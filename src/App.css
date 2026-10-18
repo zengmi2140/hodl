@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Noto Sans SC', 'PingFang SC', 'Roboto', 'Helvetica Neue', sans-serif;
+    var(--font-cjk-sans), 'Roboto', 'Helvetica Neue', sans-serif;
   font-feature-settings: 'ss01', 'cv11';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1654,7 +1654,7 @@ body {
    ========================================================= */
 
 .site-title {
-  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-family: 'Inter Tight', var(--font-cjk-sans), sans-serif;
   font-weight: 300;
   letter-spacing: -0.02em;
 }
@@ -1711,7 +1711,7 @@ body {
 }
 
 .component-name {
-  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-family: 'Inter Tight', var(--font-cjk-sans), sans-serif;
   color: hsl(var(--foreground));
   font-weight: 500;
 }
@@ -1750,7 +1750,7 @@ body {
 .faq-header::before { content: none !important; }
 
 .faq-title {
-  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-family: 'Inter Tight', var(--font-cjk-sans), sans-serif;
   font-weight: 350;
   font-size: 1.6rem;
   letter-spacing: -0.022em;
@@ -1798,7 +1798,7 @@ body {
   flex-direction: column !important;
   align-items: flex-start !important;
   gap: 6px !important;
-  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-family: 'Inter Tight', var(--font-cjk-sans), sans-serif;
   font-weight: 450;
   border-top: 1px solid hsl(var(--ink) / 0.18);
   padding-top: 22px !important;
@@ -1826,7 +1826,7 @@ body {
 .faq-heading-text {
   border-left: none;
   padding-left: 0;
-  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-family: 'Inter Tight', var(--font-cjk-sans), sans-serif;
   font-size: 1.18rem;
   font-weight: 500;
   line-height: 1.35;
@@ -1836,7 +1836,7 @@ body {
 
 /* Body text: 正文衬线，营造"读物"感；首段稍大 */
 .faq-paragraph {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+  font-family: var(--font-cjk-serif), Georgia, serif;
   font-size: 0.96rem;
   line-height: 1.78;
   color: hsl(var(--ink) / 0.92);
@@ -1861,7 +1861,7 @@ body {
 .faq-list-item {
   position: relative;
   padding-left: 22px;
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+  font-family: var(--font-cjk-serif), Georgia, serif;
   font-size: 0.95rem;
   line-height: 1.72;
   color: hsl(var(--ink) / 0.92);
@@ -1919,7 +1919,7 @@ body {
 }
 
 .faq-quote-body {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+  font-family: var(--font-cjk-serif), Georgia, serif;
   font-size: 0.93rem;
   line-height: 1.72;
   color: hsl(var(--ink));
@@ -1934,7 +1934,7 @@ body {
 }
 
 .faq-strong {
-  font-family: 'Inter Tight', 'Noto Sans SC', sans-serif;
+  font-family: 'Inter Tight', var(--font-cjk-sans), sans-serif;
   font-weight: 600;
   color: hsl(var(--ink));
   background: linear-gradient(transparent 65%, hsl(var(--signal) / 0.18) 65%);

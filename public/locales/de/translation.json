@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Simulator für Bitcoin-Selbstverwahrung",
+    "description": "Interaktiver Simulator für Bitcoin-Selbstverwahrung: Finde die passende Kombination aus Signiergerät, Wallet und Node."
+  },
+  "common": {
+    "loading": "Laden...",
+    "reset": "Zurücksetzen",
+    "faq": "FAQ",
+    "close": "Schließen",
+    "selected": "Ausgewählt",
+    "delete": "Löschen",
+    "mobile": "Mobil",
+    "desktop": "Desktop"
+  },
+  "header": {
+    "title": "Simulator für Bitcoin-Selbstverwahrung",
+    "resetPref": "Einstellungen zurücksetzen",
+    "viewFaq": "FAQ anzeigen",
+    "selectLang": "Sprache wählen"
+  },
+  "mode": {
+    "single": "Singlesig",
+    "multi": "Multisig",
+    "single_short": "Singlesig",
+    "multi_short": "Multisig",
+    "selectMode": "Sicherheitsmodell wählen",
+    "threshold_label": "Schwellenwert",
+    "threshold_hint_2of3": "2 Signaturen von 3 Signern erforderlich",
+    "threshold_hint_3of5": "3 Signaturen von 5 Signern erforderlich",
+    "threshold": "{{m}} von {{n}}"
+  },
+  "multisig": {
+    "signer_slot": "Signer {{index}}",
+    "drag_drop": "Signer hinzufügen",
+    "select_signer": "Signer wählen",
+    "select_signer_with_index": "Signer Nr. {{index}} wählen",
+    "threshold_label": "Quorum"
+  },
+  "columns": {
+    "signer": "Signiergerät",
+    "wallet": "Software-Wallet",
+    "node": "Node"
+  },
+  "features": {
+    "signer": "Funktionen des Signiergeräts",
+    "wallet": "Wallet-Funktionen",
+    "node": "Node-Funktionen",
+    "title": "Funktionen im Detail",
+    "empty": "Keine Informationen verfügbar",
+    "selected_title": "Funktionen der Auswahl",
+    "specs": "Technische Daten"
+  },
+  "arrows": {
+    "pubkey_sig": "Pubkey & Signatur",
+    "unsigned_tx": "PSBT (unsigniert)",
+    "address_signed": "Adresse & signierte Tx",
+    "balance": "Guthaben",
+    "select_hint_signer_wallet": "Signer & Wallet wählen",
+    "select_hint_wallet_node": "Wallet & Node wählen",
+    "please_select_node": "Node wählen",
+    "please_select_wallet": "Wallet wählen",
+    "please_select_signer": "Signer wählen",
+    "no_signer_used": "Kein Signiergerät",
+    "no_transfer_method": "Keine Übertragungsmethode",
+    "connected": "Verbunden",
+    "incompatible": "Inkompatibel"
+  },
+  "transferMethods": {
+    "qr": "QR-Code",
+    "usb": "USB",
+    "sd_card": "microSD / SD-Karte",
+    "nfc": "NFC",
+    "bluetooth": "Bluetooth",
+    "none": "Keine"
+  }
+}

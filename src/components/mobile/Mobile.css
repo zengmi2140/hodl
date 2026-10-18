@@ -827,7 +827,7 @@
 
 .mobile-card-title {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
   color: hsl(var(--ink));
@@ -835,6 +835,8 @@
 }
 
 :lang(zh) .mobile-card-title,
+:lang(ja) .mobile-card-title,
+:lang(ko) .mobile-card-title,
 :lang(zh-CN) .mobile-card-title,
 :lang(zh-TW) .mobile-card-title {
   font-weight: 450;
@@ -925,7 +927,7 @@
 
 .mobile-option-name {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 500;
   font-size: 0.92rem;
   color: hsl(var(--ink));
@@ -934,6 +936,8 @@
 }
 
 :lang(zh) .mobile-option-name,
+:lang(ja) .mobile-option-name,
+:lang(ko) .mobile-option-name,
 :lang(zh-CN) .mobile-option-name,
 :lang(zh-TW) .mobile-option-name {
   font-weight: 450;
@@ -992,12 +996,14 @@
 
 .mobile-signer-slot-name {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 500;
   color: hsl(var(--ink));
 }
 
 :lang(zh) .mobile-signer-slot-name,
+:lang(ja) .mobile-signer-slot-name,
+:lang(ko) .mobile-signer-slot-name,
 :lang(zh-CN) .mobile-signer-slot-name,
 :lang(zh-TW) .mobile-signer-slot-name {
   font-weight: 450;
@@ -1134,7 +1140,7 @@
 
 .mobile-bottom-sheet-title {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   color: hsl(var(--ink));
@@ -1142,6 +1148,8 @@
 }
 
 :lang(zh) .mobile-bottom-sheet-title,
+:lang(ja) .mobile-bottom-sheet-title,
+:lang(ko) .mobile-bottom-sheet-title,
 :lang(zh-CN) .mobile-bottom-sheet-title,
 :lang(zh-TW) .mobile-bottom-sheet-title {
   font-weight: 450;
@@ -1189,7 +1197,7 @@
 
 .mobile-feature-text {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 400;
   font-size: 0.85rem;
   line-height: 1.55;
@@ -1198,6 +1206,8 @@
 }
 
 :lang(zh) .mobile-feature-text,
+:lang(ja) .mobile-feature-text,
+:lang(ko) .mobile-feature-text,
 :lang(zh-CN) .mobile-feature-text,
 :lang(zh-TW) .mobile-feature-text {
   font-weight: 350;
@@ -1232,13 +1242,15 @@
 
 .mobile-feature-display-name {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 500;
   color: hsl(var(--ink));
   letter-spacing: -0.005em;
 }
 
 :lang(zh) .mobile-feature-display-name,
+:lang(ja) .mobile-feature-display-name,
+:lang(ko) .mobile-feature-display-name,
 :lang(zh-CN) .mobile-feature-display-name,
 :lang(zh-TW) .mobile-feature-display-name {
   font-weight: 450;
@@ -1263,7 +1275,7 @@
 
 .mobile-feature-display-text {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 400;
   font-size: 0.85rem;
   line-height: 1.55;
@@ -1271,6 +1283,8 @@
 }
 
 :lang(zh) .mobile-feature-display-text,
+:lang(ja) .mobile-feature-display-text,
+:lang(ko) .mobile-feature-display-text,
 :lang(zh-CN) .mobile-feature-display-text,
 :lang(zh-TW) .mobile-feature-display-text {
   font-weight: 350;

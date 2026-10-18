@@ -1,6 +1,7 @@
 {
   "meta": {
-    "title": "Bitcoin Self-Custody Playground"
+    "title": "Bitcoin Self-Custody Playground",
+    "description": "An interactive Bitcoin self-custody playground that helps you find the right combination of hardware signer, software wallet, and node."
   },
   "common": {
     "loading": "Loading...",
@@ -47,7 +48,8 @@
     "node": "Node Features",
     "title": "Feature Details",
     "empty": "No feature information available",
-    "selected_title": "Selected Option Features"
+    "selected_title": "Selected Option Features",
+    "specs": "Specifications"
   },
   "arrows": {
     "pubkey_sig": "Pubkey & Sig",

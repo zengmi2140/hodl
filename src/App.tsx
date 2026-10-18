@@ -72,8 +72,21 @@ function App() {
 
   // SEO & Language settings
   useEffect(() => {
-    document.title = t('meta.title', '比特币自主保管模拟器');
-    document.documentElement.lang = i18n.language;
+    const title = t('meta.title');
+    const description = t('meta.description');
+    document.title = title;
+    document.documentElement.lang = getSafeLanguage(i18n.resolvedLanguage, i18n.language);
+    const setMeta = (selector: string, content: string) => {
+      document.querySelector(selector)?.setAttribute('content', content);
+    };
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[name="twitter:title"]', title);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[name="twitter:description"]', description);
+    // CSS 伪元素（::before/::after）无法调用 t()，通过 CSS 变量传入本地化文案
+    document.documentElement.style.setProperty('--label-selected', JSON.stringify(t('common.selected')));
+    document.documentElement.style.setProperty('--label-specs', JSON.stringify(t('features.specs')));
   }, [i18n.language, t]);
 
   // 加载数据

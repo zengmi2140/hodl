@@ -1,0 +1,150 @@
+{
+  "names": {
+    "none": "Sem assinador",
+    "publicnode": "Nó padrão / público"
+  },
+  "features": {
+    "jade": [
+      "Elemento seguro virtual",
+      "Air-gapped (câmera)",
+      "Suporte a Miniscript"
+    ],
+    "trezor": [
+      "Suporte a Taproot",
+      "Elemento seguro de código aberto",
+      "Backup Shamir (SLIP39)"
+    ],
+    "keystone": [
+      "Air-gapped (código QR)",
+      "Desbloqueio por impressão digital",
+      "Entropia por lançamento de dados",
+      "Backup Shamir (SLIP39)"
+    ],
+    "bitbox": [
+      "Suporte a Miniscript",
+      "Suporte a BIP85",
+      "Silent Payments"
+    ],
+    "seedsigner": [
+      "Não armazena chaves (stateless)",
+      "Entropia por lançamento de dados",
+      "Entropia por câmera / imagem",
+      "Air-gapped",
+      "Caminhos de derivação personalizados",
+      "Hardware comum (RPi)",
+      "Sem elemento seguro"
+    ],
+    "passport": [
+      "Air-gapped",
+      "Entropia por lançamento de dados",
+      "Suporte a BIP85"
+    ],
+    "krux": [
+      "Entropia por lançamento de dados",
+      "Entropia por câmera / imagem",
+      "Air-gapped",
+      "Frases mnemônicas criptografadas",
+      "Caminhos de derivação personalizados",
+      "Hardware comum",
+      "Sem elemento seguro"
+    ],
+    "tapsigner": [
+      "Formato de cartão",
+      "NFC",
+      "Firmware de código fechado",
+      "Sem tela"
+    ],
+    "specter-diy": [
+      "Firmware de código aberto; montagem própria (DIY)",
+      "Assinatura air-gapped",
+      "Suporte a Miniscript",
+      "Modo opcional que apaga a chave ao desligar",
+      "A tela sensível ao toque adiciona entropia à seed",
+      "Caminhos de derivação personalizados",
+      "Hardware comum",
+      "Sem elemento seguro na versão base; expansível com smartcard"
+    ],
+    "coldcard": [
+      "Entropia por lançamento de dados",
+      "Air-gapped",
+      "Fica inutilizável após muitas tentativas de PIN erradas"
+    ],
+    "ledger": [
+      "Suporte a Miniscript",
+      "Firmware de código fechado",
+      "Tela pequena"
+    ],
+    "none": [
+      "Risco: ataques a carteiras quentes",
+      "Sem verificação por hardware"
+    ],
+    "sparrow": [
+      "Suporte a Taproot",
+      "Importação/exportação de rótulos BIP329",
+      "Backup Shamir (SLIP39)",
+      "Importação/exportação de descritores"
+    ],
+    "bluewallet": [
+      "Silent Payments",
+      "Importação/exportação de descritores"
+    ],
+    "electrum": [
+      "Importação/exportação de rótulos BIP329",
+      "Formato de seed não padrão (não é BIP39)"
+    ],
+    "nunchuk": [
+      "Assinatura única com Taproot",
+      "Multisig com Taproot",
+      "Suporte a Miniscript",
+      "Importação/exportação de descritores"
+    ],
+    "keeper": [
+      "Suporte a Taproot",
+      "Importação/exportação de rótulos BIP329",
+      "Suporte a Miniscript",
+      "Importação/exportação de descritores",
+      "Planejamento sucessório"
+    ],
+    "specter": [
+      "Integração profunda com Bitcoin Core",
+      "Importação/exportação de descritores"
+    ],
+    "wasabi": [
+      "CoinJoin",
+      "Tor integrado",
+      "Filtros de blocos BIP-158",
+      "Backup Shamir (SLIP39)"
+    ],
+    "liana": [
+      "Suporte a Taproot",
+      "Suporte a Miniscript",
+      "Importação/exportação de descritores",
+      "Planejamento sucessório",
+      "Recuperação com bloqueio temporal"
+    ],
+    "electrs": [
+      "Requer Bitcoin Core como backend",
+      "Não guarda quais endereços são seus",
+      "O índice ocupa ~50 GB"
+    ],
+    "publicnode": [
+      "Risco de privacidade: o nó pode vincular seus endereços"
+    ],
+    "bitcoincore": [
+      "O nó guarda os endereços da sua carteira"
+    ],
+    "eps": [
+      "O nó guarda os endereços da sua carteira",
+      "Requer Bitcoin Core como backend"
+    ],
+    "knots": [
+      "O nó guarda os endereços da sua carteira"
+    ],
+    "fulcrum": [
+      "Requer Bitcoin Core como backend",
+      "Não guarda quais endereços são seus",
+      "Exige bastante armazenamento (~130 GB)",
+      "Exige mais memória (recomendado 8 GB ou mais)"
+    ]
+  }
+}

@@ -1028,7 +1028,8 @@
 }
 
 .option-item.selected::after {
-  content: '▸ SELECTED';
+  content: '▸ ' var(--label-selected, 'SELECTED');
+  text-transform: uppercase;
   position: absolute;
   bottom: 6px;
   right: 10px;
@@ -1259,7 +1260,8 @@
 }
 
 .feature-box::before {
-  content: 'SPECIFICATIONS';
+  content: var(--label-specs, 'SPECIFICATIONS');
+  text-transform: uppercase;
   position: absolute;
   top: -7px;
   left: 12px;
@@ -1365,9 +1367,10 @@
   top: calc(100% + 2px);
   right: 0;
   margin: 0;
-  padding: 0;
   list-style: none;
-  background: transparent;
+  /* Opaque so the longer menu doesn't let the header rule show through the options */
+  background: hsl(var(--paper));
+  padding: 2px 0 4px 8px;
   border: none;
   box-shadow: none;
   z-index: 30;
@@ -1620,7 +1623,7 @@
 /* Option list item names (signer / wallet / node columns) */
 .option-name {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    var(--font-cjk-sans), 'Helvetica Neue', sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   letter-spacing: -0.005em;
@@ -1631,6 +1634,8 @@
 
 /* Chinese characters slightly lighter to match Latin visual weight */
 :lang(zh) .option-name,
+:lang(ja) .option-name,
+:lang(ko) .option-name,
 :lang(zh-CN) .option-name,
 :lang(zh-TW) .option-name {
   font-weight: 450;
@@ -1640,7 +1645,7 @@
 .feature-box .feature-text,
 .feature-item .feature-text {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    var(--font-cjk-sans), 'Helvetica Neue', sans-serif;
   font-weight: 400;
   font-size: 0.84rem;
   line-height: 1.55;
@@ -1650,9 +1655,13 @@
 }
 
 :lang(zh) .feature-box .feature-text,
+:lang(ja) .feature-box .feature-text,
+:lang(ko) .feature-box .feature-text,
 :lang(zh-CN) .feature-box .feature-text,
 :lang(zh-TW) .feature-box .feature-text,
 :lang(zh) .feature-item .feature-text,
+:lang(ja) .feature-item .feature-text,
+:lang(ko) .feature-item .feature-text,
 :lang(zh-CN) .feature-item .feature-text,
 :lang(zh-TW) .feature-item .feature-text {
   font-weight: 350;
@@ -1672,13 +1681,15 @@
 /* Mobile parity */
 .mobile-option-name {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 500;
   letter-spacing: -0.005em;
   font-feature-settings: 'ss01', 'cv11';
 }
 
 :lang(zh) .mobile-option-name,
+:lang(ja) .mobile-option-name,
+:lang(ko) .mobile-option-name,
 :lang(zh-CN) .mobile-option-name,
 :lang(zh-TW) .mobile-option-name {
   font-weight: 450;
@@ -1686,13 +1697,15 @@
 
 .mobile-feature-text {
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont,
-    'Noto Sans SC', 'PingFang SC', sans-serif;
+    var(--font-cjk-sans), sans-serif;
   font-weight: 400;
   line-height: 1.55;
   color: hsl(var(--ink) / 0.88);
 }
 
 :lang(zh) .mobile-feature-text,
+:lang(ja) .mobile-feature-text,
+:lang(ko) .mobile-feature-text,
 :lang(zh-CN) .mobile-feature-text,
 :lang(zh-TW) .mobile-feature-text {
   font-weight: 350;

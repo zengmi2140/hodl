@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Simulador de autocustodia de Bitcoin",
+    "description": "Simulador interactivo de autocustodia de Bitcoin: encuentra la combinación ideal de dispositivo de firma, billetera y nodo."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "reset": "Restablecer",
+    "faq": "FAQ",
+    "close": "Cerrar",
+    "selected": "Seleccionado",
+    "delete": "Eliminar",
+    "mobile": "Móvil",
+    "desktop": "Escritorio"
+  },
+  "header": {
+    "title": "Simulador de autocustodia de Bitcoin",
+    "resetPref": "Restablecer preferencias",
+    "viewFaq": "Ver FAQ",
+    "selectLang": "Seleccionar idioma"
+  },
+  "mode": {
+    "single": "Firma única",
+    "multi": "Multifirma",
+    "single_short": "Simple",
+    "multi_short": "Multifirma",
+    "selectMode": "Elegir modelo de seguridad",
+    "threshold_label": "Umbral",
+    "threshold_hint_2of3": "Se necesitan 2 firmas de 3 firmantes",
+    "threshold_hint_3of5": "Se necesitan 3 firmas de 5 firmantes",
+    "threshold": "{{m}} de {{n}}"
+  },
+  "multisig": {
+    "signer_slot": "Firmante {{index}}",
+    "drag_drop": "Agregar firmante",
+    "select_signer": "Seleccionar firmante",
+    "select_signer_with_index": "Seleccionar firmante #{{index}}",
+    "threshold_label": "Quórum"
+  },
+  "columns": {
+    "signer": "Dispositivo de firma",
+    "wallet": "App de billetera",
+    "node": "Nodo"
+  },
+  "features": {
+    "signer": "Características del dispositivo",
+    "wallet": "Características de la billetera",
+    "node": "Características del nodo",
+    "title": "Características en detalle",
+    "empty": "No hay información disponible",
+    "selected_title": "Características de la opción seleccionada",
+    "specs": "Especificaciones"
+  },
+  "arrows": {
+    "pubkey_sig": "Clave pública y firma",
+    "unsigned_tx": "PSBT (sin firmar)",
+    "address_signed": "Dirección y Tx firmada",
+    "balance": "Datos de saldo",
+    "select_hint_signer_wallet": "Selecciona firmante y billetera",
+    "select_hint_wallet_node": "Selecciona billetera y nodo",
+    "please_select_node": "Selecciona un nodo",
+    "please_select_wallet": "Selecciona una billetera",
+    "please_select_signer": "Selecciona un firmante",
+    "no_signer_used": "Sin dispositivo de firma",
+    "no_transfer_method": "Sin método de transferencia",
+    "connected": "Conectado",
+    "incompatible": "Incompatible"
+  },
+  "transferMethods": {
+    "qr": "Código QR",
+    "usb": "USB",
+    "sd_card": "Tarjeta microSD / SD",
+    "nfc": "NFC",
+    "bluetooth": "Bluetooth",
+    "none": "Ninguno"
+  }
+}

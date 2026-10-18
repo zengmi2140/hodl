@@ -1,0 +1,150 @@
+{
+  "names": {
+    "none": "Kein Signer",
+    "publicnode": "Standard- / öffentlicher Node"
+  },
+  "features": {
+    "jade": [
+      "Virtuelles Secure Element",
+      "Air-Gapped (Kamera)",
+      "Miniscript-Unterstützung"
+    ],
+    "trezor": [
+      "Taproot-Unterstützung",
+      "Quelloffenes Secure Element",
+      "Shamir-Backup (SLIP39)"
+    ],
+    "keystone": [
+      "Air-Gapped (QR-Code)",
+      "Entsperrung per Fingerabdruck",
+      "Entropie per Würfel",
+      "Shamir-Backup (SLIP39)"
+    ],
+    "bitbox": [
+      "Miniscript-Unterstützung",
+      "BIP85-Unterstützung",
+      "Silent Payments"
+    ],
+    "seedsigner": [
+      "Speichert keine Schlüssel (stateless)",
+      "Entropie per Würfel",
+      "Entropie per Kamera/Bild",
+      "Air-Gapped",
+      "Frei wählbare Ableitungspfade",
+      "Standard-Hardware (RPi)",
+      "Kein Secure Element"
+    ],
+    "passport": [
+      "Air-Gapped",
+      "Entropie per Würfel",
+      "BIP85-Unterstützung"
+    ],
+    "krux": [
+      "Entropie per Würfel",
+      "Entropie per Kamera/Bild",
+      "Air-Gapped",
+      "Verschlüsselte Seed-Phrasen",
+      "Frei wählbare Ableitungspfade",
+      "Standard-Hardware",
+      "Kein Secure Element"
+    ],
+    "tapsigner": [
+      "Im Kartenformat",
+      "NFC",
+      "Closed-Source-Firmware",
+      "Kein Display"
+    ],
+    "specter-diy": [
+      "Open-Source-Firmware; Selbstbau (DIY)",
+      "Air-Gapped-Signierung",
+      "Miniscript-Unterstützung",
+      "Optional: Schlüssel wird beim Ausschalten gelöscht",
+      "Touchscreen-Eingaben liefern zusätzliche Seed-Entropie",
+      "Frei wählbare Ableitungspfade",
+      "Standard-Hardware",
+      "Kein Secure Element im Basisgerät; optionale Smartcard-Erweiterung"
+    ],
+    "coldcard": [
+      "Entropie per Würfel",
+      "Air-Gapped",
+      "Wird nach zu vielen falschen PIN-Versuchen unbrauchbar"
+    ],
+    "ledger": [
+      "Miniscript-Unterstützung",
+      "Closed-Source-Firmware",
+      "Kleines Display"
+    ],
+    "none": [
+      "Risiko: Hot-Wallet-Angriffe",
+      "Keine Verifizierung per Hardware"
+    ],
+    "sparrow": [
+      "Taproot-Unterstützung",
+      "Label-Import/-Export (BIP329)",
+      "Shamir-Backup (SLIP39)",
+      "Deskriptor-Import/-Export"
+    ],
+    "bluewallet": [
+      "Silent Payments",
+      "Deskriptor-Import/-Export"
+    ],
+    "electrum": [
+      "Label-Import/-Export (BIP329)",
+      "Eigenes Seed-Format (kein BIP39)"
+    ],
+    "nunchuk": [
+      "Taproot-Singlesig",
+      "Taproot-Multisig",
+      "Miniscript-Unterstützung",
+      "Deskriptor-Import/-Export"
+    ],
+    "keeper": [
+      "Taproot-Unterstützung",
+      "Label-Import/-Export (BIP329)",
+      "Miniscript-Unterstützung",
+      "Deskriptor-Import/-Export",
+      "Nachlassplanung"
+    ],
+    "specter": [
+      "Eng mit Bitcoin Core integriert",
+      "Deskriptor-Import/-Export"
+    ],
+    "wasabi": [
+      "CoinJoin",
+      "Integriertes Tor",
+      "Blockfilter nach BIP-158",
+      "Shamir-Backup (SLIP39)"
+    ],
+    "liana": [
+      "Taproot-Unterstützung",
+      "Miniscript-Unterstützung",
+      "Deskriptor-Import/-Export",
+      "Nachlassplanung",
+      "Zeitverzögerte Wiederherstellung"
+    ],
+    "electrs": [
+      "Benötigt Bitcoin Core als Backend",
+      "Speichert nicht, welche Adressen dir gehören",
+      "Index belegt ~50 GB"
+    ],
+    "publicnode": [
+      "Datenschutzrisiko: Node kann deine Adressen verknüpfen"
+    ],
+    "bitcoincore": [
+      "Node speichert die Adressen deiner Wallet"
+    ],
+    "eps": [
+      "Node speichert die Adressen deiner Wallet",
+      "Benötigt Bitcoin Core als Backend"
+    ],
+    "knots": [
+      "Node speichert die Adressen deiner Wallet"
+    ],
+    "fulcrum": [
+      "Benötigt Bitcoin Core als Backend",
+      "Speichert nicht, welche Adressen dir gehören",
+      "Benötigt viel Speicherplatz (~130 GB)",
+      "Hoher RAM-Bedarf (8 GB oder mehr empfohlen)"
+    ]
+  }
+}

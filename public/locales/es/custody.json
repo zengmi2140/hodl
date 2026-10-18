@@ -1,0 +1,150 @@
+{
+  "names": {
+    "none": "Sin firmante",
+    "publicnode": "Nodo predeterminado / público"
+  },
+  "features": {
+    "jade": [
+      "Elemento seguro virtual",
+      "Air-gapped (cámara)",
+      "Compatible con Miniscript"
+    ],
+    "trezor": [
+      "Compatible con Taproot",
+      "Elemento seguro de código abierto",
+      "Respaldo Shamir (SLIP39)"
+    ],
+    "keystone": [
+      "Air-gapped (código QR)",
+      "Desbloqueo con huella dactilar",
+      "Entropía con dados",
+      "Respaldo Shamir (SLIP39)"
+    ],
+    "bitbox": [
+      "Compatible con Miniscript",
+      "Compatible con BIP85",
+      "Silent Payments"
+    ],
+    "seedsigner": [
+      "No almacena claves (stateless)",
+      "Entropía con dados",
+      "Entropía con cámara / imagen",
+      "Air-gapped",
+      "Rutas de derivación personalizadas",
+      "Hardware genérico (RPi)",
+      "Sin elemento seguro"
+    ],
+    "passport": [
+      "Air-gapped",
+      "Entropía con dados",
+      "Compatible con BIP85"
+    ],
+    "krux": [
+      "Entropía con dados",
+      "Entropía con cámara / imagen",
+      "Air-gapped",
+      "Frases semilla cifradas",
+      "Rutas de derivación personalizadas",
+      "Hardware genérico",
+      "Sin elemento seguro"
+    ],
+    "tapsigner": [
+      "Formato de tarjeta",
+      "NFC",
+      "Firmware de código cerrado",
+      "Sin pantalla"
+    ],
+    "specter-diy": [
+      "Firmware de código abierto; montaje propio (DIY)",
+      "Firma air-gapped",
+      "Compatible con Miniscript",
+      "Modo opcional que borra la clave al apagarse",
+      "La pantalla táctil aporta entropía a la semilla",
+      "Rutas de derivación personalizadas",
+      "Hardware genérico",
+      "Sin elemento seguro en la versión base; ampliable con tarjeta inteligente"
+    ],
+    "coldcard": [
+      "Entropía con dados",
+      "Air-gapped",
+      "Queda inutilizable tras demasiados PIN incorrectos"
+    ],
+    "ledger": [
+      "Compatible con Miniscript",
+      "Firmware de código cerrado",
+      "Pantalla pequeña"
+    ],
+    "none": [
+      "Riesgo: ataques a billeteras calientes",
+      "Sin verificación en hardware"
+    ],
+    "sparrow": [
+      "Compatible con Taproot",
+      "Importación/exportación de etiquetas BIP329",
+      "Respaldo Shamir (SLIP39)",
+      "Importación/exportación de descriptores"
+    ],
+    "bluewallet": [
+      "Silent Payments",
+      "Importación/exportación de descriptores"
+    ],
+    "electrum": [
+      "Importación/exportación de etiquetas BIP329",
+      "Formato de semilla no estándar (no BIP39)"
+    ],
+    "nunchuk": [
+      "Firma única con Taproot",
+      "Multifirma con Taproot",
+      "Compatible con Miniscript",
+      "Importación/exportación de descriptores"
+    ],
+    "keeper": [
+      "Compatible con Taproot",
+      "Importación/exportación de etiquetas BIP329",
+      "Compatible con Miniscript",
+      "Importación/exportación de descriptores",
+      "Planificación sucesoria"
+    ],
+    "specter": [
+      "Integración profunda con Bitcoin Core",
+      "Importación/exportación de descriptores"
+    ],
+    "wasabi": [
+      "CoinJoin",
+      "Tor integrado",
+      "Filtros de bloques BIP-158",
+      "Respaldo Shamir (SLIP39)"
+    ],
+    "liana": [
+      "Compatible con Taproot",
+      "Compatible con Miniscript",
+      "Importación/exportación de descriptores",
+      "Planificación sucesoria",
+      "Recuperación con bloqueo temporal"
+    ],
+    "electrs": [
+      "Requiere Bitcoin Core como backend",
+      "No guarda qué direcciones son tuyas",
+      "El índice ocupa ~50 GB"
+    ],
+    "publicnode": [
+      "Riesgo de privacidad: el nodo puede vincular tus direcciones"
+    ],
+    "bitcoincore": [
+      "El nodo guarda las direcciones de tu billetera"
+    ],
+    "eps": [
+      "El nodo guarda las direcciones de tu billetera",
+      "Requiere Bitcoin Core como backend"
+    ],
+    "knots": [
+      "El nodo guarda las direcciones de tu billetera"
+    ],
+    "fulcrum": [
+      "Requiere Bitcoin Core como backend",
+      "No guarda qué direcciones son tuyas",
+      "Requiere mucho almacenamiento (~130 GB)",
+      "Exige más memoria (se recomiendan 8 GB o más)"
+    ]
+  }
+}

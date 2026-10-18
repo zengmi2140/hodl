@@ -99,6 +99,22 @@
   --slot-5-bg: #25200F; --slot-5-border: #B5A063;
 }
 
+/* CJK font stacks per locale: Han unification means kanji would otherwise render with Chinese glyph forms */
+:root {
+  --font-cjk-sans: 'Noto Sans SC', 'PingFang SC';
+  --font-cjk-serif: 'Noto Serif SC', 'Source Han Serif SC';
+}
+
+:root:lang(ja) {
+  --font-cjk-sans: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', 'Noto Sans JP';
+  --font-cjk-serif: 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP';
+}
+
+:root:lang(ko) {
+  --font-cjk-sans: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR';
+  --font-cjk-serif: 'AppleMyungjo', 'Nanum Myeongjo', 'Noto Serif KR';
+}
+
 * {
   border-color: hsl(var(--border));
 }
@@ -107,7 +123,7 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Noto Sans SC', 'PingFang SC', 'Roboto', 'Helvetica Neue', sans-serif;
+    var(--font-cjk-sans), 'Roboto', 'Helvetica Neue', sans-serif;
   font-feature-settings: 'ss01', 'cv11';
   font-weight: 400;
   font-size: 15px;
@@ -121,10 +137,26 @@ body {
   background-repeat: repeat;
 }
 
-/* Chinese-locale weight balancing: Noto Sans SC visually heavier than Inter Tight */
+/* CJK-locale weight balancing: CJK fonts look visually heavier than Inter Tight */
 :lang(zh) body,
+:lang(ja) body,
+:lang(ko) body,
 html[lang^="zh"] body {
   font-weight: 350;
+}
+
+/* Korean wraps at spaces between words, not between syllables */
+:lang(ko) body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Japanese allows breaks between any kana; keep column titles whole, wrap only at explicit spaces,
+   and use tighter tracking so long katakana words fit beside the wallet device switcher */
+:lang(ja) .column-title {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  letter-spacing: 0;
 }
 
 /* Headings: tighter tracking, controlled hierarchy (1.25 modular scale) */
@@ -159,7 +191,7 @@ h4 { font-size: 13px; line-height: 1.4; letter-spacing: 0.005em; font-weight: 50
 
 /* Serif utility for long-form reading (FAQ etc.) */
 .serif {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif;
+  font-family: var(--font-cjk-serif), Georgia, 'Times New Roman', serif;
 }
 
 /* Reduced motion */

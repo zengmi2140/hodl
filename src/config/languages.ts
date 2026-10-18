@@ -8,6 +8,11 @@ export const SUPPORTED_LANGUAGES: LanguageOption[] = [
   { code: 'en', label: 'ENGLISH', shortLabel: 'EN' },
   { code: 'zh-CN', label: '简体中文', shortLabel: '简' },
   { code: 'zh-TW', label: '繁體中文', shortLabel: '繁' },
+  { code: 'es', label: 'ESPAÑOL', shortLabel: 'ES' },
+  { code: 'pt-BR', label: 'PORTUGUÊS', shortLabel: 'PT' },
+  { code: 'de', label: 'DEUTSCH', shortLabel: 'DE' },
+  { code: 'ja', label: '日本語', shortLabel: '日' },
+  { code: 'ko', label: '한국어', shortLabel: '한' },
 ];
 
 export const DEFAULT_LANGUAGE = 'en';

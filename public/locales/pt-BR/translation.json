@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Simulador de autocustódia de Bitcoin",
+    "description": "Simulador interativo de autocustódia de Bitcoin: encontre a melhor combinação de dispositivo de assinatura, carteira e nó."
+  },
+  "common": {
+    "loading": "Carregando...",
+    "reset": "Redefinir",
+    "faq": "FAQ",
+    "close": "Fechar",
+    "selected": "Selecionado",
+    "delete": "Excluir",
+    "mobile": "Celular",
+    "desktop": "Desktop"
+  },
+  "header": {
+    "title": "Simulador de autocustódia de Bitcoin",
+    "resetPref": "Redefinir preferências",
+    "viewFaq": "Ver FAQ",
+    "selectLang": "Selecionar idioma"
+  },
+  "mode": {
+    "single": "Assinatura única",
+    "multi": "Multisig",
+    "single_short": "Simples",
+    "multi_short": "Multisig",
+    "selectMode": "Escolher modelo de segurança",
+    "threshold_label": "Limiar",
+    "threshold_hint_2of3": "Exige 2 assinaturas entre 3 assinadores",
+    "threshold_hint_3of5": "Exige 3 assinaturas entre 5 assinadores",
+    "threshold": "{{m}} de {{n}}"
+  },
+  "multisig": {
+    "signer_slot": "Assinador {{index}}",
+    "drag_drop": "Adicionar assinador",
+    "select_signer": "Selecionar assinador",
+    "select_signer_with_index": "Selecionar assinador nº {{index}}",
+    "threshold_label": "Quórum"
+  },
+  "columns": {
+    "signer": "Dispositivo de assinatura",
+    "wallet": "App de carteira",
+    "node": "Nó"
+  },
+  "features": {
+    "signer": "Recursos do dispositivo",
+    "wallet": "Recursos da carteira",
+    "node": "Recursos do nó",
+    "title": "Recursos em detalhe",
+    "empty": "Nenhuma informação disponível",
+    "selected_title": "Recursos da opção selecionada",
+    "specs": "Especificações"
+  },
+  "arrows": {
+    "pubkey_sig": "Pubkey e assinatura",
+    "unsigned_tx": "PSBT (não assinada)",
+    "address_signed": "Endereço e Tx assinada",
+    "balance": "Dados de saldo",
+    "select_hint_signer_wallet": "Selecione assinador e carteira",
+    "select_hint_wallet_node": "Selecione carteira e nó",
+    "please_select_node": "Selecione um nó",
+    "please_select_wallet": "Selecione uma carteira",
+    "please_select_signer": "Selecione um assinador",
+    "no_signer_used": "Sem dispositivo de assinatura",
+    "no_transfer_method": "Nenhum método de transferência",
+    "connected": "Conectado",
+    "incompatible": "Incompatível"
+  },
+  "transferMethods": {
+    "qr": "Código QR",
+    "usb": "USB",
+    "sd_card": "Cartão microSD / SD",
+    "nfc": "NFC",
+    "bluetooth": "Bluetooth",
+    "none": "Nenhum"
+  }
+}

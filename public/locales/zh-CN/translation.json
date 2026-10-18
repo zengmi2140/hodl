@@ -1,6 +1,7 @@
 {
   "meta": {
-    "title": "比特币自主保管模拟器"
+    "title": "比特币自主保管模拟器",
+    "description": "交互式比特币自主保管模拟器，帮助您选择最适合的硬件签名器、软件钱包和区块链节点组合。"
   },
   "common": {
     "loading": "加载中...",
@@ -47,7 +48,8 @@
     "node": "区块链节点特性",
     "title": "特性详情",
     "empty": "暂无特性信息",
-    "selected_title": "已选选项特性"
+    "selected_title": "已选选项特性",
+    "specs": "规格"
   },
   "arrows": {
     "pubkey_sig": "公钥和签名",

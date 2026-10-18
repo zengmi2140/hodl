@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "비트코인 셀프 커스터디 시뮬레이터",
+    "description": "비트코인 셀프 커스터디를 직접 구성해 보는 인터랙티브 시뮬레이터. 나에게 맞는 서명 기기, 지갑, 노드 조합을 찾아보세요."
+  },
+  "common": {
+    "loading": "불러오는 중...",
+    "reset": "초기화",
+    "faq": "FAQ",
+    "close": "닫기",
+    "selected": "선택됨",
+    "delete": "삭제",
+    "mobile": "모바일",
+    "desktop": "데스크톱"
+  },
+  "header": {
+    "title": "비트코인 셀프 커스터디 시뮬레이터",
+    "resetPref": "설정 초기화",
+    "viewFaq": "FAQ 보기",
+    "selectLang": "언어 선택"
+  },
+  "mode": {
+    "single": "싱글시그",
+    "multi": "멀티시그",
+    "single_short": "싱글",
+    "multi_short": "멀티",
+    "selectMode": "보안 모델 선택",
+    "threshold_label": "임계값",
+    "threshold_hint_2of3": "서명 기기 3개 중 2개의 서명이 필요",
+    "threshold_hint_3of5": "서명 기기 5개 중 3개의 서명이 필요",
+    "threshold": "{{m}}-of-{{n}}"
+  },
+  "multisig": {
+    "signer_slot": "서명 기기 {{index}}",
+    "drag_drop": "서명 기기 추가",
+    "select_signer": "서명 기기 선택",
+    "select_signer_with_index": "서명 기기 #{{index}} 선택",
+    "threshold_label": "필요 서명 수"
+  },
+  "columns": {
+    "signer": "서명 기기",
+    "wallet": "소프트웨어 지갑",
+    "node": "노드"
+  },
+  "features": {
+    "signer": "서명 기기 기능",
+    "wallet": "지갑 기능",
+    "node": "노드 기능",
+    "title": "기능 상세",
+    "empty": "정보 없음",
+    "selected_title": "선택한 항목의 기능",
+    "specs": "사양"
+  },
+  "arrows": {
+    "pubkey_sig": "공개키 & 서명",
+    "unsigned_tx": "PSBT (미서명)",
+    "address_signed": "주소 & 서명된 트랜잭션",
+    "balance": "잔액 정보",
+    "select_hint_signer_wallet": "서명 기기와 지갑 선택",
+    "select_hint_wallet_node": "지갑과 노드 선택",
+    "please_select_node": "노드를 선택하세요",
+    "please_select_wallet": "지갑을 선택하세요",
+    "please_select_signer": "서명 기기를 선택하세요",
+    "no_signer_used": "서명 기기 없음",
+    "no_transfer_method": "전송 방식 없음",
+    "connected": "연결됨",
+    "incompatible": "호환되지 않음"
+  },
+  "transferMethods": {
+    "qr": "QR 코드",
+    "usb": "USB",
+    "sd_card": "microSD / SD 카드",
+    "nfc": "NFC",
+    "bluetooth": "블루투스",
+    "none": "없음"
+  }
+}

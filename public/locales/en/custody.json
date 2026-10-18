@@ -131,14 +131,14 @@
       "Privacy Risk: Address Clustering"
     ],
     "bitcoincore": [
-      "Local address index only"
+      "Node stores your wallet's addresses"
     ],
     "eps": [
-      "Local address index only",
+      "Node stores your wallet's addresses",
       "Requires Bitcoin Core backend"
     ],
     "knots": [
-      "Local address index only"
+      "Node stores your wallet's addresses"
     ],
     "fulcrum": [
       "Requires Bitcoin Core backend",

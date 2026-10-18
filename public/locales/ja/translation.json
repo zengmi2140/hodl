@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "ビットコイン自己保管シミュレーター",
+    "description": "ビットコインの自己保管をインタラクティブに試せるシミュレーター。署名デバイス、ウォレット、ノードの最適な組み合わせを見つけられます。"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "reset": "リセット",
+    "faq": "FAQ",
+    "close": "閉じる",
+    "selected": "選択中",
+    "delete": "削除",
+    "mobile": "モバイル",
+    "desktop": "デスクトップ"
+  },
+  "header": {
+    "title": "ビットコイン自己保管シミュレーター",
+    "resetPref": "設定をリセット",
+    "viewFaq": "FAQを見る",
+    "selectLang": "言語を選択"
+  },
+  "mode": {
+    "single": "シングルシグ",
+    "multi": "マルチシグ",
+    "single_short": "シングル",
+    "multi_short": "マルチ",
+    "selectMode": "セキュリティモデルを選択",
+    "threshold_label": "しきい値",
+    "threshold_hint_2of3": "3台の署名デバイスのうち2台の署名が必要",
+    "threshold_hint_3of5": "5台の署名デバイスのうち3台の署名が必要",
+    "threshold": "{{m}}-of-{{n}}"
+  },
+  "multisig": {
+    "signer_slot": "署名デバイス {{index}}",
+    "drag_drop": "署名デバイスを追加",
+    "select_signer": "署名デバイスを選択",
+    "select_signer_with_index": "署名デバイス #{{index}} を選択",
+    "threshold_label": "必要署名数"
+  },
+  "columns": {
+    "signer": "署名デバイス",
+    "wallet": "ソフトウェア ウォレット",
+    "node": "ノード"
+  },
+  "features": {
+    "signer": "署名デバイスの機能",
+    "wallet": "ウォレットの機能",
+    "node": "ノードの機能",
+    "title": "機能の詳細",
+    "empty": "情報がありません",
+    "selected_title": "選択中の項目の機能",
+    "specs": "仕様"
+  },
+  "arrows": {
+    "pubkey_sig": "公開鍵と署名",
+    "unsigned_tx": "PSBT（未署名）",
+    "address_signed": "アドレスと署名済みTx",
+    "balance": "残高情報",
+    "select_hint_signer_wallet": "署名デバイスとウォレットを選択",
+    "select_hint_wallet_node": "ウォレットとノードを選択",
+    "please_select_node": "ノードを選択してください",
+    "please_select_wallet": "ウォレットを選択してください",
+    "please_select_signer": "署名デバイスを選択してください",
+    "no_signer_used": "署名デバイスなし",
+    "no_transfer_method": "転送方法なし",
+    "connected": "接続済み",
+    "incompatible": "互換性なし"
+  },
+  "transferMethods": {
+    "qr": "QRコード",
+    "usb": "USB",
+    "sd_card": "microSD / SDカード",
+    "nfc": "NFC",
+    "bluetooth": "Bluetooth",
+    "none": "なし"
+  }
+}
