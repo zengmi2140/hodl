@@ -16,18 +16,22 @@
 - **前端框架**：React 18 + TypeScript + Vite 5
 - **样式方案**：TailwindCSS 3，支持暗色模式主题切换
 - **国际化 (i18n)**：基于 `i18next` 实现了 UI 文本和业务数据的多语言动态加载。
-- **数据管理**：采用异步数据加载模式，根据选定语言从 `/public/locales/` 动态获取 `data.json` 和 `faq.md`。
+- **数据管理**：采用异步数据加载模式，从 `/public/data/custody-core.json` 加载共用的设备结构数据，再根据选定语言从 `/public/locales/{lang}/` 加载 `custody.json`（设备文字）和 `faq.md`，缺失的文字回退到英文。
 - **主题管理**：通过 `useDarkMode` Hook 实现暗色模式，自动跟随系统设置，支持手动切换。
 
 ## 项目结构
 
 ```
 ├── public/
+│   ├── data/
+│   │   └── custody-core.json  # 与语言无关的设备结构数据（兼容关系、传输方式、特性类型）
 │   ├── locales/             # 多语言资源文件
-│   │   ├── en/              # 英文数据与翻译
-│   │   ├── zh-CN/           # 简体中文数据与翻译
-│   │   └── zh-TW/           # 繁体中文数据与翻译
+│   │   ├── en/              # 英文：translation.json / custody.json / faq.md
+│   │   ├── zh-CN/           # 简体中文
+│   │   └── zh-TW/           # 繁体中文
 │   └── images/logos/        # 品牌 Logo 资源
+├── scripts/
+│   └── check-i18n.js        # 翻译完整性检查（构建前自动运行）
 ├── src/
 │   ├── components/
 │   │   ├── mobile/          # 移动端专用组件
@@ -37,6 +41,7 @@
 │   ├── hooks/               # 自定义 Hooks
 │   │   ├── useIsMobile.ts   # 移动端检测 Hook
 │   │   └── useDarkMode.ts   # 暗色模式管理 Hook
+│   ├── config/languages.ts  # 支持的语言列表（唯一配置来源）
 │   ├── dataLoader.ts        # 异步数据加载器
 │   ├── i18n.ts              # 国际化配置
 │   ├── types.ts             # TypeScript 类型定义
@@ -64,14 +69,22 @@ npm run preview
 
 ## 数据配置说明
 
-数据现在按语言存储在 `public/locales/{lang}/data.json` 中。包含以下核心内容：
+设备数据分为两部分：
 
-- **硬件签名器** (hardwareSigners)：如 Coldcard, Ledger, Jade 等。
-- **软件钱包** (softwareWallets)：如 Sparrow, Blue Wallet, Electrum 等。
-- **区块链节点** (nodes)：如 Bitcoin Core, Electrs, 公共节点等。
-- **传输方法** (transferMethods)：定义不同签名器与钱包之间的连接媒介。
+- `public/data/custody-core.json`：与语言无关的结构数据，所有语言共用。
+  - **硬件签名器** (hardwareSigners)：如 Coldcard, Ledger, Jade 等。
+  - **软件钱包** (softwareWallets)：如 Sparrow, Blue Wallet, Electrum 等。
+  - **区块链节点** (nodes)：如 Bitcoin Core, Electrs, 公共节点等。
+  - **传输方法** (transferMethods)：签名器与钱包之间的连接媒介，取值为 `qr`、`usb`、`sd_card`、`nfc`、`bluetooth`、`none`。
+- `public/locales/{lang}/custody.json`：各语言的设备名称与特性文字。`features` 中每个设备的数组按顺序对应 core 中的特性条目，数量必须一致。
 
-如需修改或翻译数据，请前往对应的语言文件夹编辑 JSON 文件。
+新增设备时，先在 `custody-core.json` 中添加结构数据，再为每种语言的 `custody.json` 补充文字。
+
+### 新增语言
+
+1. 在 `src/config/languages.ts` 的 `SUPPORTED_LANGUAGES` 中添加语言代码与显示名称。
+2. 复制 `public/locales/en/` 为 `public/locales/{lang}/`，翻译其中的 `translation.json`、`custody.json` 和 `faq.md`。
+3. 运行 `npm run check:i18n` 检查缺失的 key 和特性数量（`npm run build` 前也会自动运行）。
 
 ## 安全性评估规则
 

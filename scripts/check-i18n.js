@@ -8,6 +8,7 @@ const ROOT = path.resolve(__dirname, '..');
 
 const LOCALES_DIR = path.join(ROOT, 'public', 'locales');
 const CORE_DATA_PATH = path.join(ROOT, 'public', 'data', 'custody-core.json');
+const LANGUAGES_CONFIG_PATH = path.join(ROOT, 'src', 'config', 'languages.ts');
 
 // 扁平化对象 key
 function flattenKeys(obj, prefix = '') {
@@ -33,12 +34,29 @@ function runCheck() {
   }
   const coreData = JSON.parse(fs.readFileSync(CORE_DATA_PATH, 'utf-8'));
 
-  // 1. 获取所有语言目录
-  const locales = fs.readdirSync(LOCALES_DIR).filter(item => {
+  // 1. 以 src/config/languages.ts 为准获取语言列表，并与 locales 目录对照
+  const languagesSource = fs.readFileSync(LANGUAGES_CONFIG_PATH, 'utf-8');
+  const locales = [...languagesSource.matchAll(/code:\s*['"]([^'"]+)['"]/g)].map(m => m[1]);
+  if (locales.length === 0) {
+    console.error(`❌ No language codes found in ${LANGUAGES_CONFIG_PATH}`);
+    process.exit(1);
+  }
+  console.log(`Configured locales: ${locales.join(', ')}`);
+
+  const localeDirs = fs.readdirSync(LOCALES_DIR).filter(item => {
     return fs.statSync(path.join(LOCALES_DIR, item)).isDirectory();
   });
-
-  console.log(`Detected locales: ${locales.join(', ')}`);
+  for (const locale of locales) {
+    if (!localeDirs.includes(locale)) {
+      console.error(`❌ [${locale}] Configured in languages.ts but public/locales/${locale}/ is missing!`);
+      hasErrors = true;
+    }
+  }
+  for (const dir of localeDirs) {
+    if (!locales.includes(dir)) {
+      console.warn(`⚠️ [${dir}] public/locales/${dir}/ exists but is not configured in languages.ts`);
+    }
+  }
 
   // 2. 基准 translation.json (en)
   const enTranslationPath = path.join(LOCALES_DIR, 'en', 'translation.json');
@@ -76,6 +94,25 @@ function runCheck() {
     if (missingKeys.length === 0) {
       console.log(`✅ [${locale}] translation.json matches English base.`);
     }
+  }
+
+  console.log('\n🔍 Checking transfer method keys...\n');
+
+  const validTransferMethods = new Set(Object.keys(enTranslation.transferMethods || {}));
+  let transferMethodErrors = 0;
+  for (const [signerId, wallets] of Object.entries(coreData.transferMethods || {})) {
+    for (const [walletId, methods] of Object.entries(wallets)) {
+      for (const method of methods) {
+        if (!validTransferMethods.has(method)) {
+          console.error(`❌ Unknown transfer method "${method}" for ${signerId} -> ${walletId} (expected one of: ${[...validTransferMethods].join(', ')})`);
+          hasErrors = true;
+          transferMethodErrors++;
+        }
+      }
+    }
+  }
+  if (transferMethodErrors === 0) {
+    console.log('✅ All transfer methods in custody-core.json have translation keys.');
   }
 
   console.log('\n🔍 Checking custody data feature counts...\n');

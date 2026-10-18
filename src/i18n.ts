@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpBackend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { SUPPORTED_LANGUAGE_CODES, getSafeLanguage, DEFAULT_LANGUAGE } from './config/languages';
+import { SUPPORTED_LANGUAGE_CODES, matchSupportedLanguage, DEFAULT_LANGUAGE } from './config/languages';
 
 i18n
   .use(HttpBackend)
@@ -33,7 +33,8 @@ i18n
       caches: ['localStorage'],
       lookupQuerystring: 'lang',
       lookupLocalStorage: 'i18nextLng',
-      convertDetectedLanguage: (lng: string) => getSafeLanguage(lng),
+      // 无法匹配时保留原值（而不是回退到默认语言），i18next 才会继续尝试浏览器的下一个偏好语言
+      convertDetectedLanguage: (lng: string) => matchSupportedLanguage(lng) ?? lng,
     },
 
     react: {

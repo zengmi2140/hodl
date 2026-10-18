@@ -1,3 +1,5 @@
+import type { TFunction } from 'i18next';
+
 // 统一传输方式标识规范化与样式映射
 
 export type TransferMethodCode = 'qr' | 'usb' | 'sd_card' | 'nfc' | 'bluetooth' | 'none';
@@ -49,10 +51,7 @@ export const getTransferMethodClass = (method: string): string => {
 /**
  * 格式化传输方式的显示标签（通过 i18n 查找翻译）
  */
-export const formatTransferMethodLabel = (
-  method: string, 
-  t: (key: string, defaultValue?: string) => string
-): string => {
+export const formatTransferMethodLabel = (method: string, t: TFunction): string => {
   const key = normalizeTransferMethodKey(method);
   // 查找翻译，如 transferMethods.qr -> "二维码" / "二維碼" / "QR Code"
   return t(`transferMethods.${key}`, method);

@@ -42,9 +42,9 @@ export const getFallbackData = (): CustodyData => {
         name: 'Trezor',
         logo: '/images/logos/hardware/trezor.webp',
         features: [
-          { type: 'positive', text: '支持 Taproot 单签名' },
-          { type: 'positive', text: '开源安全芯片' },
-          { type: 'positive', text: '支持 SLIP39 Shamir 备份' }
+          { type: 'positive', text: 'Taproot support' },
+          { type: 'positive', text: 'Open-source Secure Element' },
+          { type: 'positive', text: 'SLIP39 Shamir backup' }
         ],
         compatibleWallets: ['sparrow', 'nunchuk', 'electrum', 'keeper', 'specter', 'wasabi']
       }
@@ -112,11 +112,6 @@ export const loadCustodyData = async (lang: string = DEFAULT_LANGUAGE): Promise<
     if (!cachedCoreData) {
       const coreRes = await fetch('/data/custody-core.json');
       if (!coreRes.ok) {
-        // 兼容回退：如果 core 加载失败，尝试回退加载历史 data.json
-        const fallbackRes = await fetch(`/locales/${safeLang}/data.json`);
-        if (fallbackRes.ok) {
-          return await fallbackRes.json();
-        }
         throw new Error(`Failed to load custody-core.json: ${coreRes.status}`);
       }
       cachedCoreData = await coreRes.json();

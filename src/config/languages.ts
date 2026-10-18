@@ -14,17 +14,21 @@ export const DEFAULT_LANGUAGE = 'en';
 
 export const SUPPORTED_LANGUAGE_CODES = SUPPORTED_LANGUAGES.map(l => l.code);
 
-// 获取已解析的安全语言代码（优先使用 i18n.resolvedLanguage）
-export const getSafeLanguage = (resolvedLang?: string, currentLang?: string): string => {
-  const lang = resolvedLang || currentLang || DEFAULT_LANGUAGE;
+// 将任意语言代码映射到受支持的语言；无法匹配时返回 undefined
+export const matchSupportedLanguage = (lang: string): string | undefined => {
   if (SUPPORTED_LANGUAGE_CODES.includes(lang)) return lang;
-  
+
   const lower = lang.toLowerCase();
   if (lower.startsWith('zh')) {
     return lower.includes('tw') || lower.includes('hk') || lower.includes('mo') || lower.includes('hant') ? 'zh-TW' : 'zh-CN';
   }
-  
-  const prefix = lang.split('-')[0].toLowerCase();
-  const match = SUPPORTED_LANGUAGES.find(l => l.code.toLowerCase().startsWith(prefix));
-  return match ? match.code : DEFAULT_LANGUAGE;
+
+  const prefix = lower.split('-')[0];
+  return SUPPORTED_LANGUAGES.find(l => l.code.toLowerCase().split('-')[0] === prefix)?.code;
+};
+
+// 获取已解析的安全语言代码（优先使用 i18n.resolvedLanguage）
+export const getSafeLanguage = (resolvedLang?: string, currentLang?: string): string => {
+  const lang = resolvedLang || currentLang || DEFAULT_LANGUAGE;
+  return matchSupportedLanguage(lang) ?? DEFAULT_LANGUAGE;
 };

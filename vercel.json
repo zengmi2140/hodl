@@ -10,7 +10,7 @@
   ],
   "headers": [
     {
-      "source": "/custody-data.json",
+      "source": "/data/custody-core.json",
       "headers": [
         {
           "key": "Cache-Control",
