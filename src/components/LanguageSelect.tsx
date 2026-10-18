@@ -32,7 +32,8 @@ const LanguageSelect: React.FC = () => {
     };
   }, [open]);
 
-  const currentLabel = getLabelFor(i18n.language);
+  const currentSafe = getSafeLanguage(i18n.resolvedLanguage, i18n.language);
+  const currentLabel = getLabelFor(currentSafe);
 
   const handleSelect = (value: string) => {
     i18n.changeLanguage(value);
@@ -54,10 +55,7 @@ const LanguageSelect: React.FC = () => {
       </button>
       {open && (
         <ul className="lang-select__menu" role="listbox">
-          {SUPPORTED_LANGUAGES.filter(opt => {
-            const currentSafe = getSafeLanguage(i18n.language);
-            return opt.code !== currentSafe;
-          }).map(opt => (
+          {SUPPORTED_LANGUAGES.filter(opt => opt.code !== currentSafe).map(opt => (
             <li
               key={opt.code}
               role="option"

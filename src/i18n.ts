@@ -2,17 +2,17 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpBackend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { SUPPORTED_LANGUAGE_CODES, FALLBACK_LNG_CONFIG, DEFAULT_LANGUAGE } from './config/languages';
+import { SUPPORTED_LANGUAGE_CODES, getSafeLanguage, DEFAULT_LANGUAGE } from './config/languages';
 
 i18n
   .use(HttpBackend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: FALLBACK_LNG_CONFIG,
+    fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: SUPPORTED_LANGUAGE_CODES,
     load: 'currentOnly',
-    nonExplicitSupportedLngs: true,
+    nonExplicitSupportedLngs: false,
     
     // 默认命名空间
     defaultNS: 'translation',
@@ -33,6 +33,7 @@ i18n
       caches: ['localStorage'],
       lookupQuerystring: 'lang',
       lookupLocalStorage: 'i18nextLng',
+      convertDetectedLanguage: (lng: string) => getSafeLanguage(lng),
     },
 
     react: {
