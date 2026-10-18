@@ -1,0 +1,150 @@
+{
+  "names": {
+    "none": "No Signer",
+    "publicnode": "Default / Public Node"
+  },
+  "features": {
+    "jade": [
+      "Virtual Secure Element",
+      "Air-gapped (Camera)",
+      "Miniscript support"
+    ],
+    "trezor": [
+      "Taproot support",
+      "Open-source Secure Element",
+      "SLIP39 Shamir backup"
+    ],
+    "keystone": [
+      "Air-gapped (QR Code)",
+      "Fingerprint unlock",
+      "Dice roll entropy",
+      "SLIP39 Shamir backup"
+    ],
+    "bitbox": [
+      "Miniscript support",
+      "BIP85 support",
+      "Silent Payments"
+    ],
+    "seedsigner": [
+      "Stateless (No key storage)",
+      "Dice roll entropy",
+      "Camera / Image entropy",
+      "Air-gapped",
+      "Custom derivation paths",
+      "Commodity hardware (RPi)",
+      "No Secure Element"
+    ],
+    "passport": [
+      "Air-gapped",
+      "Dice roll entropy",
+      "BIP85 support"
+    ],
+    "krux": [
+      "Dice roll entropy",
+      "Camera / Image entropy",
+      "Air-gapped",
+      "Encrypted mnemonics",
+      "Custom derivation paths",
+      "Commodity hardware",
+      "No Secure Element"
+    ],
+    "tapsigner": [
+      "Card form factor",
+      "NFC",
+      "Closed-source firmware",
+      "No display"
+    ],
+    "specter-diy": [
+      "Open-source firmware; DIY assembly",
+      "Air-gapped signing",
+      "Miniscript support",
+      "Optional forget-on-power-off key mode",
+      "Touchscreen input adds seed entropy",
+      "Custom derivation paths",
+      "Commodity hardware",
+      "No Secure Element in base build; optional smartcard expansion"
+    ],
+    "coldcard": [
+      "Dice roll entropy",
+      "Air-gapped",
+      "Bricks after failed PIN attempts"
+    ],
+    "ledger": [
+      "Miniscript support",
+      "Closed-source firmware",
+      "Small display"
+    ],
+    "none": [
+      "Risk: Hot wallet attacks",
+      "No hardware verification"
+    ],
+    "sparrow": [
+      "Taproot support",
+      "BIP329 Label Import/Export",
+      "SLIP39 Shamir backup",
+      "Descriptor Import/Export"
+    ],
+    "bluewallet": [
+      "Silent Payments",
+      "Descriptor Import/Export"
+    ],
+    "electrum": [
+      "BIP329 Label Import/Export",
+      "Non-standard seed format (Not BIP39)"
+    ],
+    "nunchuk": [
+      "Taproot Single-Sig",
+      "Taproot Multisig",
+      "Miniscript support",
+      "Descriptor Import/Export"
+    ],
+    "keeper": [
+      "Taproot support",
+      "BIP329 Label Import/Export",
+      "Miniscript support",
+      "Descriptor Import/Export",
+      "Inheritance planning"
+    ],
+    "specter": [
+      "Deep Bitcoin Core integration",
+      "Descriptor Import/Export"
+    ],
+    "wasabi": [
+      "CoinJoin",
+      "Built-in Tor",
+      "BIP-158 block filtering",
+      "SLIP39 Shamir backup"
+    ],
+    "liana": [
+      "Taproot support",
+      "Miniscript support",
+      "Descriptor Import/Export",
+      "Inheritance planning",
+      "Time-locked recovery"
+    ],
+    "electrs": [
+      "Requires Bitcoin Core backend",
+      "No address clustering",
+      "Requires index storage (~50GB)"
+    ],
+    "publicnode": [
+      "Privacy Risk: Address Clustering"
+    ],
+    "bitcoincore": [
+      "Local address index only"
+    ],
+    "eps": [
+      "Local address index only",
+      "Requires Bitcoin Core backend"
+    ],
+    "knots": [
+      "Local address index only"
+    ],
+    "fulcrum": [
+      "Requires Bitcoin Core backend",
+      "No address clustering",
+      "Requires significant storage (~130 GB)",
+      "Higher memory requirement (8 GB+ recommended)"
+    ]
+  }
+}

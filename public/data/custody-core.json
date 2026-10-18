@@ -1,0 +1,994 @@
+{
+  "hardwareSigners": [
+    {
+      "id": "jade",
+      "name": "Blockstream Jade",
+      "logo": "/images/logos/hardware/jade.webp",
+      "features": [
+        {
+          "type": "warning"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleWallets": [
+        "nunchuk",
+        "sparrow",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "trezor",
+      "name": "Trezor",
+      "logo": "/images/logos/hardware/trezor.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi"
+      ]
+    },
+    {
+      "id": "keystone",
+      "name": "Keystone",
+      "logo": "/images/logos/hardware/keystone.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk",
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi"
+      ]
+    },
+    {
+      "id": "bitbox",
+      "name": "Bitbox 02",
+      "logo": "/images/logos/hardware/bitbox.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "seedsigner",
+      "name": "SeedSigner",
+      "logo": "/images/logos/hardware/seedsigner.webp",
+      "features": [
+        {
+          "type": "warning"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "negative"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "bluewallet",
+        "keeper",
+        "specter"
+      ]
+    },
+    {
+      "id": "passport",
+      "name": "Passport",
+      "logo": "/images/logos/hardware/passport.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "specter"
+      ]
+    },
+    {
+      "id": "krux",
+      "name": "Krux",
+      "logo": "/images/logos/hardware/krux.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "negative"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "bluewallet",
+        "keeper",
+        "specter",
+        "liana"
+      ]
+    },
+    {
+      "id": "tapsigner",
+      "name": "TapSigner",
+      "logo": "/images/logos/hardware/tapsigner.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "warning"
+        },
+        {
+          "type": "negative"
+        },
+        {
+          "type": "negative"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "keeper"
+      ]
+    },
+    {
+      "id": "specter-diy",
+      "name": "Specter-DIY",
+      "logo": "/images/logos/hardware/specter-diy.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "warning"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "specter",
+        "liana"
+      ]
+    },
+    {
+      "id": "coldcard",
+      "name": "Coldcard",
+      "logo": "/images/logos/hardware/coldcard.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "Ledger",
+      "logo": "/images/logos/hardware/ledger.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "negative"
+        },
+        {
+          "type": "negative"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "electrum",
+        "nunchuk",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "none",
+      "name": "No Signer",
+      "logo": "🚫",
+      "features": [
+        {
+          "type": "negative"
+        },
+        {
+          "type": "negative"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    }
+  ],
+  "softwareWallets": [
+    {
+      "id": "sparrow",
+      "name": "Sparrow",
+      "logo": "/images/logos/software/sparrow.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleSigners": [
+        "trezor",
+        "ledger",
+        "keystone",
+        "coldcard",
+        "bitbox",
+        "seedsigner",
+        "none",
+        "jade",
+        "passport",
+        "krux",
+        "tapsigner",
+        "specter-diy"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ]
+    },
+    {
+      "id": "bluewallet",
+      "name": "Blue Wallet",
+      "logo": "/images/logos/software/bluewallet.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleSigners": [
+        "keystone",
+        "seedsigner",
+        "none",
+        "jade",
+        "passport",
+        "krux"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "electrum",
+      "name": "Electrum",
+      "logo": "/images/logos/software/electrum.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleSigners": [
+        "ledger",
+        "trezor",
+        "keystone",
+        "none",
+        "jade",
+        "coldcard",
+        "bitbox",
+        "passport"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "nunchuk",
+      "name": "Nunchuk",
+      "logo": "/images/logos/software/nunchuk.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleSigners": [
+        "trezor",
+        "keystone",
+        "jade",
+        "seedsigner",
+        "none",
+        "ledger",
+        "coldcard",
+        "bitbox",
+        "passport",
+        "krux",
+        "tapsigner"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "keeper",
+      "name": "Bitcoin Keeper",
+      "logo": "/images/logos/software/keeper.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleSigners": [
+        "coldcard",
+        "ledger",
+        "trezor",
+        "bitbox",
+        "jade",
+        "keystone",
+        "seedsigner",
+        "passport",
+        "krux",
+        "tapsigner",
+        "none"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "id": "specter",
+      "name": "Specter Desktop",
+      "logo": "/images/logos/software/specter.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleSigners": [
+        "coldcard",
+        "ledger",
+        "trezor",
+        "bitbox",
+        "jade",
+        "keystone",
+        "seedsigner",
+        "passport",
+        "krux",
+        "none",
+        "specter-diy"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ]
+    },
+    {
+      "id": "wasabi",
+      "name": "Wasabi",
+      "logo": "/images/logos/software/wasabi.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleSigners": [
+        "coldcard",
+        "ledger",
+        "trezor",
+        "bitbox",
+        "jade",
+        "keystone",
+        "none"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ]
+    },
+    {
+      "id": "liana",
+      "name": "Liana",
+      "logo": "/images/logos/software/liana.webp",
+      "features": [
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "positive"
+        }
+      ],
+      "compatibleSigners": [
+        "coldcard",
+        "ledger",
+        "jade",
+        "bitbox",
+        "krux",
+        "none",
+        "specter-diy"
+      ],
+      "compatibleNodes": [],
+      "supportedPlatforms": [
+        "Desktop"
+      ],
+      "multisigOnly": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "electrs",
+      "name": "electrs",
+      "logo": "/images/logos/nodes/electrs.webp",
+      "features": [
+        {
+          "type": "warning"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "liana"
+      ]
+    },
+    {
+      "id": "publicnode",
+      "name": "Default / Public Node",
+      "logo": "/images/logos/nodes/bitcoin-core.webp",
+      "features": [
+        {
+          "type": "negative"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "liana"
+      ]
+    },
+    {
+      "id": "bitcoincore",
+      "name": "Bitcoin Core",
+      "logo": "/images/logos/nodes/bitcoin-core.webp",
+      "features": [
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "eps",
+      "name": "Electrum Personal Server",
+      "logo": "/images/logos/nodes/electrum.webp",
+      "features": [
+        {
+          "type": "warning"
+        },
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "liana"
+      ]
+    },
+    {
+      "id": "knots",
+      "name": "Bitcoin Knots",
+      "logo": "/images/logos/nodes/bitcoinknots.webp",
+      "features": [
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "specter",
+        "wasabi",
+        "liana"
+      ]
+    },
+    {
+      "id": "fulcrum",
+      "name": "Fulcrum",
+      "logo": "/images/logos/nodes/fulcrum.webp",
+      "features": [
+        {
+          "type": "warning"
+        },
+        {
+          "type": "positive"
+        },
+        {
+          "type": "warning"
+        },
+        {
+          "type": "warning"
+        }
+      ],
+      "compatibleWallets": [
+        "sparrow",
+        "nunchuk",
+        "electrum",
+        "bluewallet",
+        "keeper",
+        "liana"
+      ]
+    }
+  ],
+  "transferMethods": {
+    "seedsigner": {
+      "sparrow": [
+        "qr"
+      ],
+      "bluewallet": [
+        "qr"
+      ],
+      "nunchuk": [
+        "qr"
+      ],
+      "keeper": [
+        "qr"
+      ],
+      "specter": [
+        "qr"
+      ]
+    },
+    "keystone": {
+      "sparrow": [
+        "usb",
+        "qr",
+        "sd_card"
+      ],
+      "electrum": [
+        "usb",
+        "sd_card"
+      ],
+      "nunchuk": [
+        "usb",
+        "qr",
+        "sd_card"
+      ],
+      "bluewallet": [
+        "qr"
+      ],
+      "keeper": [
+        "usb",
+        "qr"
+      ],
+      "specter": [
+        "qr",
+        "sd_card"
+      ],
+      "wasabi": [
+        "usb"
+      ]
+    },
+    "jade": {
+      "sparrow": [
+        "qr",
+        "usb"
+      ],
+      "bluewallet": [
+        "qr"
+      ],
+      "nunchuk": [
+        "qr",
+        "usb"
+      ],
+      "electrum": [
+        "usb"
+      ],
+      "liana": [
+        "usb"
+      ],
+      "keeper": [
+        "qr",
+        "usb"
+      ],
+      "specter": [
+        "qr",
+        "usb"
+      ],
+      "wasabi": [
+        "usb"
+      ]
+    },
+    "none": {
+      "sparrow": [
+        "none"
+      ],
+      "electrum": [
+        "none"
+      ],
+      "bluewallet": [
+        "none"
+      ],
+      "nunchuk": [
+        "none"
+      ],
+      "liana": [
+        "none"
+      ],
+      "keeper": [
+        "none"
+      ],
+      "specter": [
+        "none"
+      ],
+      "wasabi": [
+        "none"
+      ]
+    },
+    "coldcard": {
+      "sparrow": [
+        "usb",
+        "sd_card"
+      ],
+      "electrum": [
+        "usb",
+        "sd_card"
+      ],
+      "liana": [
+        "usb",
+        "sd_card"
+      ],
+      "nunchuk": [
+        "usb",
+        "sd_card"
+      ],
+      "keeper": [
+        "usb"
+      ],
+      "specter": [
+        "usb",
+        "sd_card"
+      ],
+      "wasabi": [
+        "usb",
+        "sd_card"
+      ]
+    },
+    "trezor": {
+      "sparrow": [
+        "usb"
+      ],
+      "electrum": [
+        "usb"
+      ],
+      "nunchuk": [
+        "usb"
+      ],
+      "keeper": [
+        "usb"
+      ],
+      "specter": [
+        "usb"
+      ],
+      "wasabi": [
+        "usb"
+      ]
+    },
+    "bitbox": {
+      "sparrow": [
+        "usb"
+      ],
+      "liana": [
+        "usb"
+      ],
+      "nunchuk": [
+        "usb"
+      ],
+      "keeper": [
+        "usb"
+      ],
+      "specter": [
+        "usb"
+      ],
+      "wasabi": [
+        "usb"
+      ]
+    },
+    "ledger": {
+      "sparrow": [
+        "usb"
+      ],
+      "electrum": [
+        "usb"
+      ],
+      "liana": [
+        "usb"
+      ],
+      "nunchuk": [
+        "usb"
+      ],
+      "keeper": [
+        "usb"
+      ],
+      "specter": [
+        "usb"
+      ],
+      "wasabi": [
+        "usb"
+      ]
+    },
+    "passport": {
+      "sparrow": [
+        "qr",
+        "sd_card"
+      ],
+      "nunchuk": [
+        "qr"
+      ],
+      "electrum": [
+        "sd_card"
+      ],
+      "bluewallet": [
+        "qr"
+      ],
+      "keeper": [
+        "qr"
+      ],
+      "specter": [
+        "qr",
+        "sd_card"
+      ]
+    },
+    "krux": {
+      "sparrow": [
+        "qr",
+        "sd_card"
+      ],
+      "nunchuk": [
+        "qr"
+      ],
+      "bluewallet": [
+        "qr"
+      ],
+      "keeper": [
+        "qr"
+      ],
+      "specter": [
+        "qr",
+        "sd_card"
+      ],
+      "liana": [
+        "qr",
+        "sd_card"
+      ]
+    },
+    "tapsigner": {
+      "sparrow": [
+        "nfc"
+      ],
+      "nunchuk": [
+        "nfc"
+      ],
+      "keeper": [
+        "nfc"
+      ]
+    },
+    "specter-diy": {
+      "sparrow": [
+        "qr",
+        "sd_card"
+      ],
+      "specter": [
+        "qr",
+        "sd_card",
+        "usb"
+      ],
+      "liana": [
+        "usb"
+      ]
+    }
+  }
+}

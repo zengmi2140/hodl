@@ -60,7 +60,16 @@
     "please_select_wallet": "Select wallet",
     "please_select_signer": "Select signer",
     "no_signer_used": "No hardware signer used",
+    "no_transfer_method": "No transfer method",
     "connected": "Connected",
     "incompatible": "Incompatible"
+  },
+  "transferMethods": {
+    "qr": "QR Code",
+    "usb": "USB",
+    "sd_card": "microSD / SD Card",
+    "nfc": "NFC",
+    "bluetooth": "Bluetooth",
+    "none": "None"
   }
 }

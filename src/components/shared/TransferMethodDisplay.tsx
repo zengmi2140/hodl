@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustodyData } from '../../types';
+import { getTransferMethodClass, formatTransferMethodLabel } from '../../utils/transferMethods';
 
 interface TransferMethodDisplayProps {
   // 单签模式
@@ -11,22 +12,6 @@ interface TransferMethodDisplayProps {
   // 共用
   custodyData: CustodyData;
 }
-
-// 获取传输方式对应的CSS类名
-const getTransferMethodClass = (method: string): string => {
-  const methodClassMap: { [key: string]: string } = {
-    'SD卡': 'sd-card',
-    'microSD 卡': 'sd-card',
-    'microSD Card': 'sd-card',
-    '二维码': 'qr-code',
-    'QR Code': 'qr-code',
-    'USB': 'usb',
-    '蓝牙': 'bluetooth',
-    'Bluetooth': 'bluetooth',
-    'NFC': 'nfc'
-  };
-  return methodClassMap[method] || 'usb';
-};
 
 // 多签槽位颜色
 const SLOT_COLORS = [
@@ -127,7 +112,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
                 color: SLOT_COLORS[item.slotIndex]?.text,
               } : undefined}
             >
-              {item.method}
+              {formatTransferMethodLabel(item.method, t)}
             </span>
           ))}
         </div>
@@ -145,7 +130,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
       )}
       {isNoSignerSelected && (
         <div className="transfer-method-hint">
-          {i18n.language.startsWith('en') ? 'No hardware signer used' : '未使用硬件签名器'}
+          {t('arrows.no_signer_used')}
         </div>
       )}
     </div>

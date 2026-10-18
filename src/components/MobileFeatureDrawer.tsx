@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Feature } from '../types';
 import FeatureIcon from './shared/FeatureIcon';
 import './MobileFeatureDrawer.css';
@@ -16,6 +17,7 @@ const MobileFeatureDrawer: React.FC<MobileFeatureDrawerProps> = ({
   title,
   features
 }) => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [animating, setAnimating] = useState(false);
 
@@ -57,7 +59,7 @@ const MobileFeatureDrawer: React.FC<MobileFeatureDrawerProps> = ({
               </div>
             ))}
             {features.length === 0 && (
-              <div className="empty-features">暂无特性描述</div>
+              <div className="empty-features">{t('features.empty')}</div>
             )}
           </div>
         </div>

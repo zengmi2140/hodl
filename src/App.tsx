@@ -8,7 +8,8 @@ import MainLayout from './components/MainLayout';
 import { useIsMobile } from './hooks/useIsMobile';
 import { useDarkMode } from './hooks/useDarkMode';
 import { SignatureMode, ThresholdType } from './components/SignatureModeSelector';
-import { loadCustodyData } from './dataLoader';
+import { loadCustodyData, getFallbackData } from './dataLoader';
+import { getSafeLanguage } from './config/languages';
 import './index.css';
 import './App.css';
 
@@ -80,10 +81,8 @@ function App() {
     const loadData = async () => {
       setState(prev => ({ ...prev, isLoading: true }));
       try {
-        // 使用 resolvedLanguage 确保获取到支持的语言代码 (如 'es', 'zh-CN')
-        const SUPPORTED_LANGS = ['en', 'zh-CN', 'zh-TW', 'zh'];
-        const currentLang = i18n.resolvedLanguage || i18n.language;
-        const safeLang = SUPPORTED_LANGS.includes(currentLang) ? currentLang : 'en';
+        // 使用 getSafeLanguage 确保获取到受支持的语言代码
+        const safeLang = getSafeLanguage(i18n.resolvedLanguage, i18n.language);
         
         // 加载托管数据
         const data = await loadCustodyData(safeLang);
@@ -101,7 +100,6 @@ function App() {
         if (import.meta.env.DEV) {
           console.error('Failed to load data:', error);
         }
-        const { getFallbackData } = await import('./dataLoader');
         const fallbackData = getFallbackData();
         setState(prev => ({ ...prev, custodyData: fallbackData, isLoading: false }));
       }

@@ -1,23 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface LanguageOption {
-  value: string;
-  label: string;
-}
-
-const LANGUAGE_OPTIONS: LanguageOption[] = [
-  { value: 'en', label: 'ENGLISH' },
-  { value: 'zh-CN', label: '简体中文' },
-  { value: 'zh-TW', label: '繁體中文' },
-];
+import { SUPPORTED_LANGUAGES, getSafeLanguage } from '../config/languages';
 
 const getLabelFor = (lng: string): string => {
-  const match = LANGUAGE_OPTIONS.find(o => o.value === lng || lng.startsWith(o.value));
-  if (match) return match.label;
-  if (lng.toLowerCase().includes('tw')) return '繁體中文';
-  if (lng.toLowerCase().includes('cn') || lng.toLowerCase().startsWith('zh')) return '简体中文';
-  return 'ENGLISH';
+  const safeLang = getSafeLanguage(lng);
+  const match = SUPPORTED_LANGUAGES.find(o => o.code === safeLang);
+  return match ? match.label : 'English';
 };
 
 const LanguageSelect: React.FC = () => {
@@ -65,16 +54,16 @@ const LanguageSelect: React.FC = () => {
       </button>
       {open && (
         <ul className="lang-select__menu" role="listbox">
-          {LANGUAGE_OPTIONS.filter(opt => {
-            const isActive = i18n.language === opt.value || i18n.language.startsWith(opt.value);
-            return !isActive;
+          {SUPPORTED_LANGUAGES.filter(opt => {
+            const currentSafe = getSafeLanguage(i18n.language);
+            return opt.code !== currentSafe;
           }).map(opt => (
             <li
-              key={opt.value}
+              key={opt.code}
               role="option"
               aria-selected={false}
               className="lang-select__option"
-              onClick={() => handleSelect(opt.value)}
+              onClick={() => handleSelect(opt.code)}
             >
               <span className="lang-select__option-label">{opt.label}</span>
             </li>

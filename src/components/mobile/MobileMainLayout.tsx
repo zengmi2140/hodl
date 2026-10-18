@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { UserPreference, ComponentState, CustodyData } from '../../types';
 import { SignatureMode, ThresholdType } from '../SignatureModeSelector';
 import SignatureModeSelector from '../SignatureModeSelector';
@@ -9,6 +10,7 @@ import MobileNodeCard from './MobileNodeCard';
 import MobileDataFlow from './MobileDataFlow';
 import MobileFeatureDisplay from './MobileFeatureDisplay';
 import { SLOT_COLORS } from '../../App';
+import { formatTransferMethodLabel } from '../../utils/transferMethods';
 import './Mobile.css';
 
 interface MobileMainLayoutProps {
@@ -64,6 +66,8 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
   onToggleDeviceType,
 }) => {
 
+  const { t } = useTranslation();
+
   // Get transfer method labels for data flow
   const getTransferMethodLabels = () => {
     if (signatureMode === 'single') {
@@ -72,7 +76,7 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
         if (signerId === 'none') return null;
         const methods = custodyData.transferMethods?.[signerId]?.[selectedWallet];
         if (methods && methods.length > 0) {
-          return methods.join(' / ');
+          return methods.map(m => formatTransferMethodLabel(m, t)).join(' / ');
         }
       }
       return null;
@@ -85,7 +89,7 @@ const MobileMainLayout: React.FC<MobileMainLayoutProps> = ({
           if (methods && methods.length > 0) {
             coloredLabels.push({
               slotIndex: index,
-              methods: methods,
+              methods: methods.map(m => formatTransferMethodLabel(m, t)),
             });
           }
         }

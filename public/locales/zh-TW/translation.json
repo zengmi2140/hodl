@@ -60,7 +60,16 @@
     "please_select_wallet": "請選擇錢包",
     "please_select_signer": "請選擇簽名器",
     "no_signer_used": "未使用硬體簽名器",
+    "no_transfer_method": "無傳輸方式",
     "connected": "已連接",
     "incompatible": "不相容"
+  },
+  "transferMethods": {
+    "qr": "二維碼",
+    "usb": "USB",
+    "sd_card": "microSD / SD 卡",
+    "nfc": "NFC",
+    "bluetooth": "藍牙",
+    "none": "無"
   }
 }

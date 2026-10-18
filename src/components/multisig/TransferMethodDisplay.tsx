@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustodyData } from '../../types';
 import { SLOT_COLORS } from '../../App';
+import { formatTransferMethodLabel } from '../../utils/transferMethods';
 
 interface TransferMethodDisplayProps {
   signerSlots: (string | null)[];
@@ -87,9 +88,9 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
                           backgroundColor: color.bg,
                           border: `1px solid ${color.border}`,
                         }}
-                        title={`${signerName}: ${method}`}
+                        title={`${signerName}: ${formatTransferMethodLabel(method, t)}`}
                       >
-                        {method}
+                        {formatTransferMethodLabel(method, t)}
                       </span>
                     ))}
                   </div>
@@ -102,7 +103,7 @@ const TransferMethodDisplay: React.FC<TransferMethodDisplayProps> = ({
             {!hasSigners && !hasWallet && t('arrows.select_hint_signer_wallet')}
             {hasSigners && !hasWallet && t('arrows.please_select_wallet')}
             {!hasSigners && hasWallet && t('arrows.please_select_signer')}
-            {hasSigners && hasWallet && (i18n.language.startsWith('en') ? 'No transfer method' : '无传输方式')}
+            {hasSigners && hasWallet && t('arrows.no_transfer_method')}
           </div>
         )}
       </div>

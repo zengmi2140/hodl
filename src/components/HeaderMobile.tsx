@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { SUPPORTED_LANGUAGES, getSafeLanguage } from '../config/languages';
 
 interface HeaderMobileProps {
   completionPercentage: number;
@@ -17,6 +18,8 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
   onToggleTheme
 }) => {
   const { t, i18n } = useTranslation();
+  const safeLang = getSafeLanguage(i18n.resolvedLanguage, i18n.language);
+  const currentShortLabel = SUPPORTED_LANGUAGES.find(l => l.code === safeLang)?.shortLabel || 'EN';
 
   const getProgressColor = (percentage: number): string => {
     if (percentage === 0) return '#fbbf24';
@@ -52,7 +55,7 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
           style={{ left: '12px' }}
         >
            <select
-             value={i18n.language}
+             value={safeLang}
              onChange={(e) => i18n.changeLanguage(e.target.value)}
              style={{
                position: 'absolute',
@@ -66,13 +69,12 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({
              }}
              aria-label={t('header.selectLang')}
            >
-             <option value="en">EN</option>
-             <option value="zh-CN">简</option>
-             <option value="zh-TW">繁</option>
+             {SUPPORTED_LANGUAGES.map(lang => (
+               <option key={lang.code} value={lang.code}>{lang.shortLabel}</option>
+             ))}
            </select>
            <span style={{ fontSize: '12px', fontWeight: 700 }}>
-             {i18n.language.includes('en') ? 'EN' : 
-              (i18n.language.includes('TW') ? '繁' : '简')}
+             {currentShortLabel}
            </span>
         </div>
 

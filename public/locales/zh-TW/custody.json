@@ -1,0 +1,150 @@
+{
+  "names": {
+    "none": "不使用簽名器",
+    "publicnode": "預設/公開節點"
+  },
+  "features": {
+    "jade": [
+      "虛擬化安全晶片",
+      "Air-gapped 體驗",
+      "支援 Miniscript"
+    ],
+    "trezor": [
+      "支援 Taproot 單簽名",
+      "開源安全晶片",
+      "支援 SLIP39 Shamir 備份"
+    ],
+    "keystone": [
+      "Air-gapped 體驗",
+      "指紋解鎖",
+      "擲骰子生成種子詞",
+      "支援 SLIP39 Shamir 備份"
+    ],
+    "bitbox": [
+      "支援 Miniscript",
+      "支援 BIP85",
+      "支援靜默支付"
+    ],
+    "seedsigner": [
+      "自身不儲存私鑰",
+      "擲骰子生成種子詞",
+      "攝影生成種子詞",
+      "Air-gapped 體驗",
+      "自訂公鑰衍生路徑",
+      "基於通用硬體",
+      "無安全晶片"
+    ],
+    "passport": [
+      "Air-gapped 體驗",
+      "擲骰子生成種子詞",
+      "支援 BIP85"
+    ],
+    "krux": [
+      "擲骰子生成種子詞",
+      "攝影生成種子詞",
+      "Air-gapped 體驗",
+      "加密助記詞",
+      "自訂公鑰衍生路徑",
+      "基於通用硬體",
+      "無安全晶片"
+    ],
+    "tapsigner": [
+      "卡片形態",
+      "NFC",
+      "韌體不開源",
+      "無螢幕"
+    ],
+    "specter-diy": [
+      "開源韌體，可自行組裝",
+      "Air-gapped 體驗",
+      "支援 Miniscript",
+      "可選斷電遺忘私鑰模式",
+      "觸控輸入增加種子詞熵",
+      "自訂公鑰衍生路徑",
+      "基於通用硬體",
+      "基本配置無安全晶片，可選智慧卡擴充"
+    ],
+    "coldcard": [
+      "擲骰子生成種子詞",
+      "Air-gapped 體驗",
+      "多次輸錯 PIN 碼設備報廢"
+    ],
+    "ledger": [
+      "支援 Miniscript",
+      "韌體不開源",
+      "螢幕較小"
+    ],
+    "none": [
+      "易受互聯網遠程攻擊",
+      "無法校驗軟體錢包資訊"
+    ],
+    "sparrow": [
+      "支援 Taproot 單簽名",
+      "BIP329 錢包標籤匯出",
+      "支援 SLIP39 Shamir 備份",
+      "地址描述符 匯入/匯出"
+    ],
+    "bluewallet": [
+      "支援靜默支付",
+      "地址描述符 匯入/匯出"
+    ],
+    "electrum": [
+      "BIP329 錢包標籤匯出",
+      "所生成的種子詞並非 BIP39 標準"
+    ],
+    "nunchuk": [
+      "支援 Taproot 單簽名",
+      "支援 Taproot 多簽名",
+      "支援 Miniscript",
+      "地址描述符 匯入/匯出"
+    ],
+    "keeper": [
+      "支援 Taproot 單簽名",
+      "BIP329 錢包標籤匯出",
+      "支援 Miniscript",
+      "地址描述符 匯入/匯出",
+      "繼承規劃"
+    ],
+    "specter": [
+      "與 Bitcoin Core 深度整合",
+      "地址描述符 匯入/匯出"
+    ],
+    "wasabi": [
+      "CoinJoin",
+      "內建 Tor",
+      "BIP-158 區塊過濾",
+      "支援 SLIP39 Shamir 備份"
+    ],
+    "liana": [
+      "支援 Taproot",
+      "支援 Miniscript",
+      "地址描述符 匯入/匯出",
+      "繼承規劃",
+      "時間鎖恢復"
+    ],
+    "electrs": [
+      "依賴於 Bitcoin Core/Bitcoin Knots",
+      "伺服器端不留存地址集群資訊",
+      "需要大量儲存空間（~50 GB）"
+    ],
+    "publicnode": [
+      "地址集群暴露"
+    ],
+    "bitcoincore": [
+      "伺服器端留存地址集群資訊"
+    ],
+    "eps": [
+      "伺服器端留存地址集群資訊",
+      "依賴於 Bitcoin Core/Bitcoin Knots"
+    ],
+    "knots": [
+      "伺服器端留存地址集群資訊"
+    ],
+    "fulcrum": [
+      "依賴於 Bitcoin Core/Bitcoin Knots",
+      "伺服器端不留存地址集群資訊",
+      "需要大量儲存空間（~130 GB）",
+      "需要較多記憶體（建議 8 GB+）"
+    ]
+  }
+}
